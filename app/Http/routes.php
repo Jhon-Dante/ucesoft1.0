@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('saludo', function(){
-    return view('saludo');
+Route::group(['middleware' => 'web'], function () {
+
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+
+    Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
+
+    	Route::resource('/cursos','CursosController');
+    });
 });

@@ -37,16 +37,8 @@ desired effect
     @include('layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-
-        @include('layouts.partials.contentheader')
-
-        <!-- Main content -->
-        <section class="content">
-            <!-- Your Page Content Here -->
-            @yield('main-content')
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+    
+    @yield('content-wrapper')
 
     @include('layouts.partials.controlsidebar')
 

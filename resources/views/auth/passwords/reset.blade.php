@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('htmlheader_title')
-    Password reset
+    Cambiar clave
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>UCESOFT</b></a>
         </div><!-- /.login-logo -->
 
         @if (session('status'))

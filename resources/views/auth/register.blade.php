@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('htmlheader_title')
-    Register
+    Registrarse
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>UCESOFT</b></a>
         </div>
 
         @if (count($errors) > 0)
@@ -43,7 +43,22 @@
                     <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.retrypepassword') }}" name="password_confirmation"/>
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
-                <div class="row">
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.pregunta') }}" name="pregunta" value=""/>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.respuesta') }}" name="respuesta" value=""/>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <select name="tipo" class="form-control" placeholder="{{ trans('adminlte_lang::message.tipo') }}">
+                        
+                        <option value="docente">Docente</option>
+                        <option value="representante">Representante</option>
+
+                    </select>
+                </div>                <div class="row">
                     <div class="col-xs-1">
                         <label>
                             <div class="checkbox_register icheck">
@@ -64,7 +79,7 @@
                 </div>
             </form>
 
-            @include('auth.partials.social_login')
+        
 
             <a href="{{ url('/login') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
         </div><!-- /.form-box -->
