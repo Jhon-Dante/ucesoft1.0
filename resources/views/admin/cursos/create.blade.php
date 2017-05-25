@@ -26,7 +26,14 @@
 							<div class="panel-heading">Registro de Curso</div>
 
 							<div class="panel-body">
-								
+								{!! Form::open(['route' => ['admin.cursos.store'], 'method' => 'post']) !!}
+                
+					                 @include('admin.prices.partials.create-fields')
+					                <div class="box-footer">
+					                <button type="submit" class="btn btn-primary">Enviar</button>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/precios')}}"><i class="fa fa-times"></i> Cancelar</a>
+					              </div>
+					            {!! Form::close() !!} 
           							<!-- /.form-group -->
 							</div>
 						</div>
