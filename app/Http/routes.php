@@ -24,5 +24,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
 
     	Route::resource('/cursos','CursosController');
+    	Route::get('/cursos/{id}/destroy', [ 
+			'uses' => 'CursosController@destroy',
+			 'as' => 'admin.cursos.destroy']
+			 );
+
+    	
     });
+
+
 });

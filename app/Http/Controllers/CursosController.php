@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Cursos;
 
+use Laracasts\Flash\Flash;
+
 class CursosController extends Controller
 {
     /**
@@ -39,7 +41,23 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!empty($request->curso)){
+
+            $cursos=Cursos::where('curso',$request->curso)->get();
+            //dd(count($cursos));
+            if (count($cursos)==0) {
+                $cursos=Cursos::create(['curso' => $request->curso]);
+                if($cursos){
+                    flash("Se ha registrado  de forma exitosa!", 'success');
+                }else{
+                    flash("Disculpe, no se pudo realizar el registro", 'error');
+                }
+            }
+
+        }
+        
+        $cursos=Cursos::all();
+        return View('admin.cursos.index',compact('cursos'));
     }
 
     /**
@@ -61,7 +79,10 @@ class CursosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $curso=Cursos::find($id);
+        //dd($curso);
+
+        return View('admin.cursos.edit',compact('curso'));
     }
 
     /**
@@ -73,7 +94,26 @@ class CursosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        if(!empty($request->curso)){
+
+            $cursos=Cursos::where('curso',$request->curso)->where('id','<>',$id)->get();
+            //dd(count($cursos));
+            if (count($cursos)==0) {
+                $cursos=Cursos::find($id);
+                $cursos->curso=$request->curso;
+                $cursos->save();
+
+                
+                    flash("Se ha actualizado de forma exitosa!", 'success');
+                
+                
+            }
+
+        }
+        
+        $cursos=Cursos::all();
+        return View('admin.cursos.index',compact('cursos'));
     }
 
     /**
@@ -84,6 +124,6 @@ class CursosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

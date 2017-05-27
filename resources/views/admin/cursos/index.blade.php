@@ -35,7 +35,9 @@
 					            </div>
 
 							</div>
-
+              <div class="col-md-12">
+                @include('flash::message')
+              </div>
 							<div class="panel-body">
 								<div class="box-body">
 								<table id="example1" class="table table-bordered table-striped">
@@ -47,7 +49,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                	<?php $i=0; ?>
+                	<?php $i=1; ?>
                 @foreach($cursos as $curso)
                 <tr>
                   <td><a href="{{ route('admin.cursos.edit', [$curso->id]) }}">{{$i}}</a></td>
@@ -55,9 +57,9 @@
                   <td>
                  
                   <div class="btn-group">
-                      <a href="{{ route('admin.cursos.edit', [$cursos->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      <a href="{{ route('admin.cursos.edit', [$curso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.cursos.destroy', [$cursos->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="{{ route('admin.cursos.destroy', [$curso->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                       </div>
                   </td>
                   
