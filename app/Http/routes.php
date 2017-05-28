@@ -29,7 +29,12 @@ Route::group(['middleware' => 'web'], function () {
 			 'as' => 'admin.cursos.destroy']
 			 );
 
-    	
+        Route::resource('/secciones','SeccionesController');
+        Route::get('/secciones/{id}/destroy', [
+            'uses' => 'SeccionesController@destroy',
+            'as' => 'admin.secciones.destroy']
+            );
+
     });
 
 

@@ -37,7 +37,7 @@ desired effect
     @include('layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    
+   			
     @yield('content-wrapper')
 
     @include('layouts.partials.controlsidebar')
