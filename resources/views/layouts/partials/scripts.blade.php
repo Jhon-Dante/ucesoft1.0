@@ -16,6 +16,7 @@
 
 <script>
 	$.widget.bridge('uibutton', $.ui.button);
+
 </script>
 <script src="{{ asset('/js/raphael-min.js') }}"></script>
 <script src="{{ asset('/plugins/morris/morris.min.js') }}"></script>
@@ -29,8 +30,7 @@
 <script src="{{ asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <script src="{{ asset('/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('/plugins/fastclick/fastclick.js') }}"></script>
-<script src="{{ asset('/dist/js/app.min.js') }}"></script>
-<script src="{{ asset('/dist/js/demo.js') }}"></script>
+<script src="{{ asset('/js/app.min.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
@@ -50,3 +50,37 @@
 <script>
 	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
+<script>
+ $(function(){
+     $("#form_secciones").submit(function(e){
+      
+         
+         var fields = $(this).serialize();
+         
+         $.post("{{ url('admin/secciones/store') }}", fields, function(data){
+           
+             if(data.valid !== undefined){
+                 $("#result").html("Enhorabuena formulario enviado correctamente");
+                 $("#form_secciones")[0].reset();
+                 $("#error_nombre").html('');
+                 $("#error_email").html('');
+             }
+             else{
+
+                 $("#error_nombre").html('');
+                 $("#error_email").html('');
+                 if (data.nombre !== undefined){
+                    $("#error_nombre").html(data.nombre); 
+                 }
+                 if (data.email !== undefined){
+                     $("#error_email").html(data.email);
+                 }
+             }
+             
+         });
+         
+         return false;
+     });
+ });
+</script>
+
