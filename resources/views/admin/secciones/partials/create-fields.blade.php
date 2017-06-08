@@ -1,15 +1,15 @@
 
 
 <div class="form-group">
-        <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" class="form-control" value="{{old('nombre')}}" />
-        <div class="text-danger" id='error_nombre'>{{$errors->formulario->first('nombre')}}</div>
+        <label for="nombre">Sección: </label>
+        <input type="text" name="seccion" class="form-control" required="required" />
+        
     </div>
     
 <div class="form-group">
-        <label for="email">Email: </label>
-        <input type="text" name="email" class="form-control" value="{{old('email')}}" />
-        <div class="text-danger" id='error_email'>{{$errors->formulario->first('email')}}</div>
+		{!! Form::label('curso','Cursos/Niveles') !!}
+        {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'required' => 'required', 'title' => 'seleccione el curso a donde quiere crear la sección']) !!}
+
 </div>
- {{csrf_field()}}
+
 
