@@ -29,7 +29,7 @@ return [
     ],
     'boolean'              => 'The :attribute campo puede ser verdadero o falso.',
     'confirmed'            => 'El :attribute no se ha marcado la confirmación.',
-    'date'                 => 'The :attribute no es una fecha válida.',
+    'date'                 => 'El :attribute no es una fecha válida.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
     'digits'               => 'The :attribute must be :digits digits.',

@@ -36,6 +36,14 @@
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
             <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
+                    
+                </ul>
+            </li>
+
+            <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/cursos')        }} ">Cursos</a></li>
@@ -43,12 +51,8 @@
                     <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/datosBasicos')  }} ">Estudiantes</a></li>
-                </ul>
-            </li>
+            
+            
         
         </ul><!-- /.sidebar-menu -->
     </section>
