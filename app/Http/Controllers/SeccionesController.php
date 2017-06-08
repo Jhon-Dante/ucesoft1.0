@@ -46,21 +46,31 @@ class SeccionesController extends Controller
     
     public function store(Validaciones $request)
     {
-        dd('asasa');
-         $validator = Validator::make(
-                $request->all(), 
-                $request->rules(),
-                $request->messages()
-                );
-        if ($validator->valid()){
-            
-            if ($Request->ajax()){
-                return response()->json(["valid" => true], 200);
-            }
-            else{
-            return redirect('admin/secciones/create')->with('message', 'Enhorabuena formulario enviado correctamente');
-            }
-        }        
+        if (!empty($request->seccion)) {
+        $seccion=Secciones::where('seccion',$request->seccion)->where('id_curso',$request->id_curso)->get();
+        
+        if (count($seccion)==0) {
+            $seccion=Secciones::create(['seccion' => $request->seccion,
+                                       'id_curso' => $request->id_curso ]);
+            flash('Registro ingresado con éxito','success');
+        
+        $secciones=Secciones::all();
+
+        return View('admin.secciones.index',compact('secciones'));
+        
+
+        } else {
+           
+             flash('Disculpe la Sección ya ha sido asignada a ese curso','warning');
+             $cursos=Cursos::lists('curso','id');
+            return View('admin.secciones.create',compact('cursos'));  
+        }
+    
+        } else {
+            flash('Existe un campo obligatorio vacio','error');
+           //return redirect('admin/secciones/create');            
+        }
+       
         
     }
 

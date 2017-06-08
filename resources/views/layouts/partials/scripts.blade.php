@@ -50,37 +50,5 @@
 <script>
 	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
-<script>
- $(function(){
-     $("#form_secciones").submit(function(e){
-      
-         
-         var fields = $(this).serialize();
-         
-         $.post("{{ url('admin/secciones/store') }}", fields, function(data){
-           
-             if(data.valid !== undefined){
-                 $("#result").html("Enhorabuena formulario enviado correctamente");
-                 $("#form_secciones")[0].reset();
-                 $("#error_nombre").html('');
-                 $("#error_email").html('');
-             }
-             else{
 
-                 $("#error_nombre").html('');
-                 $("#error_email").html('');
-                 if (data.nombre !== undefined){
-                    $("#error_nombre").html(data.nombre); 
-                 }
-                 if (data.email !== undefined){
-                     $("#error_email").html(data.email);
-                 }
-             }
-             
-         });
-         
-         return false;
-     });
- });
-</script>
 
