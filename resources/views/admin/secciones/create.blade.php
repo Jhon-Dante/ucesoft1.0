@@ -3,6 +3,8 @@
 @section('htmlheader_title')
 	Secciones
 @endsection
+
+
 @section('content-wrapper')
 <div class="content-wrapper">
 
@@ -22,9 +24,13 @@
        <section class="content">
 			<div class="container spark-screen">
 				<div class="row">
-					<div class="col-md-12">
-		                @include('flash::message')
-		            </div>
+					
+					<div class="text-success" id='result'>
+					    @if(Session::has('message'))
+					        {{Session::get('message')}}
+					    @endif
+					</div>
+		            
 					<div class="col-md-10 col-md-offset-1">
 						<div class="panel panel-default">
 							<div class="panel-heading">Registro de Sección
@@ -34,7 +40,7 @@
 							
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.secciones.store'], 'method' => 'post']) !!}
+								{!! Form::open(['route' => ['admin.secciones.store'], 'method' => 'post','id' => 'form_secciones']) !!}
                 
 					                 @include('admin.secciones.partials.create-fields')
 					                <div class="box-footer">
@@ -51,3 +57,5 @@
 		</section>
 </div><!-- /.content-wrapper -->
 @endsection
+
+

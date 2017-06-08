@@ -8,6 +8,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Adminlte-laravel - {{ trans('adminlte_lang::message.landingdescription') }} ">
     <meta name="author" content="Sergi Tur Badenas - acacha.org">
+    <meta name="keywords" content="@yield('keywords')" >
 
     <meta property="og:title" content="Adminlte-laravel" />
     <meta property="og:type" content="website" />
@@ -33,6 +34,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
     <link href="{{ asset('/css/font-lato.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset('/css/font-raleway.css') }}" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/datarangepicker/daterangerpicker.css') }}">
 
     <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('/js/smoothscroll.js') }}"></script>
