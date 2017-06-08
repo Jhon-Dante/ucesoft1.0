@@ -41,11 +41,11 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.asignaturas.destroy']
             );
 
-        // Route::resources('/DatosBasicos','DatosbasicosController');
-        // Route::get('/DatosBasicos/{id}/destroy',[
-        //     'uses' => 'DatosbasicosController@destroy',
-        //     'as' => 'admin.DatosBasicos.destroy']
-        //     );
+        Route::resource('/DatosBasicos','DatosBasicosController');
+        Route::get('/DatosBasicos/{id}/destroy',[
+            'uses' => 'DatosBasicosController@destroy',
+            'as' => 'admin.DatosBasicos.destroy']
+            );
         
     });
 

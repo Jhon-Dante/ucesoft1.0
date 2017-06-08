@@ -29,7 +29,7 @@
 							<div class="panel-heading">Lista de Estudiantes registrados
 
 								<div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-					                    <a href="{{ url('admin/datos_basicoss/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+					                    <a href="{{ url('admin/datosBasicoss/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
 					                        <i class="fa fa-pencil"></i> Registrar Estudiante  
 					                    </a>
 					            </div>
@@ -50,16 +50,16 @@
                 </thead>
                 <tbody>
                 	<?php $i=1; ?>
-                @foreach($datos_basicos as $datos_basicos)
+                @foreach($datosBasicos as $dato_basico)
                 <tr>
-                  <td><a href="{{ route('admin.datos_basicos.edit', [$datos_basicos->id]) }}">{{$i}}</a></td>
-                  <td><a href="{{ route('admin.datos_basicos.edit', [$datos_basicos->id]) }}"> {{$datos_basicos->datos_basicos}}</a></td>
+                  <td><a href="{{ route('admin.datosBasicos.edit', [$dato_basicos->id]) }}">{{$i}}</a></td>
+                  <td><a href="{{ route('admin.datosBasicos.edit', [$dato_basicos->id]) }}"> {{$datos_basicos->datos_basicos}}</a></td>
                   <td>
                  
                   <div class="btn-group">
-                      <a href="{{ route('admin.datos_basicos.edit', [$datos_basicos->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      <a href="{{ route('admin.datosBasicos.edit', [$dato_basicos->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.datos_basicos.destroy', [$datos_basicos->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="{{ route('admin.datos_basicos.destroy', [$dato_basicos->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                       </div>
                   </td>
                   
