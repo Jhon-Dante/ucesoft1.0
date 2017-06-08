@@ -46,6 +46,7 @@ class SeccionesController extends Controller
     
     public function store(Validaciones $request)
     {
+        dd($request->all());
         if (!empty($request->seccion)) {
         $seccion=Secciones::where('seccion',$request->seccion)->where('id_curso',$request->id_curso)->get();
         

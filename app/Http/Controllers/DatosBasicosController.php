@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\DatosBasicos;
 
-use Laracast\Flash\Flash
+use Laracast\Flash\Flash;
 
 class DatosBasicosController extends Controller
 {
@@ -20,7 +20,7 @@ class DatosBasicosController extends Controller
     public function index()
     {
         $datosBasicos=DatosBasicos::all();
-        return view('admin.datosBasicos.index');
+        return View('admin.DatosBasicos.index', compact('datosBasicos'));
     }
 
     /**

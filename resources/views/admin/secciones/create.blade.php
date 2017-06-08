@@ -40,7 +40,7 @@
 							
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.secciones.store'], 'method' => 'post','id' => 'form_secciones']) !!}
+								{!! Form::open(['route' => ['admin.secciones.store'], 'method' => 'post','id' => 'form']) !!}
                 
 					                 @include('admin.secciones.partials.create-fields')
 					                <div class="box-footer">
