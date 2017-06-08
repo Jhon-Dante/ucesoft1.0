@@ -10,7 +10,7 @@
 <section class="content-header">
     <h1>
         @yield('contentheader_title', 'Escritorio')
-        <small>Accesos directos</small>
+        <small>Hola Characoooooooooooooo!!</small>
     </h1>
     <ol class="breadcrumb">
     </ol>

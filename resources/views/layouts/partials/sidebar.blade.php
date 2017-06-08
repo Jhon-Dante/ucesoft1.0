@@ -40,6 +40,8 @@
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/cursos') }} ">Cursos</a></li>
                     <li><a href=" {{ url('admin/secciones') }}">Secciones</a></li>
+                    <li><a href=" {{ url('admin/asignaturas') }} ">Asignaturas</a></li>
+                    <li><a href=" {{ url('admin/Datosbasicos') }} ">Estudiantes</li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

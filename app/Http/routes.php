@@ -35,6 +35,18 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.secciones.destroy']
             );
 
+        Route::resource('/asignaturas','AsignaturasController');
+        Route::get('/asignaturas/{id}/destroy',[
+            'uses' => 'AsignaturasController@destroy',
+            'as' => 'admin.asignaturas.destroy']
+            );
+
+        // Route::resources('/DatosBasicos','DatosbasicosController');
+        // Route::get('/DatosBasicos/{id}/destroy',[
+        //     'uses' => 'DatosbasicosController@destroy',
+        //     'as' => 'admin.DatosBasicos.destroy']
+        //     );
+        
     });
 
 

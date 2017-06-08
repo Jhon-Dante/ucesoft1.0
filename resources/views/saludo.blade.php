@@ -6,6 +6,6 @@
     <title>Vista ejemplo</title>
 </head>
 <body>
-    <h1>Hola mundo desde Laravel</h1>
+    <h1>Hola mundo desde Laravel Characo!</h1>
 </body>
 </html>
