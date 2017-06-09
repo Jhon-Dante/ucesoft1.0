@@ -14,7 +14,7 @@ class CreateTableDeducciones extends Migration
     {
         Schema::create('Deducciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('deduccion');
+            $table->string('deduccion')->unique();
             $table->integer('monto');
             $table->timestamps();
         });

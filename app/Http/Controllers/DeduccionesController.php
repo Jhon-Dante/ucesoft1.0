@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Deducciones;
 
 use Laracast\Flash\Flash;
@@ -30,7 +29,7 @@ class DeduccionesController extends Controller
      */
     public function create()
     {
-        //
+        return View('admin.deducciones.create');
     }
 
     /**
@@ -41,7 +40,25 @@ class DeduccionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $buscar=Deducciones::where('deduccion',$request->deduccion)->get();
+
+        $cuantos=count($buscar);
+       
+        if ($cuantos>0) {
+            flash('Ya se encuentra registrada dicha deducción','error');
+            $deducciones=Deducciones::all();
+            return View('admin.deducciones.index',compact('deducciones'));
+
+        } else {
+            $deduccion=Deducciones::create(['deduccion' => $request->deduccion,
+                                            'monto' => $request->monto]);
+            flash('Deducción registrada exitosamente','success');
+             $deducciones=Deducciones::all();
+            return View('admin.deducciones.index',compact('deducciones'));
+
+
+        }
+        
     }
 
     /**
@@ -63,7 +80,9 @@ class DeduccionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $deduccion=Deducciones::find($id);
+
+        return View('admin.deducciones.edit',compact('deduccion'));
     }
 
     /**
@@ -75,7 +94,27 @@ class DeduccionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $buscar=Deducciones::where('deduccion',$request->deduccion)->where('id','<>',$id)->get();
+
+        $cuantos=count($buscar);
+       
+        if ($cuantos>0) {
+            flash('Ya se encuentra registrada dicha deducción','error');
+            $deducciones=Deducciones::all();
+            return View('admin.deducciones.index',compact('deducciones'));
+
+        } else {
+            $deduccion=Deducciones::find($id);
+            $deduccion->deduccion=$request->deduccion;
+            $deduccion->monto=$request->monto;
+            $deduccion->save();
+            flash('Deducción actualizada exitosamente','success');
+             $deducciones=Deducciones::all();
+            return View('admin.deducciones.index',compact('deducciones'));
+
+
+        }
+
     }
 
     /**
