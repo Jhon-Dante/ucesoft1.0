@@ -47,6 +47,35 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.DatosBasicos.destroy']
             );
         
+        Route::resource('/periodos','PeriodosController');
+        Route::get('/periodos/{id}/destroy' ,[
+            'uses' => 'PeriodosController@destroy',
+            'as' => 'admin.periodos.destroy']
+            );
+
+        Route::resource('/tipo_pago','Tipo_pagoController');
+        Route::get('/tipo_pago/{id}/destroy' ,[
+            'uses' => 'Tipo_pagoController@destroy',
+            'as' => 'admin.tipo_pago.destroy']
+            );
+
+        Route::resource('/deducciones','DeduccionesController');
+        Route::get('/deducciones/{id}/destroy' ,[
+            'uses' => 'DeduccionesController@destroy',
+            'as' => 'admin.deducciones.destroy']
+            );
+
+        Route::resource('/pago_x_cestat','Pago_x_cestatController');
+        Route::get('/pago_x_cestat/{id}/destroy' ,[
+            'uses' => 'Pago_x_cestatController@destroy',
+            'as' => 'admin.pago_x_cestat.destroy']
+            );
+
+        Route::resource('/retenciones','RetencionesController');
+        Route::get('/retenciones/{id}/destroy' ,[
+            'uses' => 'RetencionesController@destroy',
+            'as' => 'admin.retenciones.destroy']
+            );
     });
 
 
