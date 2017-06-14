@@ -46,6 +46,10 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'DatosBasicosController@destroy',
             'as' => 'admin.DatosBasicos.destroy']
             );
+        Route::get('/DatosBasicos/{cedula}/verificarPadre',[
+            'uses' => 'DatosBasicosController@verificarPadre',
+            'as' => 'admin.DatosBasicos.verificarPadre'
+            ]);
         
         Route::resource('/periodos','PeriodosController');
         Route::get('/periodos/{id}/destroy' ,[
@@ -76,6 +80,13 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'RetencionesController@destroy',
             'as' => 'admin.retenciones.destroy']
             );
+
+        //Route::resource('/representantes','RepresentantesController');
+        Route::get('representantes');
+        //Route::get('/representantes/{id}/destroy',[
+        //    'uses' => 'RepresentantesController@destroy',
+        //    'as' => 'admin.representantes.destroy']
+        //    );
     });
 
 

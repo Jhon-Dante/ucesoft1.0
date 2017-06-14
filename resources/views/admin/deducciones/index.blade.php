@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                   <?php $i=1; ?>
-                @foreach($deducciones as $deduccion)
+                <!--@foreach($deducciones as $deduccion)-->
                 <tr>
                   <td><a href="{{ route('admin.deducciones.edit', [$deduccion->id]) }}">{{$i}}</a></td>
                   <td><a href="{{ route('admin.deducciones.edit', [$deduccion->id]) }}"> {{$deduccion->deduccion}}</a></td>

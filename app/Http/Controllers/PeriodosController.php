@@ -33,7 +33,7 @@ class PeriodosController extends Controller
         return View('admin.periodos.create');
     }
 
-    /**
+    /**D
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,8 +52,7 @@ class PeriodosController extends Controller
             return View('admin.periodos.index', compact('periodos'));
         } else {
 
-            $periodo=Periodos::create(['periodo' => $request->periodo,
-                                        'status' => 'Inactivo']);
+            $periodo=Periodos::create(['periodo' => $request->periodo,'status' => 'Inactivo']);
             flash('Periodo registrado con éxito, para validaciones generales dicho periodo será registrado como INACTIVO','success');
             $periodos=Periodos::all();
             return View('admin.periodos.index', compact('periodos'));

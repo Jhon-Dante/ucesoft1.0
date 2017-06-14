@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\DatosBasicos;
-
-use Laracast\Flash\Flash;
-
-class DatosBasicosController extends Controller
+class RepresentantesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +15,9 @@ class DatosBasicosController extends Controller
      */
     public function index()
     {
-        $datosBasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('datosBasicos'));
+        //$representantes=Representantes::all();
+        return View('admin.representantes.index'//, compact('representantes')
+            );
     }
 
     /**
@@ -30,7 +27,7 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
-        return View('admin.datosBasicos.create');
+        //
     }
 
     /**
@@ -41,35 +38,9 @@ class DatosBasicosController extends Controller
      */
     public function store(Request $request)
     {
-        $buscar=DatosBasicos::where('cedula',$request->cedula)->get();
-
-        $cuantos=conunt($buscar);
-
-        if ($cuanto>0) {
-            flash('Este estudiante ya se encuentra registrado','warning');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
-        } else {
-            $datoBasico=DatosBasicos::create([
-                'nombre' => $request->nombre,
-                'apellido' => $request->apellido,
-                'nacionalidad' => $request->nacionalidad,
-                'cedula' => $request->cedula,
-                'direccion' => $request->direccion,
-                'nacimiento' => $request->nacimiento
-                ]);
-            flash('Estudiante registrado con éxito','success');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
-        }
-        
+        //
     }
 
-    public function verificarPadre($cedula){
-
-        dd("DWD");
-
-    }
     /**
      * Display the specified resource.
      *

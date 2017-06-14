@@ -7,15 +7,21 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
 
+<script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('/js/js.js') }}" type="text/javascript"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
 <!-- jQuery 2.2.3 -->
 
+<script src="{{ asset('/plugins/jQueryUI/jquery-ui.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/jQueryUI/jquery-ui.js') }}" type="text/javascript"></script>
+
 
 <script>
-	$.widget.bridge('uibutton', $.ui.button);
+
 
 </script>
 <script src="{{ asset('/js/raphael-min.js') }}"></script>
@@ -50,5 +56,6 @@
 <script>
 	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
+
 
 
