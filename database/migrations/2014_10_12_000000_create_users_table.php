@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('pregunta');
             $table->string('respuesta');
-            $table->enum('tipo', ['admin','director(a)','subdirector(a)','docente','representante'])->default('docente');
+            $table->integer('roles_id')->unsigned();
+            $table->string('foto');
             $table->rememberToken();
             $table->timestamps();
         });
