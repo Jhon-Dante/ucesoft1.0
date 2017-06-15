@@ -13,8 +13,10 @@ class CreateBloquesTable extends Migration
     public function up()
     {
         Schema::create('bloques', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('bloque');
+            $table->increments('id'); 
+            $table->string('bloque', 20);
+            $table->integer('id_dia')->unsigned();
+            $table->foreign('id_dia')->references('id')->on('dias');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAsignaturas extends Migration
+class CreateDiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateTableAsignaturas extends Migration
      */
     public function up()
     {
-        Schema::create('asignaturas', function (Blueprint $table) {
+        Schema::create('dias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('asignatura');
-            $table->string('codigo');
-            $table->integer('id_curso')->unsigned();
-            
-            $table->foreign('id_curso')->references('id')->on('cursos')->onDelete('cascade');
+            $table->string('dia', 10);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateTableAsignaturas extends Migration
      */
     public function down()
     {
-        Schema::drop('asignaturas');
+        Schema::drop('dias');
     }
 }
