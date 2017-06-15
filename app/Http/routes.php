@@ -81,6 +81,12 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.retenciones.destroy']
             );
 
+        Route::resource('/aulas','AulasController');
+        Route::get('/aulas/{id}/destroy' ,[
+            'uses' => 'AulasController@destroy',
+            'as' => 'admin.aulas.destroy']
+            );
+
         //Route::resource('/representantes','RepresentantesController');
         Route::get('representantes');
         //Route::get('/representantes/{id}/destroy',[
