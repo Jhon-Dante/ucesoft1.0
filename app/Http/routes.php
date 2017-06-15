@@ -82,11 +82,17 @@ Route::group(['middleware' => 'web'], function () {
             );
 
         //Route::resource('/representantes','RepresentantesController');
-        Route::get('representantes');
+        //Route::get('representantes');
         //Route::get('/representantes/{id}/destroy',[
         //    'uses' => 'RepresentantesController@destroy',
         //    'as' => 'admin.representantes.destroy']
         //    );
+
+        Route::resource('/personal','PersonalController');
+        Route::get('/personal/{id}/destroy', [
+            'uses' => 'PersonalController@destroy',
+            'as' => 'admin.personal.destroy']
+            );
     });
 
 

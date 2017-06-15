@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Estudiantes
+	Personal
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,11 +9,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Estudiantes')
+        @yield('contentheader_title', 'Personal')
         <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Personal</a></li>
         <li class="active">Registro</li>
     </ol>
 </section>
@@ -24,45 +24,17 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro del Estudiante
+							<div class="panel-heading">Registro del personal
  				@include('flash::message')
 							</div>
 
 							<div class="panel-body">
 								
                 
-					                 @include('admin.datosBasicos.partials.create-fields')
+					                 @include('admin.personal.partials.create-fields')
 					                
 					            
           							<!-- /.form-group -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="panel panel-default">
-							<div class="panel-heading">Datos académicos del estudiante
- 							
-							<div class="form-group">
-		{!! Form::label('regular','¿Estudiante regular?') !!}
-		{!! Form::checkbox('regular',null,['class' => 'form-control', 'id' => 'regular' , 'onchange' => 
-		'javascript:desbloquear()' ]) !!}
-							</div>
-								</div>
-
-								<div class="panel-body">
-									
-						                 
-						                 @include('admin.datosBasicos.partials.create-fields-academicos')
-						                
-						          
-	          							<!-- /.form-group -->
 							</div>
 						</div>
 					</div>
@@ -82,7 +54,7 @@
 
 							<div class="panel-body">
 								
-					                 @include('admin.datosBasicos.partials.create-fields-representantes')
+					                 @include('admin.personal.partials.create-fields-representantes')
 					           
 					          
           							<!-- /.form-group -->
@@ -104,7 +76,7 @@
 
 							<div class="panel-body">
 								
-					                 @include('admin.datosBasicos.partials.create-fields-recaudos')
+					                 @include('admin.personal.partials.create-fields-recaudos')
 					                <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
