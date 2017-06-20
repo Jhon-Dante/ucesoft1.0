@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CursosTableSeeder::class);
         $this->call(AsignaturasTableSeeder::class);
         $this->call(DiasTableSeeder::class);
+        $this->call(MesesSeeder::class);
+        $this->call(TipoPagoSeeder::class);
+        $this->call(TipoPersonalSeeder::class);
     }
 }
