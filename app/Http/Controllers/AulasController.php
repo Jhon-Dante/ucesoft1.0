@@ -55,9 +55,9 @@ class AulasController extends Controller
         $aula->nombre = strtoupper($request['nombre']);
         $aula->save();
         
-        Session::flash('message', 'Aula Creada Correctamente.');
-
-        return redirect('admin.aulas');
+        flash("Se ha registrado en aula de forma exitosa!", 'success');
+        $aula = Aula::all();
+        return view('admin.aulas.index', ['aula'=>$aula]);
     }
 
     /**

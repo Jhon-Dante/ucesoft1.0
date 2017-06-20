@@ -56,7 +56,7 @@
                                     <td>{{$aula->created_at}}</td>
                                     <td>{{$aula->updated_at }}</td>
                                     <td style="text-align: center; width: 150px;">
-                                        <a href="{{ route('aulas.edit', $aula->id) }}" class="btn btn-primary btn-flat"><i class="icon-refresh icon-white"></i></a>
+                                        <a href="{{ route('admin.aulas.edit', $aula->id) }}" class="btn btn-primary btn-flat"><i class="icon-refresh icon-white"></i></a>
                                         <a class="btn btn-danger btn-flat" onclick="codigo({{ $aula->id }})" data-toggle="modal" data-target="#myModal"> <i class="icon-trash icon-white"></i></a>
                                     </td>
                                 </tr>

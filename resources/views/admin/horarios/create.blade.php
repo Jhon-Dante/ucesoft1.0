@@ -18,7 +18,7 @@
     </ol>
 </section>
 <!-- Main content -->
-{!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'name' => 'inscripcion', 'id' => 'inscripcion' ]) !!}
+{!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post', 'name' => 'horarios', 'id' => 'horarios' ]) !!}
         <section class="content">
 			<div class="container spark-screen">
 				<div class="row">
@@ -31,7 +31,7 @@
 							<div class="panel-body">
 								
                 
-					                 @include('admin.datosBasicos.partials.create-fields')
+					                 @include('admin.horarios.partials.create-fields')
 					                
 					            
           							<!-- /.form-group -->

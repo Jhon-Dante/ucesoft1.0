@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePersonal extends Migration
+class CreateTableMeses extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,9 @@ class CreateTablePersonal extends Migration
      */
     public function up()
     {
-        Schema::create('personal', function (Blueprint $table) {
+        Schema::create('meses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nacionalidad');
-            $table->string('cedula');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('cargo');
-            $table->text('direccion');
+            $table->string('mes');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateTablePersonal extends Migration
      */
     public function down()
     {
-        Schema::drop('personal');
+        Schema::drop('meses');
     }
 }

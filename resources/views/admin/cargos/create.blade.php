@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Aulas
+	Cargos
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,12 +9,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Aulas')
-        <small>Actualización</small>
+        @yield('contentheader_title', 'Cargos')
+        <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Aulas</a></li>
-        <li class="active">Actualizar</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Cargos</a></li>
+        <li class="active">Registro</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -24,17 +24,17 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
 						<div class="panel panel-default">
-							<div class="panel-heading">Actualización del Aula
- 				
+							<div class="panel-heading">Registro de Cargo
+ 				@include('flash::message')
 							</div>
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.aulas.update',$aula->id], 'method' => 'put']) !!}
+								{!! Form::open(['route' => ['admin.cargos.store'], 'method' => 'post']) !!}
                 
-					                 @include('admin.aulas.partials.edit-fields')
+					                 @include('admin.cargos.partials.create-fields')
 					                <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/aulas')}}"><i class="fa fa-times"></i> Cancelar</a>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cargos')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
 					            {!! Form::close() !!} 
           							<!-- /.form-group -->

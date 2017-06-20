@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\Validaciones;
-use App\Secciones;
+use App\Seccion;
 use App\Cursos;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Session;
@@ -20,7 +20,7 @@ class SeccionesController extends Controller
      */
     public function index()
     {
-        $secciones=Secciones::all();
+        $secciones=Seccion::all();
         return View('admin.secciones.index', compact('secciones'));
     }
 
@@ -48,14 +48,14 @@ class SeccionesController extends Controller
     {
         dd($request->all());
         if (!empty($request->seccion)) {
-        $seccion=Secciones::where('seccion',$request->seccion)->where('id_curso',$request->id_curso)->get();
+        $seccion=Seccion::where('seccion',$request->seccion)->where('id_curso',$request->id_curso)->get();
         
         if (count($seccion)==0) {
             $seccion=Secciones::create(['seccion' => $request->seccion,
                                        'id_curso' => $request->id_curso ]);
             flash('Registro ingresado con éxito','success');
         
-        $secciones=Secciones::all();
+        $secciones=Seccion::all();
 
         return View('admin.secciones.index',compact('secciones'));
         

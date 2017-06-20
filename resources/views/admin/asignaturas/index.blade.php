@@ -32,7 +32,7 @@
 							<div class="panel-heading">Lista de Asignaturas registradas
 
 								<div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-					                    <a href="{{ url('admin/asignaturaes/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+					                    <a href="{{ url('admin/asignaturas/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
 					                        <i class="fa fa-pencil"></i> Registrar asignatura  
 					                    </a>
 					            </div>
@@ -55,14 +55,14 @@
                 @foreach($asignaturas as $asignatura)
                 <tr>
                   <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}">{{$i}}</a></td>
-                  <td><a href="{{ route('admin.asignatura.edit', [$asignatura->id]) }}"> {{$asignatura->asignatura}}</a></td>
-                  <td><a href="{{ route('admin.asignatura.edit', [$asignatura->id]) }}"> {{$asignatura->cursos->curso}}</a></td>
+                  <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->asignatura}}</a></td>
+                  <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->cursos->curso}}</a></td>
                   <td>
                  
                   <div class="btn-group">
-                      <a href="{{ route('admin.asignatura.edit', [$asignatura->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      <a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.asignatura.destroy', [$asignatura->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="{{ route('admin.asignaturas.destroy', [$asignatura->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                       </div>
                   </td>
                   
