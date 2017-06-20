@@ -48,6 +48,7 @@
                 <a href="#"><i class='fa fa-link'></i> <span>Representantes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/representantes')        }} ">Lista</a></li>
+                    <li><a href=" {{ url('admin/mensualidades')         }} ">Mensualidades</a></li>
                     
                 </ul>
             </li>
@@ -55,11 +56,12 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/cursos')        }} ">Cursos</a></li>
-                    <li><a href=" {{ url('admin/secciones')     }} ">Secciones</a></li>
-                    <li><a href=" {{ url('admin/aulas')     }} ">Aulas</a></li>
-                    <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas</a></li>
-                    <li><a href=" {{ url('admin/periodos')      }} ">Periodos</a></li>
+                    <li><a href=" {{ url('admin/cursos')        }} ">cursos         </a></li>
+                    <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
+                    <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
+                    <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
+                    <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
+                    <li><a href=" {{ url('admin/horarios')      }} ">Horarios       </a></li>
                 </ul>
             </li>
             <li class="treeview">

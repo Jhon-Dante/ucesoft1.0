@@ -99,6 +99,13 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'PersonalController@destroy',
             'as' => 'admin.personal.destroy']
             );
+        
+        Route::get('/horarios', function () {
+    return view('admin.horarios.index');
+        });
+        Route::get('/mensualidades', function () {
+    return view('admin.mensualidades.index');
+        });
     });
 
 
