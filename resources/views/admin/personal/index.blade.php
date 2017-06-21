@@ -24,10 +24,10 @@
         <section class="content">
       <div class="container spark-screen">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 @include('flash::message')
             </div>
-          <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-11 col-md-offset-1">
             <div class="panel panel-default">
               <div class="panel-heading">Lista del Personal registrado
 
@@ -48,6 +48,10 @@
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Cédula</th>
+                  <th>Cargo</th>
+                  <th>Telf. Hab.</th>
+                  <th>Telf. Cel</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,9 +59,12 @@
                 @foreach($personal as $perso)
                 <tr>
                   <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}">{{$i}}</a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-nombre}}</a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-apellido}}</a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-cedula}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-nombres}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-apellidos}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-nacionalidad}}-{{$perso-cedula}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"></a>{{$perso->cargo->cargo}}</td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}">{{$perso->codigo_telf}}-{{$perso->telefono_hab}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}">{{$iperso->codigo_cel}}-{{$perso->celular}}</a></td>
                   <td>
                  
                   <div class="btn-group">

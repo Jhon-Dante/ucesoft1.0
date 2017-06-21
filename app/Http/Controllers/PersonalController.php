@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Personal;
-
+use App\Cargos;
+use App\Tipo;
 use Laracast\Flash\Flash;
 
 class PersonalController extends Controller

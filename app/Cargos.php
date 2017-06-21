@@ -28,4 +28,8 @@ class Cargos extends Model
     {
         return $this->belongsTo('App\Tipo', 'id_tipo_personal');
     }
+    public function personal()
+    {
+        return $this->hasMany('App\Personal', 'id_cargo', 'id');
+    }
 }
