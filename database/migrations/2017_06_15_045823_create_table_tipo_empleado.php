@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoPersonalTable extends Migration
+class CreateTableTipoEmpleado extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateTipoPersonalTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('tipo_personal', function (Blueprint $table) {
-
+        Schema::create('tipo_empleado', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo');
+            $table->string('tipo_empleado');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateTipoPersonalTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_personal');
+        Schema::drop('Tipo_empleado');
     }
 }

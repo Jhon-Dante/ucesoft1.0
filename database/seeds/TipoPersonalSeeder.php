@@ -11,7 +11,6 @@ class TipoPersonalSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
         \DB::table('tipo_personal')->insert(array(
         	'tipo' => 'Administrativo'
         ));
@@ -21,8 +20,6 @@ class TipoPersonalSeeder extends Seeder
         \DB::table('tipo_personal')->insert(array(
         	'tipo' => 'Obrero'
         ));
-        
-=======
         \DB::table('tipo_empleado')->insert(array(
         	'tipo_empleado' => 'Director(a)'
         ));
@@ -41,5 +38,4 @@ class TipoPersonalSeeder extends Seeder
         \DB::table('tipo_empleado')->insert(array(
         	'tipo_empleado' => 'Obrero'
         ));
->>>>>>> 63593c99c0cb58f5248c71beb415b1d4f66dcd49
     }}
