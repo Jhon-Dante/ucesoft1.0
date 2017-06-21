@@ -59,7 +59,8 @@
                   <div class="btn-group">
                       <a href="{{ route('admin.pago_x_cestat.edit', [$pago_x_c->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.pago_x_cestat.destroy', [$pago_x_c->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                      <a href="#" ><button onclick="pagos({{ $pago_x_c->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                      
 
                       <br><br>
                       </div>
@@ -79,4 +80,39 @@
 			</div>
 		</section>
 </div><!-- /.content-wrapper -->
+
+ <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar Pago de Cestaticket</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea eliminar este pago de cestaticket en especifico?...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                    {!! Form::open(['route' => ['admin.pago_x_cestat.destroy',1033], 'method' => 'DELETE']) !!}
+                        <input type="hidden" id="pago" name="id">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script type="text/javascript">
+
+        function pagos(pago){
+
+            $('#pago').val(pago);
+        }
+
+    </script>
+
 @endsection

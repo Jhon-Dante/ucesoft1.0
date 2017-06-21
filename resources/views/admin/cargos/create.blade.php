@@ -18,7 +18,16 @@
     </ol>
 </section>
 <!-- Main content -->
-
+@if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Oh no...</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <section class="content">
 			<div class="container spark-screen">
 				<div class="row">

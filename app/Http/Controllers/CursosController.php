@@ -41,6 +41,9 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+        'cargo' => 'required',
+         ]);
         if(!empty($request->curso)){
 
             $cursos=Cursos::where('curso',$request->curso)->get();
