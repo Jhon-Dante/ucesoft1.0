@@ -96,14 +96,6 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'CargosController@destroy',
             'as' => 'admin.cargos.destroy']
             );
-        
-
-        //Route::resource('/representantes','RepresentantesController');
-        //Route::get('representantes');
-        //Route::get('/representantes/{id}/destroy',[
-        //    'uses' => 'RepresentantesController@destroy',
-        //    'as' => 'admin.representantes.destroy']
-        //    );
 
         Route::resource('/personal','PersonalController');
         Route::get('/personal/{id}/destroy', [
@@ -111,6 +103,7 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.personal.destroy']
             );
         
+
         
         Route::get('/mensualidades', function () {
     return view('admin.mensualidades.index');

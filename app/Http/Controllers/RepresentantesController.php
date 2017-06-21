@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Representantes;
+
+use App\Parentesco;
+
+use Laracast\Flash\Flash;
+
 class RepresentantesController extends Controller
 {
     /**
@@ -15,9 +21,8 @@ class RepresentantesController extends Controller
      */
     public function index()
     {
-        //$representantes=Representantes::all();
-        return View('admin.representantes.index'//, compact('representantes')
-            );
+        $representantes=Representantes::all();
+        return View('admin.representantes.index', compact('representantes'));
     }
 
     /**
@@ -26,8 +31,9 @@ class RepresentantesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {  
+        $parentesco=Parentesco::lists('parentesco','id');
+        return View('admin.representantes.create', compact('parentesco'));
     }
 
     /**
@@ -38,7 +44,44 @@ class RepresentantesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $buscar=Representantes::where('cedula',$request->cedula)->get();
+
+        $cuantos=conunt($buscar);
+
+        if ($cuanto>0) {
+            flash('Este representante ya se encuentra registrado', 'warning');
+            $datosBasicos=Representantes::all();
+            return View('admin.representantes.index', compact('representantes'));
+        } else {
+            $representante=Representantes::create([
+                'nacionalidad' =>$request->nacionalidad,
+                'cedula' =>$request->cedula,
+                'nombres' =>$request->nombres,
+                'apellidos' =>$request->apellidos,
+                'profesion' =>$request->profesion,
+                'id_parentesco' =>$request->id_parentesco,
+                'vive_estu' =>$request->vive_estu,
+                'ingreso_apx' =>$request->ingreso_apx,
+                'n_familia' =>$request->n_familia,
+                'direccion' =>$request->direccion,
+                'codigo_hab' =>$request->codigo_hab,
+                'telf_hab' =>$request->telf_hab,
+                'lugar_tra' =>$request->lugar_tra,
+                'codigo_tra' =>$request->codigo_tra,
+                'telf_tra' =>$request->telf_tra,
+                'responsable_m' =>$request->responsable_m,
+                'codigo_responsable' =>$request->codigo_responsable,
+                'telf_responsable' =>$request->telf_responsable,
+                'codigo_opcional' => $request->codigo_opcional,
+                'telf_opcional' => $request->telf_opcional,
+                'nombre_opcional' =>$request->nombre_opcional,
+                'codigo_emergencia' =>$request->codigo_emergencia,
+                'telf_emergencia' =>$request->elf_emergencia]);
+        flash('Representante registrado con éxito','success');
+        $representante=Representantes::all();
+        return View('admin.representantes.index', compact('representantes'))
+        }
+        
     }
 
     /**
@@ -83,6 +126,12 @@ class RepresentantesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $representante->delete();
+
+            flash(' SE HA ELIMINADO EL REPRESENTANTE '.$representante->nombres.' CORRECTAMENTE.','success');
+
+            $representantes = Cargos::all();
+        return view('admin.representantes.index', compact('representantes'));
+
     }
 }

@@ -6,7 +6,7 @@
 @section('content-wrapper')
 <div class="content-wrapper">
 
-<!-- Content Header (Page header) -->
+<!--Content Header (Page header) -->
 <section class="content-header">
     <h1>
         @yield('contentheader_title', 'Representantes')
@@ -48,25 +48,28 @@
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Cédula</th>
-                  <th>Estudiantes</th>
+                  <th>Estudiante</th>
+                  <th>Parentesco</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $i=1; ?>
-                <!--@foreach($representantes as $representante)-->
+                @foreach($representantes as $representante)
                 <tr>
-                  <td><a href="{{ route('admin.representantes.edit', ) }}"><!--{{$i}} --></a></td>
-                  <td><a href="{{ route('admin.representantes.edit', ) }}"><!-- {{$representante-nombre}}--></a></td>
-                  <td><a href="{{ route('admin.representantes.edit', ) }}"><!-- {{$representante-apellido}}--></a></td>
-                  <td><a href="{{ route('admin.representantes.edit', ) }}"><!-- {{$representante-cedula}}--></a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$i}}</a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante-nombres}}</a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante-apellidos}}</a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$representante-nacionalidad}} - {{$representante-cedula}}</a></td>
                   <td>
-                  <td><a href="{{ route('admin.representantes.edit', ) }}"><!-- {{$representante-cedula}}--></a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante-cedula}}</a></td>
                   <td>
-                 
-                  <div class="btn-group">
-                      <a href="{{ route('admin.representantes.edit', ) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                 <td><a href="{{ route('admin.representantes.edit', [$representante->parentesco->parentesco] ) }}"> {{$representante->parentesco->parentesco}}</a></td>
+                  <td>
 
-                      <a href="{{ route('admin.representantes.destroy', ) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                  <div class="btn-group">
+                      <a href="{{ route('admin.representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+
+                      <a href="{{ route('admin.representantes.destroy', [$representante->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                       </div>
                   </td>
                   
