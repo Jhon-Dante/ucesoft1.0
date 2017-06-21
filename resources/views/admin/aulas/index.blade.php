@@ -56,8 +56,8 @@
                                     <td>{{$aula->created_at}}</td>
                                     <td>{{$aula->updated_at }}</td>
                                     <td style="text-align: center; width: 150px;">
-                                        <a href="{{ route('admin.aulas.edit', $aula->id) }}" class="btn btn-primary btn-flat"><i class="icon-refresh icon-white"></i></a>
-                                        <a class="btn btn-danger btn-flat" onclick="codigo({{ $aula->id }})" data-toggle="modal" data-target="#myModal"> <i class="icon-trash icon-white"></i></a>
+                                        <a href="{{ route('admin.aulas.edit', [$aula->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                                       <a href="#" ><button onclick="codigo({{ $aula->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
                                     </td>
                                 </tr>
                 @endforeach

@@ -31,7 +31,8 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        return View('admin.personal.create');
+        $cargos = Cargos::lists('cargo','id');
+        return View('admin.personal.create',compact('cargos'));
     }
 
     /**
@@ -42,7 +43,7 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

@@ -33,7 +33,7 @@
 
                 <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                               <a href="{{ url('admin/personal/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                              <i class="fa fa-pencil"></i> Inscribir   
+                              <i class="fa fa-pencil"></i> Nuevo   
                               </a>
                       </div>
 

@@ -61,7 +61,8 @@
                   <div class="btn-group">
                       <a href="{{ route('admin.cargos.edit', [$cargo->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.cargos.destroy', [$cargo->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="#" ><button onclick="cargos({{ $cargo->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                      <br><br>
                       </div>
                   </td>
                   
@@ -79,4 +80,38 @@
 			</div>
 		</section>
 </div><!-- /.content-wrapper -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar Cargo</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea eliminar este cargo en especifico?...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                    {!! Form::open(['route' => ['admin.cargos.destroy',1033], 'method' => 'DELETE']) !!}
+                        <input type="hidden" id="cargo" name="id">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script type="text/javascript">
+
+        function cargos(cargo){
+
+            $('#cargo').val(cargo);
+        }
+
+    </script>
+
 @endsection

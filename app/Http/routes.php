@@ -24,24 +24,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
 
     	Route::resource('/cursos','CursosController');
-    	Route::get('/cursos/{id}/destroy', [ 
-			'uses' => 'CursosController@destroy',
-			 'as' => 'admin.cursos.destroy']
-			 );
-
         Route::resource('/secciones','SeccionesController');
-        Route::get('/secciones/{id}/destroy', [
-            'uses' => 'SeccionesController@destroy',
-            'as' => 'admin.secciones.destroy']
-            );
-
         Route::resource('/asignaturas','AsignaturasController');
-        Route::get('/asignaturas/{id}/destroy',[
-            'uses' => 'AsignaturasController@destroy',
-            'as' => 'admin.asignaturas.destroy']
-            );
-
+        Route::resource('/periodos','PeriodosController');
+        Route::resource('/tipo_pago','Tipo_pagoController');
         Route::resource('/DatosBasicos','DatosBasicosController');
+        Route::resource('/cargos','CargosController');
+        Route::resource('/personal','PersonalController');
+
         Route::get('/DatosBasicos/{id}/destroy',[
             'uses' => 'DatosBasicosController@destroy',
             'as' => 'admin.DatosBasicos.destroy']
@@ -51,17 +41,7 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.DatosBasicos.verificarPadre'
             ]);
         
-        Route::resource('/periodos','PeriodosController');
-        Route::get('/periodos/{id}/destroy' ,[
-            'uses' => 'PeriodosController@destroy',
-            'as' => 'admin.periodos.destroy']
-            );
-
-        Route::resource('/tipo_pago','Tipo_pagoController');
-        Route::get('/tipo_pago/{id}/destroy' ,[
-            'uses' => 'Tipo_pagoController@destroy',
-            'as' => 'admin.tipo_pago.destroy']
-            );
+        
 
         Route::resource('/deducciones','DeduccionesController');
         Route::get('/deducciones/{id}/destroy' ,[
@@ -70,10 +50,6 @@ Route::group(['middleware' => 'web'], function () {
             );
 
         Route::resource('/pago_x_cestat','Pago_x_cestatController');
-        Route::get('/pago_x_cestat/{id}/destroy' ,[
-            'uses' => 'Pago_x_cestatController@destroy',
-            'as' => 'admin.pago_x_cestat.destroy']
-            );
 
         Route::resource('/retenciones','RetencionesController');
         Route::get('/retenciones/{id}/destroy' ,[
@@ -82,10 +58,6 @@ Route::group(['middleware' => 'web'], function () {
             );
 
         Route::resource('/aulas','AulasController');
-        Route::get('/aulas/{id}/destroy' ,[
-            'uses' => 'AulasController@destroy',
-            'as' => 'admin.aulas.destroy']
-            );
         Route::resource('/horarios','HorariosController');
         Route::get('/horarios/{id}/destroy' ,[
             'uses' => 'HorariosController@destroy',
@@ -96,12 +68,17 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'CargosController@destroy',
             'as' => 'admin.cargos.destroy']
             );
+        
+      
+        
 
-        Route::resource('/personal','PersonalController');
-        Route::get('/personal/{id}/destroy', [
-            'uses' => 'PersonalController@destroy',
-            'as' => 'admin.personal.destroy']
+        Route::resource('/representantes','RepresentantesController');
+        Route::get('representantes');
+        Route::get('/representantes/{id}/destroy',[
+            'uses' => 'RepresentantesController@destroy',
+            'as' => 'admin.representantes.destroy']
             );
+
         
 
         

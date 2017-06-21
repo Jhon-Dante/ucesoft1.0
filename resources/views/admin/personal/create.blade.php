@@ -18,8 +18,7 @@
     </ol>
 </section>
 <!-- Main content -->
-{!! Form::open(['route' => ['admin.personal.store'], 'method' => 'post', 'name' => 'inscripcion', 'id' => 'inscripcion' ]) !!}
-        <section class="content">
+    <section class="content">
 			<div class="container spark-screen">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
@@ -30,37 +29,16 @@
 
 							<div class="panel-body">
 								
-                
+                {!! Form::open(['route' => ['admin.personal.store'], 'method' => 'post', 'name' => 'personal', 'id' => 'personal' ]) !!}
+    
 					                 @include('admin.personal.partials.create-fields')
 					                
-					            
-          							<!-- /.form-group -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-		<section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="panel panel-default">
-							<div class="panel-heading">Recaudos del personal 
- 				
-							</div>
-
-							<div class="panel-body">
-								
-					                 @include('admin.personal.partials.create-fields-recaudos')
-					                <div class="box-footer">
+					            <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/personal')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
-					          
           							<!-- /.form-group -->
+          		{!! Form::close() !!} 
 							</div>
 						</div>
 					</div>
@@ -68,26 +46,8 @@
 			</div>
 		</section>
 
-		{!! Form::close() !!} 
+
+
+		
 </div><!-- /.content-wrapper -->
 @endsection
-<script type="text/javascript" >
-  
-    
- function desbloquear(){
-
- 	alert('algo');
-  	if (document.form.inscripcion.regular.checked==false) {
- 		document.form.inscripcion.plantel.disabled=false;
- 		document.form.inscripcion.materiap.disabled=false;
- 		document.form.inscripcion.repite.disabled=false;
- 		document.form.inscripcion.asignatura.disabled=false;
- 	} else {
- 		document.form.inscripcion.plantel.disabled=true;
- 		document.form.inscripcion.materiap.disabled=true;
- 		document.form.inscripcion.repite.disabled=true;
- 		document.form.inscripcion.asignatura.disabled=true;
- 	}
- }
-
-</script>

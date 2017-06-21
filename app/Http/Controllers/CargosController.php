@@ -8,7 +8,7 @@ use App\Tipo;
 use App\Http\Requests;
 use Session;
 use Auth;
-
+use App\Http\Requests\CargosRequest;
 class CargosController extends Controller
 {
     public function __construct(){
@@ -55,6 +55,9 @@ class CargosController extends Controller
     public function store(Request $request)
     {
 
+        $buscar=Cargos::where('cargo',$request->cargo)->where('id_tipo_personal',$request->id_tipo_personal)->get();
+        $cuantos=count($buscar);
+        if($cuantos==0){
         $cargo = new Cargos();
         $cargo->cargo = strtoupper($request->cargo);
         $cargo->id_tipo_personal = $request->id_tipo_personal;
@@ -62,9 +65,12 @@ class CargosController extends Controller
         $cargo->save();
 
         flash('CARGO REGISTRADO CORRECTAMENTE','success');
-
+        }else{
+            flash('EL CARGO YA SE ENCUENTRA REGISTRADO A ESTE PERSONAL','warning');
+        }
         $cargos = Cargos::all();
         return view('admin.cargos.index', compact('cargos'));
+
     }
 
     /**
@@ -124,6 +130,7 @@ class CargosController extends Controller
      */
     public function destroy(Request $request)
     {
+        //dd($request->all());
         $cargo = Cargos::find($request->id);
         //$cargo->personal()->exists()
         $x=false;
