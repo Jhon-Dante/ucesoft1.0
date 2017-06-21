@@ -103,7 +103,9 @@ class RepresentantesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $representantes = Representantes::find($id);
+        $parentesco = Tipo::lists('parentesco', 'id');
+        return view('admin.representantes.edit', compact('representantes', 'parentesco'));
     }
 
     /**
