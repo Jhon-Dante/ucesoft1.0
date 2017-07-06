@@ -46,6 +46,7 @@
                 <tr>
                   <th>Nro</th>
                   <th>Código</th>
+                  <th>Turno</th>
                   <th>Curso</th>
                   <th>Sección</th>
                   <th>Período</th>

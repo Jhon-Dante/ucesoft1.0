@@ -48,7 +48,6 @@
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Cédula</th>
-                  <th>Estudiante</th>
                   <th>Parentesco</th>
                 </tr>
                 </thead>
@@ -57,12 +56,10 @@
                 @foreach($representantes as $representante)
                 <tr>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$i}}</a></td>
-                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante-nombres}}</a></td>
-                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante-apellidos}}</a></td>
-                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$representante-nacionalidad}} - {{$representante-cedula}}</a></td>
-                  <td>
-                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante-cedula}}</a></td>
-                  <td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->nombres}}</a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->apellidos}}</a></td>
+                  <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$representante->nacionalidad}} - {{$representante->cedula}}</a></td>
+                  
                  <td><a href="{{ route('admin.representantes.edit', [$representante->parentesco->parentesco] ) }}"> {{$representante->parentesco->parentesco}}</a></td>
                   <td>
 

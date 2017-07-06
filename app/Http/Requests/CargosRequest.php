@@ -21,12 +21,6 @@ class CargosRequest extends Request
     * @return array
     */
 
-    public function messages()
-    {
-        return [
-            'cargo.required' => 'El campo cargo es requerido.',
-        ];
-    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,18 +29,8 @@ class CargosRequest extends Request
     public function rules()
     {
         return [
-            'cargo' => 'required'
+            'cargo' => 'required|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
         ];
     }
-    public function response(array $errors){
-        if ($this->ajax()){
-            return response()->json($errors, 200);
-        }
-        else
-        {
-        return redirect($this->redirect)
-                ->withErrors($errors, 'formulario')
-                ->withInput();
-        }
-    }
+    
 }

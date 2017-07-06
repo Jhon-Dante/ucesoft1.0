@@ -8,7 +8,7 @@
         @if (! Auth::guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
+                    <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image"/>
                 </div>
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
@@ -31,12 +31,9 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
-            <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
+            <li><a href="#"><i class="fa fa-link"></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
                     <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a></li>
@@ -45,7 +42,7 @@
             </li>
 
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Representantes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class="fa fa-link"></i> <span>Representantes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/representantes')        }} ">Lista          </a></li>
                     <li><a href=" {{ url('admin/mensualidades')         }} ">Mensualidades  </a></li>
@@ -53,14 +50,23 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Administración</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class="fa fa-link"></i> <span>Administración</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/personal')         }} ">Personal</li>
                     <li><a href=" {{ url('admin/tipo_pago')        }} ">Tipos de pagos</a></li>
                     <li><a href=" {{ url('admin/deducciones')      }}">Deducciones</a></li>
                     <li><a href=" {{ url('admin/pago_x_cestat')    }}">Pago por Cesta ticket</a></li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i> <span>Personal</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href=" {{ url('admin/personal')         }} ">Listado</li>
+                    <li><a href=" {{ url('admin/personal_asignatura') }} ">Asignar Materia</a></li>
+                    
+                </ul>
+            </li>
+
             
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -72,6 +78,7 @@
                     <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
                     <li><a href=" {{ url('admin/cargos')      }} ">Cargos         </a></li>
                     <li><a href=" {{ url('admin/horarios')      }} ">Horarios       </a></li>
+                    
                 </ul>
             </li>
 

@@ -7,7 +7,7 @@
 	{!! Form::checkbox('boleta_v',null,['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-	{!! Form::label('ci','Cédula del estudiante') !!}
+	{!! Form::label('ci','Cédula') !!}
 	{!! Form::checkbox('nombre',null,['class' => 'form-control']) !!}
 </div>
 <div class="form-group">

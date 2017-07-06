@@ -25,7 +25,7 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        //
+        return View('admin.horarios.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return View('admin.horarios.show');
     }
 
     /**
@@ -82,5 +82,9 @@ class HorariosController extends Controller
     public function destroy($id)
     {
         //
+    }
+     public function mostrar()
+    {
+        return View('admin.horarios.show');
     }
 }

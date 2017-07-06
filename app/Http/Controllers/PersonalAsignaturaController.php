@@ -6,13 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\DatosBasicos;
+use App\Docente_has_asignatura;
 
-use App\Representantes;
+use App\asignaturas;
+
+use App\Personal;
+
+use App\Periodos;
+
+use App\Seccion;
 
 use Laracast\Flash\Flash;
 
-class DatosBasicosController extends Controller
+class PersonalAsignaturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +27,8 @@ class DatosBasicosController extends Controller
      */
     public function index()
     {
-        $datosBasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('datosBasicos'));
+        $personal_asignatura=Docente_has_asignatura::all();
+        return View('admin.personal_asignatura.index', compact('personal_asignatura'));
     }
 
     /**
@@ -32,8 +38,11 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
-        $representante=Representantes::lists('nombres','id');
-        return View('admin.datosBasicos.create', compact('representante'));
+        $personal=Personal::lists('nombres','apellidos','id');
+        $asignaturas=Asignaturas::lists('asignatura','id');
+        $periodos=Periodos::lists('periodo','id');
+        $seccion=Seccion::lists('seccion','id');
+        return View('admin.personal_asignatura.create', compact('personal','asignaturas','periodos','seccion'));
     }
 
     /**
@@ -44,35 +53,9 @@ class DatosBasicosController extends Controller
      */
     public function store(Request $request)
     {
-        $buscar=DatosBasicos::where('cedula',$request->cedula)->get();
-
-        $cuantos=conunt($buscar);
-
-        if ($cuanto>0) {
-            flash('Este estudiante ya se encuentra registrado','warning');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
-        } else {
-            $datoBasico=DatosBasicos::create([
-                'nombre' => $request->nombre,
-                'apellido' => $request->apellido,
-                'nacionalidad' => $request->nacionalidad,
-                'cedula' => $request->cedula,
-                'direccion' => $request->direccion,
-                'nacimiento' => $request->nacimiento
-                ]);
-            flash('Estudiante registrado con éxito','success');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
-        }
-        
+        //
     }
 
-    public function verificarPadre($cedula){
-
-        dd("DWD");
-
-    }
     /**
      * Display the specified resource.
      *

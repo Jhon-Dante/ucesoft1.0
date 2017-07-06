@@ -21,7 +21,8 @@ class PersonalController extends Controller
     public function index()
     {
         $personal=Personal::all();
-        return View('admin.personal.index', compact('personal'));
+        $cargo=Cargos::lists('id','cargo');
+        return View('admin.personal.index', compact('personal','cargo'));
     }
 
     /**
@@ -32,7 +33,8 @@ class PersonalController extends Controller
     public function create()
     {
         $cargos = Cargos::lists('cargo','id');
-        return View('admin.personal.create',compact('cargos'));
+        $tipos = Tipo::lists('tipo','id');
+        return View('admin.personal.create',compact('cargos','tipos'));
     }
 
     /**
@@ -43,7 +45,44 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $buscar=Personal::where('cedula', $request->cedula)->get();
+
+        $cuantos=count($buscar);
+
+        if ($cuantos>0) {
+            flash('Este personal ya se encuentra registrado','warning');
+            $personal=Personal::all();
+        return View('admin.personal.index', compact('personal'));
+
+        } else {
+            $perso=Personal::create([
+                'nombres'       =>$request->nombres,
+                'apellidos'     =>$request->apellidos,
+                'nacio'         =>$request->nacio,
+                'cedula'        =>$request->cedula,
+                'direccion'     =>$request->direccion,
+                'tenencia'      =>$request->tenencia,
+                'nacimiento'    =>$request->nacimiento,
+                'edad'          =>$request->edad,
+                'sexo'          =>$request->sexo,
+                'edo_civil'     =>$request->edo_civil,
+                'municipio'     =>$request->municipio,
+                'ciudad'        =>$request->ciudad,
+                'estado'        =>$request->estado,
+                'pais'          =>$request->pais,
+                'telf_movil'    =>$request->telf_movil,
+                'telf_fijo'     =>$request->telf_fijo,
+                'correo'        =>$request->correo,
+                'titulo'        =>$request->titulo,
+                'mencion'       =>$request->mencion,
+                'id_tipoPersonal'=>$request->id_tipoPersonal,
+                'id_cargo'      =>$request->id_cargo]);
+            flash('Personal registrado con éxito','success');
+            $personal=Personal::all();
+            return View('admin.personal.index', compact('personal'));
+        }
+        
     }
 
     /**

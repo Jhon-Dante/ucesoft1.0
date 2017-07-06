@@ -21,21 +21,21 @@ class TipoPersonalSeeder extends Seeder
         	'tipo' => 'Obrero'
         ));
         \DB::table('tipo_empleado')->insert(array(
-        	'tipo_empleado' => 'Director(a)'
+        	'tipo' => 'Director(a)'
         ));
         \DB::table('tipo_empleado')->insert(array(
-        	'tipo_empleado' => 'Sub-Director(a)'
+        	'tipo' => 'Sub-Director(a)'
         ));
         \DB::table('tipo_empleado')->insert(array(
-        	'tipo_empleado' => 'Secretario(a)'
+        	'tipo' => 'Secretario(a)'
         ));
         \DB::table('tipo_empleado')->insert(array(
-        	'tipo_empleado' => 'Coordinador(a)'
+        	'tipo' => 'Coordinador(a)'
         ));
         \DB::table('tipo_empleado')->insert(array(
-        	'tipo_empleado' => 'Docente'
+        	'tipo' => 'Docente'
         ));
         \DB::table('tipo_empleado')->insert(array(
-        	'tipo_empleado' => 'Obrero'
+        	'tipo' => 'Obrero'
         ));
     }}

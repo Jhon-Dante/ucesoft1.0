@@ -56,7 +56,7 @@
                 <tr>
                   <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}">{{$i}}</a></td>
                   <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}"> {{$seccion->seccion}}</a></td>
-                  <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}"> {{$seccion->cursos->curso}}</a></td>
+                  <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}"> {{$seccion->curso->curso}}</a></td>
                   <td>
                  
                   <div class="btn-group">

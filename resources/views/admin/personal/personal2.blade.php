@@ -49,22 +49,24 @@
                   <th>Apellidos</th>
                   <th>Cédula</th>
                   <th>Cargo</th>
+                  <th>Telf. Hab.</th>
                   <th>Telf. Cel</th>
-                  <th>Opciones</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $i=1; ?>
                 @foreach($personal as $perso)
                 <tr>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$i}}                                </a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nombres}}                   </a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->apellidos}}                 </a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacio}}-{{$perso->cedula}}  </a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
-                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->telf_movil}}                </a></td>
-
-                 <td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}">{{$i}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-nombres}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-apellidos}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso-nacionalidad}}-{{$perso-cedula}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"></a>{{$perso->cargo->cargo}}</td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}">{{$perso->codigo_telf}}-{{$perso->telefono_hab}}</a></td>
+                  <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}">{{$iperso->codigo_cel}}-{{$perso->celular}}</a></td>
+                  <td>
+                 
                   <div class="btn-group">
                       <a href="{{ route('admin.personal.edit', [$perso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -76,6 +78,7 @@
                <?php $i++; ?>
                 @endforeach
                 </tbody>
+                
               </table></div>
 
               </div>

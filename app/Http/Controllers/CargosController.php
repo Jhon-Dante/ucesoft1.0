@@ -9,19 +9,10 @@ use App\Http\Requests;
 use Session;
 use Auth;
 use App\Http\Requests\CargosRequest;
+
 class CargosController extends Controller
 {
-    public function __construct(){
-        /*if(Auth::user()->roles_id == 4){
-            $this->middleware('recursohumano');
-        }
-        elseif(Auth::user()->roles_id == 2){
-            $this->middleware('director');
-        }
-        else{
-            $this->middleware('administrador');
-        }*/
-    }
+  
     /**
      * Display a listing of the resource.
      *
@@ -30,8 +21,9 @@ class CargosController extends Controller
     public function index()
     {
         $cargos = Cargos::all();
+        $num = 0;
         
-        return view('admin.cargos.index', compact('cargos'));
+        return view('admin.cargos.index', compact('cargos', 'num'));
     }
 
     /**
@@ -52,7 +44,7 @@ class CargosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CargosRequest $request)
     {
 
         $buscar=Cargos::where('cargo',$request->cargo)->where('id_tipo_personal',$request->id_tipo_personal)->get();

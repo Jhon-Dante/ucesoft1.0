@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('htmlheader_title')
-	Cursos
-@endsection
+@section('htmlheader_title', 'Cursos')
+
 @section('content-wrapper')
+
 <div class="content-wrapper">
 
 <!-- Content Header (Page header) -->
@@ -18,31 +18,31 @@
     </ol>
 </section>
 <!-- Main content -->
+	@include('alerts.requests')
 
-        <section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="panel panel-default">
-							<div class="panel-heading">Registro de Curso
- 				@include('flash::message')
-							</div>
+	<section class="content spark-screen">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Registro de Curso</div>
 
-							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.cursos.store'], 'method' => 'post']) !!}
-                
-					                 @include('admin.cursos.partials.create-fields')
-					                <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
-					              </div>
-					            {!! Form::close() !!} 
-          							<!-- /.form-group -->
-							</div>
-						</div>
+					<div class="panel-body">
+						{!! Form::open(['route' => ['admin.cursos.store'], 'method' => 'post']) !!}
+					    
+					    	@include('admin.cursos.partials.create-fields')
+					    
+						    <div class="box-footer">
+				                <button type="submit" class="btn btn-primary">Enviar</button>
+				                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+				           	</div>
+
+			            {!! Form::close() !!} 
+	      					
 					</div>
 				</div>
 			</div>
-		</section>
-</div><!-- /.content-wrapper -->
+		</div>
+	</section>
+</div>
+
 @endsection

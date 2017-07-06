@@ -31,26 +31,45 @@
             <div class="panel panel-default">
               <div class="panel-heading">Lista de Mensualidades registrados
 
-                <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                              <a href="{{ url('admin/horarios/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                              <i class="fa fa-pencil"></i> Crear   
-                              </a>
-                      </div>
+                
 
               </div>
              
               <div class="panel-body">
                 <div class="box-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Nro</th>
                   <th>Representante</th>
-                  <th>Estudiante</th>
-                  <th>Curso</th>
-                  <th>Sección</th>
-                  <th>Período</th>
-                  <th>Estado</th>
+                  <th>Enero</th>
+                  <th>Febrero</th>
+                  <th>Marzo</th>
+                  <th>Abril</th>
+                  <th>Mayo</th>
+                  <th>Junio</th>
+                  <th>Julio</th>
+                  <th>Agosto</th>
+                  <th>Septiembre</th>
+                  <th>Octubre</th>
+                  <th>Noviembre</th>
+                  <th>Diciembre</th>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <th>Carlos José</th>
+                  <th><img src="/img/iconos/bien.png" width="50" height="50" /></th>
+                  <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
+                  <th><a href="{{ url('admin/mensualidades/create') }}"><img src="/img/iconos/mal.png"  width="50" height="50" /></a></th>
+                  <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
+                  <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
                 </tr>
                 </thead>
                 <tbody>

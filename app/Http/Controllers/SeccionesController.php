@@ -44,15 +44,17 @@ class SeccionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function store(Validaciones $request)
+    public function store(Request $request)
     {
-        dd($request->all());
+        
         if (!empty($request->seccion)) {
         $seccion=Seccion::where('seccion',$request->seccion)->where('id_curso',$request->id_curso)->get();
         
         if (count($seccion)==0) {
-            $seccion=Secciones::create(['seccion' => $request->seccion,
-                                       'id_curso' => $request->id_curso ]);
+
+            $seccion=Seccion::create([
+                'seccion' => $request->seccion,
+                'id_curso' => $request->id_curso ]);
             flash('Registro ingresado con éxito','success');
         
         $secciones=Seccion::all();

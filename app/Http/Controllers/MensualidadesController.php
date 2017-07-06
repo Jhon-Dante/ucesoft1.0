@@ -6,13 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\DatosBasicos;
-
-use App\Representantes;
-
-use Laracast\Flash\Flash;
-
-class DatosBasicosController extends Controller
+class MensualidadesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +15,7 @@ class DatosBasicosController extends Controller
      */
     public function index()
     {
-        $datosBasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('datosBasicos'));
+        return View('admin.mensualidades.index');
     }
 
     /**
@@ -32,8 +25,7 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
-        $representante=Representantes::lists('nombres','id');
-        return View('admin.datosBasicos.create', compact('representante'));
+        return View('admin.mensualidades.create');
     }
 
     /**
@@ -44,35 +36,9 @@ class DatosBasicosController extends Controller
      */
     public function store(Request $request)
     {
-        $buscar=DatosBasicos::where('cedula',$request->cedula)->get();
-
-        $cuantos=conunt($buscar);
-
-        if ($cuanto>0) {
-            flash('Este estudiante ya se encuentra registrado','warning');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
-        } else {
-            $datoBasico=DatosBasicos::create([
-                'nombre' => $request->nombre,
-                'apellido' => $request->apellido,
-                'nacionalidad' => $request->nacionalidad,
-                'cedula' => $request->cedula,
-                'direccion' => $request->direccion,
-                'nacimiento' => $request->nacimiento
-                ]);
-            flash('Estudiante registrado con éxito','success');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
-        }
-        
+        //
     }
 
-    public function verificarPadre($cedula){
-
-        dd("DWD");
-
-    }
     /**
      * Display the specified resource.
      *

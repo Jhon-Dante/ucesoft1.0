@@ -73,7 +73,6 @@ Route::group(['middleware' => 'web'], function () {
         
 
         Route::resource('/representantes','RepresentantesController');
-        Route::get('representantes');
         Route::get('/representantes/{id}/destroy',[
             'uses' => 'RepresentantesController@destroy',
             'as' => 'admin.representantes.destroy']
@@ -85,6 +84,24 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/mensualidades', function () {
     return view('admin.mensualidades.index');
         });
+
+        Route::get('/horarios',function(){
+            return View('admin.horarios.index');
+        });
+
+
+        Route::resource('/mensualidades','MensualidadesController');
+        Route::get('/mensualidades/{id}/destroy',[
+            'uses' => 'MensualidadesController@destroy',
+            'as' => 'admin.mensualidades.destroy']
+            );
+
+        Route::resource('/personal','PersonalController');
+        Route::get('/personal/{id}/destroy',[
+            'uses' => 'PersonalController@destroy',
+            'as' => 'admin.personal.destroy']
+            );
+        Route::resource('/personal_asignatura','PersonalAsignaturaController');
     });
 
 

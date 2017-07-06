@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@section('htmlheader_title')
-	Estudiantes
-@endsection
+@section('htmlheader_title', 'Estudiantes')
+
 @section('content-wrapper')
 <div class="content-wrapper">
 
@@ -18,7 +17,30 @@
     </ol>
 </section>
 <!-- Main content -->
-{!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'name' => 'inscripcion', 'id' => 'inscripcion' ]) !!}
+{!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
+<section class="content">
+			<div class="container spark-screen">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="panel panel-default">
+							<div class="panel-heading">Seleccione al representante
+ 				@include('flash::message')
+							</div>
+
+							<div class="panel-body">
+								
+                				<div class="form-group">
+					                 {!! Form::label('representante','Representante') !!}
+					                 {!! Form::select('representante',$representante,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique el parentesco del representante con el estudiante']) !!}
+					            </div>
+					            
+          							<!-- /.form-group -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
         <section class="content">
 			<div class="container spark-screen">
 				<div class="row">
@@ -51,8 +73,7 @@
  							
 							<div class="form-group">
 		{!! Form::label('regular','¿Estudiante regular?') !!}
-		{!! Form::checkbox('regular',null,['class' => 'form-control', 'id' => 'regular' , 'onchange' => 
-		'javascript:desbloquear()' ]) !!}
+		<input type="checkbox" name="regular" id="regular" checked>	
 							</div>
 								</div>
 
@@ -98,23 +119,49 @@
 		{!! Form::close() !!} 
 </div><!-- /.content-wrapper -->
 @endsection
-<script type="text/javascript" >
-  
-    
- function desbloquear(){
 
- 	alert('algo');
-  	if (document.form.inscripcion.regular.checked==false) {
- 		document.form.inscripcion.plantel.disabled=false;
- 		document.form.inscripcion.materiap.disabled=false;
- 		document.form.inscripcion.repite.disabled=false;
- 		document.form.inscripcion.asignatura.disabled=false;
- 	} else {
- 		document.form.inscripcion.plantel.disabled=true;
- 		document.form.inscripcion.materiap.disabled=true;
- 		document.form.inscripcion.repite.disabled=true;
- 		document.form.inscripcion.asignatura.disabled=true;
- 	}
- }
+@section('scripts')
 
-</script>
+	<script type="text/javascript" >
+	  
+	$(document).ready ( function () {
+
+		$("#regular").change( function () {
+
+			if (!$(this).is(":checked")) 
+			{
+				
+				$("#plantel").removeAttr('disabled');
+				$("#materiap").removeAttr('disabled');
+				$("#repite1").removeAttr('disabled');
+				$("#repite2").removeAttr('disabled');
+			
+			} else {
+
+				$("#plantel").prop('disabled', true);
+				$("#materiap").prop('disabled', true);
+				$("#repite1").prop('disabled', true);
+				$("#repite2").prop('disabled', true);
+				
+			}
+		});
+	
+	});
+
+	/*function desbloquear(){
+
+	  	if (document.form.inscripcion.regular.checked==false) {
+	 		document.form.inscripcion.plantel.disabled=false;
+	 		document.form.inscripcion.materiap.disabled=false;
+	 		document.form.inscripcion.repite.disabled=false;
+	 		document.form.inscripcion.asignatura.disabled=false;
+	 	} else {
+	 		document.form.inscripcion.plantel.disabled=true;
+	 		document.form.inscripcion.materiap.disabled=true;
+	 		document.form.inscripcion.repite.disabled=true;
+	 		document.form.inscripcion.asignatura.disabled=true;
+	 	}
+	 }*/
+
+	</script>
+@endsection

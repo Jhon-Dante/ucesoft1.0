@@ -12,9 +12,9 @@ class CreateTableTipoPersonal extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_empleado', function (Blueprint $table) {
+        Schema::create('tipo_personal', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo_empleado');
+            $table->string('tipo');
             $table->timestamps();
         });
     }
