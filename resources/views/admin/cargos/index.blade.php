@@ -46,7 +46,6 @@
 								<tr>
 								  <th>Nro</th>
 								  <th>Cargo</th>
-								  <th>Tipo Personal</th>
 								  <th>Opciones</th>
 								</tr>
 							</thead>
@@ -55,7 +54,6 @@
 								<tr>
 								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $num=$num+1 }}</a></td>
 								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $cargo->cargo }}</a></td>
-								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $cargo->tipo_personal->tipo }}</a></td>
 								  <td>
 								 
 								  <div class="btn-group">

@@ -23,14 +23,19 @@ class CreateDatosBasicosPersonalTable extends Migration
             $table->integer('edad');
             $table->enum('edo_civil',['Soltero(a)','Casado(a)','Concuvino(a)','Viudo(a)']);
             $table->text('direccion');
+            $table->string('genero');
             $table->string('codigo_hab');
             $table->string('telf_hab');
             $table->string('codigo_cel');
             $table->string('celular');
+            $table->string('correo');
             $table->integer('id_cargo')->unsigned();
 
             $table->foreign('id_cargo')->references('id')->on('cargos')->onDelete('cascade');
+
             $table->timestamps();
+
+
         });
     }
 

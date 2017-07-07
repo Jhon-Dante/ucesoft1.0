@@ -60,7 +60,7 @@
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->apellidos}}                 </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacio}}-{{$perso->cedula}}  </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->telf_movil}}                </a></td>
+                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}                </a></td>
 
                <td>
                 <div class="btn-group">

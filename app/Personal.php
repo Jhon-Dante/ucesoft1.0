@@ -6,27 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Personal extends Model
 {
-    protected $table='personal';
+    protected $table='datos_basicos_personal';
     protected $fillable=['id',
     'nombres',
     'apellidos',
-    'nacio',
+    'nacionalidad',
     'cedula',
-    'direccion',
-    'tenencia',
-    'nacimiento',
+    'fecha_nacimiento',
+    'fecha_ingreso',
     'edad',
-    'sexo',
     'edo_civil',
-    'ciudad',
-    'estado',
-    'pais',
-    'telf_movil',
-    'telf_fijo',
+    'direccion',
+    'genero',
+    'codigo_hab',
+    'telf_hab',
+    'codigo_cel',
+    'celular',
     'correo',
-    'titulo',
-    'mencion',
-    'id_tipoPersonal',
     'id_cargo'];
 
 

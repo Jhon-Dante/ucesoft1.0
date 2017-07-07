@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cargos;
-use App\Tipo;
 use App\Http\Requests;
 use Session;
 use Auth;
@@ -33,9 +32,7 @@ class CargosController extends Controller
      */
     public function create()
     {
-        
-        $tipo = Tipo::lists('tipo', 'id');
-        return view('admin.cargos.create', compact('tipo'));
+        return view('admin.cargos.create');
     }
 
     /**
@@ -47,12 +44,11 @@ class CargosController extends Controller
     public function store(CargosRequest $request)
     {
 
-        $buscar=Cargos::where('cargo',$request->cargo)->where('id_tipo_personal',$request->id_tipo_personal)->get();
+        $buscar=Cargos::where('cargo',$request->cargo)->get();
         $cuantos=count($buscar);
         if($cuantos==0){
         $cargo = new Cargos();
         $cargo->cargo = strtoupper($request->cargo);
-        $cargo->id_tipo_personal = $request->id_tipo_personal;
 
         $cargo->save();
 
@@ -85,8 +81,7 @@ class CargosController extends Controller
     public function edit($id)
     {
         $cargo = Cargos::find($id);
-        $tipo = Tipo::lists('tipo', 'id');
-        return view('admin.cargos.edit', compact('cargo', 'tipo'));
+        return view('admin.cargos.edit', compact('cargo'));
     }
 
     /**
@@ -98,12 +93,11 @@ class CargosController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	$buscar=Cargos::where('cargo',$request->cargo)->where('id','<>',$id)->where('id_tipo_personal',$request->id_tipo_personal)->get();
+    	$buscar=Cargos::where('cargo',$request->cargo)->where('id','<>',$id)->get();
     	$cuantos=count($buscar);
 	    	if($cuantos==0){
 		        $cargo = Cargos::find($id);
 		        $cargo->cargo = strtoupper($request->cargo);
-                $cargo->id_tipo_personal=$request->id_tipo_personal;
 		        $cargo->save();
 
 		        flash('CARGO EDITADO CORRECTAMENTE','success');

@@ -13,7 +13,7 @@ class Cargos extends Model
      */
     
     protected $table = 'cargos';
-    protected $fillable = ['id', 'id_tipoPersonal', 'cargo'];
+    protected $fillable = ['id', 'cargo'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -24,10 +24,6 @@ class Cargos extends Model
         
     ];
 
-    public function tipo_personal()
-    {
-        return $this->belongsTo('App\Tipo', 'id_tipoPersonal');
-    }
     public function personal()
     {
         return $this->hasMany('App\Personal', 'id_cargo', 'id');

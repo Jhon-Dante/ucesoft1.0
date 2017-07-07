@@ -20,7 +20,7 @@ class CreateDocenteHasAsignaturaTable extends Migration
             $table->integer('id_seccion')->unsigned();
             $table->integer('id_periodo')->unsigned();
 
-            $table->foreign('id_docente')->references('id')->on('personal')->onDelete('cascade');
+            $table->foreign('id_docente')->references('id')->on('datos_basicos_personal')->onDelete('cascade');
             $table->foreign('id_asignatura')->references('id')->on('asignaturas')->onDelete('cascade');
             $table->foreign('id_seccion')->references('id')->on('secciones')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
