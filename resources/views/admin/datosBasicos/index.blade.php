@@ -21,40 +21,38 @@
     </ol>
 </section>
 <!-- Main content -->
-        <section class="content">
-      <div class="container spark-screen">
-        <div class="row">
-            <div class="col-md-12">
-                @include('flash::message')
-            </div>
-          <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-              <div class="panel-heading">Lista de Estudiantes registrados
+<section class="content spark-screen">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Lista de Estudiantes registrados
 
-                <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                              <a href="{{ url('admin/DatosBasicos/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+          <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
+            <a href="{{ url('admin/DatosBasicos/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                               <i class="fa fa-pencil"></i> Inscribir   
                               </a>
-                      </div>
+          </div>
+ 
+        </div>
 
-              </div>
-             
-              <div class="panel-body">
-                <div class="box-body">
-                <table id="example1" class="table table-bordered table-striped">
-                <thead>
+        <div class="col-xs-12">
+          @include('flash::message')     
+        </div>
+        <div class="panel-body">
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
                 <tr>
                   <th>Nro</th>
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Cédula</th>
                 </tr>
-                </thead>
-                <tbody>
-                  <?php $i=1; ?>
-                @foreach($datosBasicos as $dato_basico)
+              </thead>
+              <tbody>
+              @foreach($datosBasicos as $dato_basico)
                 <tr>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}">{{$i}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}">{{$num=$num+1}}</a></td>
                   <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico-nombre}}</a></td>
                   <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico-apellido}}</a></td>
                   <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico-cedula}}</a></td>
@@ -68,17 +66,14 @@
                   </td>
                   
                 </tr>
-               <?php $i++; ?>
-                @endforeach
-                </tbody>
-                
-              </table></div>
-
-              </div>
-            </div>
+              @endforeach
+              </tbody>    
+            </table>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 </div><!-- /.content-wrapper -->
 @endsection

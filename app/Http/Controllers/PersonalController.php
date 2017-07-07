@@ -20,9 +20,10 @@ class PersonalController extends Controller
      */
     public function index()
     {
+        $num=0;
         $personal=Personal::all();
         $cargo=Cargos::lists('id','cargo');
-        return View('admin.personal.index', compact('personal','cargo'));
+        return View('admin.personal.index', compact('personal','cargo','num'));
     }
 
     /**

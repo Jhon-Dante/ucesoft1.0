@@ -53,7 +53,7 @@
 							<tbody>
 							@foreach($cargos as $cargo)
 								<tr>
-								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $num+1 }}</a></td>
+								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $num=$num+1 }}</a></td>
 								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $cargo->cargo }}</a></td>
 								  <td><a href="{{ route('admin.cargos.edit', [$cargo->id]) }}">{{ $cargo->tipo_personal->tipo }}</a></td>
 								  <td>

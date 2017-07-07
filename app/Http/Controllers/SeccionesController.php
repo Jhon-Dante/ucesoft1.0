@@ -19,9 +19,9 @@ class SeccionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $num=0;
         $secciones=Seccion::all();
-        return View('admin.secciones.index', compact('secciones'));
+        return View('admin.secciones.index', compact('secciones','num'));
     }
 
     /**

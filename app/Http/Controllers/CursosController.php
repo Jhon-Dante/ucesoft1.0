@@ -19,8 +19,9 @@ class CursosController extends Controller
      */
     public function index()
     {
+        $num=0;
         $cursos=Cursos::all();
-        return View('admin.cursos.index',compact('cursos'));
+        return View('admin.cursos.index',compact('cursos','num'));
     }
 
     /**

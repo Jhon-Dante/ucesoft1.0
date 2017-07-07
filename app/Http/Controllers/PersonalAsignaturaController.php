@@ -27,8 +27,9 @@ class PersonalAsignaturaController extends Controller
      */
     public function index()
     {
+        $num=0;
         $personal_asignatura=Docente_has_asignatura::all();
-        return View('admin.personal_asignatura.index', compact('personal_asignatura'));
+        return View('admin.personal_asignatura.index', compact('personal_asignatura','num'));
     }
 
     /**

@@ -21,8 +21,9 @@ class RepresentantesController extends Controller
      */
     public function index()
     {
+        $num=0;
         $representantes=Representantes::all();
-        return View('admin.representantes.index', compact('representantes'));
+        return View('admin.representantes.index', compact('representantes','num'));
     }
 
     /**

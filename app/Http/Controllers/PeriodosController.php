@@ -19,8 +19,9 @@ class PeriodosController extends Controller
      */
     public function index()
     {
+        $num=0;
         $periodos=Periodos::all();
-        return View('admin.periodos.index', compact('periodos'));
+        return View('admin.periodos.index', compact('periodos','num'));
     }
 
     /**

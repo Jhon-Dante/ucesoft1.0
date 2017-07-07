@@ -18,8 +18,9 @@ class DeduccionesController extends Controller
      */
     public function index()
     {
+        $num=0;
         $deducciones=Deducciones::all();
-        return View('admin.deducciones.index', compact('deducciones'));
+        return View('admin.deducciones.index', compact('deducciones','num'));
     }
 
     /**

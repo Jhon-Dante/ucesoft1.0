@@ -29,8 +29,9 @@ class AulasController extends Controller
      */
     public function index()
     {
+        $num=0;
         $aula = Aula::all();
-        return view('admin.aulas.index', ['aula'=>$aula]);
+        return view('admin.aulas.index', ['aula'=>$aula], compact('num'));
     }
 
     /**

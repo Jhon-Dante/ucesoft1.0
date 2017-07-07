@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Horarios;
+
 class HorariosController extends Controller
 {
     /**
@@ -15,7 +17,9 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        //
+        $num=0;
+        $horarios=Horarios::all();
+        return View('admin.horarios.index', compact('horarios','num'));
     }
 
     /**

@@ -29,4 +29,18 @@
 <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/js.js') }}" type="text/javascript"></script>
 <!-- Scripts aditionals -->
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
+
 @yield('scripts')

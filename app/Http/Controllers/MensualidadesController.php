@@ -15,7 +15,8 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
-        return View('admin.mensualidades.index');
+        $num=0;
+        return View('admin.mensualidades.index',compact('num'));
     }
 
     /**

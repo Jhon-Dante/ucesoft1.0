@@ -21,8 +21,9 @@ class DatosBasicosController extends Controller
      */
     public function index()
     {
+        $num=0;
         $datosBasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('datosBasicos'));
+        return View('admin.DatosBasicos.index', compact('datosBasicos','num'));
     }
 
     /**
