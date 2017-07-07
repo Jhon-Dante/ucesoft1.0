@@ -6,13 +6,13 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adminlte-laravel - {{ trans('adminlte_lang::message.landingdescription') }} ">
+    <meta name="description" content="Ucesoft">
     <meta name="author" content="Sergi Tur Badenas - acacha.org">
     <meta name="keywords" content="@yield('keywords')" >
 
-    <meta property="og:title" content="Adminlte-laravel" />
+    <meta property="og:title" content="Ucesoft" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Adminlte-laravel - {{ trans('adminlte_lang::message.landingdescription') }}" />
+    <meta property="og:description" content="Ucesoft" />
     <meta property="og:url" content="http://demo.adminlte.acacha.org/" />
     <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE.png" />
     <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE600x600.png" />
@@ -24,7 +24,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta name="twitter:site" content="@acachawiki" />
     <meta name="twitter:creator" content="@acacha1" />
 
-    <title>{{ trans('adminlte_lang::message.landingdescriptionpratt') }}</title>
+    <title>Ucesoft</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">

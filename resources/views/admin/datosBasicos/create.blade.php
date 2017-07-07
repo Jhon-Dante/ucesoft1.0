@@ -18,10 +18,13 @@
 </section>
 <!-- Main content -->
 {!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
-<section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+<section class="content spark-screen">
+			
+				<div class="row"> 
+				<div class="col-md-12">
+	         @include('flash::message')
+	    </div>
+					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Seleccione al representante
  				@include('flash::message')
@@ -38,13 +41,13 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				
 			</div>
 		</section>
-        <section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+        <section class="content spark-screen">
+			<div class="row">
+
+					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Registro del Estudiante
  				@include('flash::message')
@@ -61,13 +64,13 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		</section>
 
-		<section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+		<section class="content spark-screen">
+			<div class="row">
+
+					<div class="col-xs-12>
 						<div class="panel panel-default">
 							<div class="panel-heading">Datos académicos del estudiante
  							
@@ -88,13 +91,12 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		</section>
 
-		<section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+		<section class="content spark-screen">
+			<div class="row">
+					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Recaudos del estudiante 
  				
@@ -113,7 +115,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		</section>
 
 		{!! Form::close() !!} 
@@ -128,7 +130,6 @@
 
 		$("#regular").change( function () {
 
-			if (!$(this).is(":checked")) 
 			{
 				
 				$("#plantel").removeAttr('disabled');

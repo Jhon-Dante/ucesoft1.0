@@ -21,14 +21,15 @@
 @include('alerts.errors')
 @include('alerts.requests')
 
-        <section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+<section class="content spark-screen">
+	<div class="row">
+		<div class="col-md-12">
+	         @include('flash::message')
+	    </div>
+
+					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro de Cargo
- 				@include('flash::message')
-							</div>
+							<div class="panel-heading">Registro de Cargo</div>
 
 							<div class="panel-body">
 								{!! Form::open(['route' => ['admin.cargos.store'], 'method' => 'post']) !!}
@@ -43,8 +44,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</section>
+		</div>
+	</div>
+
+</section>
 </div><!-- /.content-wrapper -->
 @endsection
