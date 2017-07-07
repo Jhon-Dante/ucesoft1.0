@@ -22,25 +22,28 @@
 
 	<section class="content spark-screen">
 		<div class="row">
-			<div class="col-xs-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Registro de Curso</div>
+			<div class="col-md-12">
+			    @include('flash::message')
+			</div>
+				<div class="col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Registro de Curso</div>
 
-					<div class="panel-body">
-						{!! Form::open(['route' => ['admin.cursos.store'], 'method' => 'post']) !!}
-					    
-					    	@include('admin.cursos.partials.create-fields')
-					    
-						    <div class="box-footer">
-				                <button type="submit" class="btn btn-primary">Enviar</button>
-				                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
-				           	</div>
+						<div class="panel-body">
+							{!! Form::open(['route' => ['admin.cursos.store'], 'method' => 'post']) !!}
+						    
+						    	@include('admin.cursos.partials.create-fields')
+						    
+							    <div class="box-footer">
+					                <button type="submit" class="btn btn-primary">Enviar</button>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+					           	</div>
 
-			            {!! Form::close() !!} 
-	      					
+				            {!! Form::close() !!} 
+		      					
+						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</section>
 </div>

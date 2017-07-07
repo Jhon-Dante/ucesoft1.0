@@ -19,30 +19,29 @@
 </section>
 <!-- Main content -->
 
-        <section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="panel panel-default">
-							<div class="panel-heading">Registro de Aula
- 				@include('flash::message')
-							</div>
+<section class="content spark-screen">
+	<div class="row">
+		<div class="col-md-12">
+            @include('flash::message')
+        </div>
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Registro de Aula</div>
 
-							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.aulas.store'], 'method' => 'post']) !!}
-                
-					                 @include('admin.aulas.partials.create-fields')
-					                <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/aulas')}}"><i class="fa fa-times"></i> Cancelar</a>
-					              </div>
-					            {!! Form::close() !!} 
-          							<!-- /.form-group -->
-							</div>
-						</div>
-					</div>
+					<div class="panel-body">
+						{!! Form::open(['route' => ['admin.aulas.store'], 'method' => 'post']) !!}
+        
+			                 @include('admin.aulas.partials.create-fields')
+			                <div class="box-footer">
+			                <button type="submit" class="btn btn-primary">Enviar</button>
+			                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/aulas')}}"><i class="fa fa-times"></i> Cancelar</a>
+			              </div>
+			            {!! Form::close() !!} 
+  							<!-- /.form-group -->
 				</div>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 </div><!-- /.content-wrapper -->
 @endsection

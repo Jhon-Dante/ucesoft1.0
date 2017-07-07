@@ -43,9 +43,12 @@ class CursosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-        'cargo' => 'required',
+        'cargo' => 'required'
          ]);
-        if(!empty($request->curso)){
+
+        dd($request->all());
+
+/*        if(!empty($request->curso)){
 
             $cursos=Cursos::where('curso',$request->curso)->get();
             //dd(count($cursos));
@@ -62,7 +65,7 @@ class CursosController extends Controller
         
         $cursos=Cursos::all();
         return View('admin.cursos.index',compact('cursos'));
-    }
+*/    }
 
     /**
      * Display the specified resource.
