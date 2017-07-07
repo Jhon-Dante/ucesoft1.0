@@ -21,9 +21,11 @@
 </section>
 <!-- Main content -->
 
-       <section class="content">
-			<div class="container spark-screen">
-				<div class="row">
+       <section class="content spark-screen">
+			<div class="row">
+			<div class="col-md-12">
+	         @include('flash::message')
+	    </div>
 					
 					<div class="text-success" id='result'>
 					    @if(Session::has('message'))
@@ -31,7 +33,7 @@
 					    @endif
 					</div>
 		            
-					<div class="col-md-10 col-md-offset-1">
+					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Registro de Sección
  				
@@ -52,7 +54,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				
 			</div>
 		</section>
 </div><!-- /.content-wrapper -->

@@ -19,10 +19,12 @@
 </section>
 <!-- Main content -->
 {!! Form::open(['route' => ['admin.mensualidades.index'], 'method' => 'post', 'name' => 'inscripcion', 'id' => 'inscripcion' ]) !!}
-        <section class="content">
-			<div class="container spark-screen">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+        <section class="content spark-screen">
+			<div class="row">
+			<div class="col-md-12">
+	         @include('flash::message')
+	    </div>
+					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Pagar mes:Junio
  				@include('flash::message')
@@ -47,7 +49,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		</section>
 
 		{!! Form::close() !!} 
