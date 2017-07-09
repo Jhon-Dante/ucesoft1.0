@@ -102,6 +102,9 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'admin.personal.destroy']
             );
         Route::resource('/personal_asignatura','PersonalAsignaturaController');
+        
+        Route::resource('/calificaciones','CalificacionesController');
+
     });
 
 
