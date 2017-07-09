@@ -21,13 +21,15 @@
     </ol>
 </section>
 <!-- Main content -->
-        <section class="content">
-      <div class="container spark-screen">
-        <div class="row">
+        <section class="content spark-screen ">
+      <div class="row">
+      <div class="col-md-12">
+           @include('flash::message')
+      </div>
             <div class="col-md-12">
                 @include('flash::message')
             </div>
-          <div class="col-md-10 col-md-offset-1">
+          <div class="col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading"> Turno: Mañana, Curso: 1er grado, Sección:A, Periodo: 2017-2018, Asignatura:Matemática
 
@@ -100,7 +102,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
     </section>
 </div><!-- /.content-wrapper -->
 @endsection
