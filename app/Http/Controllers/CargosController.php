@@ -56,8 +56,9 @@ class CargosController extends Controller
         }else{
             flash('EL CARGO YA SE ENCUENTRA REGISTRADO A ESTE PERSONAL','warning');
         }
+        $num=0;
         $cargos = Cargos::all();
-        return view('admin.cargos.index', compact('cargos'));
+        return view('admin.cargos.index', compact('cargos','num'));
 
     }
 
@@ -104,8 +105,9 @@ class CargosController extends Controller
 	    	}else{
 	    		flash('ESTE CARGO YA EXISTE','warning');
 	    	}
+            $num=0;
         $cargos = Cargos::all();
-        return view('admin.cargos.index', compact('cargos'));
+        return view('admin.cargos.index', compact('cargos','num'));
     }
 
     /**
@@ -123,17 +125,17 @@ class CargosController extends Controller
         if($x){
 
             flash('EL CARGO NO SE PUEDE ELIMINAR PORQUE POSEE PERSONAL EN ALGÚN PERIODO','warning');
-
+            $num=0;
  	        $cargos = Cargos::all();
-        	return view('admin.cargos.index', compact('cargos'));
+        	return view('admin.cargos.index', compact('cargos','num'));
         } else {
 
             $cargo->delete();
 
             flash(' SE HA ELIMINADO EL CARGO '.$cargo->cargo.' CORRECTAMENTE.','success');
-
+            $num=O;
             $cargos = Cargos::all();
-        return view('admin.cargos.index', compact('cargos'));
+        return view('admin.cargos.index', compact('cargos','num'));
 
         }
     }

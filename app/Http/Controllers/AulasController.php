@@ -11,17 +11,7 @@ use Auth;
 
 class AulasController extends Controller
 {
-    public function __construct(){
-       /* if(Auth::user()->roles_id == 5){
-            $this->middleware('dace');
-        }
-        elseif(Auth::user()->roles_id == 2){
-            $this->middleware('director');
-        }
-        else{
-            $this->middleware('administrador');
-        }*/
-    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -57,8 +47,9 @@ class AulasController extends Controller
         $aula->save();
         
         flash("Se ha registrado en aula de forma exitosa!", 'success');
+        $num=0;
         $aula = Aula::all();
-        return view('admin.aulas.index', ['aula'=>$aula]);
+        return view('admin.aulas.index', ['aula'=>$aula,'num'=>$num]);
     }
 
     /**
@@ -98,8 +89,9 @@ class AulasController extends Controller
         $aula->save();
 
         Session::flash('message', 'AULA EDITADA CORRECTAMENTE.');
+        $num=0;
         $aula = Aula::all();
-        return view("admin.aulas.index", ['aula'=>$aula]);
+        return view("admin.aulas.index", ['aula'=>$aula,'num'=>$num]);
     }
 
     /**

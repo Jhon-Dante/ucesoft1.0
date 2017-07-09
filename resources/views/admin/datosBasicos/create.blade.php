@@ -16,107 +16,75 @@
         <li class="active">Registro</li>
     </ol>
 </section>
+{{ csrf_token() }}
 <!-- Main content -->
 {!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
 <section class="content spark-screen">
-			
-				<div class="row"> 
-				<div class="col-md-12">
+	<div class="row"> 
+		<div class="col-md-12">
 	         @include('flash::message')
 	    </div>
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">Seleccione al representante
- 				@include('flash::message')
-							</div>
-
-							<div class="panel-body">
-								
-                				<div class="form-group">
-					                 {!! Form::label('representante','Representante') !!}
-					                 {!! Form::select('representante',$representante,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique el parentesco del representante con el estudiante']) !!}
-					            </div>
-					            
-          							<!-- /.form-group -->
-							</div>
-						</div>
-					</div>
-				
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Seleccione al representante</div>
+						<div class="panel-body">
+            				<div class="form-group">
+				                {!! Form::label('representante','Representante') !!}
+				                {!! Form::select('representante',$representante,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique el parentesco del representante con el estudiante']) !!}
+			            	</div>
+			         	</div>
+				</div>
 			</div>
-		</section>
-        <section class="content spark-screen">
-			<div class="row">
+	</div>
+</section>
 
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">Registro del Estudiante
- 				@include('flash::message')
-							</div>
-
-							<div class="panel-body">
-								
-                
-					                 @include('admin.datosBasicos.partials.create-fields')
-					                
-					            
-          							<!-- /.form-group -->
-							</div>
-						</div>
+<section class="content spark-screen">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Registro del Estudiante</div>
+					<div class="panel-body">
+		                 @include('admin.datosBasicos.partials.create-fields')
 					</div>
-				</div>
-			
-		</section>
+			</div>
+		</div>
+	</div>
+</section>
 
-		<section class="content spark-screen">
-			<div class="row">
-
-					<div class="col-xs-12>
-						<div class="panel panel-default">
-							<div class="panel-heading">Datos académicos del estudiante
- 							
-							<div class="form-group">
-		{!! Form::label('regular','¿Estudiante regular?') !!}
-		<input type="checkbox" name="regular" id="regular" checked>	
-							</div>
-								</div>
-
-								<div class="panel-body">
-									
-						                 
-						                 @include('admin.datosBasicos.partials.create-fields-academicos')
-						                
-						          
-	          							<!-- /.form-group -->
-							</div>
+<section class="content spark-screen">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Datos académicos del estudiante</div>
+					<div class="panel-body">
+						<div class="form-group">
+							{!! Form::label('regular','¿Estudiante regular?') !!}
+							<input type="checkbox" name="regular" id="regular" checked>	
 						</div>
-					</div>
-				</div>
-			
-		</section>
+					    @include('admin.datosBasicos.partials.create-fields-academicos')
+			    	</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-		<section class="content spark-screen">
-			<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">Recaudos del estudiante 
- 				
-							</div>
-
-							<div class="panel-body">
-								
-					                 @include('admin.datosBasicos.partials.create-fields-recaudos')
-					                <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
-					              </div>
-					          
-          							<!-- /.form-group -->
-							</div>
-						</div>
+<section class="content spark-screen">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Recaudos del estudiante</div>
+					<div class="panel-body">
+						
+		               	@include('admin.datosBasicos.partials.create-fields-recaudos')
+		                <div class="box-footer">
+			                <button type="submit" class="btn btn-primary">Enviar</button>
+			                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+		              	</div>
 					</div>
-				</div>
-			
-		</section>
+			</div>
+		</div>
+	</div>
+</section>
 
 		{!! Form::close() !!} 
 </div><!-- /.content-wrapper -->

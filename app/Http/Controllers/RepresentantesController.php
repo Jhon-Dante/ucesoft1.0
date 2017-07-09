@@ -45,14 +45,16 @@ class RepresentantesController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $buscar=Representantes::where('cedula',$request->cedula)->get();
 
         $cuantos=count($buscar);
 
         if ($cuantos>0) {
             flash('Este representante ya se encuentra registrado', 'warning');
+            $num=0;
             $datosBasicos=Representantes::all();
-            return View('admin.representantes.index', compact('representantes'));
+            return View('admin.representantes.index', compact('representantes','num'));
         } else {
             $representante=Representantes::create([
                 'nacionalidad'      =>$request->nacionalidad,
@@ -79,8 +81,9 @@ class RepresentantesController extends Controller
                 'codigo_emergencia' =>$request->codigo_emergencia,
                 'telf_emergencia'   =>$request->elf_emergencia]);
         flash('Representante registrado con éxito','success');
+        $num=0;
         $representante=Representantes::all();
-        return View('admin.representantes.index', compact('representantes'));
+        return View('admin.representantes.index', compact('representantes','num'));
         }
         
     }
@@ -132,9 +135,9 @@ class RepresentantesController extends Controller
         $representante->delete();
 
             flash(' SE HA ELIMINADO EL REPRESENTANTE '.$representante->nombres.' CORRECTAMENTE.','success');
-
+            $num=0;
             $representantes = Cargos::all();
-        return view('admin.representantes.index', compact('representantes'));
+        return view('admin.representantes.index', compact('representantes','num'));
 
     }
 }

@@ -1,10 +1,14 @@
 <div class="form-group">
 	{!! Form::label('nacionalidad','Nacionalidad') !!}
-	{!! Form::select('nacionalidad', ['V', 'E'], ['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la nacionalidad del representante']) !!}
+	
+	<select class="form-control" style="width: 70px;" name="nacionalidad" id="nacionalidad" title="Ingrese la nacionalidad del representante" >
+		<option value="V">V</option>
+		<option value="E">E</option>
+	</select>
 </div>
 <div class="form-group">
 	{!! Form::label('cedula','Cédula') !!}
-	{!! Form::text('cedula', null, ['class' => 'form-control','placeholder' => '4555666','required' => 'required', 'title' => 'Ingrese la nacionalidad del representante']) !!}
+	{!! Form::text('cedula', null, ['class' => 'form-control','placeholder' => '4555666','required' => 'required', 'title' => 'Ingrese la nacionalidad del representante','maxlength' => '8']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('nombres','Nombres') !!}
@@ -24,11 +28,14 @@
 </div>
 <div class="form-group">
 	{!! Form::label('vive_estu','¿Vive con el estudiante?') !!}
-	{!! Form::select('vive_estu', ['Si', 'No'], ['class' => 'form-control','required' => 'required']) !!}
+	<select name="vive_estu" style="width: 80px;" id="vive_estu" class="form-control" title="Seleccione de acuerdo a la convivencia con el estudiante">
+		<option value="Si">Si</option>
+		<option value="No">No</option>
+	</select>
 </div>
 <div class="form-group">
 	{!! Form::label('ingreso_apx','Ingresos Aproximados') !!}
-	{!! Form::number('ingreso_apx',null, ['class' => 'form-control','placeholder' => '200000','required' => 'required', 'title' => 'Ingrese la profesión del representante','min' => '0', 'maxlength' => '4','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+	{!! Form::number('ingreso_apx',null, ['class' => 'form-control','placeholder' => '200000','required' => 'required', 'title' => 'Ingrese la profesión del representante','min' => '0', 'maxlength' => '10','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('n_familia','Número de miembros en el hogar') !!}
@@ -40,8 +47,15 @@
 </div>
 <div class="form-group">
 	{!! Form::label('telf_habitacion','Teléfono del hogar') !!}
-	{!! Form::select('codigo_hab', ['0244', '0412', '0414', '0416' , '0416'], ['class' => 'form-control','required' => 'required']) !!}
-	{!! Form::text('telf_hab', null, ['class' => 'form-control','required' => 'required']) !!}
+	<select name="codigo_hab" id="codigo_hab" style="width: 80px;" class="form-control" title="Seleccione el código del teléfono del hogar">
+		<option value="0244">0244</option>
+		<option value="0412">0412</option>
+		<option value="0414">0414</option>
+		<option value="0424">0424</option>
+		<option value="0416">0416</option>
+		<option value="0426">0426</option>
+	</select>
+	{!! Form::text('telf_hab', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('lugar_tra','Lugar de trabajo del representante') !!}
@@ -49,8 +63,18 @@
 </div>
 <div class="form-group">
 	{!! Form::label('telf_trabajo','Teléfono de trabajo') !!}
-	{!! Form::select('codigo_tra', ['0244', '0412', '0414', '0416' , '0416'], ['class' => 'form-control','required' => 'required']) !!}
-	{!! Form::text('telf_tra', null, ['class' => 'form-control','required' => 'required']) !!}
+	<select name="codigo_tra" id="codigo_tra" style="width: 80px;" class="form-control" title="Seleccione el código del teléfono del trabajo">
+		<option value="0244">0244</option>
+		<option value="0412">0412</option>
+		<option value="0414">0414</option>
+		<option value="0424">0424</option>
+		<option value="0416">0416</option>
+		<option value="0426">0426</option>
+	</select>
+	
+	{!! Form::text('telf_tra', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7']) !!}
+
+
 </div>
 <div class="form-group">
 	{!! Form::label('responsable_m','Responsable de pagar las mensualidades') !!}
@@ -58,13 +82,29 @@
 </div>
 <div class="form-group">
 	{!! Form::label('telf_responsable','Teléfono de trabajo') !!}
-	{!! Form::select('codigo_responsable', ['0244', '0412', '0414', '0416' , '0416'], ['class' => 'form-control','required' => 'required']) !!}
-	{!! Form::text('telf_responsable', null, ['class' => 'form-control','required' => 'required']) !!}
+	<select name="codigo_responsable" id="codigo_responsable" style="width: 80px;" class="form-control" title="Seleccione el código del teléfono">
+		<option value="0244">0244</option>
+		<option value="0412">0412</option>
+		<option value="0414">0414</option>
+		<option value="0424">0424</option>
+		<option value="0416">0416</option>
+		<option value="0426">0426</option>
+	</select>
+	
+	{!! Form::text('telf_responsable', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('telf_opcional','Teléfono opcional') !!}
-	{!! Form::select('codigo_opcional', ['0244', '0412', '0414', '0416' , '0416'], ['class' => 'form-control','required' => 'required']) !!}
-	{!! Form::text('telf_opcional', null, ['class' => 'form-control','required' => 'required']) !!}
+	<select name="codigo_opcional" id="codigo_opcional" style="width: 80px;" class="form-control" title="Seleccione el código del teléfono">
+		<option value="0244">0244</option>
+		<option value="0412">0412</option>
+		<option value="0414">0414</option>
+		<option value="0424">0424</option>
+		<option value="0416">0416</option>
+		<option value="0426">0426</option>
+	</select>
+	
+	{!! Form::text('telf_opcional', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('nombre_opcional','En caso de no poseer teléfono, indicar el número de algún contacto') !!}
@@ -72,6 +112,13 @@
 </div>
 <div class="form-group">
 	{!! Form::label('telf_emergencia','En caso de EMERGENCIA, llamar a') !!}
-	{!! Form::select('codigo_emergencia', ['0244', '0412', '0414', '0416' , '0416'], ['class' => 'form-control','required' => 'required']) !!}
-	{!! Form::text('telf_emergencia', null, ['class' => 'form-control','required' => 'required']) !!}
+	<select name="codigo_emergencia" id="codigo_emergencia" style="width: 80px;" class="form-control" title="Seleccione el código del teléfono de emergencia">
+		<option value="0244">0244</option>
+		<option value="0412">0412</option>
+		<option value="0414">0414</option>
+		<option value="0424">0424</option>
+		<option value="0416">0416</option>
+		<option value="0426">0426</option>
+	</select>
+	{!! Form::text('telf_emergencia', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7']) !!}
 </div>

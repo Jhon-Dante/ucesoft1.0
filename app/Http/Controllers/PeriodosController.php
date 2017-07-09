@@ -49,14 +49,16 @@ class PeriodosController extends Controller
 
         if ($cuantos>0) {
             flash('Periodo ya registrado','warning');
+            $num=0;
             $periodos=Periodos::all();
-            return View('admin.periodos.index', compact('periodos'));
+            return View('admin.periodos.index', compact('periodos','num'));
         } else {
 
             $periodo=Periodos::create(['periodo' => $request->periodo,'status' => 'Inactivo']);
             flash('Periodo registrado con éxito, para validaciones generales dicho periodo será registrado como INACTIVO','success');
+            $num=0;
             $periodos=Periodos::all();
-            return View('admin.periodos.index', compact('periodos'));
+            return View('admin.periodos.index', compact('periodos','num'));
         }
         
     }
@@ -87,10 +89,10 @@ class PeriodosController extends Controller
             $periodo1->save();
 
             flash('Perido Cambiado a Inactivo','success');
-
+            $num=0;
             $periodos=Periodos::all();
 
-            return View('admin.periodos.index', compact('periodos'));
+            return View('admin.periodos.index', compact('periodos','num'));
             } else {
             $buscar=Periodos::where('status','Activo')->get();
             $contar=count($buscar);
@@ -111,10 +113,10 @@ class PeriodosController extends Controller
 
 
             flash('Perido Cambiado a Activo, considerando que el periodo que estaba activo anteriormente se coloco como Inactivo','success');
-
+            $num=0;
             $periodos=Periodos::all();
 
-            return View('admin.periodos.index', compact('periodos'));
+            return View('admin.periodos.index', compact('periodos','num'));
         }
         
     }

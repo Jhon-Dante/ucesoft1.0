@@ -51,8 +51,9 @@ class PersonalController extends Controller
 
         if ($cuantos>0) {
             flash('Este personal ya se encuentra registrado','warning');
+            $num=0;
             $personal=Personal::all();
-        return View('admin.personal.index', compact('personal'));
+        return View('admin.personal.index', compact('personal','num'));
 
         } else {
             $perso=Personal::create([
@@ -74,8 +75,9 @@ class PersonalController extends Controller
                 'id_cargo'         =>$request->id_cargo]);
 
             flash('Personal registrado con éxito','success');
+            $num=0;
             $personal=Personal::all();
-            return View('admin.personal.index', compact('personal'));
+            return View('admin.personal.index', compact('personal','num'));
         }
         
     }

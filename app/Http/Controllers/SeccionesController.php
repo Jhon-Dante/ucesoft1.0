@@ -58,8 +58,8 @@ class SeccionesController extends Controller
             flash('Registro ingresado con éxito','success');
         
         $secciones=Seccion::all();
-
-        return View('admin.secciones.index',compact('secciones'));
+        $num=0;
+        return View('admin.secciones.index',compact('secciones','num'));
         
 
         } else {
@@ -98,7 +98,7 @@ class SeccionesController extends Controller
     {
         //
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *

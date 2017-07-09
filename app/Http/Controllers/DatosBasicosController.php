@@ -63,8 +63,9 @@ class DatosBasicosController extends Controller
                 'nacimiento' => $request->nacimiento
                 ]);
             flash('Estudiante registrado con éxito','success');
+            $num=0;
             $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
+            return View('admin.datosBasicos.index', compact('datosBasicos','num'));
         }
         
     }

@@ -118,9 +118,9 @@ class CursosController extends Controller
             }
 
         }
-        
+        $num=0;
         $cursos=Cursos::all();
-        return View('admin.cursos.index',compact('cursos'));
+        return View('admin.cursos.index',compact('cursos','num'));
     }
 
     /**
