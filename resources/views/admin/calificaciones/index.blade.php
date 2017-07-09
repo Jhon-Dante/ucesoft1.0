@@ -29,7 +29,7 @@
 
 					<div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
             <a href="{{ url('admin/calificaciones/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                <i class="fa fa-pencil"></i> Registrar sección  
+                <i class="fa fa-pencil"></i> Registrar calificación  
             </a>
 			    </div>
 
@@ -52,27 +52,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($calificaciones as $calificacion)
-                <tr>
-                  <td><a href="{{ route('admin.calificaciones.edit', [$calificacion->id]) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('admin.Calificaciones.edit', [$calificacion->id]) }}">{{$calificacion->datosBasicos->nombres}}</a></td>
-                  <td><a href="{{ route('admin.Calificaciones.edit', [$calificacion->id]) }}">{{$calificacion>datosBasicos->apellidos}}</a></td>
-                  <td><a href="{{ route('admin.calificaciones.edit', [$calificacion->id]) }}"> {{$calificacion->seccion->seccion}}</a></td>
-                  <td><a href="{{ route('admin.calificaciones.edit', [$calificacion->id]) }}"> {{$calificacion->curso->curso}}</a></td>
-                  <td>
-                 
-                  <div class="btn-group">
-                      <a href="{{ route('admin.calificaciones.edit', [$calificacion->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
-
-                      <a href="#" ><button onclick="calificaciones({{ $calificacion->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
-                      </div>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-				</div>
+               
+                </tbody>
+              </table>
+            </div>
+				  </div>
 			</div>
 		</div>
 	</div>
@@ -89,7 +73,7 @@
                     <h4 class="modal-title">Eliminar Sección</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar esta sección en especifico?...
+                    ¿Esta seguro que desea eliminar esta calificación en especifico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
