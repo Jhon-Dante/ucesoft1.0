@@ -105,6 +105,18 @@ Route::group(['middleware' => 'web'], function () {
         
         Route::resource('/calificaciones','CalificacionesController');
 
+        Route::get('/docente_preescolar',function(){
+            return View('admin.docente_preescolar.index');
+        });
+
+        Route::get('/docente_preescolar/momentos', function(){
+            return View('admin.docente_preescolar.momentos.index');
+        });
+
+        Route::get('/docente_preescolar/momentos/create', function(){
+            return View('admin.docente_preescolar.momentos.create');
+        });
+
     });
 
 
