@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Momentos
+	Lapsos
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,11 +9,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Momentos')
+        @yield('contentheader_title', 'Lapsos')
         <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Momentos</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Lapsos</a></li>
         <li class="active">Registro</li>
     </ol>
 </section>
@@ -25,7 +25,7 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro del momento
+							<div class="panel-heading">Registro del Lapso de: <strong>Pablo Pérez</strong>
  				@include('flash::message')
 							</div>
 
@@ -33,11 +33,11 @@
 								
                 
     
-					                 @include('admin.docente_preescolar.momentos.partials.create-fields')
+					                 @include('admin.docente_basica.lapsos.partials.create-fields')
 					                
 					            <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/docente_preescolar/momentos')}}"><i class="fa fa-times"></i> Cancelar</a>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/docente_basica/lapsos')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
           							<!-- /.form-group -->
           		{!! Form::close() !!} 

@@ -72,7 +72,14 @@
                     <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
                     <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
                     <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
-                    <li><a href=" {{ url('admin/horarios')      }} ">Horarios       </a></li>
+
+                    <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
+                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
+                        </ul>
+                    </li>
                     
                 </ul>
             </li>
@@ -81,6 +88,24 @@
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/docente_preescolar') }}">Lista de estudiantes</a></li>
                     <li><a href=" {{ url('admin/docente_preescolar/momentos') }}">Cargar Momentos</a></li>
+                    
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i><span>Docente de básica</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href=" {{ url('admin/docente_basica') }}">Lista de estudiantes</a></li>
+                    <li><a href=" {{ url('admin/docente_basica/lapsos') }}">Cargar Lapsos</a></li>
+                    
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i><span>Docente de liceo</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href=" {{ url('admin/docente_liceo') }}">Lista de estudiantes</a></li>
+                    <li><a href=" {{ url('admin/docente_liceo/lapsos') }}">Cargar Lapsos</a></li>
                     
                 </ul>
             </li>

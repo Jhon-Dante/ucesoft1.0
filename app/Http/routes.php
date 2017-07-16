@@ -58,6 +58,7 @@ Route::group(['middleware' => 'web'], function () {
         //     );
 
         Route::resource('/aulas','AulasController');
+
         Route::resource('/horarios','HorariosController');
         Route::get('/horarios/{id}/destroy' ,[
             'uses' => 'HorariosController@destroy',
@@ -85,10 +86,7 @@ Route::group(['middleware' => 'web'], function () {
     return view('admin.mensualidades.index');
         });
 
-        Route::get('/horarios',function(){
-            return View('admin.horarios.index');
-        });
-
+       
 
         Route::resource('/mensualidades','MensualidadesController');
         Route::get('/mensualidades/{id}/destroy',[
@@ -117,7 +115,34 @@ Route::group(['middleware' => 'web'], function () {
             return View('admin.docente_preescolar.momentos.create');
         });
 
-    });
+        Route::get('/docente_basica', function(){
+            return View('admin.docente_basica.index');
+        });
 
+        Route::get('/docente_basica/lapsos', function(){
+            return View('admin.docente_basica.lapsos.index');
+        });
+
+        Route::get('/docente_basica/lapsos/create', function(){
+            return View('admin.docente_basica.lapsos.create');
+        });
+
+
+
+        Route::get('/docente_liceo', function(){
+            return View('admin.docente_liceo.index');
+        });
+
+        Route::get('/docente_liceo/lapsos', function(){
+            return View('admin.docente_liceo.lapsos.index');
+        });
+
+        Route::get('/docente_liceo/lapsos/create', function(){
+            return View('admin.docente_liceo.lapsos.create');
+        });
+
+        Route::resource('/horario_tarde','HorarioTardeController');
+        
+    });
 
 });

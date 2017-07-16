@@ -37,11 +37,7 @@
                     <td><strong>Bloque: </strong>{!! Form::select('bloque',['Lunes 7:00 a 7:45','Lunes 7:45 a 7:30','Lunes 8:30 a 9:15']) !!}</td>
                     <td><strong>Asignatura: </strong>
                   <select>
-                    @foreach($asignaturas as $asig)
-                       @if ($asig->id_curso==2)
-                          <option value="{{$asig->asignatura}}">{{$asig->asignatura}}</option>
-                      @endif
-                    @endforeach
+                    
                     </select></td>
                   </tr>
                 </table>

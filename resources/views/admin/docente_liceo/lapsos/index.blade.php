@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Preescolar
+  Liceo
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,25 +9,29 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Preescolar')
+        @yield('contentheader_title', 'Liceo - Matemáticas')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Preescolar</a></li>
-        <li class="active">Momentos</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Liceo</a></li>
+        <li class="active">Lapsos</li>
         <li class="active">Lista</li>
 
     </ol>
+    <div class="form-group">
+  {!! Form::label('curso','Curso y sección') !!}
+  {!! Form::select('curso',['1er año. - A', '2do año - U'],['class' => 'form-control','placeholder' => '5to. Año.','required' => 'required', 'title' => 'Ingrese el año, nivel o grado que desea registrar', 'id' => 'phone']) !!}
+</div>
 </section>
 <!-- Main content -->
 <section class="content spark-screen">
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista de momentos de estudiantes de preescolar registrado
+            <div class="panel-heading">Lista de lapsos de estudiantes de liceo registrado
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <a href="#" class="btn btn-danger btn-flat" style="padding: 4px 10px;">
@@ -37,19 +41,19 @@
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <a href="#" class="btn btn-warning btn-flat" style="padding: 4px 10px;">
-                <i class="fa"></i> Momento 3
+                <i class="fa"></i> Lapso 3
                 </a>
               </div>
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <a href="#" class="btn btn-success btn-flat" style="padding: 4px 10px;">
-                <i class="fa"></i> Momento 2
+                <i class="fa"></i> Lapso 2
                 </a>
               </div>
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <a href="#" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                <i class="fa"></i> Momento 1   
+                <i class="fa"></i> Lapso 1   
                 </a>
               </div>
 
@@ -70,6 +74,7 @@
                 <th>Curso</th>
                 <th>Sección</th>
                 <th>Opciones</th>
+
               </tr>
             </thead>
             <tbody>
@@ -78,14 +83,14 @@
                 <td><a href="#">Pablo</a></td>
                 <td><a href="#">Pérez</a></td>
                 <td><a href="#">V-11999443</a></td>
-                <td><a href="#">Preescolar</a></td>
+                <td><a href="#">1er Grado</a></td>
                 <td><a href="#">U</a></td>
 
                <td>
                 <div class="btn-group">
-                    <a href=" {{ url('admin/docente_preescolar/momentos/create') }}"><button class="btn btn-primary btn-flat" title="Presionando este botón, puede registrar un nuevo momento al estudiante"><i class="glyphicon glyphicon-record"></i></button></a>
+                    <a href=" {{ url('admin/docente_liceo/lapsos/create') }}"><button class="btn btn-warning btn-flat" title="Presionando este botón, puede registrar un nuevo momento al estudiante"><i class="glyphicon glyphicon-record"></i></button></a>
 
-                    <a href="{{ url('admin/docente_preescolar/momentos/create') }}"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede visualizar los momentos registrados del estudiante" ><i class="fa fa-eye"></i></button></a>
+                    <a href="{{ url('admin/docente_liceo/lapsos/create') }}"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede visualizar los lapsos registrados del estudiante" ><i class="fa fa-eye"></i></button></a>
 
                     <a href="#"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede visualizar el registro en PDF" ><i class="fa fa-file-pdf-o"></i></button></a>
 

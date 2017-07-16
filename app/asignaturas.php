@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class asignaturas extends Model
+class Asignaturas extends Model
 {
     protected $table='asignaturas'; //nombre de la tabla
     protected $fillable=['id','asignatura','codigo','id_curso']; //Los campos que pueden ser vistos

@@ -6,11 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-//use App\Horarios;
-use App\Cursos;
 use App\Asignaturas;
 
-class HorariosController extends Controller
+class HorarioTardeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +17,7 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        $num=0;
-        //$horarios=Horarios::all();
-        $cursos=Cursos::all();
-        return View('admin.horarios.index', compact('horarios','num','cursos'));
+        return View('admin.horario_tarde.index');
     }
 
     /**
@@ -32,7 +27,7 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        return View('admin.horarios.create');
+         return View('admin.horario_tarde.show');
     }
 
     /**
@@ -43,7 +38,7 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
-        return View('admin.horarios.show');
+        return View('admin.horario_tarde.show');
     }
 
     /**
@@ -89,9 +84,5 @@ class HorariosController extends Controller
     public function destroy($id)
     {
         //
-    }
-     public function mostrar()
-    {
-        return View('admin.horarios.show');
     }
 }

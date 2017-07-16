@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Docente_has_asignatura;
 
-use App\asignaturas;
+use App\Asignaturas;
 
 use App\Personal;
 

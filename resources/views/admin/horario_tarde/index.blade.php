@@ -13,7 +13,7 @@
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Horarios - Mañana</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Horarios - Tarde</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -51,7 +51,7 @@
                    <td>2017</td>
                    <td>
 
-                      {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
+                      {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary btn-flat">
                         <i class="fa fa-pencil"></i> Crear   
@@ -74,7 +74,7 @@
                    <td>B</td>
                    <td>2017</td>
                    <td>
-                   {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
+                   {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary btn-flat">
                         <i class="fa fa-pencil"></i> Crear   
@@ -95,7 +95,7 @@
                    <td>2017</td>
                    <td>
                    
-                      {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
+                      {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary btn-flat">
                         <i class="fa fa-pencil"></i> Crear   
@@ -119,7 +119,7 @@
                    <td>2017</td>
                    <td>
                    
-                      {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
+                      {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary btn-flat">
                         <i class="fa fa-pencil"></i> Crear   
