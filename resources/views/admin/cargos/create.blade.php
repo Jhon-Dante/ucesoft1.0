@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@section('htmlheader_title')
-	Cargos
-@endsection
+@section('htmlheader_title', 'Cargos')
+
 @section('content-wrapper')
 <div class="content-wrapper">
 
@@ -18,13 +17,11 @@
     </ol>
 </section>
 <!-- Main content -->
-@include('alerts.errors')
-@include('alerts.requests')
+	@include('alerts.requests')
 
 <section class="content spark-screen">
 	<div class="row">
-		<div class="col-md-12">
-	         @include('flash::message')
+		<div class="col-lg-12">
 	    </div>
 
 					<div class="col-xs-12">

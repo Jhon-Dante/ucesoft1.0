@@ -7,6 +7,8 @@ use App\Cargos;
 use App\Http\Requests;
 use Session;
 use Auth;
+use Validator;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CargosRequest;
 
 class CargosController extends Controller
@@ -35,33 +37,41 @@ class CargosController extends Controller
         return view('admin.cargos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CargosRequest $request)
     {
+        
+        if ($validator->fails()) {
+            
+            return redirect('admin/cargos/create')
+                            ->withErrors($validator)
+                            ->withInput();        
+        } else {
+            
+            $buscar=Cargos::where('cargo',$request->cargo)->get();
+            $cuantos=count($buscar);
+            if($cuantos==0){
+                $cargo = new Cargos();
+                $cargo->cargo = strtoupper($request->cargo);
 
-        $buscar=Cargos::where('cargo',$request->cargo)->get();
-        $cuantos=count($buscar);
-        if($cuantos==0){
-        $cargo = new Cargos();
-        $cargo->cargo = strtoupper($request->cargo);
+                $cargo->save();
 
-        $cargo->save();
-
-        flash('CARGO REGISTRADO CORRECTAMENTE','success');
-        }else{
-            flash('EL CARGO YA SE ENCUENTRA REGISTRADO A ESTE PERSONAL','warning');
+                flash('CARGO REGISTRADO CORRECTAMENTE','success');
+            }else{
+                flash('EL CARGO YA SE ENCUENTRA REGISTRADO A ESTE PERSONAL','warning');
+            }    
         }
+        
         $num=0;
         $cargos = Cargos::all();
         return view('admin.cargos.index', compact('cargos','num'));
 
     }
+    public function messages(){
 
+        return [
+            'cargo.required' => 'A sasas is required'
+        ];
+    }
     /**
      * Display the specified resource.
      *

@@ -11,17 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () { return view('welcome'); });
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
 });
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
-    Route::auth();
-
-    Route::get('/home', 'HomeController@index');
-
-    Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
 
     	Route::resource('/cursos','CursosController');
         Route::resource('/secciones','SeccionesController');
@@ -143,6 +141,5 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('/horario_tarde','HorarioTardeController');
         
-    });
-
 });
+

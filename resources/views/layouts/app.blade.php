@@ -30,21 +30,21 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="skin-blue sidebar-mini">
-<div class="wrapper">
+	<div class="wrapper">
 
-    @include('layouts.partials.mainheader')
+	    @include('layouts.partials.mainheader')
 
-    @include('layouts.partials.sidebar')
+	    @include('layouts.partials.sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
-   			
-    @yield('content-wrapper')
+	    <!-- Content Wrapper. Contains page content -->
+	   			
+	    @yield('content-wrapper')
 
-    @include('layouts.partials.controlsidebar')
+	    @include('layouts.partials.controlsidebar')
 
-    @include('layouts.partials.footer')
+	    @include('layouts.partials.footer')
 
-</div><!-- ./wrapper -->
+	</div>
 
     @include('layouts.partials.scripts')
 

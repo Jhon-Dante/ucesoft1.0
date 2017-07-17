@@ -98,24 +98,24 @@
 
 		$("#regular").change( function () {
 
+			if(!$(this).is(":checked")) 
 			{
+					$("#plantel").removeAttr('disabled');
+					$("#materiap").removeAttr('disabled');
+					$("#repite1").removeAttr('disabled');
+					$("#repite2").removeAttr('disabled');
 				
-				$("#plantel").removeAttr('disabled');
-				$("#materiap").removeAttr('disabled');
-				$("#repite1").removeAttr('disabled');
-				$("#repite2").removeAttr('disabled');
-			
 			} else {
 
-				$("#plantel").prop('disabled', true);
-				$("#materiap").prop('disabled', true);
-				$("#repite1").prop('disabled', true);
-				$("#repite2").prop('disabled', true);
-				
+					$("#plantel").prop('disabled', true);
+					$("#materiap").prop('disabled', true);
+					$("#repite1").prop('disabled', true);
+					$("#repite2").prop('disabled', true);
+					
 			}
 		});
-	
 	});
+	
 
 	/*function desbloquear(){
 

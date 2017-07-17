@@ -15,11 +15,6 @@ class CargosRequest extends Request
     {
         return true;
     }
-/**
-    * Get the error messages for the defined validation rules.
-    *
-    * @return array
-    */
 
     /**
      * Get the validation rules that apply to the request.
@@ -29,7 +24,7 @@ class CargosRequest extends Request
     public function rules()
     {
         return [
-            'cargo' => 'required|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
+            'cargo' => 'required'
         ];
     }
     
