@@ -25,7 +25,7 @@
             <div class="panel-heading">Lista de cursos registrados
               
           </div>
-        
+        s
           <div class="col-xs-12">
             @include('flash::message')
           </div>
@@ -38,63 +38,18 @@
                     <th>Curso</th>
                     <th>Sección</th>
                     <th>Período</th>
-                    <th>Opciones</th>
+
                   </tr>
                 </thead>
 
                 <tbody>
-        
-                   <tr>
-                   <td>1</td>
-                   <td>1er grado</td>
-                   <td>A</td>
-                   <td>2017</td>
-                   <td>
+                @foreach($secciones as $seccion)
+                    <tr>
+                      <td><a href="#">{{ $num=$num+1 }}</a></td>
+                      <td><a href="#">{{ $seccion->seccion }}</td>
+                      <td><a href="#">{{ $seccion->curso->curso }}</td>
 
-                      {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
-
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!}
-
-                   </td>
-                   </tr>
-
-                   <tr>
-                   <td>2</td>
-                   <td>1er grado</td>
-                   <td>B</td>
-                   <td>2017</td>
-                   <td>
-                   {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
-
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!} 
-
-                      <tr>
-                   <td>3</td>
-                   <td>2do grado</td>
-                   <td>A</td>
-                   <td>2017</td>
-                   <td>
-                   
+                      <td>
                       {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary btn-flat">
@@ -111,33 +66,7 @@
 
                    </td>
                    </tr> 
-
-                   <tr>
-                   <td>4</td>
-                   <td>2do grado</td>
-                   <td>B</td>
-                   <td>2017</td>
-                   <td>
-                   
-                      {!! Form::open(['route' => ['admin.horario_tarde.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
-
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!}
-
-                   </td>
-                   </tr> 
-
-                   </td>
-                   </tr> 
+                @endforeach
 
               </tbody>
             </table>

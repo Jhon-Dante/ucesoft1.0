@@ -34,7 +34,7 @@
                     <td><STRONG>Curso:</STRONG> 1er grado.</td>
                     <td><strong>Sección: </strong>A</td>
                     <td><strong>Número de bloques: </strong>{!! Form::select('bloque',['1','2','3','4']) !!}</td>
-                    <td><strong>Bloque: </strong>{!! Form::select('bloque',['Lunes 7:00 a 7:45','Lunes 7:45 a 7:30','Lunes 8:30 a 9:15']) !!}</td>
+                    <td><strong>Bloque: </strong>{!! Form::select('bloque',$bloques) !!}</td>
                     <td><strong>Asignatura: </strong>
                   <select>
                     @foreach($asignaturas as $asig)

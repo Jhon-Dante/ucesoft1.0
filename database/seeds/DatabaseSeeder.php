@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MesesSeeder::class);
         $this->call(CargosSeeder::class);
         $this->call(ParentescoSeeder::class);
+        $this->call(BloquesTableSeeder::class);
+        $this->call(SeccionesTableSeeder::class);
     }
 }

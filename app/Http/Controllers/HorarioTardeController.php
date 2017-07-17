@@ -8,6 +8,14 @@ use App\Http\Requests;
 
 use App\Asignaturas;
 
+use App\Bloques;
+
+use App\Cursos;
+
+use App\Seccion;
+
+use App\Periodos;
+
 class HorarioTardeController extends Controller
 {
     /**
@@ -17,7 +25,10 @@ class HorarioTardeController extends Controller
      */
     public function index()
     {
-        return View('admin.horario_tarde.index');
+        $num=0;
+        $secciones=Seccion::all();
+        $periodos=Periodos::lists('periodo','id');
+        return View('admin.horario_tarde.index', compact('secciones','num','periodos'));
     }
 
     /**
@@ -38,8 +49,9 @@ class HorarioTardeController extends Controller
      */
     public function store(Request $request)
     {
-        return View('admin.horario_tarde.show');
-    }
+        $bloques=Bloques::lists('bloque','id');
+        $asignaturas=Asignaturas::all();
+        return View('admin.horario_tarde.show', compact('asignaturas','bloques'));}
 
     /**
      * Display the specified resource.

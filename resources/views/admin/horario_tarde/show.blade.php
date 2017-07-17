@@ -30,15 +30,20 @@
               <div class="panel-heading">
                 <table class="table">
                   <tr>
-                    <td><strong>Turno: </strong>Mañana</td>
+                    <td><strong>Turno: </strong>Tarde</td>
                     <td><STRONG>Curso:</STRONG> 1er grado.</td>
                     <td><strong>Sección: </strong>A</td>
                     <td><strong>Número de bloques: </strong>{!! Form::select('bloque',['1','2','3','4']) !!}</td>
-                    <td><strong>Bloque: </strong>{!! Form::select('bloque',['Lunes 7:00 a 7:45','Lunes 7:45 a 7:30','Lunes 8:30 a 9:15']) !!}</td>
+                    <td><strong>Bloque: </strong>{!! Form::select('bloque',$bloques) !!}</td>
                     <td><strong>Asignatura: </strong>
-                  <select>
-                    
-                    </select></td>
+                      <select>
+                      @foreach($asignaturas as $asig)
+                       @if ($asig->id_curso==8)
+                          <option value="{{$asig->asignatura}}">{{$asig->asignatura}}</option>
+                      @endif
+                    @endforeach
+                        <td></td>              
+                      </select></td>
                   </tr>
                 </table>
               </div>

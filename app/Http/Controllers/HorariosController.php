@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Bloques;
+
 //use App\Horarios;
 use App\Cursos;
 use App\Asignaturas;
@@ -43,7 +45,9 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
-        return View('admin.horarios.show');
+        $bloques=Bloques::lists('bloque','id');
+        $asignaturas=Asignaturas::all();
+        return View('admin.horarios.show', compact('asignaturas','bloques'));
     }
 
     /**
