@@ -102,7 +102,7 @@ class CargosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CargosRequest $request, $id)
     {
     	$buscar=Cargos::where('cargo',$request->cargo)->where('id','<>',$id)->get();
     	$cuantos=count($buscar);

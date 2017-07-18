@@ -76,8 +76,9 @@ class PersonalController extends Controller
 
             flash('Personal registrado con éxito','success');
             $num=0;
-            $personal=Personal::all();
-            return View('admin.personal.index', compact('personal','num'));
+            $personal=Personal::lists('id');
+            $cargo=Cargos::lists('cargo','id');
+            return View('admin.tipo_personal.create', compact('personal','cargo','num'));
         }
         
     }

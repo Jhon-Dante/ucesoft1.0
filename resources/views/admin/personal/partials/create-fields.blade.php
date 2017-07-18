@@ -81,9 +81,5 @@
 </div>
 <div>
 	{!! Form::label('cargo','Cargo') !!}
-	{!! Form::select('id_tipoPersonal', $tipos, null, ['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el tipo de personal']) !!}	
-</div>
-<div>
-	{!! Form::label('cargo','Cargo') !!}
 	{!! Form::select('id_cargo', $cargos, null, ['class' => 'form-control','value' => '1', 'title' => 'Seleccione el cargo']) !!}	
 </div>

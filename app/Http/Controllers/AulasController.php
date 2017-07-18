@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Requests\AulasRequest;
 use Session;
 use Auth;
+use Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class AulasController extends Controller
 {
@@ -42,6 +44,14 @@ class AulasController extends Controller
      */
     public function store(AulasRequest $request)
     {
+        if ($validator->fails()) {
+            
+            return redirect('admin/aulas/create')
+                ->withErrors($validator)
+                ->withInput();
+
+        } else {
+        
         $aula = new Aula();
         $aula->nombre = strtoupper($request['nombre']);
         $aula->save();
@@ -51,6 +61,7 @@ class AulasController extends Controller
         $aula = Aula::all();
         return view('admin.aulas.index', ['aula'=>$aula,'num'=>$num]);
     }
+}
 
     /**
      * Display the specified resource.
@@ -82,7 +93,7 @@ class AulasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AulasRequest $request, $id)
     {
         $aula = Aula::find($id);
         $aula->nombre = strtoupper($request['nombre']);

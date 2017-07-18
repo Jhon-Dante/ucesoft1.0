@@ -44,9 +44,8 @@
             <thead>
               <tr>
                 <th>Nro</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Cédula</th>
+                <th>Período</th>
+                <th>Número de Estudiantes</th>
                 <th>Curso</th>
                 <th>Sección</th>
                 <th>Opciones</th>
@@ -55,9 +54,8 @@
             <tbody>
               <tr>
                 <td><a href="#">1</a></td>
-                <td><a href="#">Pablo</a></td>
-                <td><a href="#">Pérez</a></td>
-                <td><a href="#">V-11999443</a></td>
+                <td><a href="#">2017-2018</a></td>
+                <td><a href="#">5</a></td>
                 <td><a href="#">Preescolar</a></td>
                 <td><a href="#">U</a></td>
 

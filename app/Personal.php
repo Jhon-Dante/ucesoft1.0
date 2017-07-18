@@ -29,5 +29,5 @@ class Personal extends Model
      public function cargo()
     {
         return $this->belongsTo('App\Cargos', 'id_cargo');
-    }
+   }
 }

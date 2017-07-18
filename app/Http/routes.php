@@ -14,12 +14,13 @@
 Route::get('/', function () { return view('welcome'); });
 
 Route::group(['middleware' => 'guest'], function () {
+    // poder usar las apginas sin inicio de sesion
     Route::auth();
     Route::get('/home', 'HomeController@index');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-
+//auth donde estan los mensajes de error
 
     	Route::resource('/cursos','CursosController');
         Route::resource('/secciones','SeccionesController');
@@ -140,6 +141,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         });
 
         Route::resource('/horario_tarde','HorarioTardeController');
+
+        Route::resource('/tipo_empleado', 'TipoEmpleadoController');
+        Route::get('/tipo_empleado/{id}/destroy',[
+            'uses' => 'TipoEmpleadoController@destroy',
+            'as' => 'admin.tipo_personal.destroy']
+            );
         
 });
 

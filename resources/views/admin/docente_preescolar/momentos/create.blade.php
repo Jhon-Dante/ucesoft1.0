@@ -25,22 +25,21 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro del momento
+							<div class="panel-heading">Registro del momento <br><strong>Período: 2017-2018</strong>
  				@include('flash::message')
 							</div>
 
 							<div class="panel-body">
 								
                 
-    
 					                 @include('admin.docente_preescolar.momentos.partials.create-fields')
 					                
 					            <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
+					                <a class="btn btn-primary" href="{{ url('admin/docente_preescolar/momentos')}}">  Enviar</a>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/docente_preescolar/momentos')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
           							<!-- /.form-group -->
-          		{!! Form::close() !!} 
+
 							</div>
 						</div>
 					</div>
