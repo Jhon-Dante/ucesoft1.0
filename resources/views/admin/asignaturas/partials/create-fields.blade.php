@@ -1,6 +1,6 @@
-<div class="form-group">
+<div class="form-group{{ $errors->has('asignatura') ? ' has-error' : '' }}">
 	{!! Form::label('asignatura','Asignatura') !!}
-	{!! Form::text('asignatura',null,['class' => 'form-control','placeholder' => 'Matemática Aplicada','required' => 'required', 'title' => 'Ingrese la asignatura que desea registrar']) !!}
+	{!! Form::text('asignatura',null,['class' => 'form-control','placeholder' => 'Matemática Aplicada', 'title' => 'Ingrese la asignatura que desea registrar']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('curso','Curso') !!}

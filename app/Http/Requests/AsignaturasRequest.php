@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AulasRequest extends Request
+class AsignaturasRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class AulasRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,7 +24,7 @@ class AulasRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|numeric'
+            'asignatura' => 'required'
         ];
     }
 }

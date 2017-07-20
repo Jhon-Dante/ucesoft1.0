@@ -41,7 +41,6 @@ class CargosController extends Controller
     {
         
         if ($validator->fails()) {
-            
             return redirect('admin/cargos/create')
                             ->withErrors($validator)
                             ->withInput();        

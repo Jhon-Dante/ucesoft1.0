@@ -44,13 +44,6 @@ class AulasController extends Controller
      */
     public function store(AulasRequest $request)
     {
-        if ($validator->fails()) {
-            
-            return redirect('admin/aulas/create')
-                ->withErrors($validator)
-                ->withInput();
-
-        } else {
         
         $aula = new Aula();
         $aula->nombre = strtoupper($request['nombre']);
@@ -60,7 +53,7 @@ class AulasController extends Controller
         $num=0;
         $aula = Aula::all();
         return view('admin.aulas.index', ['aula'=>$aula,'num'=>$num]);
-    }
+    
 }
 
     /**

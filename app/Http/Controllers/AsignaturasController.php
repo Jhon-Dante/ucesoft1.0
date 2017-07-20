@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Asignaturas;
 use App\Cursos;
 use Laracasts\Flash\flash;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\AsignaturasRequest;
+use Validator;
 
 class AsignaturasController extends Controller
 {
@@ -41,9 +42,16 @@ class AsignaturasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AsignaturasRequest $request)
     {
-        //
+        if ($validator->fails()) {
+            return redirect('admin/asignaturas/create')
+                    ->whithErrors($validator)
+                    ->whithInput();
+        } else {
+            $buscar=
+        }
+        
     }
 
     /**
@@ -75,7 +83,7 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AsignaturasRequest $request, $id)
     {
         //
     }
