@@ -15,7 +15,7 @@ class CalificacionesController extends Controller
      */
     public function index()
     {
-        return View('admin.calificaciones.index');
+        return View('admin.calificaciones.periodo.index');
     }
 
     /**
@@ -23,6 +23,12 @@ class CalificacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function recibePeriodo(Request $request)
+    {
+        $periodo
+        return view('admin.calificaciones.periodo.show');
+    }
     public function create()
     {
         //

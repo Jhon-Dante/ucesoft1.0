@@ -10,16 +10,16 @@ class Docente_has_asignatura extends Model
     protected $fillable = ['id','id_personal','id_asignatura','id_seccion','id_periodo'];
 
 
-    public function Personal(){
+    public function personal(){
     	return $this->belongnsTo('App\Personal','id');
     }
     public function asignaturas(){
     	return $this->belongnsTo('App\asignaturas','id');
     }
-    public function Periodos(){
+    public function periodos(){
     	return $this->belongnsTo('App\Periodos','id');
     }
-    public function Seccion(){
+    public function seccion(){
     	return $this->belongnsTo('App\Seccion','id');
     }
 

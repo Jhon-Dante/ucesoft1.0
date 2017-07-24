@@ -50,9 +50,7 @@ class AulasController extends Controller
         $aula->save();
         
         flash("Se ha registrado en aula de forma exitosa!", 'success');
-        $num=0;
-        $aula = Aula::all();
-        return view('admin.aulas.index', ['aula'=>$aula,'num'=>$num]);
+        return redirect()->route('admin.aulas.create');
     
 }
 

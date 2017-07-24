@@ -19,10 +19,12 @@
 </section>
 <!-- Main content -->
 
+	@include('alerts.requests')
 <section class="content spark-screen">
 	<div class="row">
 		<div class="col-md-12">
 	     @include('flash::message')
+	     
 		</div>
 			<div class="col-xs-12">
 				<div class="panel panel-default">

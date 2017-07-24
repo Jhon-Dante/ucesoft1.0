@@ -51,6 +51,22 @@
                     
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li>
+                </ul>
+                
+            </li>
+
+            <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
+                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
+                        </ul>
+            </li>
            
 
             <li class="treeview">
@@ -59,37 +75,15 @@
                     <li><a href=" {{ url('admin/personal')            }} ">Listado</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura') }} ">Asignar Materia</a></li>
                     <li><a href=" {{ url('admin/tipo_empleado')       }}">Tipos de empleados</a></li>
-                    
+                    <li><a href=" {{ url('admin/personal/docente_preescolar') }}">Docentes de Preescolar</a></li>
+                    <li><a href=" {{ url('admin/personal/docente_basica') }}">Docentes de Básica</a></li>
+                    <li><a href=" {{ url('admin/personal/docente_liceo') }}">Docentes de Media General</a></li>
+                    <li class="treeview">
                 </ul>
             </li>
 
             
             
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i><span>Docente preescolar</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/docente_preescolar') }}">Lista de estudiantes</a></li>
-                    <li><a href=" {{ url('admin/docente_preescolar/momentos') }}">Cargar Momentos</a></li>
-                    
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i><span>Docente de básica</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/docente_basica') }}">Lista de estudiantes</a></li>
-                    <li><a href=" {{ url('admin/docente_basica/lapsos') }}">Cargar Lapsos</a></li>
-                    
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i><span>Docente de liceo</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/docente_liceo') }}">Lista de estudiantes</a></li>
-                    <li><a href=" {{ url('admin/docente_liceo/lapsos') }}">Cargar Lapsos</a></li>
-                    
-                </ul>
             </li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -101,13 +95,7 @@
                     <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
                     <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
 
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
-                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
-                        </ul>
-                    </li>
+                    
                     
                 </ul>
             </li>

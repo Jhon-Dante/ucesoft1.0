@@ -89,7 +89,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
-                    {!! Form::open(['route' => ['admin.cursos.destroy',1033], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['admin.cursos.destroy',0133], 'method' => 'DELETE']) !!}
                         <input type="hidden" id="curso" name="id">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}

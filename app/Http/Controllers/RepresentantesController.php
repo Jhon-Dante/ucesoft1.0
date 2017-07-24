@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Representantes;
-
 use App\Parentesco;
-
 use Laracast\Flash\Flash;
+use App\Http\Request\RepresentantesRequest;
 
 class RepresentantesController extends Controller
 {
@@ -43,7 +40,7 @@ class RepresentantesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RepresentantesRequest $request)
     {
         dd($request->all());
         $buscar=Representantes::where('cedula',$request->cedula)->get();
@@ -119,7 +116,7 @@ class RepresentantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RepresentantesRequest $request, $id)
     {
         //
     }

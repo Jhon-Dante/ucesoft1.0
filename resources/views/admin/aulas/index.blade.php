@@ -56,9 +56,9 @@
                                     <td>{{$aula->nombre}}</td>
                                     <td>{{$aula->created_at}}</td>
                                     <td>{{$aula->updated_at }}</td>
-                                    <td style="text-align: center; width: 150px;"><a href="{{ route('admin.aulas.edit', [$aula->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a></td>
+                                    <td style="text-align: center; width: 150px;"><a href="{{ route('admin.aulas.edit', [$aula->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                                    <td><a href="#" ><button onclick="codigo({{ $aula->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                                    <a href="#" ><button onclick="codigo({{ $aula->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
                                     </td>
                                 </tr>
                             @endforeach

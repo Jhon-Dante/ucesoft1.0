@@ -11,6 +11,9 @@ use App\Cursos;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
+use Redirect;
+use App\Http\Requests\SeccionesRequest;
+
 class SeccionesController extends Controller
 {
     /**
@@ -44,10 +47,9 @@ class SeccionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function store(Request $request)
+    public function store(SeccionesRequest $request)
     {
         
-        if (!empty($request->seccion)) {
         $seccion=Seccion::where('seccion',$request->seccion)->where('id_curso',$request->id_curso)->get();
         
         if (count($seccion)==0) {
@@ -55,25 +57,17 @@ class SeccionesController extends Controller
             $seccion=Seccion::create([
                 'seccion' => $request->seccion,
                 'id_curso' => $request->id_curso ]);
-            flash('Registro ingresado con éxito','success');
+            flash('REGISTRO INGRESADO CON ÉXITO!','success');
         
-        $secciones=Seccion::all();
-        $num=0;
-        return View('admin.secciones.index',compact('secciones','num'));
+        return redirect()->route('admin.secciones.index');
         
 
         } else {
            
-             flash('Disculpe la Sección ya ha sido asignada a ese curso','warning');
-             $cursos=Cursos::lists('curso','id');
-            return View('admin.secciones.create',compact('cursos'));  
+             flash('DISCULPE, LA SECCIÓN YA HA SIDO ASIGNADA A ESTE CURSO','warning');
+            return redirect()->route('admin.secciones.create');  
         }
     
-        } else {
-            flash('Existe un campo obligatorio vacio','error');
-           //return redirect('admin/secciones/create');            
-        }
-       
         
     }
 
@@ -96,19 +90,34 @@ class SeccionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $seccion=Seccion::find($id);
+        $cursos=Cursos::lists('curso','id');
+        return View('admin.secciones.edit', compact('seccion','cursos'));
+        //dd();
     }
- 
     /**
      * Update the specified resource in storage.
-     *
+     *  
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SeccionesRequest $request, $id)
     {
-        //
+        $seccion=Seccion::where('seccion',$request->seccion)->where('id','<>',$id)->where('id_curso',$request->id_curso)->get();
+
+        if (count($seccion)==0){
+            $seccion=Seccion::find($id);
+            $seccion->seccion=$request->seccion;
+            $seccion->id_curso=$request->id_curso;
+            $seccion->save();
+
+                flash("SE HA ACTUALIZADO DE FORMA EXITOSA!",'success');
+        }else{
+                flash("DISCULPE, YA EXISTE UN REGISTRO CON ESA MISMA SECCION Y CURSO");
+        }
+        return redirect()->route('admin.secciones.index');
+
     }
 
     /**
@@ -117,8 +126,20 @@ class SeccionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $seccion=Seccion::find($request->id);
+
+        if ($seccion->curso()->exists()) {
+            flash('EXISTEN REGISTROS CON ESTA SECCIÓN, NO SE PUEDE ELIMINAR');
+        }else {
+            $s=$seccion->seccion;
+            if ($curso->delete()) {
+                flash('SECCION '.$s.' ELIMINADO CON ÉXITO!','success');
+            } else {
+                flash('SECCION '.$S.' No eliminado.','warning');
+            }
+        }
+        return redirect()->route('admin.secciones.index');
     }
 }

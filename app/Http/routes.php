@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/secciones','SeccionesController');
         Route::resource('/asignaturas','AsignaturasController');
         Route::resource('/periodos','PeriodosController');
-        Route::resource('/tipo_pago','Tipo_pagoController');
+
         Route::resource('/DatosBasicos','DatosBasicosController');
         Route::resource('/cargos','CargosController');
         Route::resource('/personal','PersonalController');
@@ -102,43 +102,43 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::resource('/calificaciones','CalificacionesController');
 
-        Route::get('/docente_preescolar',function(){
-            return View('admin.docente_preescolar.index');
-        });
+        // Route::get('/docente_preescolar',function(){
+        //     return View('admin.docente_preescolar.index');
+        // });
 
-        Route::get('/docente_preescolar/momentos', function(){
-            return View('admin.docente_preescolar.momentos.index');
-        });
+        // Route::get('/docente_preescolar/momentos', function(){
+        //     return View('admin.docente_preescolar.momentos.index');
+        // });
 
-        Route::get('/docente_preescolar/momentos/create', function(){
-            return View('admin.docente_preescolar.momentos.create');
-        });
+        // Route::get('/docente_preescolar/momentos/create', function(){
+        //     return View('admin.docente_preescolar.momentos.create');
+        // });
 
-        Route::get('/docente_basica', function(){
-            return View('admin.docente_basica.index');
-        });
+        // Route::get('/docente_basica', function(){
+        //     return View('admin.docente_basica.index');
+        // });
 
-        Route::get('/docente_basica/lapsos', function(){
-            return View('admin.docente_basica.lapsos.index');
-        });
+        // Route::get('/docente_basica/lapsos', function(){
+        //     return View('admin.docente_basica.lapsos.index');
+        // });
 
-        Route::get('/docente_basica/lapsos/create', function(){
-            return View('admin.docente_basica.lapsos.create');
-        });
+        // Route::get('/docente_basica/lapsos/create', function(){
+        //     return View('admin.docente_basica.lapsos.create');
+        // });
 
 
 
-        Route::get('/docente_liceo', function(){
-            return View('admin.docente_liceo.index');
-        });
+        // Route::get('/docente_liceo', function(){
+        //     return View('admin.docente_liceo.index');
+        // });
 
-        Route::get('/docente_liceo/lapsos', function(){
-            return View('admin.docente_liceo.lapsos.index');
-        });
+        // Route::get('/docente_liceo/lapsos', function(){
+        //     return View('admin.docente_liceo.lapsos.index');
+        // });
 
-        Route::get('/docente_liceo/lapsos/create', function(){
-            return View('admin.docente_liceo.lapsos.create');
-        });
+        // Route::get('/docente_liceo/lapsos/create', function(){
+        //     return View('admin.docente_liceo.lapsos.create');
+        // });
 
         Route::resource('/horario_tarde','HorarioTardeController');
 
