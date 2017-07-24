@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Periodos;
-
 use Laracasts\Flash\Flash;
+use App\Http\Requests\PeriodoRequest;
 
 class PeriodosController extends Controller
 {
@@ -40,7 +38,7 @@ class PeriodosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PeriodoRequest $request)
     {
         //dd($request->periodo);
         $buscar=Periodos::where('periodo',$request->periodo)->get();
@@ -128,7 +126,7 @@ class PeriodosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PeriodoRequest $request, $id)
     {
         //
     }

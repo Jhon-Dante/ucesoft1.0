@@ -44,13 +44,6 @@ class AsignaturasController extends Controller
      */
     public function store(AsignaturasRequest $request)
     {
-        if ($validator->fails()) {
-            return redirect('admin/asignaturas/create')
-                    ->whithErrors($validator)
-                    ->whithInput();
-        } else {
-            $buscar=
-        }
         
     }
 

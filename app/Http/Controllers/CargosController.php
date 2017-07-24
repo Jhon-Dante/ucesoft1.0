@@ -39,12 +39,6 @@ class CargosController extends Controller
 
     public function store(CargosRequest $request)
     {
-        
-        if ($validator->fails()) {
-            return redirect('admin/cargos/create')
-                            ->withErrors($validator)
-                            ->withInput();        
-        } else {
             
             $buscar=Cargos::where('cargo',$request->cargo)->get();
             $cuantos=count($buscar);
@@ -58,8 +52,8 @@ class CargosController extends Controller
             }else{
                 flash('EL CARGO YA SE ENCUENTRA REGISTRADO A ESTE PERSONAL','warning');
             }    
-        }
-        
+       
+         
         $num=0;
         $cargos = Cargos::all();
         return view('admin.cargos.index', compact('cargos','num'));

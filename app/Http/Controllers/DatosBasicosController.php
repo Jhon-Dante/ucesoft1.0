@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\DatosBasicos;
-
 use App\Representantes;
-
 use Laracast\Flash\Flash;
+use App\Http\Requests\DatosBasicosRequest;
+use Validator;
 
 class DatosBasicosController extends Controller
 {
@@ -43,13 +41,13 @@ class DatosBasicosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DatosBasicosRequest $request)
     {
         $buscar=DatosBasicos::where('cedula',$request->cedula)->get();
 
-        $cuantos=conunt($buscar);
+        $cuantos=count($buscar);
 
-        if ($cuanto>0) {
+        if ($cuantos>0) {
             flash('Este estudiante ya se encuentra registrado','warning');
             $datosBasicos=DatosBasicos::all();
             return View('admin.datosBasicos.index', compact('datosBasicos'));
@@ -104,7 +102,7 @@ class DatosBasicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DatosBasicosRequest $request, $id)
     {
         //
     }

@@ -10,6 +10,8 @@ use App\Cursos;
 
 use Laracasts\Flash\Flash;
 
+use App\Http\Requests\CursosRequest;
+
 class CursosController extends Controller
 {
     /**
@@ -40,7 +42,7 @@ class CursosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursosRequest $request)
     {
         $this->validate($request, [
         'cargo' => 'required'
@@ -99,7 +101,7 @@ class CursosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CursosRequest $request, $id)
     {
         
         if(!empty($request->curso)){

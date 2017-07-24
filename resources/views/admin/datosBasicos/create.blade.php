@@ -16,7 +16,8 @@
         <li class="active">Registro</li>
     </ol>
 </section>
-{{ csrf_token() }}
+@include('alerts.requests')
+	
 <!-- Main content -->
 {!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
 <section class="content spark-screen">
@@ -28,10 +29,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Seleccione al representante</div>
 						<div class="panel-body">
-            				<div class="form-group">
-				                {!! Form::label('representante','Representante') !!}
-				                {!! Form::select('representante',$representante,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique el parentesco del representante con el estudiante']) !!}
-			            	</div>
+            				@include('admin.datosBasicos.partials.create-fields-representante')
 			         	</div>
 				</div>
 			</div>
