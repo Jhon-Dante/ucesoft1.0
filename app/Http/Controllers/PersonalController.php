@@ -102,7 +102,8 @@ class PersonalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cargos = Cargos::lists('cargo','id');
+        return View('admin.personal.edit',compact('cargos'));
     }
 
     /**
@@ -114,7 +115,21 @@ class PersonalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $buscar=Personal::where('cedula', $request->cedula)->where('id','<>',$id)->where('id_cargo',$request->id_cargo)->get();
+        $cuantos=count($buscar);
+
+        if ($cuantos==0){
+            $personal=Personal::find($id);
+            $personal->update($request->all());
+
+            flash('DATOS DEL PERSONAL EDITADOS CON ÉXITO!','success');
+        }else{
+            flash('ESTE PERSONAL YA EXISTE!', 'warning');
+        }
+        $num=0;
+        $personal=Personal::all();
+        $cargos = Cargos::lists('cargo','id');
+        return View('admin.personal.index',compact('cargos','personal'));
     }
 
     /**
@@ -125,6 +140,20 @@ class PersonalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cargos=Cargos::find($request->id);
+        $p=false;
+
+        if ($p) {
+            flash('EL PERSONAL NO SE PUEDE ELIMINAR DEBIDO A QUE POSEE UN CARGO EN LA INSTITUCIÓN, EDITE EL PERSONAL Y ELIMINE EL CARGO PARA PODER ELIMINAR','warning');
+        } else {
+            $personal->delete();
+
+            flash('REGISTRO DEL PERSONAL '.$datosBasicos->nombre.' ELIMINADO CON ÉXITO!','success');
+        }
+        $num=0;
+        $personal=Personal::all();
+        $cargos = Cargos::lists('cargo','id');
+        return View('admin.personal.create',compact('cargos','personal','num'));
+        
     }
 }

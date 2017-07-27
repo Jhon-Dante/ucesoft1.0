@@ -118,7 +118,22 @@ class RepresentantesController extends Controller
      */
     public function update(RepresentantesRequest $request, $id)
     {
-        //
+        $representante=Representantes::where('cedula',$request->cedula)->where('id','<>',$id)->get();
+
+        if (count($representante)==0) {
+
+            $representante=Representantes::find($id);
+            $representante->update($request->all());
+
+            flash('REPRESENTANTE EDITADO CON ÉXITO!', 'success');
+        } else {
+            flash('ESTE REPRESENTANTE YA ESTÁ REGISTRADO!','warning');
+        }
+
+        $num=0;
+        $representante=Representantes::all();
+        return View('admin.representante.index', compact('num','representantes'));
+        
     }
 
     /**
