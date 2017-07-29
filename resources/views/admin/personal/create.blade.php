@@ -17,6 +17,7 @@
         <li class="active">Registro</li>
     </ol>
 </section>
+@include('alerts.requests')
 <!-- Main content -->
     <section class="content spark-screen">
 			<div class="row">
@@ -25,7 +26,7 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro del personal
+							<div class="panel-heading">Registro del personal  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
  				@include('flash::message')
 							</div>
 

@@ -20,6 +20,7 @@
         <li class="active">Lista</li>
     </ol>
 </section>
+@include('alerts.request')
 <!-- Main content -->
 <section class="content spark-screen">
     <div class="row">

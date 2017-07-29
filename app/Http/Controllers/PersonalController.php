@@ -59,7 +59,7 @@ class PersonalController extends Controller
             $perso=Personal::create([
                 'nombres'          =>$request->nombres,
                 'apellidos'        =>$request->apellidos,
-                'nacio'            =>$request->naciomalidad,
+                'nacio'            =>$request->nacionalidad,
                 'cedula'           =>$request->cedula,
                 'fecha_nacimiento' =>$request->fecha_nacimiento,
                 'edad'             =>$request->edad,
@@ -135,15 +135,16 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
+        dd($request->id);
 
-        $personal=Personal::find($id);
-        $personal->delete($request->id);
+        // $personal=Personal::find($request->id);
+        // $personal->delete();
 
-        flash('REGISTRO DEL PERSONAL '.$personal->nombres.' ELIMINADO CON ÉXITO!','success');
+        // flash('REGISTRO DEL PERSONAL '.$personal->nombres.' ELIMINADO CON ÉXITO!','success');
 
-        return redirect()->route('admin.personal.index');
+        // return redirect()->route('admin.personal.index');
         
     }
 }

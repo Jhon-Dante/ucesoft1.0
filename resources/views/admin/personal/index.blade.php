@@ -58,7 +58,7 @@
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$num=$num+1}}                                </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nombres}}                   </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->apellidos}}                 </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacio}}-{{$perso->cedula}}  </a></td>
+                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacionalidad}}-{{$perso->cedula}}  </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}                </a></td>
 
@@ -66,7 +66,7 @@
                 <div class="btn-group">
                     <a href="{{ route('admin.personal.edit', [$perso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                    <a href="{{ route('admin.personal.destroy', [$perso->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                    <a href="#"><button onclick="eliminar({{ $perso->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
                     <br><br>
                     </div>
                   </td>
@@ -82,4 +82,38 @@
 </section>
 
 </div><!-- /.content-wrapper -->
+
+<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar Personal</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea eliminar este personal en especifico?...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                    {!! Form::open(['route' => ['admin.personal.destroy',0133], 'method' => 'DELETE']) !!}
+                        <input type="hidden" id="personal" name="id">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script type="text/javascript">
+
+        function eliminar(id){
+
+            $('#personal').val(id);
+        }
+
+    </script>
 @endsection

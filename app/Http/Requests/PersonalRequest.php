@@ -24,7 +24,21 @@ class PersonalRequest extends Request
     public function rules()
     {
         return [
-            //
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'nacio' => 'required|numeric',
+            'cedula' => 'required|numeric',
+            'fecha_nacimiento' => 'required',
+            'edad' => 'required|numeric',
+            'edo_civil' => 'required',
+            'direccion' => 'required',
+            'genero' => 'required',
+            'codigo_hab' => 'required|numeric',
+            'telf_hab' => 'required|numeric',
+            'codigo_cel' => 'required|numeric',
+            'celular' => 'required|numeric',
+            'correo' => 'required',
+            'id_cargo' => 'required'
         ];
     }
 }

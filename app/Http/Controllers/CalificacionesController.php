@@ -26,7 +26,6 @@ class CalificacionesController extends Controller
 
     public function recibePeriodo(Request $request)
     {
-        $periodo
         return view('admin.calificaciones.periodo.show');
     }
     public function create()
