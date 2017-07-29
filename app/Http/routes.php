@@ -30,11 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/DatosBasicos','DatosBasicosController');
         Route::resource('/cargos','CargosController');
         Route::resource('/personal','PersonalController');
-
-        Route::get('/DatosBasicos/{id}/destroy',[
-            'uses' => 'DatosBasicosController@destroy',
-            'as' => 'admin.DatosBasicos.destroy']
-            );
         Route::get('/DatosBasicos/{cedula}/verificarPadre',[
             'uses' => 'DatosBasicosController@verificarPadre',
             'as' => 'admin.DatosBasicos.verificarPadre'
@@ -93,11 +88,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.mensualidades.destroy']
             );
 
-        Route::resource('/personal','PersonalController');
-        Route::get('/personal/{id}/destroy',[
-            'uses' => 'PersonalController@destroy',
-            'as' => 'admin.personal.destroy']
-            );
         Route::resource('/personal_asignatura','PersonalAsignaturaController');
         
         Route::resource('/calificaciones','CalificacionesController');

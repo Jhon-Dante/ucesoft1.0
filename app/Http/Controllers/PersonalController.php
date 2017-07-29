@@ -137,14 +137,17 @@ class PersonalController extends Controller
      */
     public function destroy(Request $request)
     {
-        dd($request->id);
-
-        // $personal=Personal::find($request->id);
-        // $personal->delete();
-
-        // flash('REGISTRO DEL PERSONAL '.$personal->nombres.' ELIMINADO CON ÉXITO!','success');
-
-        // return redirect()->route('admin.personal.index');
+        //verificar la existencia de personal en otra tabla
+        $personal=Personal::find($request->id);
+        $nombres=$personal->nombres;
+        
+        if ($personal->delete()) {
+            flash('REGISTRO DEL PERSONAL '.$nombres.' ELIMINADO CON ÉXITO!','success');
+        } else {
+            flash('DISCULPE, NO SE PUEDE ELIMINAR AL PERSONAL SELECCIONADO!','error');
+        }
+        
+        return redirect()->route('admin.personal.index');
         
     }
 }
