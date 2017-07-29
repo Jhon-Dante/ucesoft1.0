@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Personal;
 use App\Cargos;
 use Laracast\Flash\Flash;
+use App\Http\Requests\PersonalRequest;
 
 class PersonalController extends Controller
 {
@@ -42,7 +41,7 @@ class PersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonalRequest $request)
     {
         //dd($request->all());
         $buscar=Personal::where('cedula', $request->cedula)->get();
@@ -56,13 +55,13 @@ class PersonalController extends Controller
         return View('admin.personal.index', compact('personal','num'));
 
         } else {
+
             $perso=Personal::create([
                 'nombres'          =>$request->nombres,
                 'apellidos'        =>$request->apellidos,
                 'nacio'            =>$request->naciomalidad,
                 'cedula'           =>$request->cedula,
                 'fecha_nacimiento' =>$request->fecha_nacimiento,
-                'fecha_ingreso'    =>$request->fecha_ingreso,
                 'edad'             =>$request->edad,
                 'edo_civil'        =>$request->edo_civil,
                 'direccion'        =>$request->direccion,
@@ -72,13 +71,12 @@ class PersonalController extends Controller
                 'codigo_cel'       =>$request->codigo_cel,
                 'celular'          =>$request->celular,
                 'correo'           =>$request->correo,
-                'id_cargo'         =>$request->id_cargo]);
+                'id_cargo'         =>$request->id_cargo
+                ]);
 
             flash('Personal registrado con éxito','success');
-            $num=0;
-            $personal=Personal::lists('id');
-            $cargo=Cargos::lists('cargo','id');
-            return View('admin.tipo_personal.create', compact('personal','cargo','num'));
+
+            return redirect()->route('admin.personal.index');
         }
         
     }
@@ -102,8 +100,9 @@ class PersonalController extends Controller
      */
     public function edit($id)
     {
+        $personal=Personal::find($id);
         $cargos = Cargos::lists('cargo','id');
-        return View('admin.personal.edit',compact('cargos'));
+        return View('admin.personal.edit',compact('cargos','personal'));
     }
 
     /**
@@ -113,7 +112,7 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PersonalRequest $request, $id)
     {
         $buscar=Personal::where('cedula', $request->cedula)->where('id','<>',$id)->where('id_cargo',$request->id_cargo)->get();
         $cuantos=count($buscar);
@@ -126,10 +125,8 @@ class PersonalController extends Controller
         }else{
             flash('ESTE PERSONAL YA EXISTE!', 'warning');
         }
-        $num=0;
-        $personal=Personal::all();
-        $cargos = Cargos::lists('cargo','id');
-        return View('admin.personal.index',compact('cargos','personal'));
+
+        return redirect()->route('admin.personal.index');
     }
 
     /**
@@ -138,22 +135,15 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $cargos=Cargos::find($request->id);
-        $p=false;
 
-        if ($p) {
-            flash('EL PERSONAL NO SE PUEDE ELIMINAR DEBIDO A QUE POSEE UN CARGO EN LA INSTITUCIÓN, EDITE EL PERSONAL Y ELIMINE EL CARGO PARA PODER ELIMINAR','warning');
-        } else {
-            $personal->delete();
+        $personal=Personal::find($id);
+        $personal->delete($request->id);
 
-            flash('REGISTRO DEL PERSONAL '.$datosBasicos->nombre.' ELIMINADO CON ÉXITO!','success');
-        }
-        $num=0;
-        $personal=Personal::all();
-        $cargos = Cargos::lists('cargo','id');
-        return View('admin.personal.create',compact('cargos','personal','num'));
+        flash('REGISTRO DEL PERSONAL '.$personal->nombres.' ELIMINADO CON ÉXITO!','success');
+
+        return redirect()->route('admin.personal.index');
         
     }
 }

@@ -31,9 +31,9 @@
 							</div>
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.cursos.update',$curso->id], 'method' => 'put']) !!}
+								{!! Form::open(['route' => ['admin.personal.update',$personal->id], 'method' => 'put']) !!}
                 
-					                 @include('admin.cursos.partials.edit-fields')
+					                 @include('admin.personal.partials.edit-fields')
 					                <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>

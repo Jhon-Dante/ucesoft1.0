@@ -44,6 +44,20 @@ class AsignaturasController extends Controller
      */
     public function store(AsignaturasRequest $request)
     {
+        $buscar=Asignaturas::where('asignatura',$request->asignatura)->where('id_curso',$request->id_curso)->get();
+
+        if (count($buscar)==0) {
+            $asignatura=Asignaturas::create([
+                'asignatura' => $request->asignatura,
+                'id_curso' => $request->id_curso
+                ]);
+            flash('ASIGNATURA '.$request->asignatura.' EN EL CURSO '.$request->curso.' HAN SIDO REGISTRADOS CON ÉXITO!', 'success');
+        } else {
+            flash('DISCULPE, LA ASIGNATURA '.$request->asignatura.' EN EL CURSO '.$request->curso.' YA SE ENCUENTRA ACTUALMENTE REGISTRADOS!','warning');
+        }
+        $num=0;
+        $asignaturas=Asignaturas::all();
+        return redirect()->route('admin.asignaturas.index', compact('asignaturas','num'));
         
     }
 
@@ -65,8 +79,10 @@ class AsignaturasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    { 
+        $asignaturas=Asignaturas::find($id);
+        $cursos=Cursos::lists('curso','id');
+        return View('admin.asignaturas.edit', compact('cursos','asignaturas'));
     }
 
     /**
@@ -78,7 +94,22 @@ class AsignaturasController extends Controller
      */
     public function update(AsignaturasRequest $request, $id)
     {
-        //
+        $asignaturas=Asignaturas::where('asignatura',$request->asignatura)->where('id','<>',$id)->get();
+
+        if (count($asignaturas)==0) {
+            $asignaturas=Asignaturas::find($id);
+            $asignaturas->asignatura=$request->asignatura;
+            $asignaturas->id_curso=$request->id_curso;
+            $asignaturas->update();
+
+            flash('REGISTRO EDITADO CON ÉXITO','success');
+        } else {
+            flash('REGISTRO NO EDITADO','warning');
+        }
+
+        return redirect()->route('admin.asignaturas.index');
+
+        
     }
 
     /**
@@ -87,8 +118,22 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $asignaturas=Asignaturas::find($request->id);
+
+        if ($asignaturas->cursos()->exists()) {
+            flash('EXISTEN CURSOS ASIGNADOS A ESTA MATERIA, NO SE PUEDE ELIMINAR! ELIMINE EL CURSO PRIMERO', 'warning');
+        } else {
+            $x=$asignaturas->asignatura;
+            if($asignaturas->delete()){
+                flash('REGISTRO DE ASIGNATURA '.$request->asignatura.' ELIMINADO CON ÉXITO!', 'success');
+            }else{
+                flash('REGISTRO NO ELIMINADO!','warning');
+
+            }
+        }
+        return redirect()->route('admin.asignaturas.index');
+        
     }
 }

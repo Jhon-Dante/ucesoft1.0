@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Representantes extends Model
 {
     protected $table='representantes';
-    protected $fiilable=['id',
+    protected $fillable=['id',
     'nacionalidad',
     'cedula',
     'nombres',

@@ -26,7 +26,7 @@
 
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro de Cargo</div>
+							<div class="panel-heading">Registro de Cargo <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios</div>
 
 							<div class="panel-body">
 								{!! Form::open(['route' => ['admin.cargos.store'], 'method' => 'post']) !!}

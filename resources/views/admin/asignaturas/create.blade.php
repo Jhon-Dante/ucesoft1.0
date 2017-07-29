@@ -26,7 +26,7 @@
 	    </div>
 					<div class="col-xs-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">Registro de asignatura</div>
+								<div class="panel-heading">Registro de asignatura <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 
 								<div class="panel-body">
 									{!! Form::open(['route' => ['admin.asignaturas.store'], 'method' => 'post']) !!}

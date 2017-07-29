@@ -67,7 +67,8 @@ class SeccionesController extends Controller
              flash('DISCULPE, LA SECCIÓN YA HA SIDO ASIGNADA A ESTE CURSO','warning');
             return redirect()->route('admin.secciones.create');  
         }
-    
+
+        return redirect()->route('admin.secciones.index', compact('secciones','num'));
         
     }
 
@@ -130,7 +131,7 @@ class SeccionesController extends Controller
     {
         $seccion=Seccion::find($request->id);
 
-        if ($seccion->curso()->exists()) {
+        if ($seccion->cursos()->exists()) {
             flash('EXISTEN REGISTROS CON ESTA SECCIÓN, NO SE PUEDE ELIMINAR');
         }else {
             $s=$seccion->seccion;

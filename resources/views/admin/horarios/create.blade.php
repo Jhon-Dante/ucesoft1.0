@@ -17,7 +17,7 @@
     </ol>
 </section>
 <!-- Main content -->
-
+	@include('alerts.requests')
         <section class="content spark-screen">
 			<div class="row">
 					<div class="col-md-12">

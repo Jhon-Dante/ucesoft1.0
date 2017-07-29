@@ -88,7 +88,12 @@ class PersonalAsignaturaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $personal=Personal::where('cedula',$request->cedula)->where('id','<>',$id)->get();
+
+        $personal=Personal::find($id);
+        $personal->update($request->all());
+
+        return redirect()->route('admin.personal.index');
     }
 
     /**
@@ -99,6 +104,6 @@ class PersonalAsignaturaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

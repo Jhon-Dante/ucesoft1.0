@@ -19,23 +19,19 @@
         <li class="active">Registro</li>
     </ol>
 </section>
-<!-- Main content -->
-
+<!-- Main content -->	
+@include('alerts.requests')
        <section class="content spark-screen">
 			<div class="row">
 			<div class="col-md-12">
 	         @include('flash::message')
 	    </div>
 					
-					<div class="text-success" id='result'>
-					    @if(Session::has('message'))
-					        {{Session::get('message')}}
-					    @endif
-					</div>
+					
 		            
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Registro de Sección
+							<div class="panel-heading">Registro de Sección  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
  				
 							</div>
 

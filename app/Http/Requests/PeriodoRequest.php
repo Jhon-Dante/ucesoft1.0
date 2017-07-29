@@ -24,7 +24,7 @@ class PeriodoRequest extends Request
     public function rules()
     {
         return [
-            //
+          'periodo' => 'required'  
         ];
     }
 }

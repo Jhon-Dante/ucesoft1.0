@@ -24,7 +24,17 @@ class SeccionesRequest extends Request
     public function rules()
     {
         return [
-            //
+            'seccion' => 'required',
+            'id_curso' => 'required'
         ];
     }
+     public function messages()
+     {
+        return [
+            'seccion.required' => 'EL CAMPO Sección ES REQUERIDO.',
+            'id_curso.required' => 'NO HA SELECCIONADO NINGÚN CURSO'
+        ];
+     }
+
+
 }

@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Representantes;
 use App\Parentesco;
 use Laracast\Flash\Flash;
-use App\Http\Request\RepresentantesRequest;
+use App\Http\Requests\RepresentantesRequest;
 
 class RepresentantesController extends Controller
 {
@@ -42,7 +42,7 @@ class RepresentantesController extends Controller
      */
     public function store(RepresentantesRequest $request)
     {
-        dd($request->all());
+
         $buscar=Representantes::where('cedula',$request->cedula)->get();
 
         $cuantos=count($buscar);
@@ -76,11 +76,9 @@ class RepresentantesController extends Controller
                 'telf_opcional'     =>$request->telf_opcional,
                 'nombre_opcional'   =>$request->nombre_opcional,
                 'codigo_emergencia' =>$request->codigo_emergencia,
-                'telf_emergencia'   =>$request->elf_emergencia]);
+                'telf_emergencia'   =>$request->telf_emergencia]);
         flash('Representante registrado con éxito','success');
-        $num=0;
-        $representante=Representantes::all();
-        return View('admin.representantes.index', compact('representantes','num'));
+        return redirect()->route('admin.representantes.index');
         }
         
     }
@@ -105,7 +103,7 @@ class RepresentantesController extends Controller
     public function edit($id)
     {
         $representantes = Representantes::find($id);
-        $parentesco = Tipo::lists('parentesco', 'id');
+        $parentesco = Parentesco::lists('parentesco', 'id');
         return view('admin.representantes.edit', compact('representantes', 'parentesco'));
     }
 
@@ -118,21 +116,19 @@ class RepresentantesController extends Controller
      */
     public function update(RepresentantesRequest $request, $id)
     {
-        $representante=Representantes::where('cedula',$request->cedula)->where('id','<>',$id)->get();
+        $representantes=Representantes::where('cedula',$request->cedula)->where('id','<>',$id)->get();
 
-        if (count($representante)==0) {
+        if (count($representantes)==0) {
 
-            $representante=Representantes::find($id);
-            $representante->update($request->all());
+            $representantes=Representantes::find($id);
+            $representantes->update($request->all());
 
             flash('REPRESENTANTE EDITADO CON ÉXITO!', 'success');
         } else {
             flash('ESTE REPRESENTANTE YA ESTÁ REGISTRADO!','warning');
         }
 
-        $num=0;
-        $representante=Representantes::all();
-        return View('admin.representante.index', compact('num','representantes'));
+        return redirect()->route('admin.representantes.index');
         
     }
 
@@ -144,12 +140,12 @@ class RepresentantesController extends Controller
      */
     public function destroy($id)
     {
-        $representante->delete();
+        $representantes->delete();
 
             flash(' SE HA ELIMINADO EL REPRESENTANTE '.$representante->nombres.' CORRECTAMENTE.','success');
             $num=0;
-            $representantes = Cargos::all();
-        return view('admin.representantes.index', compact('representantes','num'));
+            $representantes = Representantes::all();
 
+            return redirect()->route('admin.representantes.index');
     }
 }

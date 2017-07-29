@@ -24,7 +24,9 @@ class AsignaturasRequest extends Request
     public function rules()
     {
         return [
-            'asignatura' => 'required'
+            'asignatura' => 'required',
+            'id_curso' => 'required'
         ];
     }
+    
 }

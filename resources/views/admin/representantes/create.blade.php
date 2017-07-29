@@ -17,7 +17,7 @@
         <li class="active">Registro</li>
     </ol>
 </section>
-<!-- Main content -->
+@include('alerts.requests')
 
         <section class="content spark-screen">
 			<div class="row">
