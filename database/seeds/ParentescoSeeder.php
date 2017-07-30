@@ -12,19 +12,19 @@ class ParentescoSeeder extends Seeder
     public function run()
     {
         \DB::table('parentesco')->insert(array(
-        	'parentesco' => 'Hijo(a)'
+        	'parentesco' => 'Madre'
         ));
         \DB::table('parentesco')->insert(array(
-        	'parentesco' => 'Hijastro(a)'
-        ));
-        \DB::table('parentesco')->insert(array(
-        	'parentesco' => 'Nieto(a)'
-        ));
-        \DB::table('parentesco')->insert(array(
-        	'parentesco' => 'Sobrino(a)'
+        	'parentesco' => 'Padre'
         ));
         \DB::table('parentesco')->insert(array(
         	'parentesco' => 'Hermano(a)'
+        ));
+        \DB::table('parentesco')->insert(array(
+        	'parentesco' => 'Tio(a)'
+        ));
+        \DB::table('parentesco')->insert(array(
+        	'parentesco' => 'Abuelo(a)'
         ));
         \DB::table('parentesco')->insert(array(
         	'parentesco' => 'Primo(a)'

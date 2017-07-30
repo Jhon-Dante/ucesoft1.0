@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ParentescoSeeder::class);
         $this->call(BloquesTableSeeder::class);
         $this->call(SeccionesTableSeeder::class);
+        $this->call(PersonalSeeder::class);
+        $this->call(RepresentantesSeeder::class);
     }
 }
