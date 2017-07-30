@@ -52,7 +52,7 @@
 <div class="form-group{{ $errors->has('telf_hab') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('telf_hab','Teléfono de habitación') !!}
-	{!! Form::number('telf_hab',null,['class' => 'form-control','placeholder' => 'Ej: 04162455643', 'title' => 'Ingrese el teléfono móvil del personal']) !!}
+	{!! Form::text('telf_hab',null,['class' => 'form-control','placeholder' => 'Ej: 04162455643', 'title' => 'Ingrese el teléfono móvil del personal','maxLength' => '7']) !!}
 </div>
 <div class="form-group{{ $errors->has('codigo_cel') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
@@ -62,7 +62,7 @@
 <div class="form-group{{ $errors->has('celular') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('celular','Teléfono fijo') !!}
-	{!! Form::text('celular',null,['class' => 'form-control','placeholder' => 'Ej: 6675544', 'title' => 'Ingrese el teléfono de habitación del personal']) !!}
+	{!! Form::text('celular',null,['class' => 'form-control','placeholder' => 'Ej: 6675544', 'title' => 'Ingrese el teléfono de habitación del personal','maxLength' => '7']) !!}
 </div>
 <div class="form-group{{ $errors->has('correo') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)

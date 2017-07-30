@@ -28,7 +28,7 @@
 		</div>
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Actualización del Aula
+					<div class="panel-heading">Actualización del Aula   <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
 			
 					</div>
 

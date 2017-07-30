@@ -18,7 +18,7 @@
     </ol>
 </section>
 <!-- Main content -->
-
+	@include('alerts.requests')
 <section class="content spark-screen">
 	<div class="row">
           <div class="col-md-12">
@@ -26,7 +26,7 @@
 	      </div>
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Actualización del Cargo</div>
+					<div class="panel-heading">Actualización del Cargo  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios</div>
 						<div class="panel-body">
 							{!! Form::open(['route' => ['admin.cargos.update',$cargo->id], 'method' => 'put']) !!}
             

@@ -40,7 +40,7 @@
 </div>
 <div class="form-group">
 	{!! Form::label('telf_hab','Teléfono de habitación') !!}
-	{!! Form::number('telf_hab',$personal->telf_hab,['class' => 'form-control','placeholder' => 'Ej: 04162455643', 'title' => 'Ingrese el teléfono móvil del personal']) !!}
+	{!! Form::number('telf_hab',$personal->telf_hab,['class' => 'form-control','placeholder' => 'Ej: 04162455643', 'title' => 'Ingrese el teléfono móvil del personal', 'maxLength' => '7']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('codigo_cel','Codigo de celular') !!}
@@ -48,11 +48,11 @@
 </div>
 <div class="form-group">
 	{!! Form::label('celular','Teléfono fijo') !!}
-	{!! Form::number('celular',$personal->celular,['class' => 'form-control','placeholder' => 'Ej: 6675544', 'title' => 'Ingrese el teléfono de habitación del personal']) !!}
+	{!! Form::number('celular',$personal->celular,['class' => 'form-control','placeholder' => 'Ej: 6675544', 'title' => 'Ingrese el teléfono de habitación del personal', 'maxLength' => '7']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('correo','Correo Electrónico') !!}
-	{!! Form::email('correo',$personal->correo,['class' => 'form-control','placeholder' => 'Ej: jose_sosa@live.com', 'title' => 'Ingrese el correo del personal']) !!}
+	{!! Form::email('correo',$personal->correo,['class' => 'form-control','placeholder' => 'Ej: jose_sosa@live.com', 'title' => 'Ingrese el correo del personal','maxLength' => '30']) !!}
 </div>
 <div>
 	{!! Form::label('cargo','Cargo') !!}

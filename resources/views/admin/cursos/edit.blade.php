@@ -18,15 +18,13 @@
     </ol>
 </section>
 <!-- Main content -->
-
+	@include('alerts.requests')
         <section class="content">
 			<div class="container spark-screen">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
 						<div class="panel panel-default">
-							<div class="panel-heading">Actualización del Curso
- 				
-							</div>
+							<div class="panel-heading">Actualización del Curso  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios</div>
 
 							<div class="panel-body">
 								{!! Form::open(['route' => ['admin.cursos.update',$curso->id], 'method' => 'put']) !!}

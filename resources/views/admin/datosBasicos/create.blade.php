@@ -12,7 +12,7 @@
         <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes </a></li>
         <li class="active">Registro</li>
     </ol>
 </section>
@@ -27,7 +27,7 @@
 	    </div>
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Seleccione al representante</div>
+					<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 						<div class="panel-body">
             				@include('admin.datosBasicos.partials.create-fields-representante')
 			         	</div>
@@ -40,7 +40,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro del Estudiante</div>
+				<div class="panel-heading">Registro del Estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 					<div class="panel-body">
 		                 @include('admin.datosBasicos.partials.create-fields')
 					</div>
@@ -53,7 +53,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Datos académicos del estudiante</div>
+				<div class="panel-heading">Datos académicos del estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios, (SI ES UN NUEVO ESTUDIANTE).</div>
 					<div class="panel-body">
 						<div class="form-group">
 							{!! Form::label('regular','¿Estudiante regular?') !!}

@@ -26,7 +26,7 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Edición de Representante
+							<div class="panel-heading">Edición de Representante    <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
  				@include('flash::message')
 							</div>
 
