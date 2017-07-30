@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Padres;
 use App\DatosBasicos;
 use App\Representantes;
 use Laracast\Flash\Flash;
 use App\Http\Requests\DatosBasicosRequest;
 use Validator;
+use App\Parentesco;
 
 class DatosBasicosController extends Controller
 {
@@ -31,8 +33,10 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
-        $representante=Representantes::lists('nombres','id');
-        return View('admin.datosBasicos.create', compact('representante'));
+        $representantes=Representantes::all();
+        $padres=Padres::all();
+        $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
+        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres'));
     }
 
     /**

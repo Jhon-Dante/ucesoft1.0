@@ -27,10 +27,6 @@ class CreateTableDatosBasicos extends Migration
             $table->double('talla');
             $table->text('salud');
             $table->text('direccion');
-            $table->string('madre');
-            $table->string('vive_m');
-            $table->string('padre');
-            $table->string('vive_p');
             $table->timestamps();
         });
     }

@@ -45,6 +45,13 @@
 <script>
 $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
-
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/select2.full.min.js')}}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+  });
+</script>
 
 @yield('scripts')
