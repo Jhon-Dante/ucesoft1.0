@@ -24,11 +24,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '37',
             'talla' => 'M',
             'salud' => 'Alergias al Maní',
-            'direccion' => 'Calle Santiago Mariño, casa nro. 34',
-            'madre' => 'Alicia Pérez',
-            'vive_m' => 'Si',
-            'padre' => 'Johan Jaeger',
-            'vive_p' => 'Si'
+            'direccion' => 'Calle Santiago Mariño, casa nro. 34'
+            
         ]);
 
         DB::table('datos_basicos')->insert([
@@ -44,11 +41,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '43',
             'talla' => 'S',
             'salud' => 'Atismatismo',
-            'direccion' => 'Calle Soubllette, casa nro. 99',
-            'madre' => 'Jhonatan Nascimento',
-            'vive_m' => 'No',
-            'padre' => 'Elicia Forza',
-            'vive_p' => 'Si'
+            'direccion' => 'Calle Soubllette, casa nro. 99'
+            
         ]);
 
         DB::table('datos_basicos')->insert([
@@ -64,11 +58,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '40',
             'talla' => 'S',
             'salud' => 'Sordera, Taquicardia',
-            'direccion' => 'Calle Mariano Montilla, casa nro. 03',
-            'madre' => 'Maria Buscamante',
-            'vive_m' => 'No',
-            'padre' => 'Jhonson Cheeperd',
-            'vive_p' => 'Si'
+            'direccion' => 'Calle Mariano Montilla, casa nro. 03'
+            
         ]);
 
         DB::table('datos_basicos')->insert([
@@ -84,11 +75,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '40',
             'talla' => 'S',
             'salud' => 'Fractura en la Rodilla izquierda',
-            'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11',
-            'madre' => 'Wendy Sosa',
-            'vive_m' => 'Si',
-            'padre' => 'Winston Mara',
-            'vive_p' => 'Si'
+            'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11'
+            
         ]);
 
     }
