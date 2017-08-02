@@ -53,9 +53,9 @@
               @foreach($datosBasicos as $dato_basico)
                 <tr>
                   <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico-nombre}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico-apellido}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico-cedula}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico->nombres}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico->apellidos}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico->cedula}}</a></td>
                   <td>
                  
                   <div class="btn-group">

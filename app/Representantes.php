@@ -37,4 +37,7 @@ class Representantes extends Model
     	//belongsTo = Uno a muchos
     	return $this->belongsTo('App\Parentesco','id_parentesco');
     }
+    public function datos_basicos(){
+        return $this->hasMany('App\DatosBasicos','id_representante','id');
+    }
 }

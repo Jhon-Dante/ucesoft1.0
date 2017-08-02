@@ -11,12 +11,12 @@
 <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('nombre','Nombres') !!}
-	{!! Form::text('nombre',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
+	{!! Form::text('nombres',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
 </div>
 <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('apellido','Apellidos') !!}
-	{!! Form::text('apellido',null,['class' => 'form-control','placeholder' => 'Ej: Ramírez Zerpa', 'title' => 'Ingrese el primer y segundo apellido del estudiante']) !!}
+	{!! Form::text('apellidos',null,['class' => 'form-control','placeholder' => 'Ej: Ramírez Zerpa', 'title' => 'Ingrese el primer y segundo apellido del estudiante']) !!}
 </div>
 <div class="form-group{{ $errors->has('lugar_nac') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
@@ -31,7 +31,7 @@
 <div class="form-group{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('nacimiento','Fecha de nacimiento') !!}
-	{!! Form::date('nacimiento',null,['class' => 'form-control','placeholder' => 'Fecha de nacimiento', 'title' => 'Ingrese la fecha de nacimiento del estudiante']) !!}
+	{!! Form::date('fecha_nac',null,['class' => 'form-control','placeholder' => 'Fecha de nacimiento', 'title' => 'Ingrese la fecha de nacimiento del estudiante']) !!}
 </div>
 <div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
@@ -80,13 +80,13 @@
 		{!! Form::text('nombre_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Marquez', 'title' => 'Ingrese la talla del estudiante']) !!}
 	</div>
 
-	<div class="form-group{{ $errors->has('vive_p') ? ' has-error' : '' }}">
+	<div class="form-group{{ $errors->has('padre_vive') ? ' has-error' : '' }}">
 	(<span style="color: red;">*</span>)
-		{!! Form::label('vive_p','¿vive?') !!}
-		{!! Form::label('vive_p','Si') !!}
-		{!! Form::radio('vive_p',null,['class' => 'form-control']) !!}
-		{!! Form::label('vive_p','No') !!}
-		{!! Form::radio('vive_p',null,['class' => 'form-control']) !!}
+		{!! Form::label('padre_vive','¿vive?') !!}
+		{!! Form::label('padre_vive','Si') !!}
+		{!! Form::radio('padre_vive',null,['class' => 'form-control']) !!}
+		{!! Form::label('padre_vive','No') !!}
+		{!! Form::radio('padre_vive',null,['class' => 'form-control']) !!}
 	</div>
 
 	<div class="form-group{{ $errors->has('nombre_m') ? ' has-error' : '' }}">
@@ -95,13 +95,13 @@
 		{!! Form::text('nombre_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana López', 'title' => 'Ingrese la talla del estudiante']) !!}
 	</div>
 
-	<div class="form-group{{ $errors->has('vive_m') ? ' has-error' : '' }}">
+	<div class="form-group{{ $errors->has('madre_vive') ? ' has-error' : '' }}">
 	(<span style="color: red;">*</span>)
-		{!! Form::label('vive_m','¿vive?') !!}
-		{!! Form::label('vive_m','Si') !!}
-		{!! Form::radio('vive_m',null,['class' => 'form-control']) !!}
-		{!! Form::label('vive_m','No') !!}
-		{!! Form::radio('vive_m',null,['class' => 'form-control']) !!}
+		{!! Form::label('madre_vive','¿vive?') !!}
+		{!! Form::label('madre_vive','Si') !!}
+		{!! Form::radio('madre_vive',null,['class' => 'form-control']) !!}
+		{!! Form::label('madre_vive','No') !!}
+		{!! Form::radio('madre_vive',null,['class' => 'form-control']) !!}
 </div>
 </div>
 
@@ -115,7 +115,7 @@
 
 	<div class="row">
 		<div class="col-xs-8">
-			<select name="padre" style="width: 100%;" id="padre" class="form-control select2">
+			<select name="id_padre" style="width: 100%;" id="padre" class="form-control select2">
 				@foreach($padres as $padre)
 					@if($padre->id_parentesco==2)
 					<option value="{{ $padre->id }}">{{ $padre->apellidos }},{{ $padre->nombres }} {{ $padre->nacionalidad }}-{{ $padre->cedula }}</option>
@@ -126,8 +126,8 @@
 		</div>
 
 		<div class="col-xs-4">
-			{!! Form::label('vive_p','¿vive con?') !!}
-			{!! Form::checkbox('confirmar','Si',false,['title' => 'Seleccione si la madre vive con el estudiante']) !!}
+			{!! Form::label('padre_vive','¿vive con?') !!}
+			{!! Form::checkbox('padre_vive','Si',false,['title' => 'Seleccione si la madre vive con el estudiante']) !!}
 		</div>
 	</div>
 </div>
@@ -140,7 +140,7 @@
 
 	<div class="row">
 		<div class="col-xs-8">
-			<select name="padre" id="padre" style="width: 100%;" class="form-control select2">
+			<select name="id_madre" id="padre" style="width: 100%;" class="form-control select2">
 				@foreach($padres as $padre)
 					@if($padre->id_parentesco==1)
 					<option value="{{ $padre->id }}">{{ $padre->apellidos }},{{ $padre->nombres }} {{ $padre->nacionalidad }}-{{ $padre->cedula }}</option>
@@ -151,8 +151,8 @@
 		</div>
 
 		<div class="col-xs-4">
-			{!! Form::label('vive_m','¿vive con?') !!}
-			{!! Form::checkbox('confirmar','Si',false,['title' => 'Seleccione si la madre vive con el estudiante']) !!}
+			{!! Form::label('madre_vive','¿vive con?') !!}
+			{!! Form::checkbox('madre_vive','Si',false,['title' => 'Seleccione si la madre vive con el estudiante']) !!}
 		</div>
 	</div>
 </div>

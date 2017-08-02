@@ -27,6 +27,14 @@ class CreateTableDatosBasicos extends Migration
             $table->double('talla');
             $table->text('salud');
             $table->text('direccion');
+
+            $table->integer('id_padre')->unsigned();
+            $table->string('padre_vive');
+            $table->integer('id_madre')->unsigned();
+            $table-> string('madre_vive');
+
+            $table->foreign('id_padre')->references('id')->on('representantes')->onDelete('cascade');
+            $table->foreign('id_madre')->references('id')->on('representantes')->onDelete('cascade');
             $table->timestamps();
         });
     }

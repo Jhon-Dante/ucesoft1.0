@@ -33,10 +33,11 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
+        $opcion=0;
         $representantes=Representantes::all();
         $padres=Padres::all();
         $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
-        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres'));
+        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion'));
     }
 
     /**
@@ -59,23 +60,21 @@ class DatosBasicosController extends Controller
             $datoBasico=DatosBasicos::create([
                 'nacionalidad' => $request->nacionalidad,
                 'cedula' => $request->cedula,
-                'nombre' => $request->nombre,
-                'apellido' => $request->apellido,
+                'nombres' => $request->nombres,
+                'apellidos' => $request->apellidos,
                 'lugar_nac' => $request->lugar_nac,
                 'estado' => $request->estado,
-                'nacimiento' => $request->nacimiento,
+                'fecha_nac' => $request->fecha_nac,
                 'edad' => $request->edad,
                 'sexo' => $request->sexo,
                 'peso' => $request->peso,
                 'talla' => $request->talla,
                 'salud' => $request->salud,
                 'direccion' => $request->direccion,
-                'nombre_p' => $request->nombre_p,
-                'cedula_p' => $request->cedula_p,
-                'vive_p' => $request->vive_p,
-                'nombre_m' => $request->nombre_m,
-                'cedula_m' => $request->cedula_m,
-                'vive_m' => $request->vive_m
+                'id_padre' => $request->id_padre,
+                'padre_vive' => $request->padre_vive,
+                'id_madre' => $request->id_madre,
+                'madre_vive' => $request->madre_vive
                 ]);
             flash('Estudiante registrado con éxito','success');
             $num=0;
@@ -88,6 +87,11 @@ class DatosBasicosController extends Controller
     public function verificarPadre($cedula){
 
         dd("DWD");
+
+    }
+    public function reinscribir($request){
+
+
 
     }
     /**

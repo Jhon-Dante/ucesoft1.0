@@ -16,11 +16,8 @@
         <li class="active">Registro</li>
     </ol>
 </section>
-@include('alerts.requests')
-	
-<!-- Main content -->
-{!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
 
+!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
 
 <div id="inscribir" style="display: block">
 	<section class="content spark-screen">
@@ -107,7 +104,7 @@
 		    </div>
 		    		<div class="col-xs-8">
 						<div class="form-group">
-							<button type="button" id="nuevo2" style="display: none; width: 200px;" class="btn btn-block btn-success" >Reeinscribir</button>
+							<button type="button" id="nuevo2" style="display: none; width: 200px;" class="btn btn-block btn-success" >Nuevo Ingreso</button>
 								
 						</div>
 					</div>
@@ -116,7 +113,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 							<div class="panel-body">
-	            				@include('admin.datosBasicos.partials.create-fields-recaudos')
+	            				@include('admin.datosBasicos.partials.create-fields-regular')
 				         	</div>
 					</div>
 				</div>
