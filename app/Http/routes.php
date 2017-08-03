@@ -26,8 +26,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/secciones','SeccionesController');
         Route::resource('/asignaturas','AsignaturasController');
         Route::resource('/periodos','PeriodosController');
-
+        //---- ESTUDIANTES-----
         Route::resource('/DatosBasicos','DatosBasicosController');
+        Route::get('/DatosBasicos/reinscribir',[
+                'uses' => 'DatosBasicosController@reinscribir',
+                'as' => 'admin.DatosBasicos.reinscribir'
+            ]);
+        Route::post('/DatosBasicos/buscarEstudiante',[
+                'uses' => 'DatosBasicosController@buscarEstudiante',
+                'as' => 'admin.DatosBasicos.buscarEstudiante'
+            ]);
+        Route::post('/DatosBasicos/reinscribir',[
+                'uses' => 'DatosBasicosController@reinscribir',
+                'as' => 'admin.DatosBasicos.reinscribir'
+            ]);
+        //------------
         Route::resource('/cargos','CargosController');
         Route::resource('/personal','PersonalController');
         Route::get('/DatosBasicos/{cedula}/verificarPadre',[

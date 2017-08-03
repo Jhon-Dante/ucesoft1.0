@@ -24,7 +24,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '37',
             'talla' => 'M',
             'salud' => 'Alergias al Maní',
-            'direccion' => 'Calle Santiago Mariño, casa nro. 34'
+            'direccion' => 'Calle Santiago Mariño, casa nro. 34',
+            'id_representante' => 1
             
         ]);
 
@@ -41,7 +42,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '43',
             'talla' => 'S',
             'salud' => 'Atismatismo',
-            'direccion' => 'Calle Soubllette, casa nro. 99'
+            'direccion' => 'Calle Soubllette, casa nro. 99',
+            'id_representante' => 2
             
         ]);
 
@@ -58,7 +60,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '40',
             'talla' => 'S',
             'salud' => 'Sordera, Taquicardia',
-            'direccion' => 'Calle Mariano Montilla, casa nro. 03'
+            'direccion' => 'Calle Mariano Montilla, casa nro. 03',
+            'id_representante' => 3
             
         ]);
 
@@ -75,7 +78,8 @@ class DatosBasicosSeeder extends Seeder
             'peso' => '40',
             'talla' => 'S',
             'salud' => 'Fractura en la Rodilla izquierda',
-            'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11'
+            'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11',
+            'id_representante' => 3
             
         ]);
 

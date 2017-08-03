@@ -32,12 +32,14 @@ class Representantes extends Model
     'codigo_emergencia',
     'telf_emergencia'];
 
-    public function parentesco(){
+    public function parentesco()
+    {
 
     	//belongsTo = Uno a muchos
     	return $this->belongsTo('App\Parentesco','id_parentesco');
     }
-    public function datos_basicos(){
+    public function datos_basicos()
+    {
         return $this->hasMany('App\DatosBasicos','id_representante','id');
     }
 }

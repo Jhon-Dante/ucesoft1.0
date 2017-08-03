@@ -11,7 +11,7 @@ class Padres extends Model
 
     public function datosbasicos()
     {
-    	return $this->belongsTo('App\DatosBasicos','id_datosBasicos');
+    	return $this->belongsToMany('App\DatosBasicos','datos_basicos_has_padres','id_padre','id_datosBasicos');
     }
 
     public function perentescos()

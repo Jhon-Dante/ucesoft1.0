@@ -36,10 +36,30 @@ class DatosBasicosController extends Controller
         $opcion=0;
         $representantes=Representantes::all();
         $padres=Padres::all();
+        $datosBasicos=DatosBasicos::all();
+        $id_estudiante=0;
         $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
-        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion'));
+                
+        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante'));
     }
 
+    public function buscarEstudiante(Request $request)
+    {
+        $opcion=0;
+        $representantes=Representantes::all();
+        $padres=Padres::all();
+        $datosBasicos=DatosBasicos::all();
+        $datosBasicos2=DatosBasicos::find($request->id_estudiante);
+        $id_estudiante=$datosBasicos2->id;
+        $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
+                
+        return View('admin.datosBasicos.reinscribir', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','datosBasicos2'));    
+    }
+
+    public function reinscribir(Request $request)
+    {
+        
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -84,16 +104,7 @@ class DatosBasicosController extends Controller
         
     }
 
-    public function verificarPadre($cedula){
-
-        dd("DWD");
-
-    }
-    public function reinscribir($request){
-
-
-
-    }
+    
     /**
      * Display the specified resource.
      *

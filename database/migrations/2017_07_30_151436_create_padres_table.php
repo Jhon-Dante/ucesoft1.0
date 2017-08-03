@@ -20,9 +20,7 @@ class CreatePadresTable extends Migration
             $table->string('cedula');
             $table->string('vive_con');
             $table->integer('id_parentesco')->unsigned();
-            $table->integer('id_datosBasicos')->unsigned();
-
-            $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
+            
             $table->foreign('id_parentesco')->references('id')->on('parentesco')->onDelete('cascade');
             $table->timestamps();
         });

@@ -16,21 +16,33 @@
         <li class="active">Registro</li>
     </ol>
 </section>
+{{-- div para uscar estudiante para reinscribir --}}
+<div id="mostrar2" style="display: block;">
+{!! Form::open(['route' => ['admin.DatosBasicos.buscarEstudiante'], 'method' => 'post', 'role' => 'form']) !!}
+		    		<div class="col-xs-8">
+		    			<div class="form-group">
+		    				<select class="form-control select2" id="id_estudiante" title="Seleccione el estudiante a Reinscribir" name="id_estudiante">
+		    					@foreach($datosBasicos as $db)
+									<option value="{{$db->id}}">{{$db->nacionalidad}}-{{$db->cedula}} {{$db->apellidos}}, {{$db->nombres}}</option>
+		    					@endforeach
+		    				</select>
+		    			</div>
+						<div class="form-group">
+								<button type="submit" id="regular2" style="display: block; width: 200px;" class="btn btn-block btn-info" >Reinscribir estudiante</button>
+								
+						</div>
+					</div>
+				{!! Form::close() !!}
 
-!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
-
+{!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
+</div>
 <div id="inscribir" style="display: block">
 	<section class="content spark-screen">
 		<div class="row"> 
 			<div class="col-md-12">
 		         @include('flash::message')
 		    </div>
-		    		<div class="col-xs-8">
-						<div class="form-group">
-								<button type="button" id="regular2" style="display: block; width: 200px;" class="btn btn-block btn-info" >Reinscribir estudiante</button>
-								
-						</div>
-					</div>
+		    	
 				<div class="col-xs-12">
 					
 					<div class="panel panel-default">
@@ -96,31 +108,7 @@
 </div><!-- fin del div para mostrar el nuevo -->
 
 
-<div id="reinscribir" style="display: none">
-<section class="content spark-screen">
-		<div class="row"> 
-			<div class="col-md-12">
-		         @include('flash::message')
-		    </div>
-		    		<div class="col-xs-8">
-						<div class="form-group">
-							<button type="button" id="nuevo2" style="display: none; width: 200px;" class="btn btn-block btn-success" >Nuevo Ingreso</button>
-								
-						</div>
-					</div>
-				<div class="col-xs-12">
-					
-					<div class="panel panel-default">
-						<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
-							<div class="panel-body">
-	            				@include('admin.datosBasicos.partials.create-fields-regular')
-				         	</div>
-					</div>
-				</div>
-		</div>
-</section>
 
-</div>
 </div><!-- /.content-wrapper --> 
 
 
@@ -182,30 +170,6 @@
 			});
 		});
 
-		$(document).ready( function(){
-
-			$("#regular2").on("click", function () {
-
-				if ($("#inscribir").css('display','block'))
-				{
-					$("#inscribir").hide();
-					$("#reinscribir").show();	
-					$("#regular2").hide();
-					$("#nuevo2").show();
-				}
-			});
-
-			$("#nuevo2").on("click", function() {
-
-				if ($("#inscribir").css('display','none')) 
-				{
-					$("#reinscribir").hide();
-					$("#inscribir").show();
-					$("#regular2").show();
-					$("#nuevo2").hide();
-				}
-
-			});
-		});
+		
 	</script>
 @endsection
