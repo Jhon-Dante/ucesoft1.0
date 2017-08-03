@@ -24,26 +24,20 @@ class DatosBasicosRequest extends Request
     public function rules()
     {
         return [
-            'representate' => 'required',
+            'id_representante' => 'required',
             'nacionalidad' => 'required',
             'cedula' => 'required|numeric',
-            'nombre' => 'required',
-            'apellido' => 'required',
+            'nombres' => 'required',
+            'apellidos' => 'required',
             'lugar_nac' => 'required',
             'estado' => 'required',
-            'nacimiento' => 'required|numeric',
+            'fecha_nac' => 'required',
             'edad' => 'required|numeric',
             'sexo' => 'required',
             'peso' => 'required|numeric',
-            'talla' => 'required|numeric',
+            'talla' => 'required',
             'salud' => 'required',
-            'direccion' => 'required',
-            'nombre_p' => 'required',
-            'cedula_p' => 'required|numeric',
-            'vive_p' => 'required',
-            'nombre_m' => 'required',
-            'cedula_m' => 'required|numeric',
-            'vive_m' => 'required'
+            'direccion' => 'required'
 
 
         ];

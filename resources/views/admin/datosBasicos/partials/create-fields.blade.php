@@ -13,7 +13,7 @@
 	{!! Form::label('nombre','Nombres') !!}
 	{!! Form::text('nombres',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
 </div>
-<div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('apellido','Apellidos') !!}
 	{!! Form::text('apellidos',null,['class' => 'form-control','placeholder' => 'Ej: Ramírez Zerpa', 'title' => 'Ingrese el primer y segundo apellido del estudiante']) !!}
@@ -28,7 +28,7 @@
 	{!! Form::label('estado','Estado') !!}
 	{!! Form::text('estado',null,['class' => 'form-control','placeholder' => 'Ej: Caracas', 'title' => 'Ingrese el estado del lugar de nacimiento del estudiante']) !!}
 </div>
-<div class="form-group{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('fecha_nac') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('nacimiento','Fecha de nacimiento') !!}
 	{!! Form::date('fecha_nac',null,['class' => 'form-control','placeholder' => 'Fecha de nacimiento', 'title' => 'Ingrese la fecha de nacimiento del estudiante']) !!}
@@ -42,9 +42,9 @@
 (<span style="color: red;">*</span>)
 	{!! Form::label('sexo','Sexo:') !!}
 	{!! Form::label('sexo','M') !!}
-	{!! Form::radio('sexo',null,['class' => 'form-control']) !!}
+	{!! Form::radio('sexo','M',['class' => 'form-control']) !!}
 	{!! Form::label('sexo','F') !!}
-	{!! Form::radio('sexo',null,['class' => 'form-control']) !!}
+	{!! Form::radio('sexo','F',['class' => 'form-control']) !!}
 </div>
 <div class="form-group{{ $errors->has('peso') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
@@ -74,35 +74,72 @@
 </div>
 
 <div id="padres" style="display: block;">
-	<div class="form-group{{ $errors->has('nombre_p') ? ' has-error' : '' }}">
+	
+	<!-- CAMPOS DEL PADRE -->
+	
+	<div class="form-group{{ $errors->has('nacionalidad_p') ? ' has-error' : '' }}">
 	(<span style="color: red;">*</span>)
-		{!! Form::label('nombre_p','Nombre del Padre') !!}
-		{!! Form::text('nombre_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Marquez', 'title' => 'Ingrese la talla del estudiante']) !!}
+		{!! Form::label('nacionalidad_p','Nacionalidad del Padre') !!}
+		{!! Form::select('nacionalidad_p',['V','E'],['class' => 'form-control']) !!}
+	</div>
+
+	{!! Form::hidden('cedula_p','11') !!}
+
+	<div class="form-group{{ $errors->has('nombres_p') ? ' has-error' : '' }}">
+	(<span style="color: red;">*</span>)
+		{!! Form::label('nombres_p','Nombres del Padre') !!}
+		{!! Form::text('nombres_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Marquez', 'title' => 'Ingrese la talla del estudiante']) !!}
+	</div>
+
+	<div class="form-group{{ $errors->has('apellidos_p') ? ' has-error' : '' }}">
+	(<span style="color: red;">*</span>)
+		{!! Form::label('apellidos_p','apellidos del Padre') !!}
+		{!! Form::text('apellidos_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Marquez', 'title' => 'Ingrese la talla del estudiante']) !!}
 	</div>
 
 	<div class="form-group{{ $errors->has('padre_vive') ? ' has-error' : '' }}">
 	(<span style="color: red;">*</span>)
 		{!! Form::label('padre_vive','¿vive?') !!}
 		{!! Form::label('padre_vive','Si') !!}
-		{!! Form::radio('padre_vive',null,['class' => 'form-control']) !!}
+		{!! Form::radio('padre_vive','Si',['class' => 'form-control']) !!}
 		{!! Form::label('padre_vive','No') !!}
-		{!! Form::radio('padre_vive',null,['class' => 'form-control']) !!}
+		{!! Form::radio('padre_vive','No',['class' => 'form-control']) !!}
+	</div>
+		<input type="hidden" name="parentesco_p" value="2">
+
+
+	<!-- CAMPOS DE LA MADRE -->
+
+	<div class="form-group{{ $errors->has('nacionalidad_m') ? ' has-error' : '' }}">
+	(<span style="color: red;">*</span>)
+		{!! Form::label('nacionalidad_m','Nacionalidad de la madre') !!}
+		{!! Form::select('nacionalidad_m',['V','E'],['class' => 'form-control']) !!}
+	</div>
+	
+	{!! Form::hidden('cedula_m','12') !!}
+	<div class="form-group{{ $errors->has('nombres_m') ? ' has-error' : '' }}">
+	(<span style="color: red;">*</span>)
+		{!! Form::label('nombres_m','Nombres de la madre') !!}
+		{!! Form::text('nombres_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana López', 'title' => 'Ingrese la talla del estudiante']) !!}
 	</div>
 
-	<div class="form-group{{ $errors->has('nombre_m') ? ' has-error' : '' }}">
+	<div class="form-group{{ $errors->has('apellidos_m') ? ' has-error' : '' }}">
 	(<span style="color: red;">*</span>)
-		{!! Form::label('nombre_m','Nombre de la madre') !!}
-		{!! Form::text('nombre_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana López', 'title' => 'Ingrese la talla del estudiante']) !!}
+		{!! Form::label('apellidos_m','Apellidos de la madre') !!}
+		{!! Form::text('apellidos_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana López', 'title' => 'Ingrese la talla del estudiante']) !!}
 	</div>
 
 	<div class="form-group{{ $errors->has('madre_vive') ? ' has-error' : '' }}">
 	(<span style="color: red;">*</span>)
 		{!! Form::label('madre_vive','¿vive?') !!}
 		{!! Form::label('madre_vive','Si') !!}
-		{!! Form::radio('madre_vive',null,['class' => 'form-control']) !!}
+		{!! Form::radio('madre_vive','Si',['class' => 'form-control']) !!}
 		{!! Form::label('madre_vive','No') !!}
-		{!! Form::radio('madre_vive',null,['class' => 'form-control']) !!}
+		{!! Form::radio('madre_vive','No',['class' => 'form-control']) !!}
 </div>
+		<input type="hidden" name="parentesco_m" value="1">
+
+
 </div>
 
 

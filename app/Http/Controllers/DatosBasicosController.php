@@ -33,7 +33,6 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
-        $opcion=0;
         $representantes=Representantes::all();
         $padres=Padres::all();
         $datosBasicos=DatosBasicos::all();
@@ -69,13 +68,15 @@ class DatosBasicosController extends Controller
     public function store(DatosBasicosRequest $request)
     {
         $buscar=DatosBasicos::where('cedula',$request->cedula)->get();
+        $padres=Padres::all();
 
         $cuantos=count($buscar);
 
         if ($cuantos>0) {
             flash('Este estudiante ya se encuentra registrado','warning');
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos'));
+
+            return redirect()->route('admin.DatosBasicos.index');
+
         } else {
             $datoBasico=DatosBasicos::create([
                 'nacionalidad' => $request->nacionalidad,
@@ -91,16 +92,42 @@ class DatosBasicosController extends Controller
                 'talla' => $request->talla,
                 'salud' => $request->salud,
                 'direccion' => $request->direccion,
-                'id_padre' => $request->id_padre,
-                'padre_vive' => $request->padre_vive,
-                'id_madre' => $request->id_madre,
-                'madre_vive' => $request->madre_vive
+                'id_representante' => $request->id_representante
                 ]);
-            flash('Estudiante registrado con éxito','success');
-            $num=0;
-            $datosBasicos=DatosBasicos::all();
-            return View('admin.datosBasicos.index', compact('datosBasicos','num'));
-        }
+
+                $id_db=DatosBasicos::where('cedula',$request->cedula);
+
+                    if($request->cedula_p) {
+
+                            $padres=Padres::create([
+                                'nombres' => $request->nombres_p,
+                                'apellidos' => $request->apellidos_p,
+                                'nacionalidad' => $request->nacionalidad_p,
+                                'cedula' => $request->cedula_p,
+                                'vive_con' => $request->padre_vive,
+                                'id_parentesco' => 2,
+                                'id_datosBasicos' => $id_db->id
+
+                            ]);
+                        }else{flash('PADRE NO REGISTRADO!', 'alert');}
+
+                            if ($request->cedula_m) {
+
+                                $padres=Padres::create([
+                                    'nombres' => $request->nombres_m,
+                                    'apellidos' => $request->apellidos_m,
+                                    'nacionalidad' => $request->nacionalidad_m,
+                                    'cedula' => $request->cedula_m,
+                                    'vive_con' => $request->madre_vive,
+                                    'id_parentesco' => 1,
+                                    'id_datosBasicos' => $id_db->id
+                                ]);
+                            }else{ flash('MADRE NO REGISTRADA!','alert'); }
+
+                            flash('EL ESTUDIANTE Y LOS PADRES HAN SIDO REGISTRADOS CON ÉXITO!','success');
+
+            }
+                    return redirect()->route('admin.DatosBasicos.index');
         
     }
 
@@ -162,7 +189,7 @@ class DatosBasicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         $representante=Representantes::find($request->id);
         $r=false;
@@ -180,9 +207,7 @@ class DatosBasicosController extends Controller
 
             flash('REGISTRO DEL ESTUDIANTE '.$datosBasicos->nombre.' ELIMINADO CON ÉXITO!','success');
 
-            $num=0;
-        $datosBasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('datosBasicos','num'));
+return redirect()->route('admin.DatosBasicos.index');
 
         }
         

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('htmlheader_title', 'Cursos')
-
+@section('htmlheader_title')
+	Estudiantes
+@endsection
 @section('content-wrapper')
 
 <div class="content-wrapper">

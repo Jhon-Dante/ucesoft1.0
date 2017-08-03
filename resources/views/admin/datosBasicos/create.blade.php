@@ -16,6 +16,9 @@
         <li class="active">Registro</li>
     </ol>
 </section>
+
+	@include('alerts.requests')
+	
 {{-- div para uscar estudiante para reinscribir --}}
 <div id="mostrar2" style="display: block;">
 {!! Form::open(['route' => ['admin.DatosBasicos.buscarEstudiante'], 'method' => 'post', 'role' => 'form']) !!}

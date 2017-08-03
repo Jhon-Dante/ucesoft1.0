@@ -61,12 +61,36 @@
                   <div class="btn-group">
                       <a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.DatosBasicos.destroy', [$dato_basico->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="#"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                       </div>
                   </td>
                   
                 </tr>
               @endforeach
+              <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar Estudiante</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea eliminar este estudiante en especifico?...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                    {!! Form::open(['route' => ['admin.DatosBasicos.destroy',0133], 'method' => 'DELETE']) !!}
+                        <input type="hidden" id="curso" name="id">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
               </tbody>    
             </table>
           </div>
