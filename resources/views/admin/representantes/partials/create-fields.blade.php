@@ -1,3 +1,4 @@
+{{ csrf_field() }}
 <div class="form-group{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('nacionalidad','Nacionalidad') !!}

@@ -8,6 +8,7 @@ use App\Representantes;
 use App\Parentesco;
 use Laracast\Flash\Flash;
 use App\Http\Requests\RepresentantesRequest;
+use Redirect;
 
 class RepresentantesController extends Controller
 {
@@ -49,9 +50,13 @@ class RepresentantesController extends Controller
 
         if ($cuantos>0) {
             flash('Este representante ya se encuentra registrado', 'warning');
-            $num=0;
-            $datosBasicos=Representantes::all();
-            return View('admin.representantes.index', compact('representantes','num'));
+            
+            if ($request->desde==1) {
+                return redirect()->back();    
+            } else {
+                return redirect()->route('admin.representantes.index');
+            }
+            
         } else {
             $representante=Representantes::create([
                 'nacionalidad'      =>$request->nacionalidad,
@@ -77,8 +82,13 @@ class RepresentantesController extends Controller
                 'nombre_opcional'   =>$request->nombre_opcional,
                 'codigo_emergencia' =>$request->codigo_emergencia,
                 'telf_emergencia'   =>$request->telf_emergencia]);
+        
         flash('Representante registrado con éxito','success');
-        return redirect()->route('admin.representantes.index');
+        if ($request->desde==1) {
+                return redirect()->back();    
+            } else {
+                return redirect()->route('admin.representantes.index');
+            }
         }
         
     }

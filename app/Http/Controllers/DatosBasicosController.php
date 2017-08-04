@@ -38,8 +38,9 @@ class DatosBasicosController extends Controller
         $datosBasicos=DatosBasicos::all();
         $id_estudiante=0;
         $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
+        $parentesco=Parentesco::lists('parentesco','id');
                 
-        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante'));
+        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','parentesco'));
     }
 
     public function buscarEstudiante(Request $request)
@@ -78,6 +79,8 @@ class DatosBasicosController extends Controller
             return redirect()->route('admin.DatosBasicos.index');
 
         } else {
+
+
             $datoBasico=DatosBasicos::create([
                 'nacionalidad' => $request->nacionalidad,
                 'cedula' => $request->cedula,

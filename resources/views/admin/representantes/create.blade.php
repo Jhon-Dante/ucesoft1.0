@@ -29,7 +29,7 @@
 							<div class="panel-heading">Registro de Representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
  				@include('flash::message')
 							</div>
-
+							{{ csrf_field() }}
 							<div class="panel-body">
 								{!! Form::open(['route' => ['admin.representantes.store'], 'method' => 'post']) !!}
                 

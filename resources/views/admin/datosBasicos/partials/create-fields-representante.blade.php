@@ -1,8 +1,4 @@
-<div class="form-group">
-	{!! Form::label('confirmar','El Representante ya esté registrado?') !!}
-	{!! Form::checkbox('confirmar','Si',false,['title' => 'Seleccione si el representante no se enuentra registrado']) !!}
-	
-</div>
+
 
 <div class="form-group{{ $errors->has('id_representante') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)

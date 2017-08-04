@@ -26,7 +26,6 @@ class DatosBasicosRequest extends Request
         return [
             'id_representante' => 'required',
             'nacionalidad' => 'required',
-            'cedula' => 'required|numeric',
             'nombres' => 'required',
             'apellidos' => 'required',
             'lugar_nac' => 'required',

@@ -36,7 +36,12 @@
 						</div>
 					</div>
 				{!! Form::close() !!}
-
+<div class="col-xs-8">
+<div class="form-group">
+	<a href="#" ><button style="padding: 10px 10px 10px 10px;"  class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede registrar el representante" ><i class="fa fa-user-plus"></i> Registrar Representante</button></a>
+                      <br><br>
+</div>
+</div>
 {!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
 </div>
 <div id="inscribir" style="display: block">
@@ -114,11 +119,38 @@
 
 </div><!-- /.content-wrapper --> 
 
+<div id="myModal"  class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registrar Representante</h4>
+                </div>
+                <div class="modal-body">
+                    Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
+                    {!! Form::open(['route' => ['admin.representantes.store'], 'method' => 'POST']) !!}
+ 						@include('admin.representantes.partials.create-fields')
+                        <input type="hidden" name="desde" value="1">
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+					<button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @section('scripts')
+
+	
 
 	<script type="text/javascript" >
 	  
@@ -146,7 +178,7 @@
 	
 
 
-
+/* para ocultar y mostrar el formulario de registro de padres o a padres registrados */
 		$(document).ready( function(){
 			$("#ocultar").on("click", function () {
 
@@ -173,6 +205,37 @@
 			});
 		});
 
-		
+// para bloquear a los padres seleccionados si los va aregistrar
+		$(document).ready( function(){
+			$("#cedula_p").on("change", function () {
+
+				if($(this).val().length>0) 
+				{
+					$("#vive_p").prop('disabled',true);
+					$("#padre").prop('disabled',true);
+									
+				} else{
+					$("#vive_p").removeAttr('disabled');
+					$("#padre").removeAttr('disabled');
+				}
+			});
+
+			$("#cedula_m").on("change", function () {
+
+				if($(this).val().length>0) 
+				{
+					$("#vive_m").prop('disabled',true);
+					$("#madre").prop('disabled',true);
+									
+				} else{
+					$("#vive_m").removeAttr('disabled');
+					$("#madre").removeAttr('disabled');
+				}
+			});
+
+		});
 	</script>
+
+
+  
 @endsection
