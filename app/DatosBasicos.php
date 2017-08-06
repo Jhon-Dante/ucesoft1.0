@@ -16,7 +16,23 @@ class DatosBasicos extends Model
 
 	public function padres()
 	{
-		return $this->belongsToMany('App\Padres','datos_basicos_has_padres','id_datosBasicos','id_padre');
+		return $this->belongsToMany('App\Padres','datos_basicos_has_padres','id_datosBasicos','id_padre')->withPivot('vive_con');
 	}
+
+	public function recaudos()
+	{
+		return $this->hasMany('App\Recaudos','id_datosBasicos','id');
+	}
+
+	public function preinscripciones()
+	{
+		return $this->hasMany('App\Preinscripcion','id_datosBasicos','id');
+	}
+	public function inscritos()
+	{
+		return $this->hasMany('App\Inscritos','id_datosBasicos','id');
+	}
+
+	
 
 }

@@ -8,4 +8,13 @@ class Periodos extends Model
 {
     protected $table='periodos';
     protected $fillable=['id','periodo'];
+
+    public function preinscripciones()
+	{
+		return $this->hasMany('App\Preinscripcion','id_periodo','id');
+	}
+	public function inscritos()
+	{
+		return $this->hasMany('App\Inscritos','id_periodo','id');
+	}
 }

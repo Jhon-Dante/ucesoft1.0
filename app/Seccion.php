@@ -13,4 +13,8 @@ class Seccion extends Model
     {
     	return $this->belongsTo('App\Cursos', 'id_curso');
     }
+    public function inscritos()
+    {
+    	return $this->hasMany('App\Inscritos','id_seccion','id');
+    }
 }

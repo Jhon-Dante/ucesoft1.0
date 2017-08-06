@@ -16,7 +16,6 @@ class Padres extends Seeder
         	'apellidos' => 'Perez',
         	'nacionalidad' => 'V',
         	'cedula' => '82828282',
-            'vive_con' => 'Si',
         	'id_parentesco' => 2
         ));
          \DB::table('padres')->insert(array(
@@ -24,16 +23,17 @@ class Padres extends Seeder
         	'apellidos' => 'Goyanes',
         	'nacionalidad' => 'V',
         	'cedula' => '7854468',
-            'vive_con' => 'Si',
         	'id_parentesco' => 1
         ));
                 \DB::table('datos_basicos_has_padres')->insert(array(
                     'id_datosBasicos' => 1,
-                    'id_padre' => 1
+                    'id_padre' => 1,
+                    'vive_con' => 'Si'
                 ));
                 \DB::table('datos_basicos_has_padres')->insert(array(
                     'id_datosBasicos' => 1,
-                    'id_padre' => 2
+                    'id_padre' => 2,
+                    'vive_con' => 'Si'
                 ));
 
          \DB::table('padres')->insert(array(
@@ -41,7 +41,6 @@ class Padres extends Seeder
         	'apellidos' => 'de Troya',
         	'nacionalidad' => 'E',
         	'cedula' => '67738383',
-            'vive_con' => 'Si',
         	'id_parentesco' => 2
         ));
          \DB::table('padres')->insert(array(
@@ -49,23 +48,23 @@ class Padres extends Seeder
         	'apellidos' => 'de Aquiles',
         	'nacionalidad' => 'E',
         	'cedula' => '6675678',
-            'vive_con' => 'Si',
         	'id_parentesco' => 1
         ));
                 \DB::table('datos_basicos_has_padres')->insert(array(
                     'id_datosBasicos' => 2,
-                    'id_padre' => 3
+                    'id_padre' => 3,
+                    'vive_con' => 'Si'
                 ));
                 \DB::table('datos_basicos_has_padres')->insert(array(
                     'id_datosBasicos' => 2,
-                    'id_padre' => 4
+                    'id_padre' => 4,
+                    'vive_con' => 'Si'
                 ));
          \DB::table('padres')->insert(array(
         	'nombres' => 'Odiseo',
         	'apellidos' => 'de Odisea',
         	'nacionalidad' => 'V',
         	'cedula' => '6729222',
-            'vive_con' => 'Si',
         	'id_parentesco' => 2
         ));
          \DB::table('padres')->insert(array(
@@ -73,16 +72,17 @@ class Padres extends Seeder
         	'apellidos' => 'de Homero',
         	'nacionalidad' => 'V',
         	'cedula' => '7564323',
-            'vive_con' => 'Si',
         	'id_parentesco' => 1
         ));
                 \DB::table('datos_basicos_has_padres')->insert(array(
                     'id_datosBasicos' => 3,
-                    'id_padre' => 5
+                    'id_padre' => 5,
+                    'vive_con' => 'Si'
                 ));
                 \DB::table('datos_basicos_has_padres')->insert(array(
                     'id_datosBasicos' => 3,
-                    'id_padre' => 6
+                    'id_padre' => 6,
+                    'vive_con' => 'Si'
                 ));
     }
 }

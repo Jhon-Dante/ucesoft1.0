@@ -13,7 +13,7 @@
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Oh no...</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
+            <strong>Oh no...</strong> ha ocurrido un problema<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -21,9 +21,11 @@
             </ul>
         </div>
     @endif
-
+    <div>
+            @include('alerts.errors')
+    </div>
     <div class="login-box-body">
-    <p class="login-box-msg"> {{ trans('adminlte_lang::message.siginsession') }} </p>
+    <p class="login-box-msg"> Ingrese sus datos para Iniciar Sesión </p>
     <form action="{{ url('/login') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group has-feedback">
@@ -33,6 +35,13 @@
         <div class="form-group has-feedback">
             <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group">
+            <select class="form-control" title="Seleccione el periodo escolar con el que quiere iniciar la sesión" name="periodos">
+                @foreach($periodos as $periodo)
+                    <option value="{{$periodo->id}}" @if($periodo->id==$periodos2->id) selected="selected" @endif >{{$periodo->periodo}} - {{$periodo->status}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="row">
             <div class="col-xs-8">

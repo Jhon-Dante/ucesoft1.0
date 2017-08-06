@@ -52,7 +52,10 @@
 		    </div>
 		    	
 				<div class="col-xs-12">
-					
+						<div class="form-group">
+							{!! Form::label('periodos','Seleccion periodo para la Preinscripción') !!}
+							{!! Form::select('id_periodo',$periodos,null,['class' => 'form-control select2', 'title' => 'Seleccione el Periodo al cual desea realizar la Preinscripción']) !!}								
+						</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 							<div class="panel-body">
@@ -67,7 +70,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Registro del Estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
+					<div class="panel-heading">Datos Personales del Estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 						<div class="panel-body">
 			                 @include('admin.datosBasicos.partials.create-fields')
 						</div>
@@ -80,12 +83,9 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Datos académicos del estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios, (SI ES UN NUEVO ESTUDIANTE).</div>
+					<div class="panel-heading">Datos académicos del estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 						<div class="panel-body">
-							<div class="form-group">
-								{!! Form::label('regular','¿Estudiante regular?') !!}
-								<input type="checkbox" name="regular" id="regular" checked>	
-							</div>
+							
 						    @include('admin.datosBasicos.partials.create-fields-academicos')
 				    	</div>
 				</div>
@@ -97,7 +97,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Recaudos del estudiante</div>
+					<div class="panel-heading">Recaudos para el registro del estudiante</div>
 						<div class="panel-body">
 							
 			               	@include('admin.datosBasicos.partials.create-fields-recaudos')
@@ -156,21 +156,27 @@
 	  
 	$(document).ready ( function () {
 
-		$("#regular").change( function () {
+		$("#pendiente").change( function () {
 
-			if(!$(this).is(":checked")) 
+			if($(this).is(":checked")) 
 			{
-					$("#plantel").removeAttr('disabled');
-					$("#materiap").removeAttr('disabled');
-					$("#repite1").removeAttr('disabled');
-					$("#repite2").removeAttr('disabled');
+					$("#id_asignatura").removeAttr('disabled');
 				
 			} else {
 
-					$("#plantel").prop('disabled', true);
-					$("#materiap").prop('disabled', true);
-					$("#repite1").prop('disabled', true);
-					$("#repite2").prop('disabled', true);
+					$("#id_asignatura").prop('disabled', true);
+					
+			}
+		});
+		$("#repite").change( function () {
+
+			if($(this).is(":checked")) 
+			{
+					$("#id_asignaturarep").removeAttr('disabled');
+				
+			} else {
+
+					$("#id_asignaturarep").prop('disabled', true);
 					
 			}
 		});

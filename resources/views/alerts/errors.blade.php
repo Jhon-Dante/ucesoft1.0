@@ -7,16 +7,19 @@
 			{{ Session::get('message-error') }}
 		</ul>
 	</div>
-	anywhere
+	
 @endif
 
 @if(Session::has('message-error-session'))
 	<div class="alert alert-danger alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
 		<ul>
 			{{ Session::get('message-error-session') }}
 		</ul>
 	</div>
-	alla
+	
 @endif
 
 @if(Session::has('message'))

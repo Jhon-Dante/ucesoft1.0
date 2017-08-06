@@ -61,7 +61,7 @@
 </div>
 <div class="form-group{{ $errors->has('celular') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
-	{!! Form::label('celular','Teléfono fijo') !!}
+	{!! Form::label('celular','Teléfono Celular') !!}
 	{!! Form::text('celular',null,['class' => 'form-control','placeholder' => 'Ej: 6675544', 'title' => 'Ingrese el teléfono de habitación del personal','maxLength' => '7']) !!}
 </div>
 <div class="form-group{{ $errors->has('correo') ? ' has-error' : '' }}">

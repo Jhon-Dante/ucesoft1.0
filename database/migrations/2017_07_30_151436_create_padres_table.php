@@ -18,7 +18,6 @@ class CreatePadresTable extends Migration
             $table->string('apellidos',60);
             $table->string('nacionalidad',1);
             $table->string('cedula');
-            $table->string('vive_con');
             $table->integer('id_parentesco')->unsigned();
             
             $table->foreign('id_parentesco')->references('id')->on('parentesco')->onDelete('cascade');

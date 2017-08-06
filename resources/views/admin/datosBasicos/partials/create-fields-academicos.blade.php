@@ -1,32 +1,41 @@
 <div class="form-group">
 (<span style="color: red;">*</span>)
 	{!! Form::label('plantel','Plantel de procedencia') !!}
-	{!! Form::text('plantel',null,['class' => 'form-control','placeholder' => 'U.E.N "Simón Bolívar"', 'disabled' => 'disabled' , 'title' => 'Ingrese los datos del plantel de procedencia', 'id' => 'plantel']) !!}
+	{!! Form::text('plantel',null,['class' => 'form-control','placeholder' => 'U.E.N "Simón Bolívar"' , 'title' => 'Ingrese los datos del plantel de procedencia', 'id' => 'plantel']) !!}
 </div>
+<div class="form-group">
+	{!! Form::label('regular','¿Lleva Materia Pendiente?') !!}
+	{{-- {!! Form::checkbox('pendiente','Si',['id' => 'pendiente','title' => 'Seleccione si el estudiante tiene materia(s) pendiente(s)']) !!} --}}
 
+	<input type="checkbox" name="pendiente" id="pendiente" value="Si">
+	
+</div>
 <div class="form-group">
 (<span style="color: red;">*</span>)
 	{!! Form::label('materiap','Materia Pendiente') !!}
-	{!! Form::text('materiap',null,['class' => 'form-control', 'disabled' => 'disabled' ,'placeholder' => 'Matemática', 'title' => 'Ingrese el nombre de la materia pendiente del estudiante', 'id' => 'materiap']) !!}
+	<select class="form-control select2" multiple="multiple" name="id_asignatura[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) " disabled="disabled">
+		@foreach($asignaturas as $asig)
+			<option value="{{$asig->id}}">{{$asig->asignatura}} - Curso: {{$asig->cursos->curso}}</option>
+		@endforeach
+	</select>
 </div>
 <div class="form-group">
 (<span style="color: red;">*</span>)
 	{!! Form::label('repite','¿Repite?') !!}
+	{{-- 
+	{!! Form::checkbox('repite','Si',['id' => 'repite','title' => 'Seleccione si el estudiante es repitiente','checked' => 'checked']) !!} 
+	--}}
+	<input type="checkbox" name="repite" value="Si" id="repite">
+	
 </div>
+
 <div class="form-group">
 (<span style="color: red;">*</span>)
-	{!! Form::label('repite','Si') !!}
-	<input type="radio" name="repite" value="Si" disabled="disabled" id="repite1">
-	(<span style="color: red;">*</span>)
-</div>
-<div>
-	{!! Form::label('repite','No') !!}
-	<input type="radio" name="repite" value="No" disabled="disabled" id="repite2">
-	(<span style="color: red;">*</span>)
-</div>
-<div class="form-group">
-(<span style="color: red;">*</span>)
-	{!! Form::label('asignatura','Asignatura con las que repite') !!}
-	{!! Form::text('asignatura',null,['class' => 'form-control', 'disabled' => 'disabled' ,'placeholder' => 'Lengua, Matemática', 'title' => 'Ingrese la cedula del estudiante', 'id' => 'asignatura']) !!}
+	{!! Form::label('asignatura','Asignatura(s) que repite') !!}
+	<select class="form-control select2" disabled="disabled" multiple="multiple" name="id_asignaturarep[]" id="id_asignaturarep" title="Seleccione la(s) asignatura(s) pendiente(s) ">
+		@foreach($asignaturas as $asig)
+			<option value="{{$asig->id}}">{{$asig->asignatura}} - Curso: {{$asig->cursos->curso}}</option>
+		@endforeach
+	</select>
 </div>
 

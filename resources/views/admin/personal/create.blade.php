@@ -25,9 +25,10 @@
 	         @include('flash::message')
 	    </div>
 					<div class="col-xs-12">
+					@include('flash::message')
 						<div class="panel panel-default">
 							<div class="panel-heading">Registro del personal  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
- 				@include('flash::message')
+ 				
 							</div>
 
 							<div class="panel-body">

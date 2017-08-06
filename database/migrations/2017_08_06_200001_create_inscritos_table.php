@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDatosBasicosHasPadresTable extends Migration
+class CreateInscritosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,17 @@ class CreateDatosBasicosHasPadresTable extends Migration
      */
     public function up()
     {
-        Schema::create('datos_basicos_has_padres', function (Blueprint $table) {
+        Schema::create('inscritos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_datosBasicos')->unsigned();
-            $table->integer('id_padre')->unsigned();
-            $table->string('vive_con',2);
+            $table->integer('id_seccion')->unsigned();
+            $table->integer('id_periodo')->unsigned();
+            $table->string('repite');
+            $table->string('pendiente');
 
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
-            $table->foreign('id_padre')->references('id')->on('padres')->onDelete('cascade');
-            $table->timestamps();
-        });
+            $table->foreign('id_seccion')->references('id')->on('secciones')->onDelete('cascade');
+            $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateDatosBasicosHasPadresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('datos_basicos_has_padres');
+        //
     }
 }

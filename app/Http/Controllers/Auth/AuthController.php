@@ -7,7 +7,12 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Redirect;
+use Session;
+use App\Periodos;
 
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     /*
@@ -55,8 +60,40 @@ class AuthController extends Controller
             'terms' => 'required',
         ]);
     }
+    public function showLoginForm()
+    {
+        
+        $anio = date('Y');
+        $periodos2= Periodos::where('status','Activo')->first();
+        $periodos = Periodos::where('periodo', '<=', $anio." - ".$anio+1)->get();
+        //dd($periodos2);
+        
+        return view('auth.login', ['periodos' => $periodos,'periodos2' => $periodos2]);
+    }
+    public function login(LoginRequest $request)
+    {
+        
+            if(Auth::check())
+            {
+                Session::flash('message-error', 'Usuario ya conectado.');
+                return Redirect::to('/home');
+            }
+            if(Auth::attempt(['email' => $request['email'], 'password' => $request['password']]))
+            {
 
-    /**
+                
+                $nombrePeriodo = Periodos::where('id', $request['periodos'])->first();
+                Session::flash('message', 'Bienvenido');
+                Session::put('periodoNombre', $nombrePeriodo->periodo);
+                Session::put('periodo', $request['periodos']);
+                return Redirect::to('/home');
+            }
+            else{
+                return Redirect()->back()->with('message-error-session', 'Datos Incorrectos');
+            }
+        
+    }
+    /*
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data

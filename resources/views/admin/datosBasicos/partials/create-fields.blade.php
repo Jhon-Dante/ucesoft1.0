@@ -29,7 +29,11 @@
 <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('estado','Estado') !!}
-	{!! Form::text('estado',null,['class' => 'form-control','placeholder' => 'Ej: Caracas', 'title' => 'Ingrese el estado del lugar de nacimiento del estudiante']) !!}
+	<select class="form-control select2" title="Ingrese el estado del lugar de nacimiento del estudiante" name="estado">
+		@for($i=0;$i<count($estados);$i++)
+			<option value="{{$estados[$i]}}">{{$estados[$i]}}</option>
+		@endfor
+	</select>
 </div>
 <div class="form-group{{ $errors->has('fecha_nac') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
@@ -102,22 +106,19 @@
 		<div class="form-group{{ $errors->has('nombres_p') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
 			{!! Form::label('nombres_p','Nombres') !!}
-			{!! Form::text('nombres_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Marquez', 'title' => 'Ingrese los Nombres del Padre', 'style'=>$errors->has('nombres_p') ? 'border-color: red; border: 1px solid red;': '']) !!}
+			{!! Form::text('nombres_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Enrique', 'title' => 'Ingrese los Nombres del Padre', 'style'=>$errors->has('nombres_p') ? 'border-color: red; border: 1px solid red;': '']) !!}
 		</div>
 
 		<div class="form-group{{ $errors->has('apellidos_p') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
 			{!! Form::label('apellidos_p','Apellidos') !!}
-			{!! Form::text('apellidos_p',null,['class' => 'form-control','placeholder' => 'Ej: Carlos Marquez', 'title' => 'Ingrese los Apellidos del Padre', 'style'=>$errors->has('apellidos_p') ? 'border-color: red; border: 1px solid red;': '']) !!}
+			{!! Form::text('apellidos_p',null,['class' => 'form-control','placeholder' => 'Ej: Marquez Morgado', 'title' => 'Ingrese los Apellidos del Padre', 'style'=>$errors->has('apellidos_p') ? 'border-color: red; border: 1px solid red;': '']) !!}
 		</div>
 
 		<div class="form-group{{ $errors->has('padre_vive') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
 			{!! Form::label('padre_vive','¿Vive con el estudiante?') !!}
-			{!! Form::label('padre_vive','Si') !!}
-			{!! Form::radio('padre_vive','Si',['class' => 'form-control']) !!}
-			{!! Form::label('padre_vive','No') !!}
-			{!! Form::radio('padre_vive','No',['class' => 'form-control']) !!}
+			<input type="checkbox" name="vive_p" value="Si" title="Seleccione si el Padre vive con el Estudiante">
 		</div>
 			
 	</div>
@@ -128,32 +129,29 @@
 			{!! Form::label('datos_madre','Datos de la Madre') !!}
 		</div>
 
-		<div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
+		<div class="form-group{{ $errors->has('cedula_m') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
 			{!! Form::label('nacionalidad_m','Cédula') !!}
 			{!! Form::select('nacionalidad_m',['V','E'],['class' => 'form-control','title' => 'Seleccione la Nacionalidad de la Madre']) !!}
-			{!! Form::number('cedula_p',null,['class' => 'form-control','title' => 'Ingrese la cédula de la Madre','id' => 'cedula_m', 'placeholder' => 'Ej: 1234567','maxlength' => '8', 'style'=>$errors->has('cedula_m') ? 'border-color: red; border: 1px solid red;': '','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+			{!! Form::number('cedula_m',null,['class' => 'form-control','title' => 'Ingrese la cédula de la Madre','id' => 'cedula_m', 'placeholder' => 'Ej: 1234567','maxlength' => '8', 'style'=>$errors->has('cedula_m') ? 'border-color: red; border: 1px solid red;': '','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
 		</div>
 		
 		<div class="form-group{{ $errors->has('nombres_m') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
 			{!! Form::label('nombres_m','Nombres') !!}
-			{!! Form::text('nombres_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana López', 'title' => 'Ingrese los Nombres de la Madre']) !!}
+			{!! Form::text('nombres_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana María', 'title' => 'Ingrese los Nombres de la Madre']) !!}
 		</div>
 
 		<div class="form-group{{ $errors->has('apellidos_m') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
 			{!! Form::label('apellidos_m','Apellidos') !!}
-			{!! Form::text('apellidos_m',null,['class' => 'form-control','placeholder' => 'Ej: Diana López', 'title' => 'Ingrese los Apellidos de la Madre']) !!}
+			{!! Form::text('apellidos_m',null,['class' => 'form-control','placeholder' => 'Ej: López Sevilla', 'title' => 'Ingrese los Apellidos de la Madre']) !!}
 		</div>
 
 		<div class="form-group{{ $errors->has('madre_vive') ? ' has-error' : '' }}">
 		(<span style="color: red;">*</span>)
-			{!! Form::label('madre_vive','¿Vive con el estudiante?') !!}
-			{!! Form::label('madre_vive','Si') !!}
-			{!! Form::radio('madre_vive','Si',['class' => 'form-control']) !!}
-			{!! Form::label('madre_vive','No') !!}
-			{!! Form::radio('madre_vive','No',['class' => 'form-control']) !!}
+			{!! Form::label('vive_con','¿Vive con el estudiante?') !!}
+			<input type="checkbox" name="vive_m" value="Si" title="Seleccione si la Madre vive con el Estudiante">
 		</div>
 			
 

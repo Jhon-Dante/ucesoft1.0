@@ -47,27 +47,43 @@
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Cédula</th>
+                  <th>¿Repite?</th>
+                  <th>¿Materias pendientes?</th>
+                  <th>Opciones</th>
                 </tr>
               </thead>
               <tbody>
-              @foreach($datosBasicos as $dato_basico)
+              @foreach($preinscripcion as $preinscri)
                 <tr>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico->nombres}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico->apellidos}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"> {{$dato_basico->cedula}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}">{{$num=$num+1}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->datosbasicos->nombres}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->datosbasicos->apellidos}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->datosbasicos->cedula}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->repite}}</a></td>
+                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->pendiente}}</a></td>
                   <td>
                  
                   <div class="btn-group">
-                      <a href="{{ route('admin.DatosBasicos.edit', [$dato_basico->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      <a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="#"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="#"><button onclick="eliminar({{$preinscri->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                       </div>
                   </td>
                   
                 </tr>
               @endforeach
-              <div id="myModal" class="modal fade" role="dialog">
+              
+              </tbody>    
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.content-wrapper -->
+<div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -83,7 +99,7 @@
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
                     {!! Form::open(['route' => ['admin.DatosBasicos.destroy',0133], 'method' => 'DELETE']) !!}
-                        <input type="hidden" id="curso" name="id">
+                        <input type="text" id="id_datoBasico" name="datoBasico">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}
 
@@ -91,13 +107,10 @@
             </div>
         </div>
     </div>
-              </tbody>    
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</div><!-- /.content-wrapper -->
+<script type="text/javascript">
+  
+  function eliminar(id) {
+    $("#id_datoBasico").val(id);
+  }
+</script>
 @endsection
