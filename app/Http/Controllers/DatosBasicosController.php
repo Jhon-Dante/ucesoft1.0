@@ -28,8 +28,10 @@ class DatosBasicosController extends Controller
     {
         $num=0;
         //$datosBasicos=DatosBasicos::all();
+        $padres=Padres::all();
         $preinscripcion=Preinscripcion::all();
-        return View('admin.DatosBasicos.index', compact('preinscripcion','num'));
+        $datosbasicos=DatosBasicos::all();
+        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos'));
     }
 
     /**
@@ -372,8 +374,8 @@ class DatosBasicosController extends Controller
      */
     public function edit($id)
     {
-        $representante=Representantes::lists('nombres','id');
-        return View('admin.datosBasicos.edit', compact('representante'));
+        $representantes=Representantes::all();
+        return View('admin.datosBasicos.edit', compact('representantes'));
     }
 
     /**

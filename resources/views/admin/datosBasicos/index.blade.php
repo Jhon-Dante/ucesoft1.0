@@ -64,10 +64,15 @@
                   <td>
                  
                   <div class="btn-group">
+
+                      <a href="#"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+  
+
                       <a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
                       <a href="#"><button onclick="eliminar({{$preinscri->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
-                      </div>
+                  </div>
+                      
                   </td>
                   
                 </tr>
@@ -107,6 +112,25 @@
             </div>
         </div>
     </div>
+
+<div id="myModal2"  class="modal fade" role="dialog">
+  <div class="modal-dialog">
+            <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Datos del estudiante</h4>
+      </div>
+      <div class="modal-body">               
+                @include('admin.datosBasicos.partials.ver-fields')
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
   
   function eliminar(id) {

@@ -23,8 +23,8 @@ class CreateInscritosTable extends Migration
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
             $table->foreign('id_seccion')->references('id')->on('secciones')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
+        });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -32,6 +32,6 @@ class CreateInscritosTable extends Migration
      */
     public function down()
     {
-        //
+        schema::drop('inscritos');
     }
 }

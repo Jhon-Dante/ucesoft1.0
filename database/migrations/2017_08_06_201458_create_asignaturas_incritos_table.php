@@ -20,6 +20,8 @@ class CreateAsignaturasIncritosTable extends Migration
 
             $table->foreign('id_inscrito')->references('id')->on('preinscripcion')->onDelete('cascade');
             $table->foreign('id_asignatura')->references('id')->on('asignaturas')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,6 +31,6 @@ class CreateAsignaturasIncritosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('asignaturas_inscritos');
     }
 }
