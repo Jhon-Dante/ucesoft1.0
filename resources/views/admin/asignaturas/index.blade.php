@@ -60,7 +60,7 @@
               <td>                   
                     <div class="btn-group">
 
-                        <a href="#"><button value="{{$asignatura->id}}" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i>
+                        <a href="#"><button onclick="mostrardatos({{$asignatura->id}})" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i>
 
                         <input type="hidden" name="id" value="{{$asignatura->id}}"></button></a>  
 
@@ -69,33 +69,7 @@
                         <a href="#" ><button onclick="asignatura({{ $asignatura->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
                         <br><br>
                     </div>
-                    <div id="myModal2" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                      <!-- Modal content-->
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Datos de la asignatura</h4>
-                                </div>
-                                <div class="modal-body"> 
-                                          
-                                          @if($asignatura->id)         
-                                            <div class="form-group">
-                                              {!! Form::label('asignatura','Asignatura:') !!}
-                                              {{$asignatura->asignatura}}
-                                            </div><br>
-                                            <div class="form-group">
-                                              {!! Form::label('curso','Curso:') !!}
-                                              {{$asignatura->id_curso}}
-                                            </div>
-                                          @endif
-                                </div>
-                                <div class="modal-footer">
-                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                    
                   </td>
                 </tr>
               @endforeach
@@ -144,4 +118,33 @@
         }
 
     </script>
+
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Datos de la asignatura</h4>
+      </div>
+        <div class="modal-body"> 
+          <form name="form" id="form" action="#">
+            <input type="text" name="id_asignatura" id="id_asig" disabled="disabled" style="border: 0px; background-color: #FFFFFF"  > 
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+   function mostrardatos(id)
+    {
+      
+        $('#id_asig').val(id);
+    }
+</script>
 @endsection
