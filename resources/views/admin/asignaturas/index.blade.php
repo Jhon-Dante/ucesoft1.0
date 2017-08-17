@@ -60,7 +60,7 @@
               <td>                   
                     <div class="btn-group">
 
-                        <a href="#"><button onclick="mostrardatos({{$asignatura->id}})" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i>
+                        <a href="#"><button onclick="mostrardatos({{$asignatura->asignatura}},{{$asignatura->cursos->curso}})" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i>
 
                         <input type="hidden" name="id" value="{{$asignatura->id}}"></button></a>  
 
@@ -128,9 +128,10 @@
             <h4 class="modal-title">Datos de la asignatura</h4>
       </div>
         <div class="modal-body"> 
-          <form name="form" id="form" action="#">
-            <input type="text" name="id_asignatura" id="id_asig" disabled="disabled" style="border: 0px; background-color: #FFFFFF"  > 
-          </form>
+          
+            <input type="text" name="asignatura" id="asignatura" disabled="disabled" style="border: 0px; background-color: #FFFFFF"  > 
+            <input type="text" name="curso" id="curso" disabled="disabled" style="border: 0px; background-color: #FFFFFF"  > 
+            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
@@ -141,10 +142,11 @@
 
 <script type="text/javascript">
   
-   function mostrardatos(id)
+   function mostrardatos(asignatura,curso)
     {
       
-        $('#id_asig').val(id);
+        $('#asignatura').val(asignatura);
+        $('#curso').val(curso);
     }
 </script>
 @endsection
