@@ -60,9 +60,7 @@
               <td>                   
                     <div class="btn-group">
 
-                        <a href="#"><button onclick="mostrardatos({{$asignatura->asignatura}},{{$asignatura->cursos->curso}})" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i>
-
-                        <input type="hidden" name="id" value="{{$asignatura->id}}"></button></a>  
+                        <a href="#"><button onclick="mostrardatos('{{$asignatura->asignatura}}','{{$asignatura->cursos->curso}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>  
 
                         <a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -128,9 +126,8 @@
             <h4 class="modal-title">Datos de la asignatura</h4>
       </div>
         <div class="modal-body"> 
-          
-            <input type="text" name="asignatura" id="asignatura" disabled="disabled" style="border: 0px; background-color: #FFFFFF"  > 
-            <input type="text" name="curso" id="curso" disabled="disabled" style="border: 0px; background-color: #FFFFFF"  > 
+            <label><strong>Asignatura: </strong></label><p id="asignaturas"><span></span></p>
+            <label><strong>Curso: </strong></label><p id="curso"><span></span></p>
             
         </div>
         <div class="modal-footer">
@@ -145,8 +142,8 @@
    function mostrardatos(asignatura,curso)
     {
       
-        $('#asignatura').val(asignatura);
-        $('#curso').val(curso);
+        $('#asignaturas').text(asignatura);
+        $('#curso').text(curso);
     }
 </script>
 @endsection
