@@ -65,7 +65,27 @@
                  
                   <div class="btn-group">
 
-                      <a href="#"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+                      <a href="#"><button onclick="mostrardatos(
+                        '{{$preinscri->datosbasicos->nombres}}',
+                        '{{$preinscri->datosbasicos->apellidos}}',
+                        '{{$preinscri->datosbasicos->nacionalidad}}-{{$preinscri->datosbasicos->cedula}}',
+                        '{{$preinscri->datosbasicos->lugar_nac}}',
+                        '{{$preinscri->datosbasicos->estado}}',
+                        '{{$preinscri->datosbasicos->fecha_nac}}',
+                        '{{$preinscri->datosbasicos->edad}}',
+                        '{{$preinscri->datosbasicos->sexo}}',
+                        '{{$preinscri->datosbasicos->peso}}',
+                        '{{$preinscri->datosbasicos->talla}}',
+                        '{{$preinscri->datosbasicos->salud}}',
+                        '{{$preinscri->datosbasicos->direccion}}',
+                        '{{$preinscri->datosbasicos->nombre_p}}',
+                        '{{$preinscri->datosbasicos->cedula_p}}',
+                        '{{$preinscri->datosbasicos->vive_p}}',
+                        '{{$preinscri->datosbasicos->nombre_m}}',
+                        '{{$preinscri->datosbasicos->cedula_m}}',
+                        '{{$preinscri->datosbasicos->vive_m}}')" 
+
+                        class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
   
 
                       <a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
@@ -122,7 +142,60 @@
         <h4 class="modal-title">Datos del estudiante</h4>
       </div>
       <div class="modal-body">               
-                @include('admin.datosBasicos.partials.ver-fields')
+        <strong>Nombres: </strong>
+        <p id="nombres"><span></span></p>
+        <br>
+        <strong>Apellidos: </strong>
+        <p id="apellidos"><span></span></p>
+        <br>
+        <strong>Cédula: </strong> 
+        <p id="cedula"><span></span></p>
+        <br>
+        <strong>Lugar de Nacimiento: </strong> 
+        <p id="lugar_nac"><span></span></p>
+        <br>
+        <strong>Estado: </strong> 
+        <p id="estado"><span></span></p>
+        <br>
+        <strong>Fecha de Nacimiento: </strong> 
+        <p id="fecha_nac"><span></span></p>
+        <br>
+        <strong>Edad: </strong> 
+        <p id="edad"><span></span></p>
+        <br>
+        <strong>Sexo: </strong> 
+        <p id="sexo"><span></span></p>
+        <br>
+        <strong>Peso: </strong> 
+        <p id="peso"><span></span></p>
+        <br>
+        <strong>Talla: </strong> 
+        <p id="talla"><span></span></p>
+        <br>
+        <strong>Salud: </strong> 
+        <p id="salud"><span></span></p>
+        <br>
+        <strong>Dirección: </strong> 
+        <p id="direccion"><span></span></p>
+        <br>
+        <strong>Nombre del Padre: </strong> 
+        <p id="nombre_p"><span></span></p>
+        <br>
+        <strong>Cédula del Padre: </strong> 
+        <p id="cedula_p"><span></span></p>
+        <br>
+        <strong>¿El padre vive?: </strong> 
+        <p id="vive_p"><span></span></p>
+        <br>
+        <strong>Nombre de la madre: </strong> 
+        <p id="nombre_m"><span></span></p>
+        <br>
+        <strong>Cédula de la madre: </strong> 
+        <p id="cedula_m"><span></span></p>
+        <br>
+        <strong>¿La madre vive?: </strong> 
+        <p id="vive_m"><span></span></p>
+        <br>
       </div>
       <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
@@ -135,6 +208,28 @@
   
   function eliminar(id) {
     $("#id_datoBasico").val(id);
+  }
+
+  function mostrardatos(nombres,apellidos,cedula,lugar_nac,estado,fecha_nac,edad,sexo,peso,talla,salud,direccion,nombre_p,cedula_p,vive_p,nombre_m,cedula_m,vive_m)
+  {
+    $('#nombres').text(nombres);
+    $('#apellidos').text(apellidos);
+    $('#cedula').text(cedula);
+    $('#lugar_nac').text(lugar_nac);
+    $('#estado').text(estado);
+    $('#fecha_nac').text(fecha_nac);
+    $('#edad').text(edad);
+    $('#sexo').text(sexo);
+    $('#peso').text(peso);
+    $('#talla').text(talla);
+    $('#salud').text(salud);
+    $('#direccion').text(direccion);
+    $('#nombre_p').text(nombre_p);
+    $('#cedula_p').text(cedula_p);
+    $('#vive_p').text(vive_p);
+    $('#nombre_m').text(nombre_m);
+    $('#cedula_m').text(cedula_m);
+    $('#vive_m').text(vive_m);
   }
 </script>
 @endsection

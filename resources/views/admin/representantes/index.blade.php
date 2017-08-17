@@ -63,7 +63,27 @@
 
                   <div class="btn-group">
 
-                      <a href="#"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+                      <a href="#"><button onclick="mostrardatos(
+                      '{{$representante->nacionalidad}}-{{$representante->cedula}}',
+                      '{{$representante->nombres}}',
+                      '{{$representante->apellidos}}',
+                      '{{$representante->profesion}}',
+                      '{{$representante->parentesco->parentesco}}',
+                      '{{$representante->vive_estu}}',
+                      '{{$representante->ingreso_apx}} Bs.F.',
+                      '{{$representante->n_familia}}',
+                      '{{$representante->direccion}}',
+                      '{{$representante->codigo_hab}}-{{$representante->telf_hab}}',
+                      '{{$representante->lugar_tra}}',
+                      '{{$representante->codigo_tra}}-{{$representante->telf_tra}}',
+                      '{{$representante->responsable_m}}',
+                      '{{$representante->codigo_responsable}}-{{$representante->telf_responsable}}',
+                      '{{$representante->codigo_opcional}}-{{$representante->telf_opcional}}',
+                      '{{$representante->nombre_opcional}}',
+                      '{{$representante->codigo_emergencia}}-{{$representante->telf_emergencia}}')"
+
+
+                       class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="{{ route('admin.representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -119,7 +139,53 @@
         <h4 class="modal-title">Datos del representantes</h4>
       </div>
       <div class="modal-body">               
-                @include('admin.representantes.partials.ver-fields')
+        <strong>Cédula: </strong>
+        <p id="cedula"><span></span></p>
+        <br>        
+        <strong>Nombres: </strong>
+        <p id="nombres"><span></span></p>
+        <br>
+        <strong>Apellidos: </strong>
+        <p id="apellidos"><span></span></p>
+        <br>
+        <strong>Profesión: </strong>
+        <p id="profesion"><span></span></p>
+        <br>
+        <strong>Parentesco: </strong>
+        <p id="parentesco"><span></span></p>
+        <br>
+        <strong>¿Vive con el estudiante? </strong>
+        <p id="vive_estu"><span></span></p>
+        <br>
+        <strong>Ingresos Aproximados: </strong>
+        <p id="ingreso_apx"><span></span></p>
+        <br>
+        <strong>Número de familiares en el hogar: </strong>
+        <p id="n_familia"><span></span></p>
+        <br>
+        <strong>Dirección: </strong>
+        <p id="direccion"><span></span></p>
+        <br>
+        <strong>teléfono de habitación: </strong>
+        <p id="telf_hab"><span></span></p>
+        <br>
+        <strong>Lugar de trabajo: </strong>
+        <p id="lugar_tra"><span></span></p>
+        <br>
+        <strong>Teléfono del trabajo: </strong>
+        <p id="telf_tra"><span></span></p>
+        <br>
+        <strong>Responsable de pagar las mensualidades: </strong>
+        <p id="responsable_m"><span></span></p>
+        <br>
+        <strong>Teléfono del responsable: </strong>
+        <p id="telf_responsable"><span></span></p>
+        <br>
+        <strong>Teléfono opcional: </strong>
+        <p id="telf_opcional"><span></span></p>
+        <br>
+        <strong>Teléfono de emergencia: </strong>
+        <p id="telf_emergencia"><span></span></p>
       </div>
       <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
@@ -130,8 +196,28 @@
 
 <script type="text/javascript">
   
-  function eliminar(id) {
+  function eliminar(id) 
+  {
     $("#id_representante").val(id);
+  }
+  function mostrardatos(cedula,nombres,apellidos,profesion,parentesco,vive_estu,ingreso_apx,n_familia,direccion,telf_hab,lugar_tra,telf_tra,responsable_m,telf_responsable,telf_opcional,telf_emergencia) 
+  {
+    $('#cedula').text(cedula);
+    $('#nombres').text(nombres);
+    $('#apellidos').text(apellidos);
+    $('#profesion').text(profesion);
+    $('#parentesco').text(parentesco);
+    $('#vive_estu').text(vive_estu);
+    $('#ingreso_apx').text(ingreso_apx);
+    $('#n_familia').text(n_familia);
+    $('#direccion').text(direccion);
+    $('#telf_hab').text(telf_hab);
+    $('#lugar_tra').text(lugar_tra);
+    $('#telf_tra').text(telf_tra);
+    $('#responsable_m').text(responsable_m);
+    $('#telf_responsable').text(telf_responsable);
+    $('#telf_opcional').text(telf_opcional);
+    $('#telf_emergencia').text(telf_emergencia);
   }
 </script>
 @endsection

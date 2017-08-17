@@ -60,10 +60,31 @@
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->apellidos}}                 </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacionalidad}}-{{$perso->cedula}}  </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}                </a></td>
+                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}</a>
+                </td>
 
                <td>
                 <div class="btn-group">
+
+                    <a href="#"><button onclick="mostrardatos(
+                    '{{$perso->nombres}}',
+                    '{{$perso->apellidos}}',
+                    '{{$perso->nacionalidad}}-{{$perso->cedula}}',
+                    '{{$perso->fecha_nacimiento}}',
+                    '{{$perso->fecha_ingreso}}',
+                    '{{$perso->edad}}',
+                    '{{$perso->edo_civil}}',
+                    '{{$perso->direccion}}',
+                    '{{$perso->genero}}',
+                    '{{$perso->codigo_hab}}-{{$perso->telf_hab}}',
+                    '{{$perso->codigo_cel}}-{{$perso->celular}}',
+                    '{{$perso->correo}}',
+                    '{{$perso->cargo->cargo}}')" 
+
+                    class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+
+
+
                     <a href="{{ route('admin.personal.edit', [$perso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
                     <button onclick="eliminar({{ $perso->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button>
@@ -108,12 +129,83 @@
         </div>
     </div>
 
+    <div id="myModal2"  class="modal fade" role="dialog">
+  <div class="modal-dialog">
+            <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Datos del personal</h4>
+      </div>
+      <div class="modal-body">               
+        <strong>Nombres: </strong>
+        <p id="nombres"><span></span></p>
+        <br>
+        <strong>Apellidos: </strong>
+        <p id="apellidos"><span></span></p>
+        <br>
+        <strong>Cédula: </strong><span></span> 
+        <p id="cedula"><span></span></p>
+        <br>
+        <strong>Fecha de Nacimiento: </strong><span></span> 
+        <p id="fecha_nacimiento"><span></span></p>
+        <br>
+        <strong>Fecha de ingreso: </strong><span></span> 
+        <p id="fecha_ingreso"><span></span></p>
+        <br>
+        <strong>Edad: </strong><span></span> 
+        <p id="edad"><span></span></p>
+        <br>
+        <strong>Estado civil: </strong><span></span> 
+        <p id="edo_civil"><span></span></p>
+        <br>
+        <strong>Direccion: </strong><span></span> 
+        <p id="direccion"><span></span></p>
+        <br>
+        <strong>Genero: </strong><span></span> 
+        <p id="genero"><span></span></p>
+        <br>
+        <strong>Teléfono de habitación: </strong><span></span> 
+        <p id="telf_hab"><span></span></p>
+        <br>
+        <strong>Celular: </strong><span></span> 
+        <p id="celular"><span></span></p>
+        <br>
+        <strong>Correo Eléctrónico: </strong><span></span> 
+        <p id="correo"><span></span></p>
+        <br>
+        <strong>Cargo: </strong><span></span> 
+        <p id="cargo"><span></span></p>
+        <br>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
    <script type="text/javascript">
 
         function eliminar(id){
 
             $('#personal').val(id);
         }
-
+        function mostrardatos(nombres,apellidos,cedula,fecha_nacimiento,fecha_ingreso,edad,edo_civil,direccion,genero,telf_hab,celular,correo,cargo) 
+        {
+            $('#nombres').text(nombres);
+            $('#apellidos').text(apellidos);
+            $('#cedula').text(cedula);
+            $('#fecha_nacimiento').text(fecha_nacimiento);
+            $('#fecha_ingreso').text(fecha_ingreso);
+            $('#edad').text(edad);
+            $('#edo_civil').text(edo_civil);
+            $('#direccion').text(direccion);
+            $('#genero').text(genero);
+            $('#telf_hab').text(telf_hab);
+            $('#celular').text(celular);
+            $('#correo').text(correo);
+            $('#cargo').text(cargo);
+        }
     </script>
 @endsection

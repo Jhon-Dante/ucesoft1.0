@@ -20,7 +20,7 @@ class AsignaturasController extends Controller
      */
     public function index()
     {
-        $a=Asignaturas::all();
+        $a=0;
         $num=0;
         $asignaturas=Asignaturas::all();
         return View('admin.asignaturas.index', compact('asignaturas','num','a'));
@@ -68,9 +68,12 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        dd($request->all());
+        $a=$request->id;
+        $asignaturas=Asignaturas::all();
+        return View('admin.asignaturas.show', compact('asignaturas','num','a'));
     }
 
     /**

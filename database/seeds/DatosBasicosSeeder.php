@@ -29,6 +29,13 @@ class DatosBasicosSeeder extends Seeder
             
         ]);
 
+        DB::table('preinscripcion')->insert([  
+            'id_datosBasicos' => 1,
+            'repite' => 'No',
+            'pendiente' => 'No',
+            'id_periodo' => 1
+        ]);
+
         DB::table('datos_basicos')->insert([
             'nacionalidad' => 'E',
             'cedula' => '00002323211999543',
@@ -45,6 +52,13 @@ class DatosBasicosSeeder extends Seeder
             'direccion' => 'Calle Soubllette, casa nro. 99',
             'id_representante' => 2
             
+        ]);
+
+         DB::table('preinscripcion')->insert([  
+            'id_datosBasicos' => 2,
+            'repite' => 'No',
+            'pendiente' => 'No',
+            'id_periodo' => 1
         ]);
 
         DB::table('datos_basicos')->insert([
@@ -65,6 +79,13 @@ class DatosBasicosSeeder extends Seeder
             
         ]);
 
+        DB::table('preinscripcion')->insert([  
+            'id_datosBasicos' => 3,
+            'repite' => 'No',
+            'pendiente' => 'No',
+            'id_periodo' => 1
+        ]);
+
         DB::table('datos_basicos')->insert([
             'nacionalidad' => 'V',
             'cedula' => '20653434',
@@ -83,5 +104,12 @@ class DatosBasicosSeeder extends Seeder
             
         ]);
 
+        DB::table('preinscripcion')->insert([  
+            'id_datosBasicos' => 4,
+            'repite' => 'No',
+            'pendiente' => 'No',
+            'id_periodo' => 1
+        ]);
+   
     }
 }
