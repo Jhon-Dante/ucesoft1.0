@@ -32,6 +32,11 @@ class DatosBasicos extends Model
 	{
 		return $this->hasMany('App\Inscritos','id_datosBasicos','id');
 	}
+	public function inscripcion()
+	{
+		return $this->hasMany('App\Asignaturas_inscripcion','id_datosBasicos','id');
+	}
+	
 
 	
 

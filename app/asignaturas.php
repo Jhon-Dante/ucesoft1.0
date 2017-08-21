@@ -21,5 +21,13 @@ class Asignaturas extends Model
     {
     	return $this->hasMany('App\AsignaturasInscritos','id_asignatura','id');
     }
+    public function inscripcion()
+    {
+        return $this->hasMany('App\Inscripcion','id_asignatura','id');
+    }
+    public function asignatura_inscripcion()
+    {
+        return $this->hasMany('App\Asignaturas_inscripcion','id_asignatura','id');
+    }
 
 }

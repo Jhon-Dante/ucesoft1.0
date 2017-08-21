@@ -56,12 +56,11 @@ class DatosBasicosController extends Controller
 
     public function buscarEstudiante(Request $request)
     {
-        $opcion=0;
         $representantes=Representantes::all();
         $padres=Padres::all();
         $datosBasicos=DatosBasicos::all();
-        $datosBasicos2=DatosBasicos::find($request->id_estudiante);
-        $id_estudiante=$datosBasicos2->id;
+        $datosBasicos2=DatosBasicos::where('id',$request->id_estudiante)->get();
+        $id_estudiante=$request->id_estudiante;
         $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
         
                 

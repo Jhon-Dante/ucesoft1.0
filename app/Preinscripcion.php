@@ -19,8 +19,4 @@ class Preinscripcion extends Model
     	return $this->belongsTo('App\Periodos','id_periodo');
     }
 
-    public function asignaturaspreinscripcion()
-    {
-        return $this->hasMany('App\AsignaturasPreinscripcion','id_preinscripcion','id');
-    }
 }

@@ -17,4 +17,8 @@ class Seccion extends Model
     {
     	return $this->hasMany('App\Inscritos','id_seccion','id');
     }
+    public function asignaturas_inscripcion()
+    {
+        return $this->hasMany('App\Asignaturas_inscripcion','id_seccion','id');
+    }
 }
