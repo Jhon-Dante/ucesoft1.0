@@ -24,20 +24,13 @@ class DatosBasicos extends Model
 		return $this->hasMany('App\Recaudos','id_datosBasicos','id');
 	}
 
-	public function preinscripciones()
+	public function preinscripcion()
 	{
 		return $this->hasMany('App\Preinscripcion','id_datosBasicos','id');
 	}
-	public function inscritos()
-	{
-		return $this->hasMany('App\Inscritos','id_datosBasicos','id');
-	}
 	public function inscripcion()
 	{
-		return $this->hasMany('App\Asignaturas_inscripcion','id_datosBasicos','id');
+		return $this->hasMany('App\Inscripcion','id_datosBasicos','id');
 	}
 	
-
-	
-
 }

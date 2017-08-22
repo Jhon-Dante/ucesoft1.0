@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Asignaturas_inscripcion extends Model
 {
     protected $table='asignaturas_inscripcion';
-    protected $fillable=['id','id_asignaturas','id_inscripcion','pen_rep'];
+    protected $fillable=['id','id_asignatura','id_inscripcion','pen_rep'];
 }
-public function asignatura()
+public function asignaturas()
 {
-	return $this->belongsTo('App\asignaturas','id_asignaturas','id');
+	return $this->belongsTo('App\asignaturas','id_asignatura','id');
 }
 public function inscripcion()
 {

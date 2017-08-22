@@ -11,11 +11,11 @@ class AsignaturasPreinscripcion extends Model
 
     public function asignaturas()
     {
-    	return $this->belongsTo('App\Asignaturas','id_asignatura');
+    	return $this->belongsTo('App\Asignaturas','id_asignatura','id');
     }
 
     public function preinscripcion()
     {
-    	return $this->belongsTo('App\Preinscripcion','id_preinscripcion');
+    	return $this->belongsTo('App\Preinscripcion','id_preinscripcion','id');
     }
 }

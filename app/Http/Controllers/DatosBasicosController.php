@@ -19,6 +19,7 @@ use App\Preinscripcion;
 use App\Periodos;
 use App\Seccion;
 use App\Cursos;
+use App\Inscripcion;
 
 class DatosBasicosController extends Controller
 {
@@ -59,27 +60,36 @@ class DatosBasicosController extends Controller
 
     public function buscarEstudiante(Request $request)
     {
-        $representantes=Representantes::all();
-        $padres=Padres::all();
+
         $secciones=Seccion::all();
+        $inscripciones=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
+        
+            if (count($inscripciones)>0)
+            {
+                   $id_curso_next=$inscripciones->seccion->curso->id+1;
+                   dd($id_curso_next);
+            }
+            else
+            {
+                    $id_curso=0;
+            }
+            
         $datosBasicos=DatosBasicos::all();
         $periodos=Periodos::lists('periodo','id');
-        $datosBasicos2=DatosBasicos::where('id',$request->id_estudiante)->get();
+        $datosBasicos2=DatosBasicos::find($request->id_estudiante);
         $id_estudiante=$request->id_estudiante;
-        $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
         $asignaturas=Asignaturas::all();
-        
-                
-        return View('admin.datosBasicos.reinscribir', compact('representantes','parentescos','secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas'));    
+
+        return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones'));
     }
 
     public function reinscribir(Request $request)
     {
-        dd($request->all());
-        $reinscribir=Inscribir::create([
-            'id_datosBasicos' = $request->id_datosBasicos,
-            'id_seccion' = $request->id_seccion,
-            'id_periodo' = $request->id_periodo
+        // dd($request->all());
+        $reinscribir=Inscritos::create([
+            'id_datosBasicos' => $request->id_datosBasicos,
+            'id_seccion' => $request->id_seccion,
+            'id_periodo' => $request->id_periodo
             ]);
         $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get();
         if($eli_preinscripcion->delete()){

@@ -33,8 +33,16 @@
 					</div>
 					<div class="col-xs-12">
 							<div class="panel panel-default">
-								<div class="panel-heading"><strong>Reinscripción</strong></div>
-
+								<div class="panel-heading">
+									@if(count($datosBasicos2->preinscripcion)>0)
+										<strong>INSCRIPCIÓN: El estudiante aún se encuentra en preinscripción</strong>
+									@else
+										<strong>El estudiante ya se encuentra Inscrito en el sistema</strong> - Asignar a un nuevo curso
+									@endif
+								</div>
+								
+								
+								
 								<div class="panel-body">
 									{!! Form::open(['route' => ['admin.DatosBasicos.reinscribir'], 'method' => 'post']) !!}
 	                
