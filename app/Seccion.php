@@ -11,7 +11,7 @@ class Seccion extends Model
 
     public function curso()
     {
-    	return $this->belongsTo('App\Cursos', 'id_curso');
+    	return $this->belongsTo('App\Cursos', 'id_curso','id');
     }
     public function inscritos()
     {

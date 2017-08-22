@@ -9,7 +9,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Asignaturas')
+        @yield('contentheader_title', 'Estudiantes')
         <small>Reinscripción</small>
     </h1>
     <ol class="breadcrumb">
@@ -33,7 +33,7 @@
 					</div>
 					<div class="col-xs-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">Reinscripción <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
+								<div class="panel-heading"><strong>Reinscripción</strong></div>
 
 								<div class="panel-body">
 									{!! Form::open(['route' => ['admin.DatosBasicos.reinscribir'], 'method' => 'post']) !!}

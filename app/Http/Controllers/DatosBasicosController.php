@@ -17,6 +17,9 @@ use App\Parentesco;
 use App\AsignaturasPreinscripcion;
 use App\Preinscripcion;
 use App\Periodos;
+use App\Seccion;
+use App\Cursos;
+
 class DatosBasicosController extends Controller
 {
     /**
@@ -58,18 +61,36 @@ class DatosBasicosController extends Controller
     {
         $representantes=Representantes::all();
         $padres=Padres::all();
+        $secciones=Seccion::all();
         $datosBasicos=DatosBasicos::all();
+        $periodos=Periodos::lists('periodo','id');
         $datosBasicos2=DatosBasicos::where('id',$request->id_estudiante)->get();
         $id_estudiante=$request->id_estudiante;
         $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
+        $asignaturas=Asignaturas::all();
         
                 
-        return View('admin.datosBasicos.reinscribir', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','datosBasicos2'));    
+        return View('admin.datosBasicos.reinscribir', compact('representantes','parentescos','secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas'));    
     }
 
     public function reinscribir(Request $request)
     {
-        
+        dd($request->all());
+        $reinscribir=Inscribir::create([
+            'id_datosBasicos' = $request->id_datosBasicos,
+            'id_seccion' = $request->id_seccion,
+            'id_periodo' = $request->id_periodo
+            ]);
+        $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get();
+        if($eli_preinscripcion->delete()){
+
+            flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','succes');
+        }
+        else
+        {
+            flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
+        }
+        return redirect()->route('admin.datosBasicos.index');
     }
     /**
      * Store a newly created resource in storage.
