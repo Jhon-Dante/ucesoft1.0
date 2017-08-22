@@ -83,7 +83,6 @@ class DatosBasicosController extends Controller
             ]);
         $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get();
         if($eli_preinscripcion->delete()){
-
             flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','succes');
         }
         else
