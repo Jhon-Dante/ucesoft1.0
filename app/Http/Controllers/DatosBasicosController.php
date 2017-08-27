@@ -30,6 +30,7 @@ class DatosBasicosController extends Controller
      */
     public function index()
     {
+        
         $num=0;
         //$datosBasicos=DatosBasicos::all();
         $padres=Padres::all();
@@ -67,7 +68,7 @@ class DatosBasicosController extends Controller
             if (count($inscripciones)>0)
             {
                    $id_curso_next=$inscripciones->seccion->curso->id+1;
-                   dd($id_curso_next);
+                   // dd($id_curso_next);
             }
             else
             {
@@ -75,23 +76,45 @@ class DatosBasicosController extends Controller
             }
             
         $datosBasicos=DatosBasicos::all();
-        $periodos=Periodos::lists('periodo','id');
+        $periodos=Periodos::all();
         $datosBasicos2=DatosBasicos::find($request->id_estudiante);
         $id_estudiante=$request->id_estudiante;
         $asignaturas=Asignaturas::all();
 
-        return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones'));
+        return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones','id_curso_next'));
     }
 
     public function reinscribir(Request $request)
     {
-        // dd($request->all());
-        $reinscribir=Inscritos::create([
+        
+        
+        $reinscribir=Inscripcion::create([
             'id_datosBasicos' => $request->id_datosBasicos,
             'id_seccion' => $request->id_seccion,
             'id_periodo' => $request->id_periodo
             ]);
-        $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get();
+
+        $mensualidad=\DB::table('mensualidades')->insert(array(
+            'Enero' => 'No',
+            'Febrero' => 'No',
+            'Marzo' => 'No',
+            'Abril' => 'No',
+            'Mayo' => 'No',
+            'Junio' => 'No',
+            'Julio' => 'No',
+            'Agosto' => 'No',
+            'Septiembre' => 'No',
+            'Octubre' => 'No',
+            'Noviembre' => 'No',
+            'Diciembre' => 'No',
+
+            'id_datosBasicos' => $request->id_datosBasicos,
+            'id_periodo' => $request->id_periodo));
+
+        $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+
+        // dd($eli_preinscripcion);
+
         if($eli_preinscripcion->delete()){
             flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','succes');
         }

@@ -49,7 +49,7 @@
 						                 @include('admin.datosBasicos.partials.create-fields-regular')
 						                <div class="box-footer">
 						                <button type="submit" class="btn btn-primary">Enviar</button>
-						                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/datosBasicos')}}"><i class="fa fa-times"></i> Cancelar</a>
+						                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/DatosBasicos')}}"><i class="fa fa-times"></i> Cancelar</a>
 						              </div>
 						            {!! Form::close() !!} 
 	          							<!-- /.form-group -->

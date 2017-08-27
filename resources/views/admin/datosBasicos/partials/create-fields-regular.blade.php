@@ -43,19 +43,18 @@
 
 <div class="form-group">
 	{!! Form::label('seccion','Curso anterior:')!!}
-	@foreach($inscripciones as $inscripcion)
-		{{$inscripcion->seccion->curso->curso}}, <strong>Sección: </strong>{{$inscripcion->seccion->seccion}}
-	@endforeach
+
+		{{$inscripciones->seccion->curso->curso}}, <strong>Sección: </strong>{{$inscripciones->seccion->seccion}}
+
 </div>
 <div class="form-group">
 	{!! Form::label('seccion','Curso siguiente:')!!}
-	@foreach($inscripciones as $inscripcion)
-		@if($inscripcion->seccion->curso->curso == $inscripcion->seccion->curso->curso +1)
-			{{$inscripcion->seccion->curso->curso}}
+
+		@if($inscripciones->seccion->curso->id = $id_curso_next)
+			{{$inscripciones->seccion->curso->id}} - {{$inscripciones->seccion->curso->curso}}
 		@endif
-	@endforeach
 </div>
-<div>
+<div class="form-group">
 	{!! Form::label('seccion','Sección')!!}
 	<select name="id_seccion" class="form-group">
 		@foreach($secciones as $seccion)
@@ -64,6 +63,19 @@
 			@endif
 		@endforeach
 	</select>
+</div>
+
+<div class="form-group">
+	{!! Form::label('id_periodo','Período') !!}
+
+		@foreach($periodos as $peri)
+			 @if($peri->status == 'Activo')
+				{{$peri->periodo}}
+				{!! Form::hidden('id_periodo',$peri->id) !!}
+			@endif
+
+		@endforeach
+
 </div>
 
 

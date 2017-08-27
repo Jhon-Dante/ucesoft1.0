@@ -21,4 +21,8 @@ class Periodos extends Model
 	{
 		return $this->hasMany('App\Asignaturas_inscripcion','id_periodo','id');
 	}
+	public function mensualidad()
+	{
+		return $this->hasMany('App\Mensualidad','id_periodo','id');
+	}
 }

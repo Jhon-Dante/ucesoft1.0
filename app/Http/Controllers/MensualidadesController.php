@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Mensualidades;
 
 class MensualidadesController extends Controller
 {
@@ -15,8 +16,9 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
+        $mensualidades=Mensualidades::all();
         $num=0;
-        return View('admin.mensualidades.index',compact('num'));
+        return View('admin.mensualidades.index',compact('num','mensualidades'));
     }
 
     /**

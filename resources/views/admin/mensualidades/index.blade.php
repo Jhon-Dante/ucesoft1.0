@@ -37,7 +37,8 @@
                   <thead>
                     <tr>
                       <th>Nro</th>
-                      <th>Representante</th>
+                      <th>Estudiante</th>
+                      <th>Período</th>
                       <th>Enero</th>
                       <th>Febrero</th>
                       <th>Marzo</th>
@@ -48,25 +49,28 @@
                       <th>Agosto</th>
                       <th>Septiembre</th>
                       <th>Octubre</th>
-                      <th>Noviembre</th>
                       <th>Diciembre</th>
                     </tr>
-                    <tr>
-                      <th>1</th>
-                      <th>Carlos José</th>
-                      <th><img src="/img/iconos/bien.png" width="50" height="50" /></th>
-                      <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/bien.png"  width="50" height="50" /></th>
-                      <th><a href="{{ url('admin/mensualidades/create') }}"><img src="/img/iconos/mal.png"  width="50" height="50" /></a></th>
-                      <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
-                      <th><img src="/img/iconos/mal.png"  width="50" height="50" /></th>
-                    </tr>
+                    @foreach($mensualidades as $mensu)
+                <tr>
+                  <td>{{ $num=$num+1 }}</td>
+                  <td>{{$mensu->datoBasico->nombres}}</td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->id_datosBasicos]) }}"> {{$mensu->Enero}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Febrero]) }}"> {{$mensu->Febrero}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Marzo]) }}"> {{$mensu->Marzo}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Abril]) }}"> {{$mensu->Abril}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Mayo]) }}"> {{$mensu->Mayo}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Junio]) }}"> {{$mensu->Junio}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Julio]) }}"> {{$mensu->Julio}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Agosto]) }}"> {{$mensu->Agosto}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Septiembre]) }}"> {{$mensu->Septiembre}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Octubre]) }}"> {{$mensu->Octubre}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Noviembre]) }}"> {{$mensu->Noviembre}}</a></td>
+                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Diciembre]) }}"> {{$mensu->Diciembre}}</a></td>
+                  <td>{{$mensu->periodo->periodo}}</td>
+                  
+                </tr>
+              @endforeach
                 </thead>
                 <tbody>
               </tbody> 
