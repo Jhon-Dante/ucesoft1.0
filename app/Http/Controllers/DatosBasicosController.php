@@ -60,15 +60,19 @@ class DatosBasicosController extends Controller
     }
 
     public function buscarEstudiante(Request $request)
-    {
+    { 
+
 
         $secciones=Seccion::all();
         $inscripciones=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
         
+
+        
             if (count($inscripciones)>0)
             {
-                   $id_curso_next=$inscripciones->seccion->curso->id+1;
-                   // dd($id_curso_next);
+                   $id_curso_next=$inscripciones->seccion->curso->id;
+                   $curso_s=Seccion::where('id', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
+                   // dd($curso_s);
             }
             else
             {
@@ -81,48 +85,89 @@ class DatosBasicosController extends Controller
         $id_estudiante=$request->id_estudiante;
         $asignaturas=Asignaturas::all();
 
-        return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones','id_curso_next'));
+        return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones','id_curso_next','curso_s'));
     }
 
     public function reinscribir(Request $request)
-    {
-        
-        
-        $reinscribir=Inscripcion::create([
-            'id_datosBasicos' => $request->id_datosBasicos,
-            'id_seccion' => $request->id_seccion,
-            'id_periodo' => $request->id_periodo
-            ]);
+    { 
+        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+        if(count($p)>0)
+        {
+             
 
-        $mensualidad=\DB::table('mensualidades')->insert(array(
-            'Enero' => 'No',
-            'Febrero' => 'No',
-            'Marzo' => 'No',
-            'Abril' => 'No',
-            'Mayo' => 'No',
-            'Junio' => 'No',
-            'Julio' => 'No',
-            'Agosto' => 'No',
-            'Septiembre' => 'No',
-            'Octubre' => 'No',
-            'Noviembre' => 'No',
-            'Diciembre' => 'No',
+            $actualiza=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+            $actualiza->id_datosBasicos = $request->id_datosBasicos;
+            $actualiza->id_seccion = $request->id_seccion;
+            $actualiza->id_periodo = $request->id_periodo;
+            $actualiza->save();
 
-            'id_datosBasicos' => $request->id_datosBasicos,
-            'id_periodo' => $request->id_periodo));
 
-        $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+            $mensualidad=\DB::table('mensualidades')->insert(array(
+                'Enero' => 'No',
+                'Febrero' => 'No',
+                'Marzo' => 'No',
+                'Abril' => 'No',
+                'Mayo' => 'No',
+                'Junio' => 'No',
+                'Julio' => 'No',
+                'Agosto' => 'No',
+                'Septiembre' => 'No',
+                'Octubre' => 'No',
+                'Noviembre' => 'No',
+                'Diciembre' => 'No',
+                'id_datosBasicos' => $request->id_datosBasicos,
+                'id_periodo' => $request->id_periodo));
 
-        // dd($eli_preinscripcion);
+            flash('ESTUDIANTE REGISTRADO CON ÉXITO EN EL NUEVO PERIODO!', 'success');
 
-        if($eli_preinscripcion->delete()){
-            flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','succes');
+
         }
         else
         {
-            flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
+            
+            $reinscribir=Inscripcion::create([
+                'id_datosBasicos' => $request->id_datosBasicos,
+                'id_seccion' => $request->id_seccion,
+                'id_periodo' => $request->id_periodo
+            ]);
+
+            $mensualidad=\DB::table('mensualidades')->insert(array(
+                'Enero' => 'No',
+                'Febrero' => 'No',
+                'Marzo' => 'No',
+                'Abril' => 'No',
+                'Mayo' => 'No',
+                'Junio' => 'No',
+                'Julio' => 'No',
+                'Agosto' => 'No',
+                'Septiembre' => 'No',
+                'Octubre' => 'No',
+                'Noviembre' => 'No',
+                'Diciembre' => 'No',
+
+                'id_datosBasicos' => $request->id_datosBasicos,
+                'id_periodo' => $request->id_periodo));
+
+            $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+
+            // dd($eli_preinscripcion);
+
+                if($eli_preinscripcion->delete()){
+                    flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','succes');
+                }
+                else
+                {
+                    flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
+                }
+
         }
-        return redirect()->route('admin.datosBasicos.index');
+        $num=0;
+        //$datosBasicos=DatosBasicos::all();
+        $padres=Padres::all();
+        $preinscripcion=Preinscripcion::all();
+        $datosbasicos=DatosBasicos::all();
+        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos'));
+        
     }
     /**
      * Store a newly created resource in storage.

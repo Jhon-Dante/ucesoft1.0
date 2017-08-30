@@ -38,7 +38,6 @@
                     <tr>
                       <th>Nro</th>
                       <th>Estudiante</th>
-                      <th>Período</th>
                       <th>Enero</th>
                       <th>Febrero</th>
                       <th>Marzo</th>
@@ -49,28 +48,30 @@
                       <th>Agosto</th>
                       <th>Septiembre</th>
                       <th>Octubre</th>
+                      <th>Noviembre</th>
                       <th>Diciembre</th>
+                      <th>Período</th>
                     </tr>
                     @foreach($mensualidades as $mensu)
-                <tr>
-                  <td>{{ $num=$num+1 }}</td>
-                  <td>{{$mensu->datoBasico->nombres}}</td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->id_datosBasicos]) }}"> {{$mensu->Enero}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Febrero]) }}"> {{$mensu->Febrero}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Marzo]) }}"> {{$mensu->Marzo}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Abril]) }}"> {{$mensu->Abril}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Mayo]) }}"> {{$mensu->Mayo}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Junio]) }}"> {{$mensu->Junio}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Julio]) }}"> {{$mensu->Julio}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Agosto]) }}"> {{$mensu->Agosto}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Septiembre]) }}"> {{$mensu->Septiembre}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Octubre]) }}"> {{$mensu->Octubre}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Noviembre]) }}"> {{$mensu->Noviembre}}</a></td>
-                  <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Diciembre]) }}"> {{$mensu->Diciembre}}</a></td>
-                  <td>{{$mensu->periodo->periodo}}</td>
-                  
-                </tr>
-              @endforeach
+                      <tr>
+                        <td>{{ $num=$num+1 }}</td>
+                        <td>{{$mensu->datoBasico->nombres}}</td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->id_datosBasicos]) }}"> {{$mensu->Enero}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Febrero]) }}"> {{$mensu->Febrero}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Marzo]) }}"> {{$mensu->Marzo}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Abril]) }}"> {{$mensu->Abril}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Mayo]) }}"> {{$mensu->Mayo}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Junio]) }}"> {{$mensu->Junio}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Julio]) }}"> {{$mensu->Julio}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Agosto]) }}"> {{$mensu->Agosto}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Septiembre]) }}"> {{$mensu->Septiembre}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Octubre]) }}"> {{$mensu->Octubre}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Noviembre]) }}"> {{$mensu->Noviembre}}</a></td>
+                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Diciembre]) }}"> {{$mensu->Diciembre}}</a></td>
+                        <td>{{$mensu->periodo->periodo}}</td>
+                        
+                      </tr>
+                    @endforeach
                 </thead>
                 <tbody>
               </tbody> 

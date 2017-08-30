@@ -6,7 +6,7 @@
 		{{$datosBasicos2->nombres}} {{$datosBasicos2->apellidos}}
 		</div>
 		<div class="form-group">
-		{!! Form::label('','Cédula')!!}
+		{!! Form::label('','Cédula:')!!}
 		{{$datosBasicos2->nacionalidad}}-{{$datosBasicos2->cedula}}
 </div>	
 @if(count($datosBasicos2->preinscripcion)>0)
@@ -49,16 +49,14 @@
 </div>
 <div class="form-group">
 	{!! Form::label('seccion','Curso siguiente:')!!}
-
-		@if($inscripciones->seccion->curso->id = $id_curso_next)
-			{{$inscripciones->seccion->curso->id}} - {{$inscripciones->seccion->curso->curso}}
-		@endif
+	{!! Form::hidden('id_seccion',$curso_s->id) !!}
+	{{$curso_s->curso->curso}} 
 </div>
 <div class="form-group">
-	{!! Form::label('seccion','Sección')!!}
+	{!! Form::label('seccion','Sección:')!!}
 	<select name="id_seccion" class="form-group">
 		@foreach($secciones as $seccion)
-			@if($seccion->id_curso==$seccion->id)
+			@if($curso_s->id==$seccion->id)
 				<option value="{{$seccion->id}}">{{$seccion->seccion}}</option>
 			@endif
 		@endforeach
@@ -66,7 +64,7 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('id_periodo','Período') !!}
+	{!! Form::label('id_periodo','Período a registrar: ') !!}
 
 		@foreach($periodos as $peri)
 			 @if($peri->status == 'Activo')
@@ -77,6 +75,8 @@
 		@endforeach
 
 </div>
+
+
 
 
 @endif
