@@ -33,47 +33,50 @@
             </div>
             <div class="panel-body">
               <div class="box-body">
-                <table class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
+
                       <th>Nro</th>
                       <th>Estudiante</th>
-                      <th>Enero</th>
-                      <th>Febrero</th>
-                      <th>Marzo</th>
-                      <th>Abril</th>
-                      <th>Mayo</th>
-                      <th>Junio</th>
-                      <th>Julio</th>
-                      <th>Agosto</th>
-                      <th>Septiembre</th>
-                      <th>Octubre</th>
-                      <th>Noviembre</th>
-                      <th>Diciembre</th>
+                      @foreach($meses as $mes)
+                        <th>{{$mes->mes}}</th>
+                      @endforeach
                       <th>Período</th>
                     </tr>
-                    @foreach($mensualidades as $mensu)
+                  </thead>
+                  <tbody>
+                    
+                    @for($i=0;$i<count($estudiantes);$i++)
                       <tr>
+
                         <td>{{ $num=$num+1 }}</td>
-                        <td>{{$mensu->datoBasico->nombres}}</td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->id_datosBasicos]) }}"> {{$mensu->Enero}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Febrero]) }}"> {{$mensu->Febrero}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Marzo]) }}"> {{$mensu->Marzo}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Abril]) }}"> {{$mensu->Abril}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Mayo]) }}"> {{$mensu->Mayo}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Junio]) }}"> {{$mensu->Junio}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Julio]) }}"> {{$mensu->Julio}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Agosto]) }}"> {{$mensu->Agosto}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Septiembre]) }}"> {{$mensu->Septiembre}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Octubre]) }}"> {{$mensu->Octubre}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Noviembre]) }}"> {{$mensu->Noviembre}}</a></td>
-                        <td><a href="{{ route('admin.mensualidades.edit', [$mensu->Diciembre]) }}"> {{$mensu->Diciembre}}</a></td>
-                        <td>{{$mensu->periodo->periodo}}</td>
+                        <td>{{$mensualidades[$i]->datoBasico->nombres}}</td>
+
+                        @foreach($meses as $mes)
                         
-                      </tr>
-                    @endforeach
-                </thead>
-                <tbody>
+                          @foreach($mensualidades as $mensu)
+                          @if($mes->id == $mensu->id_mes)
+                            @if($mensu->estado=="Cancelado")
+                            <td> {{$mensu->estado}}</td>
+
+                            @else
+                          <td><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$mensu->id}}','{{$mensu->datoBasico->nombres}}','{{$mensu->periodo->periodo}}','Enero')" data-target="#myModal2"> {{$mensu->estado}}</a></td>
+                          
+                            @endif
+
+                          @endif
+                          
+                          @endforeach
+                        @endforeach
+                       <td></td>
+                          
+                       
+                    
+                      
+                     </tr>
+                    @endfor
+                    
               </tbody> 
             </table>
           </div>
@@ -82,5 +85,48 @@
     </div>
   </div>
 </section>
+          <div id="myModal2"  class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                      <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Pagar Mensualidad del mes de: <strong><p id="mes"><span></span></p></strong></h4>
+                </div>
+                <div class="modal-body">
+                  {!! Form::open(['route' => ['admin.mensualidades.store'], 'method' => 'POST']) !!}
+                    <h4>Nombre del estudiante: </h4><strong><p id="nombre"><span></span></p></strong>
+                    <h4>Periodo a pagar</h4><strong><p id="periodo"><span></span></p></strong>
+
+                    <p>¿Cancelar mes del estudiante?</p>
+                    <input type="text" name="id" id="id">
+                    <input type="text" name="id_datoBasico" id="#id_datoBasico">
+                    
+                </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary">Aceptar</button>
+                  {!! Form::close() !!}
+                </div>
+              </div>
+            </div>
+          </div>
 </div><!-- /.content-wrapper -->
+
+
+
+
+<script type="text/javascript">
+  
+  function pagar(id,nombre,periodo,mes)
+  {
+    var inputElement = document.createElement('input');
+    $('#id').val(id);
+    $('#nombre').text(nombre);
+    $('#periodo').text(periodo);
+    $('#mes').text(mes);
+    $("#imes").text(mes);
+    $("#id_datoBasico").document.getElementById('Enero').focus();
+  }
+</script>
 @endsection

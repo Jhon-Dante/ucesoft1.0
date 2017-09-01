@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Mensualidades;
+use App\Meses;
+use App\Periodos;
 
 class MensualidadesController extends Controller
 {
@@ -16,9 +18,12 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
-        $mensualidades=Mensualidades::all();
+        $periodo=Periodos::where('status','Activo')->first();
+        $meses=Meses::all();
+        $mensualidades=Mensualidades::where('id_periodo',$periodo->id)->get();
+        $estudiantes=Mensualidades::where('id_periodo',$periodo->id)->groupBy('id_datosBasicos')->get();
         $num=0;
-        return View('admin.mensualidades.index',compact('num','mensualidades'));
+        return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes'));
     }
 
     /**
@@ -39,7 +44,7 @@ class MensualidadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

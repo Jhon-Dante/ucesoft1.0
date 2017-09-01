@@ -17,59 +17,48 @@ class CursosTableSeeder extends Seeder
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '1 ero'
+            'curso' => '1er grado'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '2 do'
+            'curso' => '2do grado'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '3 ero'
+            'curso' => '3er grado'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '4 to'
+            'curso' => '4to grado'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '5 to'
+            'curso' => '5to grado'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '6 to'
+            'curso' => '6to grado'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '7 mo'
+            'curso' => '1er año'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '8 vo'
+            'curso' => '2do año'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '9 no'
+            'curso' => '3er año'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '1 er año'
+            'curso' => '4to año'
         ]);
         DB::table('cursos')->insert([
 
-            'curso' => '2 do año'
+            'curso' => '5to año'
         ]);
-        DB::table('cursos')->insert([
-
-            'curso' => '3 er año'
-        ]);
-        DB::table('cursos')->insert([
-
-            'curso' => '4 to año'
-        ]);
-        DB::table('cursos')->insert([
-
-            'curso' => '5 to año'
-        ]);
+        
     }
 }

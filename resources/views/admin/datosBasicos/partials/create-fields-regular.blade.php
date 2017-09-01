@@ -12,18 +12,15 @@
 @if(count($datosBasicos2->preinscripcion)>0)
 <div class="form-group">
 	{!! Form::label('seccion','Curso y sección')!!}
-	<select name="id_seccion" class="form-group">
+	<select name="id_seccion" class="form-control select2">
 		@foreach($secciones as $seccion)
 		<option value="{{$seccion->id}}">Curso: {{$seccion->curso->curso}}, Sección: {{$seccion->seccion}}</option>
 		@endforeach
 	</select>
 </div>
+
 <div class="form-group">
-	{!! Form::label('periodo','Período')!!}
-	{!! Form::select('id_periodo',$periodos,['title' => 'Seleccione el período que cursará el estudiante']) !!}
-</div>
-<div class="form-group">
-	{!! Form::label('materiap','Materia Pendiente') !!}
+	{!! Form::label('materiap','Materia a repetir') !!}
 	<select class="form-control select2" multiple="multiple" name="repite[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) ">
 		@foreach($asignaturas as $asig)
 			<option value="{{$asig->id}}">{{$asig->asignatura}} - Curso: {{$asig->cursos->curso}}</option>
@@ -37,6 +34,13 @@
 			<option value="{{$asig->id}}">{{$asig->asignatura}} - Curso: {{$asig->cursos->curso}}</option>
 		@endforeach
 	</select>
+</div>
+
+<div class="form-group">
+	{!! Form::label('periodo','Período')!!}
+	{{$periodos->periodo}}
+	{!! Form::hidden('id_periodo',$periodos->id)!!}
+
 </div>
 
 @else
@@ -66,14 +70,10 @@
 <div class="form-group">
 	{!! Form::label('id_periodo','Período a registrar: ') !!}
 
-		@foreach($periodos as $peri)
-			 @if($peri->status == 'Activo')
-				{{$peri->periodo}}
-				{!! Form::hidden('id_periodo',$peri->id) !!}
-			@endif
-
-		@endforeach
-
+	@if($periodos->status == 'Activo')
+		{{$periodos->periodo}}
+		{!! Form::text('id_periodo',$periodos->id) !!}
+	@endif
 </div>
 
 

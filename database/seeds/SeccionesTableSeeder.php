@@ -43,5 +43,21 @@ class SeccionesTableSeeder extends Seeder
             'seccion' => 'U',
             'id_curso' => '8'
         ]);
+        DB::table('secciones')->insert([
+            'seccion' => 'U',
+            'id_curso' => '9'
+        ]);
+        DB::table('secciones')->insert([
+            'seccion' => 'U',
+            'id_curso' => '10'
+        ]);
+        DB::table('secciones')->insert([
+            'seccion' => 'U',
+            'id_curso' => '11'
+        ]);
+        DB::table('secciones')->insert([
+            'seccion' => 'U',
+            'id_curso' => '12'
+        ]);
     }
 }

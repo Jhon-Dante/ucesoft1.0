@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Mensualidades extends Model
 {
     protected $table='mensualidades';
-    protected $fillable=['id','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre','id_datosBasicos','id_periodo'];
+    protected $fillable=['id','id_mes','estado','id_datosBasicos','id_periodo'];
 
+    public function mes()
+    {
+        return $this->belongsTo('App\Meses','id_mes','id');
+    }
     public function datoBasico()
     {
     	return $this->belongsTo('App\DatosBasicos','id_datosBasicos','id');

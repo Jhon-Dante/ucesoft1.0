@@ -14,22 +14,13 @@ class CreateMensualidadesTable extends Migration
     {
         Schema::create('mensualidades', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Enero');
-            $table->string('Febrero');
-            $table->string('Marzo');
-            $table->string('Abril');
-            $table->string('Mayo');
-            $table->string('Junio');
-            $table->string('Julio');
-            $table->string('Agosto');
-            $table->string('Septiembre');
-            $table->string('Octubre');
-            $table->string('Noviembre');
-            $table->string('Diciembre');
+            $table->integer('id_mes')->unsigned();
+            $table->enum('estado',['Cancelado','Sin pagar']);
             $table->integer('id_datosBasicos')->unsigned();
             $table->integer('id_periodo')->unsigned();
 
-
+            
+            $table->foreign('id_mes')->references('id')->on('meses')->onDelete('cascade');
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
 
