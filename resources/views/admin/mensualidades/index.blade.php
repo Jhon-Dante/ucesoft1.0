@@ -58,10 +58,10 @@
                           @foreach($mensualidades as $mensu)
                           @if($mes->id == $mensu->id_mes)
                             @if($mensu->estado=="Cancelado")
-                            <td> {{$mensu->estado}}</td>
+                            <td align="center"><img src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px"></td>
 
                             @else
-                          <td><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$mensu->id}}','{{$mensu->datoBasico->nombres}}','{{$mensu->periodo->periodo}}','Enero')" data-target="#myModal2"> {{$mensu->estado}}</a></td>
+                          <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$mensu->id}}','{{$mensu->datoBasico->nombres}}','{{$mensu->periodo->periodo}}','{{$mensu->mes->mes}}','{{$mensu->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
                           
                             @endif
 
@@ -69,7 +69,7 @@
                           
                           @endforeach
                         @endforeach
-                       <td></td>
+                       <td>{{$mensu->periodo->periodo}}</td>
                           
                        
                     
@@ -99,8 +99,8 @@
                     <h4>Periodo a pagar</h4><strong><p id="periodo"><span></span></p></strong>
 
                     <p>¿Cancelar mes del estudiante?</p>
-                    <input type="text" name="id" id="id">
-                    <input type="text" name="id_datoBasico" id="#id_datoBasico">
+                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="id_mes" id="id_mes">
                     
                 </div>
                 <div class="modal-footer">
@@ -118,15 +118,14 @@
 
 <script type="text/javascript">
   
-  function pagar(id,nombre,periodo,mes)
+  function pagar(id,nombre,periodo,mes,id_mes)
   {
     var inputElement = document.createElement('input');
     $('#id').val(id);
     $('#nombre').text(nombre);
     $('#periodo').text(periodo);
     $('#mes').text(mes);
-    $("#imes").text(mes);
-    $("#id_datoBasico").document.getElementById('Enero').focus();
+    $('#id_mes').val(id_mes);
   }
 </script>
 @endsection

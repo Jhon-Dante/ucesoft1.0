@@ -44,7 +44,21 @@ class MensualidadesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $mensualidades=Mensualidades::where('id',$request->id)->where('id_mes',$request->id_mes)->get()->first();
+
+        if ($mensualidades->estado == 'Sin pagar') {
+            $mensualidades->estado = 'Cancelado';
+            $mensualidades->save();
+
+           flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
+        }
+        else
+        {
+            flash('LA MENSUALIDAD YA ESTÁ PAGADA!','alert');
+        }
+
+        return redirect()->route('admin.mensualidades.index');
     }
 
     /**

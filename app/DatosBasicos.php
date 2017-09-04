@@ -36,5 +36,9 @@ class DatosBasicos extends Model
 	{
 		return $this->hasMany('App\Mensualidades','id_datosBasicos','id');
 	}
+	public function momento()
+	{
+		return $this->hasMany('App\Momentos','id_datosBasicos','id');
+	}
 	
 }
