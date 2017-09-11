@@ -28,10 +28,21 @@
             <div class="panel-heading">Lista del estudiante de preescolar registrado
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <a href="{{ url('admin/docente_preescolar/index') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                <i class="fa fa-pencil"></i> Nuevo   
-                </a>
+                <p style="padding: 4px 10px;" class="btn btn-success" >Momento 3</p>
               </div>
+
+              <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
+                <p style="padding: 4px 10px;" class="btn btn-primary" >Momento 2</p>
+              </div>
+
+              <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
+                <p style="padding: 4px 10px;" class="btn btn-warning" >Momento 1</p>
+              </div>
+
+              
+
+              
+              
 
           </div>
 
@@ -44,33 +55,39 @@
             <thead>
               <tr>
                 <th>Nro</th>
-                <th>Período</th>
-                <th>Número de Estudiantes</th>
+                <th>Nombre del Estudiante</th>
                 <th>Curso</th>
                 <th>Sección</th>
+                <th>Período</th>
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
+            @foreach($inscripcion as $inscri)
               <tr>
-                <td><a href="#">1</a></td>
-                <td><a href="#">2017-2018</a></td>
-                <td><a href="#">5</a></td>
-                <td><a href="#">Preescolar</a></td>
-                <td><a href="#">U</a></td>
+                
+
+               <td><a href="#">{{$num=$num+1}}</a></td>
+               <td><a href="#">{{$inscri->inscripcion}}</a></td>
+               <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
+               <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
+               <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
 
                <td>
                 <div class="btn-group">
-                    <a href="#"><button class="btn btn-default btn-flat" title="Presionando este botón puede index el registro"><i class="fa fa-pencil"></i></button></a>
-
-                    <a href="#"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
-
-                    <a href="#"><button class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-eye"></i></button></a>
+                {!! Form::open(['route' => 'admin.preescolar.create']) !!}
+                      
+                      {!! Form::text('id',$inscri->id) !!}
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                  {!! Form::close() !!}
+                    
 
                     <br><br>
                     </div>
                   </td>
+                  
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

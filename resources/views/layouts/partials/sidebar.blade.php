@@ -75,7 +75,7 @@
                     <li><a href=" {{ url('admin/personal')            }} ">Listado</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura') }} ">Asignar Materia</a></li>
                     <li><a href=" {{ url('admin/tipo_empleado')       }}">Tipos de empleados</a></li>
-                    <li><a href=" {{ url('admin/personal/docente_preescolar') }}">Docentes de Preescolar</a></li>
+                    <li><a href=" {{ url('admin/preescolar') }}">Docentes de Preescolar</a></li>
                     <li><a href=" {{ url('admin/personal/docente_basica') }}">Docentes de Básica</a></li>
                     <li><a href=" {{ url('admin/personal/docente_liceo') }}">Docentes de Media General</a></li>
                     <li class="treeview">

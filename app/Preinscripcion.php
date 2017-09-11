@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Preinscripcion extends Model
 {
     protected $table='preinscripcion';
-    protected $fillable=['id_datosBasicos','repite','pendiente','id_periodo','estado'];
+    protected $fillable=['id','id_datosBasicos','repite','pendiente','id_periodo','estado'];
 
     public function datosbasicos()
     {

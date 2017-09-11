@@ -11,12 +11,12 @@ class Inscripcion extends Model
 
     public function datosbasicos()
     {
-    	return $this->belongsTo('App\DatosBasicos','id_datosBasicos');
+    	return $this->belongsTo('App\DatosBasicos','id_datosBasicos','id');
     }
 
-    public function periodos()
+    public function periodo()
     {
-    	return $this->belongsTo('App\Periodos','id_periodo');
+    	return $this->belongsTo('App\Periodos','id_periodo','id');
     }
 
     public function asignaturaspreinscripcion()

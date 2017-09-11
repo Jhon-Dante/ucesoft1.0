@@ -105,21 +105,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::resource('/calificaciones','CalificacionesController');
 
-        // Route::get('/docente_preescolar',function(){
-        //     return View('admin.docente_preescolar.index');
-        // });
+        
 
-        // Route::get('/docente_preescolar/momentos', function(){
-        //     return View('admin.docente_preescolar.momentos.index');
-        // });
 
-        // Route::get('/docente_preescolar/momentos/create', function(){
-        //     return View('admin.docente_preescolar.momentos.create');
-        // });
-
-        // Route::get('/docente_basica', function(){
-        //     return View('admin.docente_basica.index');
-        // });
+        Route::get('/docente_basica', function(){
+            return View('admin.docente_basica.index');
+        });
 
         // Route::get('/docente_basica/lapsos', function(){
         //     return View('admin.docente_basica.lapsos.index');
@@ -151,5 +142,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.tipo_personal.destroy']
             );
         
+        Route::resource('/preescolar','PreescolarController');
 });
 
