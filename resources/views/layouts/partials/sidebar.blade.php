@@ -52,10 +52,14 @@
                 </ul>
             </li>
 
+            <li><a href=" {{ url('admin/mensualidades')         }} "><i class="fa fa-link"></i>Mensualidades</a></li>
+
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li>
+                    <!-- <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li> -->
+                    <li><a href="{{ url('admin/preescolar') }}">Educación Preescolar</a></li>
+                    <li><a href="{{ url('admin/educacion_basica') }}">Educación básica</a></li>
                 </ul>
                 
             </li>
@@ -75,7 +79,7 @@
                     <li><a href=" {{ url('admin/personal')            }} ">Listado</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura') }} ">Asignar Materia</a></li>
                     <li><a href=" {{ url('admin/tipo_empleado')       }}">Tipos de empleados</a></li>
-                    <li><a href=" {{ url('admin/preescolar') }}">Docentes de Preescolar</a></li>
+                    
                     <li><a href=" {{ url('admin/personal/docente_basica') }}">Docentes de Básica</a></li>
                     <li><a href=" {{ url('admin/personal/docente_liceo') }}">Docentes de Media General</a></li>
                     <li class="treeview">

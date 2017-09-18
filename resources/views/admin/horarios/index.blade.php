@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista de cursos registrados
+            <div class="panel-heading">Lista de Horarios registrados en el período: <strong>{{$periodos->periodo}}</strong>
               
           </div>
         
@@ -44,100 +44,30 @@
 
                 <tbody>
         
-                   <tr>
-                   <td>1</td>
-                   <td>1er grado</td>
-                   <td>A</td>
-                   <td>2017</td>
-                   <td>
+                   @foreach($secciones as $seccion)
+                    
+                       <tr>
+                        <td>{{$num=$num+1}}</td>
+                        <td>{{$seccion->curso->curso}}</td>
+                        <td>{{$seccion->seccion}}</td>
+                        <td>{{$periodos->periodo}}</td>
+                        <td>
 
-                      {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
+                          
+                            <a href="{{ url('admin/crearhorario',['id_seccion' => $seccion->id,'id_periodo' => $periodos->id]) }}"><button  class="btn btn-primary btn-flat" ><i class="fa fa-pencil"></i> Crear</button></a>
+                            
+                            <div class="btn-group">
+                              <button type="submit" class="btn btn-danger btn-flat" >
+                              <i class="fa fa-file-pdf-o"></i> PDF   
+                              </button> 
+                            </div>
+                          
 
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!}
-
-                   </td>
-                   </tr>
-
-                   <tr>
-                   <td>2</td>
-                   <td>1er grado</td>
-                   <td>B</td>
-                   <td>2017</td>
-                   <td>
-                   {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
-
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!} 
-
-                      <tr>
-                   <td>3</td>
-                   <td>2do grado</td>
-                   <td>A</td>
-                   <td>2017</td>
-                   <td>
+                         </td>
+                       </tr>
+                    
+                   @endforeach
                    
-                      {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
-
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!}
-
-                   </td>
-                   </tr> 
-
-                   <tr>
-                   <td>4</td>
-                   <td>2do grado</td>
-                   <td>B</td>
-                   <td>2017</td>
-                   <td>
-                   
-                      {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Crear   
-                        </button>
-                      </div>
-
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-danger btn-flat" >
-                        <i class="fa fa-file-pdf-o"></i> PDF   
-                        </button> 
-                      </div>
-                    {!! Form::close() !!}
-
-                   </td>
-                   </tr> 
-
-                   </td>
-                   </tr> 
 
               </tbody>
             </table>
@@ -148,4 +78,20 @@
   </div>
 </section>
 </div><!-- /.content-wrapper -->
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  function crear(id_seccion,id_periodo)
+  {
+    var inputElement = document.createElement('input');
+    $('#id_seccion').val(id_seccion);
+    $('#id_periodo').val(id_periodo);
+  }
+</script>
+
 @endsection

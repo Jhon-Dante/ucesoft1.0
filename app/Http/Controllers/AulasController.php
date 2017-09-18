@@ -23,7 +23,7 @@ class AulasController extends Controller
     {
         $num=0;
         $aula = Aula::all();
-        return view('admin.aulas.index', ['aula'=>$aula], compact('num'));
+        return view('admin.aulas.index', compact('num','aula'));
     }
 
     /**
@@ -50,7 +50,7 @@ class AulasController extends Controller
         $aula->save();
         
         flash("Se ha registrado en aula de forma exitosa!", 'success');
-        return redirect()->route('admin.aulas.create');
+        return redirect()->route('admin.aulas.index');
     
 }
 

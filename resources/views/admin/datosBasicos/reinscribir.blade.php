@@ -34,10 +34,10 @@
 					<div class="col-xs-12">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									@if(count($datosBasicos2->preinscripcion)>0)
-										<strong>INSCRIPCIÓN: El estudiante aún se encuentra en preinscripción</strong>
-									@else
+									@if(count($inscripciones)>0)
 										<strong>El estudiante ya se encuentra Inscrito en el sistema</strong> - Asignar a un nuevo curso
+									@else
+										<strong>INSCRIPCIÓN: El estudiante aún se encuentra en preinscripción</strong>
 									@endif
 								</div>
 								

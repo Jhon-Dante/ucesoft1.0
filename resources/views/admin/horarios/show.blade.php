@@ -17,7 +17,7 @@
     </div>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Horarios</a></li>
-        <li class="active">Lista</li>
+        <li class="active">Crear</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -28,23 +28,55 @@
           <div class="col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
+              {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
                 <table class="table">
                   <tr>
-                    <td><strong>Turno: </strong>Mañana</td>
-                    <td><STRONG>Curso:</STRONG> 1er grado.</td>
-                    <td><strong>Sección: </strong>A</td>
-                    <td><strong>Número de bloques: </strong>{!! Form::select('bloque',['1','2','3','4']) !!}</td>
-                    <td><strong>Bloque: </strong>{!! Form::select('bloque',$bloques) !!}</td>
+                    @if($secciones->curso->id < 7)
+                      <td>Turno: <strong>Mañana</strong></td>
+                    @else
+                      <td>Turno: <strong>Tarde</strong></td>
+                    @endif
+                    <td>Curso: <strong>{{$secciones->curso->curso}}</strong></td>
+                    <td>Sección: <strong>{{$secciones->seccion}}</strong>
+                    <input type="hidden" name="id_seccion" value="{{$secciones->id}}">
+                    <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
+                    </td>
+                    <td><strong>Número de bloques: </strong>
+                    {!! Form::select('bloque',['1' => '1','2' =>'2','3' => '3','4' => '4'],null,['class' => 'form-control']) !!}</td>
+                    <td><strong>Bloque: </strong>
+                    <select name="id_bloque" class="form-control">
+                      @foreach($bloques3 as $b)
+                        
+                          @if($b->id<=40)
+
+                            <option value="{{$b->id}}">{{$b->bloque}} - {{$b->dia->dia}}</option>
+                          @endif
+                        
+                      @endforeach
+
+            
+                    </select>
+                    </td>
                     <td><strong>Asignatura: </strong>
-                  <select>
+                  <select name="id_asignatura" class="form-control" >
                     @foreach($asignaturas as $asig)
-                       @if ($asig->id_curso==2)
-                          <option value="{{$asig->asignatura}}">{{$asig->asignatura}}</option>
+                       @if ($asig->id_curso==$secciones->id)
+                          <option value="{{$asig->id}}">{{$asig->asignatura}}</option>
                       @endif
                     @endforeach
-                    </select></td>
+                    </select>
+                    </td>
+                    <td><strong>Aula: </strong>
+                      <select name="id_aula" class="form-control">
+                        @foreach($aulas as $aula)
+                          <option value="{{$aula->id}}">{{$aula->nombre}}</option>
+                        @endforeach
+                      </select>
+                    </td>
+                    <td><input type="submit" class="btn btn-primary" name="agregar" value="Agregar"></td>
                   </tr>
                 </table>
+              {!! Form::close() !!} 
               </div>
               <div class="panel-heading">
                 <table class="table">
@@ -53,36 +85,15 @@
                     <td>Horas académicas por agregar al horario</td>
                     <td>Horas agregadas</td>
                   </tr>
-                  <tr>
-                    <td>Matemáticas</td>
-                    <td>8</td>
-                    <td>2</td>
-                  </tr>
-                   <tr>
-                    <td>Lengua</td>
-                    <td>8</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Cs. Sociales</td>
-                    <td>8</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Educ. Física</td>
-                    <td>8</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Cs. de la Naturaleza</td>
-                    <td>8</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Educ. Vial</td>
-                    <td>8</td>
-                    <td>0</td>
-                  </tr>
+                  @foreach($asignaturas as $asig)
+                    @if ($asig->id_curso==$secciones->id)
+                      <tr>
+                        <td>{{$asig->asignatura}}</td>
+                        <td>{{$horas}}</td>
+                        <td></td>
+                      </tr>
+                    @endif
+                  @endforeach
                 </table>
           </div>
 
@@ -97,56 +108,31 @@
                 <thead>
                 <tr>
                   <th>Hora</th>
-                  <th>Lunes</th>
-                  <th>Martes</th>
-                  <th>Miercoles</th>
-                  <th>Jueves</th>
-                  <th>Viernes</th>
+                  @foreach($dias as $dia)
+                  <th>{{$dia->dia}}</th>
+                  @endforeach
                 </tr>
-                <tr>
-                	<th>7:00 - 7:45</th>
-                	<th><div style="background-color: #61F7FF; border-radius: 20px" align="center">Matemáticas</div></th>
-              		<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-              		<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-              		<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-              		<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                </tr>
-                <tr>
-                	<th>7:45 - 8:30</th>
-                	<th><div style="background-color: #61F7FF; border-radius: 20px" align="center">Matemáticas</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                </tr>
-                <tr>
-                	<th>8:30 - 9:15</th>
-                	<th colspan="5" align="center"><strong>Recreo</strong></th>
-                </tr>
-                <tr>
-                	<th>9:15 - 10:00</th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                </tr>
-                <tr>
-                	<th>10:00 - 10:45</th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                </tr>
-                <tr>
-                	<th>10:45 - 11:30</th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                	<th><div style="background-color: #87FF8D; border-radius: 20px" align="center">No asignado</div></th>
-                </tr>
+                 @foreach($horarios as $horario) 
+                  <tr align="center">
+                 
+                  	<td>{{$horario->bloque->bloque}}</td> 
+
+                    @foreach($horarios as $h)
+                      @if($horario->bloque->id_dia=1)
+                        @if($h->id_asignatura>0)
+                          <td style="background-color:#61FF69; border-radius: 30px">{{$h->asignatura->asignatura}} - {{$h->aula->nombre}}</td>
+                        @endif
+                      @endif
+
+                    @endforeach
+
+                  </tr>
+
+                
+
+
+                
+                @endforeach
                 </thead>
                 <tbody>
                 </tbody>

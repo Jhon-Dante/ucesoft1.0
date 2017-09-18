@@ -9,14 +9,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Preescolar')
+        @yield('contentheader_title', 'Básica')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Preescolar</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Básica</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -25,18 +25,18 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista del estudiante de preescolar registrado
+            <div class="panel-heading">Lista del estudiante de Básica registrados
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-success" >Momento 3</p>
+                <p style="padding: 4px 10px;" class="btn btn-success" >Lapso 3</p>
               </div>
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-primary" >Momento 2</p>
+                <p style="padding: 4px 10px;" class="btn btn-primary" >Lapso 2</p>
               </div>
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-warning" >Momento 1</p>
+                <p style="padding: 4px 10px;" class="btn btn-warning" >Lapso 1</p>
               </div>
 
               
@@ -64,33 +64,25 @@
             </thead>
             <tbody>
             @foreach($inscripcion as $inscri)
-              @if($inscri->seccion->curso->id == 1)
-                <tr>
-                  
+              @if($inscri->seccion->curso->id >= 2 AND $inscri->seccion->curso->id <= 7)
 
-                 <td><a href="#">{{$num=$num+1}}</a></td>
-                 <td><a href="#">{{$inscri->datosbasicos}}</a></td>
-                 <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
-                 <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
-                 <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
-
-                 <td>
-                  <div class="btn-group">
-                  
-                        
-                        <a href="{{url('admin/crearmomento',['id_inscripcion' => $inscri->id_datosbasicos, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
-                      
-                      
-
-                      
-
-                      <br><br>
-                      </div>
-                    </td>
+                  <tr>
                     
-                  </tr>
-              @endif
-            @endforeach
+                     <td><a href="#">{{$num=$num+1}}</a></td>
+                     <td><a href="#">{{$inscri->datosbasicos->nombres}}</a></td>
+                     <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
+                     <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
+                     <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
+                     <td>
+                      <div class="btn-group">
+                            <a href="{{url('admin/crearlapso',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
+                          <br><br>
+                      </div>
+                     </td>
+                      
+                    </tr>
+                  @endif
+                @endforeach
               </tbody>
             </table>
           </div>

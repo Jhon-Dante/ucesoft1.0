@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Preescolar
+	Básica
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,12 +9,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Preescolar')
+        @yield('contentheader_title', 'Básica')
         <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Preescolar</a></li>
-        <li class="active">Juicios y sugerencias</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Básica</a></li>
+        <li class="active">Lapsos</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -25,18 +25,20 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Juicios y sugerencias del estudiante
+							<div class="panel-heading">Lapsos del estudiante: <strong>{{$inscripcion->datosbasicos->nombres}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong>
  				
 							</div>
 
 							<div class="panel-body">
 								
-                {!! Form::open(['route' => ['admin.preescolar.store'], 'method' => 'post' ]) !!}
+                {!! Form::open(['route' => ['admin.educacion_basica.store'], 'method' => 'post' ]) !!}
     							
-					                 @include('admin.preescolar.partials.create-fields')
+					                 @include('admin.educacion_basica.partials.create-fields')
 					                
 					                <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
-					                <input type="hidden" name="id_datosBasicos" value="{{$datobasico->id}}">
+					                <input type="hidden" name="id_datosBasicos" value="{{$inscripcion->datosbasicos->id}}">
+					                <input type="hidden" name="lapso" value="1">
+					                
 					            <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>

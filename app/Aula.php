@@ -6,24 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aula extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    
     protected $table = 'aulas';
+    protected $fillable = ['id','nombre'];
 
-    protected $fillable = ['nombre'];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        
-    ];
+    public function horarios()
+    {
+        return $this->hasMany('App\Horarios','id_aula','id');
+    }
 
 
     

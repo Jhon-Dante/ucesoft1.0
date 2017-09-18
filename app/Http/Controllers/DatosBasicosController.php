@@ -21,6 +21,7 @@ use App\Seccion;
 use App\Cursos;
 use App\Inscripcion;
 use App\Mensualidades;
+use App\AsignaturasPendientes;
 
 class DatosBasicosController extends Controller
 {
@@ -62,40 +63,68 @@ class DatosBasicosController extends Controller
 
     public function buscarEstudiante(Request $request)
     { 
+            $secciones=Seccion::all();
+            $buscamensu=Mensualidades::where('id_datosbasicos',$request->id_estudiante)->where('estado','Sin pagar')->get()->first();
+            $buscaRepite=   Inscripcion::where('id_datosbasicos',$request->id_estudiante)->where('repite', '>' ,0)->get()->first();
+            $buscaPendiente=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->where('pendiente','>',0)->get()->first();
 
-
-        $secciones=Seccion::all();
-        $inscripciones=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
-        
-
-        
-            if (count($inscripciones)>0)
-            {
-                   $id_curso_next=$inscripciones->seccion->curso->id;
-                   $curso_s=Seccion::where('id', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
-                   // dd($curso_s);
+            $encuentra=count($buscamensu);
+            $encuentra2=count($buscaRepite);
+            $encuentra3=count($buscaPendiente);
+            if ($encuentra>0) {
+                flash('DISCULPE, EL ESTUDIANTE AÚN DEBE '.$encuentra.' MES(ES) DEL AÑO PASADO, DEBE ESTAR SOLVENTE PARA REGISTRAR EL ESTUDIANTE A UN NUEVO PERÍODO','danger');
+                return redirect()->route('admin.DatosBasicos.create');
             }
             else
             {
-                    $id_curso=0;
-            }
-            
-        $datosBasicos=DatosBasicos::all();
-        $periodos=Periodos::where('status','Activo')->get()->first();
-        $datosBasicos2=DatosBasicos::find($request->id_estudiante);
-        $id_estudiante=$request->id_estudiante;
-        $asignaturas=Asignaturas::all();
 
+                if ($encuentra2>0) {
+                    flash('DISCULPE, EL ESTUDIANTE AÚN DEBE REPETIR MATERIAS DEL PERÍODO ANTERIOR, DEBE REMEDIAR LAS MATERIAS FALTANTES PARA PODER REINSCRIBIRSE EN UN NUEVO PERÍODO','danger');
+                    return redirect()->route('admin.DatosBasicos.create');
+                }
+                else
+                {
+                    if ($encuentra3>0) {
+                        flash('DISCULPE, EL ESTUDIANTE AÚN DEBE MATERIAS PENDIENTES DEL PERÍODO ANTERIOR, DEBE REMEDIAR LAS MATERIAS FALTANTES PARA PODER REINSCRIBIRSE EN UN NUEVO PERÍODO','warning');
+                    return redirect()->route('admin.DatosBasicos.create');
+                    }
+                    else
+                    {                    
+                        $inscripciones=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
+                            if (count($inscripciones)>0)
+                            {
+                                   $id_curso_next=$inscripciones->seccion->curso->id;
+                                   $curso_s=Seccion::where('id', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
+                                   
+                            }
+                            else
+                            {
+                                    $id_curso_next=0;
+                                    $curso_s=0;
+                                    $id_curso=0;
+                                    $inscripciones=0;
+                                    
+                        }//Fin del else de        
+                    }//Fin del else de inscripciones
+                }//Fin del else de materias 
+            }//Fin del else de mensualidades
+
+                    $secciones=Seccion::all();
+                    $datosBasicos=DatosBasicos::all();
+                    $periodos=Periodos::where('status','Activo')->get()->first();
+                    $datosBasicos2=DatosBasicos::find($request->id_estudiante);
+                    $id_estudiante=$request->id_estudiante;
+                    $asignaturas=Asignaturas::all();
         return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones','id_curso_next','curso_s'));
-    }
+    }//Fin de la función buscarEstudiante
 
     public function reinscribir(Request $request)
-    { 
+    {
+        
+
         $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
         if(count($p)>0)
         {
-             
-
             $actualiza=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
             $actualiza->id_datosBasicos = $request->id_datosBasicos;
             $actualiza->id_seccion = $request->id_seccion;
@@ -105,154 +134,25 @@ class DatosBasicosController extends Controller
             $mensu=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
             if(count($mensu)>0){
 
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '1';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
+                for ($i=1; $i <= 12 ; $i++) { 
+                    $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+                    $mensualidad->id_mes = $i;
+                    $mensualidad->estado = 'Sin pagar';
+                    $mensualidad->id_datosBasicos = $request->id_datosBasicos;
+                    $mensualidad->id_periodo = $request->id_periodo;
+                    $mensualidad->save();
+                }
+            }
+            else
+            {
 
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '2';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '3';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '4';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '5';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '6';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '7';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '8';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '9';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '10';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '11';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-
-                $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $mensualidad->id_mes = '12';
-                $mensualidad->estado = 'Sin pagar';
-                $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                $mensualidad->id_periodo = $request->id_periodo;
-                $mensualidad->save();
-                
-                
-
-            }else{
-
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '1',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '2',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '3',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '4',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '5',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '6',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '7',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '8',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '9',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '10',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '11',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '12',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
+                for ($i=1; $i <= 12 ; $i++) { 
+                    $mensualidad=\DB::table('mensualidades')->insert(array(
+                    'id_mes' => $i,
+                    'estado' => 'Sin pagar',
+                    'id_datosBasicos' => $request->id_datosBasicos,
+                    'id_periodo' => $request->id_periodo));
+                }
             }
 
             flash('ESTUDIANTE REINSCRITO CON ÉXITO EN EL NUEVO PERIODO!', 'success');
@@ -261,104 +161,75 @@ class DatosBasicosController extends Controller
         }
         else
         {
-            
-            $reinscribir=Inscripcion::create([
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_seccion' => $request->id_seccion,
-                'id_periodo' => $request->id_periodo
-            ]);
+            if (count($request->pendiente)>3) {
+                flash('HA SELECCIONADO QUE EL ESTUDIENTE TIENE MAS DE 2 ASIGNATURAS PENDIENTES!','warning');
+                return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();
+            }
+            else
+            {
+                if (count($request->repite)>3) {
+                   flash('HA SELECCIONADO QUE EL ESTUDIENTE TIENE MAS DE 2 ASIGNATURAS REPITIENTES!','warning');
+                return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();
+                }else{
 
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '1',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '2',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '3',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '4',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '5',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '6',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '7',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '8',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '9',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '10',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '11',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            $mensualidad=\DB::table('mensualidades')->insert(array(
-                'id_mes' => '12',
-                'estado' => 'Sin pagar',
-                'id_datosBasicos' => $request->id_datosBasicos,
-                'id_periodo' => $request->id_periodo));
-            
+                    if(count($request->repite)>0){
+                        $repite="Si";
+                    }else{
+                        $repite="No";
+                    }
+                    if (count($request->pendiente)>0) {
+                        $pendiente="Si";
+                    } else {
+                        $pendiente="No";
+                    }
+                    
+                        $reinscribir=Inscripcion::create([
+                                                'id_datosBasicos' => $request->id_datosBasicos,
+                                                'repite' => $repite,
+                                                'pendiente' => $pendiente,
+                                                'id_seccion' => $request->id_seccion,
+                                                'id_periodo' => $request->id_periodo
+                        ]);
+                    
+                    for($i=0;$i<count($request->repite);$i++){
+                        $mensualidad=\DB::table('asignaturas_inscripcion')->insert(array(
+                            'id_asignatura' => $request->repite[$i],
+                            'id_inscripcion' => $reinscribir->id,
+                            'pend_rep' => 'repite'));
+                    }
+
+                    for($i=0;$i<count($request->pendiente);$i++){
+                        $mensualidad=\DB::table('asignaturas_inscripcion')->insert(array(
+                            'id_asignatura' => $request->pendiente[$i],
+                            'id_inscripcion' => $reinscribir->id,
+                            'pend_rep' => 'pendiente'));
+                    }
+                                        
+
+                    for ($i=1; $i<=12 ; $i++) { 
+                         $mensualidad=\DB::table('mensualidades')->insert(array(
+                            'id_mes' => $i,
+                            'estado' => 'Sin pagar',
+                            'id_datosBasicos' => $request->id_datosBasicos,
+                            'id_periodo' => $request->id_periodo));
+                     }
 
 
+                    $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
 
-
-
-
-
-
-
-
-
-            $eli_preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-
-            // dd($eli_preinscripcion);
-
-                if($eli_preinscripcion->delete()){
-                    flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','success');
+                        if(count($eli_preinscripcion)>0)
+                        {
+                            $eli_preinscripcion->delete();
+                            flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','success');
+                        }
+                        else
+                        {
+                            flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
+                        }
                 }
-                else
-                {
-                    flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
-                }
-
+            }
         }
-        $num=0;
-        //$datosBasicos=DatosBasicos::all();
-        $padres=Padres::all();
-        $preinscripcion=Preinscripcion::all();
-        $datosbasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos'));
+        return redirect()->route('admin.DatosBasicos.index');
         
     }
     /**

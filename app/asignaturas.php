@@ -29,5 +29,25 @@ class Asignaturas extends Model
     {
         return $this->hasMany('App\Asignaturas_inscripcion','id_asignatura','id');
     }
+    public function boletin()
+    {
+        return $this->hasMany('App\Boletin','id_asignatura','id');
+    }
+    public function boletinFinal()
+    {
+        return $this->hasMany('App\BoletinFinal','id_asignatura','id');
+    }
+    public function asignaturaPentiente()
+    {
+        return $this->hasMany('App\AsignaturasPendientes','id_asignatura','id');
+    }
+    public function asignaturaPentienteFinal()
+    {
+        return $this->hasMany('App\AsignaturasPendientesFinal','id_asignatura','id');
+    }
+    public function horario()
+    {
+        return $this->hasMany('App\Horarios','id_asignatura','id');
+    }
 
 }

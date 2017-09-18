@@ -22,6 +22,7 @@ class MensualidadesController extends Controller
         $meses=Meses::all();
         $mensualidades=Mensualidades::where('id_periodo',$periodo->id)->get();
         $estudiantes=Mensualidades::where('id_periodo',$periodo->id)->groupBy('id_datosBasicos')->get();
+        //dd($estudiantes);
         $num=0;
         return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes'));
     }

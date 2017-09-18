@@ -16,7 +16,7 @@ class CreateBloquesTable extends Migration
             $table->increments('id'); 
             $table->string('bloque', 20);
             $table->integer('id_dia')->unsigned();
-            $table->foreign('id_dia')->references('id')->on('dias');
+            $table->foreign('id_dia')->references('id')->on('dias')->onDelete('cascade');
             $table->timestamps();
         });
     }

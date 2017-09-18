@@ -13,12 +13,16 @@ class Seccion extends Model
     {
     	return $this->belongsTo('App\Cursos', 'id_curso','id');
     }
-    public function inscritos()
+    public function inscripcion()
     {
-    	return $this->hasMany('App\Inscritos','id_seccion','id');
+    	return $this->hasMany('App\Inscripcion','id_seccion','id');
     }
     public function asignaturas_inscripcion()
     {
         return $this->hasMany('App\Asignaturas_inscripcion','id_seccion','id');
+    }
+    public function horario()
+    {
+        return $this->hasMany('App\Horarios','id_seccion','id');
     }
 }

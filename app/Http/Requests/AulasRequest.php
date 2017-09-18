@@ -24,7 +24,7 @@ class AulasRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|numeric'
+            'nombre' => 'required'
         ];
     }
 }

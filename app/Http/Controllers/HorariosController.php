@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Bloques;
-
-//use App\Horarios;
+use App\Aula;
+use App\Horarios;
 use App\Cursos;
 use App\Asignaturas;
-
+use App\Seccion;
+use App\Periodos;
+use App\Dias;
 class HorariosController extends Controller
 {
     /**
@@ -22,9 +24,10 @@ class HorariosController extends Controller
     public function index()
     {
         $num=0;
-        //$horarios=Horarios::all();
-        $cursos=Cursos::all();
-        return View('admin.horarios.index', compact('horarios','num','cursos'));
+        $secciones=Seccion::all();
+        $periodos=Periodos::where('status','Activo')->get()->first();
+        $horarios=Horarios::where('id_periodo',$periodos->id);
+        return View('admin.horarios.index', compact('horarios','num','secciones','periodos','horarios'));
     }
 
     /**
@@ -34,9 +37,26 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        return View('admin.horarios.create');
+        //dd($request->all());
     }
 
+    public function crear($id_seccion,$id_periodo)
+    {
+
+        
+        $aulas=Aula::all();
+        $secciones=Seccion::where('id',$id_seccion)->get()->first();
+        $periodos=Periodos::where('id',$id_periodo)->get()->first();
+        $bloques=Bloques::lists('bloque','id');
+        //$bloques2=Bloques::all();
+        $dias=Dias::all();
+        $bloques3=Bloques::all();
+        $bloques2=Bloques::orderBy('id_dia')->groupBy('id_dia')->get();
+        $asignaturas=Asignaturas::all();
+        $horarios=Horarios::where('id_periodo',$id_periodo)->groupBy('id_bloque')->get();
+        $horas=8;
+        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -45,9 +65,59 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
+        $bloCompa=Bloques::where('id',$request->id_bloque)->get();
+
+        if ($request->id_bloque<=40) {
+            dd('Mañana');
+        } else {
+            dd('Tarde');
+        }
+        
+        $horarioMa=Bloques::whereBetween('id', array(1,40))->get();
+
+        $horarioTa=Bloques::whereBetween('id',array(40,9999))->get();
+
+        dd($request->id_bloque);
+        $horarios2=Horarios::where('id_bloque',$request->id_bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
+        
+        if (count($horarios2)>0) {
+            flash('DISCULPE, YA HA ASIGNADO UNA ASIGNATURA EN ESTE BLOQUE, ELIJA OTRO BLOQUE O ELIMINE EL HORARIO','warning');
+
+            return redirect()->route('admin.crearhorario',['id_seccion' => $request->id_seccion,'id_periodo' => $request->id_periodo])->withInput();
+        } else {
+
+            if (condition) {
+                # code...
+            } else {
+               
+
+            for ($i=0; $i < $request->bloque ; $i++) { 
+                 $crear=Horarios::create([
+                    'id_bloque' => $request->id_bloque+$i,
+                    'id_aula' => $request->id_aula,
+                    'id_asignatura' => $request->id_asignatura,
+                    'id_seccion' => $request->id_seccion,
+                    'id_periodo' => $request->id_periodo
+                ]);
+             }
+
+
+        $aulas=Aula::all();
+        $secciones=Seccion::where('id',$request->id_seccion)->get()->first();
+        $periodos=Periodos::where('id',$request->id_periodo)->get()->first();
         $bloques=Bloques::lists('bloque','id');
+        $bloques3=Bloques::all();
+        $dias=Dias::all();
+        $bloques2=Bloques::orderBy('id_dia')->groupBy('id_dia')->get();
         $asignaturas=Asignaturas::all();
-        return View('admin.horarios.show', compact('asignaturas','bloques'));
+        $horarios=Horarios::where('id_periodo',$request->id_periodo)->get();
+        $horas=8;
+
+        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3'));
+
+
+            }
+        }
     }
 
     /**

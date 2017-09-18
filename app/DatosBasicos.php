@@ -40,5 +40,32 @@ class DatosBasicos extends Model
 	{
 		return $this->hasMany('App\Momentos','id_datosBasicos','id');
 	}
-	
+	public function calificacion()
+	{
+		return $this->hasMany('App\Calificaciones','id_datosBasicos','id');
+	}
+	public function boletin()
+	{
+		return $this->hasMany('App\Boletin','id_datosBasicos','id');
+	}
+	public function boletinFinal()
+	{
+		return $this->hasMany('App\BoletinFinal','id_datosBasicos','id');
+	}
+	public function total()
+	{
+		return $this->hasMany('App\Totales','id_datosBasicos','id');
+	}
+	public function asignaturasPendientes()
+	{
+		return $this->hasMany('App\AsignaturasPendientes','id_datosBasicos','id');
+	}
+	public function asignaturaPendienteFinal($value='')
+	{
+		return $this->hasMany('App\asignaturasPendientesFinal','id_datosBasicos','id');
+	}
+	public function reporteNuevo()
+	{
+		return $this->hasMany('App\ReportesNuevos','id_datosBasicos','id');
+	}
 }

@@ -12,8 +12,10 @@ use App\DatosBasicos;
 use App\Momentos;
 use App\Calificaciones;
 use App\Periodos;
+use App\Boletin;
+use App\Asignaturas;
 
-class PreescolarController extends Controller
+class BoletinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +25,9 @@ class PreescolarController extends Controller
     public function index()
     {
         $inscripcion=Inscripcion::all();
-        $calificaciones=Calificaciones::all();
+        $boletin=Boletin::all();
         $num=0;
-        return View('admin.preescolar.index', compact('num','inscripcion','calificaciones'));
+        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin'));
     }
 
     /**
@@ -40,15 +42,19 @@ class PreescolarController extends Controller
 
     public function crear($id_inscripcion, $id_periodo)
     {
-       $datobasico=DatosBasicos::where('id',$id_inscripcion)->get()->first();
-       $periodos=Periodos::where('id',$id_periodo)->get()->first();
-       $calificaciones=Calificaciones::all();
-       $cali=count(Calificaciones::where('id_datosBasicos',$id_inscripcion)->where('id_periodo',$id_periodo)->get());
+    	// dd($id_inscripcion);
+    	$inscripcion=Inscripcion::where('id_datosbasicos',$id_inscripcion)->get()->first();
+    	$asignaturas=Asignaturas::all();
+       	$datobasico=DatosBasicos::where('id',$id_inscripcion)->get()->first();
+       	$periodos=Periodos::where('id',$id_periodo)->get()->first();
+       	$boletin=Boletin::all();
+       	$cali=count(Boletin::where('id_datosBasicos',$id_inscripcion)->where('id_periodo',$id_periodo)->get();
         if (count($cali)==null) {
            $cali=0;
         }
+        $boleta=Boletin::where('id_datosBasicos'$id_inscripcion)->where('id_periodo',$id_periodo)->get();
         
-       return View('admin.preescolar.create', compact('datobasico','periodos','calificaciones','cali'));
+       return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','asignaturas','inscripcion'));
     }
 
     /**
@@ -59,38 +65,35 @@ class PreescolarController extends Controller
      */
     public function store(Request $request)
     {
-        
+    	
         $datobasico=DatosBasicos::where('id',$request->id_datosBasicos)->get()->first();
-        if (strLen($request->juicios)<=2) {
-           flash('DISCULPE, JUICIO DEBE SER MAYOR A 200 CARÁCTERES','warning');
-           return redirect()->route('admin.crearmomento',['id_inscripcion' => $request->id_datosBasicos,'id_periodo' => $request->id_periodo])->withInput();
+        if ($request->inasistencias > 0) {
+           flash('DISCULPE, LAS INASISTENCIAS DEBEN SER NÚMEROS ENTEROS','warning');
+           return redirect()->route('admin.crearlapso',['id_inscripcion' => $request->id_datosBasicos,'id_periodo' => $request->id_periodo])->withInput();
         }else{
 
-            if (strLen($request->sugerencias)<=7) {
-                    flash('DISCULPE, SUGERENCIAS DEBE SER MAYOR A 70 CARÁCTERES','warning');
-                    return redirect()->route('admin.crearmomento',['id_inscripcion' => $request->id_datosBasicos,'id_periodo' => $request->id_periodo])->withInput();
-
-            }else{
-                $calif=Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $crear=Calificaciones::create([
-                    'nro_reportes' => $calif->nro_reportes+1,
-                    'juicios' => $request->juicios,
-                    'sugerencia' => $request->sugerencias,
+        		for($i=0;$i<count($request->id_asignatura);$i++){
+                       $crear=Boletin::create([
+                    'id_asignatura' => $request->id_asignatura[$i],
+                    'lapso' => 1,
+                    'inasistencias' => $request->inasistencias[$i],
+                    'calificacion' => $request->calificacion[$i],
                     'id_datosBasicos' => $request->id_datosBasicos,
-                    'id_periodo' => $request->id_periodo
-                ]);
+                    'id_periodo' => $request->id_periodo,
+                    'sugerencias' => 0
+                	]);
+                }
 
-                flash('REGISTRO DE JUICIOS Y SUGERENCIAS DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
+                flash('REGISTRO DE NOTAS DE LAPSO DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
             }
-        }
         $cali=count(Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get());
         if (count($cali)==null) {
            $cali=0;
         }
-        $calificaciones=Calificaciones::all();
         $inscripcion=Inscripcion::all();
+        $boletin=Boletin::all();
         $num=0;
-        return View('admin.preescolar.index', compact('num','inscripcion'));
+        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin'));
     }
 
     /**

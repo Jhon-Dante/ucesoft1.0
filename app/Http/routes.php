@@ -71,6 +71,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'HorariosController@destroy',
             'as' => 'admin.horarios.destroy']
             );
+        Route::get('/crearhorario/{id_seccion}/{id_periodo}',[
+            'uses' => 'HorariosController@crear',
+            'as' => 'admin.crearhorario']);
+
+        Route::get('/crearmomento/{id_inscripcion}/{id_periodo}',[
+            'uses' => 'PreescolarController@crear',
+            'as' => 'admin.crearmomento']);
+
+        Route::get('/crearlapso/{id_inscripcion}/{id_periodo}',[
+            'uses' => 'BoletinController@crear',
+            'as' => 'admin.crearlapso']);
+
+
         Route::resource('/cargos','CargosController');
         Route::get('/cargos/{id}/destroy' ,[
             'uses' => 'CargosController@destroy',
@@ -143,5 +156,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             );
         
         Route::resource('/preescolar','PreescolarController');
+
+        Route::resource('/educacion_basica','BoletinController');
 });
 

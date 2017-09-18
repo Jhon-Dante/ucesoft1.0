@@ -47,35 +47,26 @@
                   </thead>
                   <tbody>
                     
-                    @for($i=0;$i<count($estudiantes);$i++)
+                    @foreach($estudiantes as $key)
                       <tr>
 
                         <td>{{ $num=$num+1 }}</td>
-                        <td>{{$mensualidades[$i]->datoBasico->nombres}}</td>
+                        <td>{{$key->datoBasico->nombres}}</td>
 
-                        @foreach($meses as $mes)
-                        
-                          @foreach($mensualidades as $mensu)
-                          @if($mes->id == $mensu->id_mes)
-                            @if($mensu->estado=="Cancelado")
+                        @foreach($mensualidades as $key2)
+                          @if($key2->id_datosBasicos==$key->id_datosBasicos)
+                            @if($key2->estado=="Cancelado")
                             <td align="center"><img src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px"></td>
 
                             @else
-                          <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$mensu->id}}','{{$mensu->datoBasico->nombres}}','{{$mensu->periodo->periodo}}','{{$mensu->mes->mes}}','{{$mensu->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
+                          <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datoBasico->nombres}}','{{$key->periodo->periodo}}','{{$key2->mes->mes}}','{{$key2->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
                           
                             @endif
-
                           @endif
-                          
-                          @endforeach
                         @endforeach
-                       <td>{{$mensu->periodo->periodo}}</td>
-                          
-                       
-                    
-                      
+                        <td>{{$key->periodo->periodo}}</td>
                      </tr>
-                    @endfor
+                    @endforeach
                     
               </tbody> 
             </table>
