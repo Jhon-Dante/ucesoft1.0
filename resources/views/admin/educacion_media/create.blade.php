@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Básica
+	Media General
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,11 +9,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Básica')
+        @yield('contentheader_title', 'Media General')
         <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Básica</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Media General</a></li>
         <li class="active">Lapsos</li>
     </ol>
 </section>

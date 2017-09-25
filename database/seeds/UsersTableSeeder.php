@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Javier',
             'email' => 'javier@gmail.com',
-            'password' => bcrypt('1234'),
+            'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
             'tipo_user' => 'Administrador(a)'
@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Jesus',
             'email' => 'jcesarchg9@gmail.com',
-            'password' => bcrypt('root'),
+            'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
             'tipo_user' => 'Administrador(a)'
@@ -32,20 +32,30 @@ class UsersTableSeeder extends Seeder
 
             'name' => 'Juan',
             'email' => 'juan@gmail.com',
-            'password' => bcrypt('1234'),
+            'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Básica'
+            'tipo_user' => 'Docente Basica'
         ]);
 
         DB::table('users')->insert([
 
             'name' => 'Pedro',
             'email' => 'pedro@gmail.com',
-            'password' => bcrypt('1234'),
+            'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General'
+        ]);
+
+        DB::table('users')->insert([
+
+            'name' => 'Ricardo',
+            'email' => 'ricardo@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Preescolar'
         ]);
     }
 }

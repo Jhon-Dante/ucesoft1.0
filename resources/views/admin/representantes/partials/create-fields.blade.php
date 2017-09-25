@@ -52,6 +52,11 @@
 	{!! Form::label('direccion','Dirección del representante') !!}
 	{!! Form::textarea('direccion', null, ['class' => 'form-control', 'placeholder' => 'Calle Manhattan, casa nro. 4', 'title' => 'Ingrese la dirección del representante']) !!}
 </div>
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+(<span style="color: red;">*</span>)
+	{!! Form::label('email','Correo Eléctrónico') !!}
+	{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Usuario@hormail.com', 'title' => 'Ingrese el email del representante']) !!}
+</div>
 <div class="form-group{{ $errors->has('telf_habitacion') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('telf_habitacion','Teléfono del hogar') !!}

@@ -158,5 +158,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/preescolar','PreescolarController');
 
         Route::resource('/educacion_basica','BoletinController');
+        Route::resource('/educacion_media','MediaGeneralController');
 });
 

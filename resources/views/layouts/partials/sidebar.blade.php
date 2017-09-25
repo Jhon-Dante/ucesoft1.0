@@ -31,6 +31,7 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
+            @if(Auth::user()->tipo_user == 'Administrador(a)')
             <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i> Inscribir</a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -38,7 +39,7 @@
                     <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
                     <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a>
                     </li>
-                    <li><a href=" {{ url('admin/calificaciones')      }}">Calificaciones</a></li>
+                    
 
                 </ul>
             </li>
@@ -60,6 +61,7 @@
                     <!-- <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li> -->
                     <li><a href="{{ url('admin/preescolar') }}">Educación Preescolar</a></li>
                     <li><a href="{{ url('admin/educacion_basica') }}">Educación básica</a></li>
+                    <li><a href="{{ url('admin/educacion_media') }}">Educación Media General</a></li>
                 </ul>
                 
             </li>
@@ -103,9 +105,68 @@
                     
                 </ul>
             </li>
-    
-            
         
+        @elseif(Auth::user()->tipo_user == 'Docente Preescolar')
+
+        
+                
+
+            
+
+           
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <!-- <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li> -->
+                    <li><a href="{{ url('admin/preescolar') }}">Educación Preescolar</a></li>
+                    
+                </ul>
+                
+            </li>
+
+            <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
+                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
+                        </ul>
+            </li>
+           
+
+            
+            
+
+        @elseif(Auth::user()->tipo_user == 'Docente Basica')
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <!-- <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li> -->
+                    <li><a href="{{ url('admin/educacion_basica') }}">Educación básica</a></li>
+                    
+                </ul>
+                
+            </li>
+
+            <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
+                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
+                        </ul>
+            </li>
+           
+    
+
+
+            
+            
+        @endif
+        
+
+
+
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

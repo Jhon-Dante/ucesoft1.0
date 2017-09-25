@@ -15,7 +15,7 @@ use App\Periodos;
 use App\Boletin;
 use App\Asignaturas;
 
-class BoletinController extends Controller
+class MediaGeneralController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,8 +29,7 @@ class BoletinController extends Controller
         $num=0;
         $cali=Boletin::all();
         
-        
-        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin'));
+        return View('admin.educacion_media.index', compact('num','inscripcion','boletin'));
     }
 
     /**

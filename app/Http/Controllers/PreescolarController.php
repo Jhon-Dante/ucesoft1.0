@@ -22,6 +22,7 @@ class PreescolarController extends Controller
      */
     public function index()
     {
+
         $inscripcion=Inscripcion::all();
         $calificaciones=Calificaciones::all();
         $num=0;
@@ -40,6 +41,7 @@ class PreescolarController extends Controller
 
     public function crear($id_inscripcion, $id_periodo)
     {
+
        $datobasico=DatosBasicos::where('id',$id_inscripcion)->get()->first();
        $periodos=Periodos::where('id',$id_periodo)->get()->first();
        $calificaciones=Calificaciones::all();
@@ -72,15 +74,31 @@ class PreescolarController extends Controller
 
             }else{
                 $calif=Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                $crear=Calificaciones::create([
-                    'nro_reportes' => $calif->nro_reportes+1,
-                    'juicios' => $request->juicios,
-                    'sugerencia' => $request->sugerencias,
-                    'id_datosBasicos' => $request->id_datosBasicos,
-                    'id_periodo' => $request->id_periodo
-                ]);
+                
+                if ($calif == 0) {
+                    
+                    $crear=Calificaciones::create([
+                        'nro_reportes' => 1,
+                        'juicios' => $request->juicios,
+                        'sugerencia' => $request->sugerencias,
+                        'id_datosBasicos' => $request->id_datosBasicos,
+                        'id_periodo' => $request->id_periodo
+                    ]);
 
-                flash('REGISTRO DE JUICIOS Y SUGERENCIAS DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
+                    flash('REGISTRO DE JUICIOS Y SUGERENCIAS DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
+
+                }else{
+
+                    $crear=Calificaciones::create([
+                        'nro_reportes' => $calif->nro_reportes+1,
+                        'juicios' => $request->juicios,
+                        'sugerencia' => $request->sugerencias,
+                        'id_datosBasicos' => $request->id_datosBasicos,
+                        'id_periodo' => $request->id_periodo
+                    ]);
+
+                    flash('REGISTRO DE JUICIOS Y SUGERENCIAS DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
+                }
             }
         }
         $cali=count(Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get());

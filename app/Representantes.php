@@ -18,6 +18,7 @@ class Representantes extends Model
     'ingreso_apx',
     'n_familia',
     'direccion',
+    'email',
     'codigo_hab',
     'telf_hab',
     'lugar_tra',

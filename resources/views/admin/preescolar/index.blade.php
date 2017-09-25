@@ -69,16 +69,16 @@
                   
 
                  <td><a href="#">{{$num=$num+1}}</a></td>
-                 <td><a href="#">{{$inscri->datosbasicos}}</a></td>
+                 <td><a href="#">{{$inscri->datosbasicos->nombres}}</a></td>
                  <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
                  <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
                  <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
 
                  <td>
                   <div class="btn-group">
-                  
+                      
                         
-                        <a href="{{url('admin/crearmomento',['id_inscripcion' => $inscri->id_datosbasicos, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
+                        <a href="{{url('admin/crearmomento',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->periodo->id])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
                       
                       
 

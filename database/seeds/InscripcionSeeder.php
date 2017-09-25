@@ -13,17 +13,11 @@ class InscripcionSeeder extends Seeder
     {
         \DB::table('inscripcion')->insert(array(
         	'id_datosBasicos' => '1',
-        	'repite' => '1',
-        	'pendiente' => '2',
+        	'repite' => 'No',
+        	'pendiente' => 'No',
         	'id_periodo' => '2',
         	'id_seccion' => '2'
         ));
-        \DB::table('inscripcion')->insert(array(
-        	'id_datosBasicos' => '1',
-        	'repite' => '2',
-        	'pendiente' => '3',
-        	'id_periodo' => '2',
-        	'id_seccion' => '2'
-        ));
+        
     }
 }

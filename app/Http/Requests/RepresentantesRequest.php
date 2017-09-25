@@ -34,6 +34,7 @@ class RepresentantesRequest extends Request
             'ingreso_apx' => 'required|numeric',
             'n_familia' => 'required|numeric',
             'direccion' => 'required',
+            'email' => 'required',
             'codigo_hab' => 'required|numeric',
             'telf_hab' => 'required|numeric',
             'lugar_tra' => 'required',

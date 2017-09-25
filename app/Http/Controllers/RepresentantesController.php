@@ -69,19 +69,31 @@ class RepresentantesController extends Controller
                 'ingreso_apx'       =>$request->ingreso_apx,
                 'n_familia'         =>$request->n_familia,
                 'direccion'         =>$request->direccion,
+                'email'             =>$request->email,
                 'codigo_hab'        =>$request->codigo_hab,
                 'telf_hab'          =>$request->telf_hab,
                 'lugar_tra'         =>$request->lugar_tra,
                 'codigo_tra'        =>$request->codigo_tra,
                 'telf_tra'          =>$request->telf_tra,
-                'responsable_m'     =>$request->responsable_m,
+                'responsable_m'     =>$request->responsable_mr,
                 'codigo_responsable'=>$request->codigo_responsable,
                 'telf_responsable'  =>$request->telf_responsable,
                 'codigo_opcional'   =>$request->codigo_opcional,
                 'telf_opcional'     =>$request->telf_opcional,
                 'nombre_opcional'   =>$request->nombre_opcional,
                 'codigo_emergencia' =>$request->codigo_emergencia,
-                'telf_emergencia'   =>$request->telf_emergencia]);
+                'telf_emergencia'   =>$request->telf_emergencia
+            ]);
+
+            $repre=DB::table('users')->insert([
+
+            'name' => $request->nombres,
+            'email' => $request->email,
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Representante'
+        ]);
         
         flash('Representante registrado con éxito','success');
         if ($request->desde==1) {
@@ -150,12 +162,9 @@ class RepresentantesController extends Controller
      */
     public function destroy($id)
     {
+        $representantes=Representantes::find($id);
         $representantes->delete();
-
-            flash(' SE HA ELIMINADO EL REPRESENTANTE '.$representante->nombres.' CORRECTAMENTE.','success');
-            $num=0;
-            $representantes = Representantes::all();
-
-            return redirect()->route('admin.representantes.index');
+        flash(' SE HA ELIMINADO EL REPRESENTANTE     CORRECTAMENTE.','success');
+        return redirect()->route('admin.representantes.index');
     }
 }

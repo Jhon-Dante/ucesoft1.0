@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Inscripcion extends Model
 {
     protected $table='inscripcion';
-    protected $fillable=['id','id_datosbasicos','repite','pendiente','id_periodo','id_seccion'];
+    protected $fillable=['id','id_datosBasicos','repite','pendiente','id_periodo','id_seccion'];
 
     public function datosbasicos()
     {
-    	return $this->belongsTo('App\DatosBasicos','id_datosbasicos','id');
+    	return $this->belongsTo('App\DatosBasicos','id_datosBasicos','id');
     }
 
     public function periodo()

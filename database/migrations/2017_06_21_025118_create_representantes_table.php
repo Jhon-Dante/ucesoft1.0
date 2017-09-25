@@ -24,7 +24,7 @@ class CreateRepresentantesTable extends Migration
             $table->string('ingreso_apx');
             $table->string('n_familia');
             $table->text('direccion');
-
+            $table->string('email');
             $table->integer('codigo_hab');
             $table->integer('telf_hab');
             

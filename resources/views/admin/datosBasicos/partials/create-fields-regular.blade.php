@@ -9,7 +9,7 @@
 		{!! Form::label('','Cédula:')!!}
 		{{$datosBasicos2->nacionalidad}}-{{$datosBasicos2->cedula}}
 </div>	
-@if(count($inscripciones)>0)
+@if(count($inscripciones) <=	0)
 <div class="form-group">
 	{!! Form::label('seccion','Curso y sección')!!}
 	<select name="id_seccion" class="form-control select2">
