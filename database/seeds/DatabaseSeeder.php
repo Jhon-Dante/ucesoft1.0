@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CargosSeeder::class);
         $this->call(ParentescoSeeder::class);
         $this->call(BloquesTableSeeder::class);
+        $this->call(Bloques2TableSeeder::class);
         $this->call(SeccionesTableSeeder::class);
         $this->call(PersonalSeeder::class);
         $this->call(RepresentantesSeeder::class);
@@ -27,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Padres::class);
         $this->call(RecaudosTableSeeder::class);
         $this->call(InscripcionSeeder::class);
+        $this->call(AulasTableSeeder::class);
     }
 }

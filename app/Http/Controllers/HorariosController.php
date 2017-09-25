@@ -67,17 +67,17 @@ class HorariosController extends Controller
     {
         $bloCompa=Bloques::where('id',$request->id_bloque)->get();
 
-        if ($request->id_bloque<=40) {
-            dd('Mañana');
-        } else {
-            dd('Tarde');
-        }
+        // if ($request->id_bloque<=40) {
+        //     dd('Mañana');
+        // } else {
+        //     dd('Tarde');
+        // }
         
         $horarioMa=Bloques::whereBetween('id', array(1,40))->get();
 
         $horarioTa=Bloques::whereBetween('id',array(40,9999))->get();
 
-        dd($request->id_bloque);
+        //dd($request->id_bloque);
         $horarios2=Horarios::where('id_bloque',$request->id_bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
         
         if (count($horarios2)>0) {
@@ -86,9 +86,7 @@ class HorariosController extends Controller
             return redirect()->route('admin.crearhorario',['id_seccion' => $request->id_seccion,'id_periodo' => $request->id_periodo])->withInput();
         } else {
 
-            if (condition) {
-                # code...
-            } else {
+            
                
 
             for ($i=0; $i < $request->bloque ; $i++) { 
@@ -116,7 +114,7 @@ class HorariosController extends Controller
         return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3'));
 
 
-            }
+            
         }
     }
 
