@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Preescolar
+  Básica
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -76,7 +76,7 @@
                      <td>
                       <div class="btn-group">
                         
-                                <a href="{{url('admin/crearlapso',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                <a href="{{url('admin/crearlapso',['id_datosBasicos' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->periodo->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
                               
                             
                        

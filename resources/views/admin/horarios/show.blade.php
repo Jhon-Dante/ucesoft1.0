@@ -44,18 +44,47 @@
                     <td><strong>Número de bloques: </strong>
                     {!! Form::select('bloque',['1' => '1','2' =>'2','3' => '3','4' => '4'],null,['class' => 'form-control']) !!}</td>
                     <td><strong>Bloque: </strong>
-                    <select name="id_bloque" class="form-control">
-                      @foreach($bloques3 as $b)
-                        
-                          @if($b->id<=40)
+                    <?php 
+                    switch($secciones->curso->id){
+                      
+                      case ($secciones->curso->id <= 4):
+                        ?>
+                          <select name="id_bloque" class="form-control"><?php
+                          foreach($bloques3 as $b){ ?>
+                              <option value="<?php echo $b->id; ?>"><?php echo $b->bloque." - ".$b->dia->dia; ?></option>
+                      <?php } ?> 
+                          </select>
+                      <?php
+                      break;
 
-                            <option value="{{$b->id}}">{{$b->bloque}} - {{$b->dia->dia}}</option>
-                          @endif
-                        
-                      @endforeach
+                      case ($secciones->curso->id >= 5 && $secciones->curso->id <=7):
+                        ?>
+                          <select name="id_bloque" class="form-control"><?php
+                          foreach($bloques3 as $b){ 
+                              if(($b->id >=1 && $b->id <=7) || ($b->id >=17 && $b->id <=23) || ($b->id >=33 && $b->id <=39) || ($b->id >=49 && $b->id <=55) || ($b->id >=65 && $b->id <=71)){
+                            ?>
+                              <option value="<?php echo $b->id; ?>"><?php echo $b->bloque." - ".$b->dia->dia; ?></option>
+                      <?php }//fin del if
+                           }//fin del for ?> 
+                          </select>
+                      <?php
+                      break;
 
-            
-                    </select>
+                      case ($secciones->curso->id > 7):
+                          ?>
+                          <select name="id_bloque" class="form-control"><?php
+                          foreach($bloques3 as $b){ 
+                              if(($b->id >=8 && $b->id <=16) || ($b->id >=24 && $b->id <=32) || ($b->id >=40 && $b->id <=48) || ($b->id >=56 && $b->id <=64) || ($b->id >=72 && $b->id <=80)){
+                            ?>
+                              <option value="<?php echo $b->id; ?>"><?php echo $b->bloque." - ".$b->dia->dia; ?></option>
+                      <?php }//fin del if
+                           }//fin del for ?> 
+                          </select>
+                      <?php
+                      break;
+                    
+                    }
+                      ?>
                     </td>
                     <td><strong>Asignatura: </strong>
                   <select name="id_asignatura" class="form-control" >
@@ -125,6 +154,7 @@
                       @endif
 
                     @endforeach
+                    
 
                   </tr>
 
@@ -139,11 +169,9 @@
                 
               </table>
                <div class="box-footer">
-               {!! Form::open(['route' => ['admin.horarios.store'], 'method' => 'post']) !!}
-					                <button type="submit" class="btn btn-primary">Guardar<a href=""></button>
+               
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/horarios')}}"><i class="fa fa-times"></i> Cancelar</a>
-					              </div>
-                                      {!! Form::close() !!} 
+					              
             </div>
           </div>
         </div>

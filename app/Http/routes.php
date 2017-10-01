@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/secciones','SeccionesController');
         Route::resource('/asignaturas','AsignaturasController');
         Route::resource('/periodos','PeriodosController');
+        
         //---- ESTUDIANTES-----
         Route::resource('/DatosBasicos','DatosBasicosController');
         Route::get('/DatosBasicos/reinscribir',[
@@ -81,6 +82,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
         Route::get('/crearlapso/{id_inscripcion}/{id_periodo}',[
             'uses' => 'BoletinController@crear',
+            'as' => 'admin.crearlapso']);
+
+        Route::get('/crearlapso2/{id_inscripcion}/{id_periodo}',[
+            'uses' => 'MediaGeneralController@crear',
             'as' => 'admin.crearlapso']);
 
 
@@ -158,6 +163,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/preescolar','PreescolarController');
 
         Route::resource('/educacion_basica','BoletinController');
+        
         Route::resource('/educacion_media','MediaGeneralController');
 });
 

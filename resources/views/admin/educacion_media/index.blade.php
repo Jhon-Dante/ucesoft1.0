@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Preescolar
+  Media General
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,14 +9,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Básica')
+        @yield('contentheader_title', 'Media General')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Básica</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Media General</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista del estudiante de Básica registrados
+            <div class="panel-heading">Lista del estudiante de Media General registrados
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <p style="padding: 4px 10px;" class="btn btn-success" >Lapso 3</p>
@@ -64,7 +64,7 @@
             </thead>
             <tbody>
             @foreach($inscripcion as $inscri)
-              @if($inscri->seccion->curso->id >= 2 AND $inscri->seccion->curso->id <= 7)
+              @if($inscri->seccion->curso->id >= 8)
 
                   <tr>
                     
@@ -76,7 +76,7 @@
                      <td>
                       <div class="btn-group">
                         
-                                <a href="{{url('admin/crearlapso',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                <a href="{{url('admin/crearlapso2',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
                               
                             
                        

@@ -14,6 +14,9 @@ use App\Asignaturas;
 use App\Seccion;
 use App\Periodos;
 use App\Dias;
+use App\Horarios2;
+use App\Bloques2;
+
 class HorariosController extends Controller
 {
     /**
@@ -24,7 +27,7 @@ class HorariosController extends Controller
     public function index()
     {
         $num=0;
-        $secciones=Seccion::all();
+        $secciones=Seccion::where('id_curso','!=','1')->get();
         $periodos=Periodos::where('status','Activo')->get()->first();
         $horarios=Horarios::where('id_periodo',$periodos->id);
         return View('admin.horarios.index', compact('horarios','num','secciones','periodos','horarios'));
@@ -45,17 +48,25 @@ class HorariosController extends Controller
 
         
         $aulas=Aula::all();
-        $secciones=Seccion::where('id',$id_seccion)->get()->first();
-        $periodos=Periodos::where('id',$id_periodo)->get()->first();
-        $bloques=Bloques::lists('bloque','id');
-        //$bloques2=Bloques::all();
+        $secciones=Seccion::find($id_seccion);
+        $periodos=Periodos::find($id_periodo);
         $dias=Dias::all();
-        $bloques3=Bloques::all();
-        $bloques2=Bloques::orderBy('id_dia')->groupBy('id_dia')->get();
         $asignaturas=Asignaturas::all();
-        $horarios=Horarios::where('id_periodo',$id_periodo)->groupBy('id_bloque')->get();
+
+        if ($secciones->id_curso <=4)
+        {
+            $horarios=Horarios2::where('id_periodo',$id_periodo)->groupBy('id_bloque')->get();
+            $bloques3=Bloques2::all();
+        }
+        else
+        {
+            $horarios=Horarios::where('id_periodo',$id_periodo)->groupBy('id_bloque')->get();
+
+            $bloques3=Bloques::all();
+        }
+
         $horas=8;
-        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3'));
+        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3'));
     }
     /**
      * Store a newly created resource in storage.
@@ -65,6 +76,9 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
+        //buscando curso
+        $curso=Seccion::find($request->id_seccion);
+
         $bloCompa=Bloques::where('id',$request->id_bloque)->get();
 
         // if ($request->id_bloque<=40) {
@@ -80,6 +94,8 @@ class HorariosController extends Controller
         //dd($request->id_bloque);
         $horarios2=Horarios::where('id_bloque',$request->id_bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
         
+
+
         if (count($horarios2)>0) {
             flash('DISCULPE, YA HA ASIGNADO UNA ASIGNATURA EN ESTE BLOQUE, ELIJA OTRO BLOQUE O ELIMINE EL HORARIO','warning');
 

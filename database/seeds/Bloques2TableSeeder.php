@@ -21,7 +21,7 @@ class Bloques2TableSeeder extends Seeder
         DB::table('bloques2')->insert(['bloque' => '11:10 - 12:00','id_dia' => '1']);
         
     
-        DB::table('bloques2')->insert(['bloque' => '7:00 - 7:40','id_dia' => '2']);
+        DB::table('bloques2')->insert(['bloque' => '7:00 - 8:00','id_dia' => '2']);
         DB::table('bloques2')->insert(['bloque' => '8:00 - 8:30','id_dia' => '2']);
         DB::table('bloques2')->insert(['bloque' => '8:35 - 9:10','id_dia' => '2']);
         DB::table('bloques2')->insert(['bloque' => '9:10 - 9:50','id_dia' => '2']);
@@ -30,7 +30,7 @@ class Bloques2TableSeeder extends Seeder
         DB::table('bloques2')->insert(['bloque' => '11:10 - 12:00','id_dia' => '2']);
         
 
-        DB::table('bloques2')->insert(['bloque' => '7:00 - 7:40','id_dia' => '3']);
+        DB::table('bloques2')->insert(['bloque' => '7:00 - 8:00','id_dia' => '3']);
         DB::table('bloques2')->insert(['bloque' => '8:00 - 8:30','id_dia' => '3']);
         DB::table('bloques2')->insert(['bloque' => '8:35 - 9:10','id_dia' => '3']);
         DB::table('bloques2')->insert(['bloque' => '9:10 - 9:50','id_dia' => '3']);
@@ -40,7 +40,7 @@ class Bloques2TableSeeder extends Seeder
         DB::table('bloques2')->insert(['bloque' => '12:00 - 12:20','id_dia' => '3']);
         
 
-        DB::table('bloques2')->insert(['bloque' => '7:00 - 7:40','id_dia' => '4']);
+        DB::table('bloques2')->insert(['bloque' => '7:00 - 8:00','id_dia' => '4']);
         DB::table('bloques2')->insert(['bloque' => '8:00 - 8:30','id_dia' => '4']);
         DB::table('bloques2')->insert(['bloque' => '8:35 - 9:10','id_dia' => '4']);
         DB::table('bloques2')->insert(['bloque' => '9:10 - 9:50','id_dia' => '4']);
@@ -51,7 +51,7 @@ class Bloques2TableSeeder extends Seeder
         
 
 
-        DB::table('bloques2')->insert(['bloque' => '7:00 - 7:40','id_dia' => '5']);
+        DB::table('bloques2')->insert(['bloque' => '7:00 - 8:00','id_dia' => '5']);
         DB::table('bloques2')->insert(['bloque' => '8:00 - 8:30','id_dia' => '5']);
         DB::table('bloques2')->insert(['bloque' => '8:35 - 9:10','id_dia' => '5']);
         DB::table('bloques2')->insert(['bloque' => '9:10 - 9:50','id_dia' => '5']);

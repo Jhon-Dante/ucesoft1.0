@@ -1,5 +1,5 @@
 
-@if($cali == 0)
+@if(count($cali) == 0)
 	<table id="example1" class="table table-bordered table-striped">
 		<tr>
 			<th>Asignaturas</th>
@@ -15,22 +15,15 @@
 
 		</tr>
 		@foreach($asignaturas as $asig)
-			@if($asig->id_curso == 2)
+			@if($asig->id_curso == 8)
 				<tr>
 					
 					<td><strong>{{$asig->asignatura}}</strong></td>
 					<input type="hidden" name="id_asignatura[]" value="{{$asig->id}}">
 					<input type="hidden" name="lapso" value="1">
 					<div style="background-color:yellow;">
-						<td><select name="calificacion[]">
-							<option value=""></option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="C">C</option>
-							<option value="D">D</option>
-							<option value="E">E</option>
-						</select></td>
-						<td>{!! Form::number('inasistencias[]','null') !!}</td>
+						<td>{!! Form::number('calificacion[]',null,['class' => 'form-control','max' => '20','min' => '1']) !!}</td>
+						<td>{!! Form::number('inasistencias[]','null',['class' => 'form-control','min' => '0']) !!}</td>
 						
 						
 					</div>
@@ -47,7 +40,7 @@
 			@endif
 		@endforeach
 </table>
-@elseif($cali >= 1)
+@elseif(count($cali) >= 1)
 
 <table id="example1" class="table table-bordered table-striped">
 		<tr>
@@ -64,25 +57,18 @@
 
 		</tr>
 			
-			@foreach($boleta as $b)
+			@foreach($cali as $c)
 				
 					<tr>
 						
-						<td><strong>{{$b->asignatura->asignatura}}</strong></td>
-						<td>{{$b->calificacion}}</td>
-						<td>{{$b->inasistencias}}</td>
-						<input type="hidden" name="id_asignatura[]" value="{{$b->asignatura->id}}">
+						<td><strong>{{$c->asignatura->asignatura}}</strong></td>
+						<td>{{$c->calificacion}}</td>
+						<td>{{$c->inasistencias}}</td>
+						<input type="hidden" name="id_asignatura[]" value="{{$c->asignatura->id}}">
 						<input type="hidden" name="lapso" value="2">
 						<div style="background-color:yellow;">
-							<td><select name="calificacion[]">
-								<option value=""></option>
-								<option value="A">A</option>
-								<option value="B">B</option>
-								<option value="C">C</option>
-								<option value="D">D</option>
-								<option value="E">E</option>
-							</select></td>
-							<td>{!! Form::number('inasistencias[]','null') !!}</td>
+							<td>{!! Form::number('calificacion[]',null,['class' => 'form-control','max' => '20','min' => '1']) !!}</td>
+							<td>{!! Form::number('inasistencias[]','null',['class' => 'form-control','min' => '0']) !!}</td>
 							
 							
 						</div>
@@ -90,7 +76,7 @@
 						
 						<td></td>
 						<td></td>
-						<td>{{$b->inasistencias}}</td>
+						<td>{{$c->inasistencias}}</td>
 						<td></td>	
 						
 					</tr>
@@ -99,7 +85,7 @@
 			
 </table>
 	
-@elseif($cali >= 2)
+@elseif(count($cali) >= 2)
 
 	
 @endif

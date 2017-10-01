@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Media General
+	Básica
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,11 +9,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Media General')
+        @yield('contentheader_title', 'Básica')
         <small>Registro</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Media General</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Básica</a></li>
         <li class="active">Lapsos</li>
     </ol>
 </section>
@@ -31,9 +31,9 @@
 
 							<div class="panel-body">
 								
-                {!! Form::open(['route' => ['admin.educacion_media.store'], 'method' => 'post' ]) !!}
+                {!! Form::open(['route' => ['admin.educacion_basica.store'], 'method' => 'post' ]) !!}
     							
-					                 @include('admin.educacion_media.partials.create-fields')
+					                 @include('admin.educacion_basica.partials.create-fields1')
 					                
 					                <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
 					                <input type="hidden" name="id_datosBasicos" value="{{$inscripcion->datosbasicos->id}}">
