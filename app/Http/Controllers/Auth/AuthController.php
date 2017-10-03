@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Redirect;
 use Session;
 use App\Periodos;
+use App\DatosBasicos;
 
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
@@ -77,11 +78,12 @@ class AuthController extends Controller
             {
                 Session::flash('message-error', 'Usuario ya conectado.');
                 return Redirect::to('/home');
+                $datosBasicos=DatosBasicos::all();
             }
             if(Auth::attempt(['email' => $request['email'], 'password' => $request['password']]))
             {
 
-                
+                $datosBasicos=DatosBasicos::all();
                 $nombrePeriodo = Periodos::where('id', $request['periodos'])->first();
                 Session::flash('message', 'Bienvenido');
                 Session::put('periodoNombre', $nombrePeriodo->periodo);

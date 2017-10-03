@@ -7,6 +7,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Preinscripcion;
+use App\Inscripcion;
+use App\Mensualidades;
+use App\DatosBasicos;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -24,6 +28,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+
     }
 
     /**
@@ -33,6 +39,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $preinscripcion=Preinscripcion::all();
+        $inscripcion=Inscripcion::all();
+        $mensualidades=Mensualidades::where('estado','Sin Pagar')->get();
+        $datosBasicos=DatosBasicos::all();
+        return view('home', compact('mensualidades','datosBasicos','inscripcion','preinscripcion'));
     }
 }

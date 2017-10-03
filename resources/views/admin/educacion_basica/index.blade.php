@@ -55,7 +55,7 @@
             <thead>
               <tr>
                 <th>Nro</th>
-                <th>Nombre del Estudiante</th>
+                
                 <th>Curso</th>
                 <th>Sección</th>
                 <th>Período</th>
@@ -63,20 +63,20 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($inscripcion as $inscri)
-              @if($inscri->seccion->curso->id >= 2 AND $inscri->seccion->curso->id <= 7)
+            @foreach($secciones as $s)
+              @if($s->curso->id >= 2 AND $s->curso->id <= 7)
 
                   <tr>
                     
                      <td><a href="#">{{$num=$num+1}}</a></td>
-                     <td><a href="#">{{$inscri->datosbasicos->nombres}}</a></td>
-                     <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
-                     <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
-                     <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
+                    
+                     <td><a href="#">{{$s->curso->curso}}</a></td>
+                     <td><a href="#">{{$s->seccion}}</a></td>
+                     <td><a href="#">{{$periodo->periodo}}</a></td>
                      <td>
                       <div class="btn-group">
                         
-                                <a href="{{url('admin/crearlapso',['id_datosBasicos' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->periodo->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                <a href="{{url('admin/crearlapso',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
                               
                             
                        

@@ -23,26 +23,28 @@
 			<div class="col-md-12">
 	         @include('flash::message')
 	    </div>
+				
+
+
+
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Lapsos del estudiante: <strong>{{$inscripcion->datosbasicos->nombres}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong>
- 				
-							</div>
+							<div class="panel-heading">Lapsos de los estudiante de: <strong>{{$inscripcion2->seccion->curso->curso}}</strong>, de la sección: <strong>{{$inscripcion2->seccion->seccion}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong></div>
 
-							<div class="panel-body">
+								<div class="panel-body">
 								
                 {!! Form::open(['route' => ['admin.educacion_basica.store'], 'method' => 'post' ]) !!}
-    							
-					                 @include('admin.educacion_basica.partials.create-fields')
+
+    								@include('admin.educacion_basica.partials.create-fields')
 					                
 					                <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
-					                <input type="hidden" name="id_datosBasicos" value="{{$inscripcion->datosbasicos->id}}">
+					                <input type="hidden" name="id_datosBasicos" value="{{$inscripcion2->id}}">
+					                 
 					                
 					                
-					            <div class="box-footer">
+					            	<div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>
-					              </div>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a></div>
           							<!-- /.form-group -->
           						
           		{!! Form::close() !!} 

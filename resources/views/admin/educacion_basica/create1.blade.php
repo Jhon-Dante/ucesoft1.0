@@ -25,7 +25,7 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Lapsos del estudiante: <strong>{{$inscripcion->datosbasicos->nombres}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong>
+							<div class="panel-heading">Lapsos de los estudiante de: <strong>{{$inscripcion2->seccion->seccion}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong>
  				
 							</div>
 

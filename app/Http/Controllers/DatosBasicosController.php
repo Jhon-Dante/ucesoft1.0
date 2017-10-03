@@ -86,7 +86,7 @@ class DatosBasicosController extends Controller
 
             // $encuentra2=count($buscaRepite);
             // $encuentra3=count($buscaPendiente);
-            
+           
             if ($encuentra > 0) {
                 flash('DISCULPE, EL ESTUDIANTE AÚN DEBE '.$encuentra.' MES(ES) DEL AÑO PASADO, DEBE ESTAR SOLVENTE PARA REGISTRAR EL ESTUDIANTE A UN NUEVO PERÍODO','danger');
                 return redirect()->route('admin.DatosBasicos.create');
@@ -94,7 +94,7 @@ class DatosBasicosController extends Controller
             else
                     {
 
-                    if ($buscaRepite == 0) {
+                    if (count($buscaRepite) == 0) {
                         $buscaRepite == 0;
                     }else{
 
