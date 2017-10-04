@@ -14,7 +14,7 @@ class Docente_has_asignatura extends Model
     	return $this->belongnsTo('App\Personal','id');
     }
     public function asignaturas(){
-    	return $this->belongnsTo('App\asignaturas','id');
+    	return $this->belongnsTo('App\Asignaturas','id');
     }
     public function periodos(){
     	return $this->belongnsTo('App\Periodos','id');

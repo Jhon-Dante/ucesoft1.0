@@ -29,11 +29,12 @@ class DatosBasicosSeeder extends Seeder
             
         ]);
 
-        DB::table('preinscripcion')->insert([  
+        DB::table('inscripcion')->insert([  
             'id_datosBasicos' => 1,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 1
+            'id_periodo' => 2
+            'id_seccion' => 2
         ]);
 
         DB::table('datos_basicos')->insert([
@@ -88,7 +89,7 @@ class DatosBasicosSeeder extends Seeder
 
         DB::table('datos_basicos')->insert([
             'nacionalidad' => 'V',
-            'cedula' => '20653434',
+            'cedula' => '20611434',
             'nombres' => 'Freddy Angel ',
             'apellidos' => 'Montilla de los Soles',
             'lugar_nac' => 'Hospital de Clínicas Achaguas, La Victoria',
@@ -104,11 +105,12 @@ class DatosBasicosSeeder extends Seeder
             
         ]);
 
-        DB::table('preinscripcion')->insert([  
+        DB::table('inscripcion')->insert([  
             'id_datosBasicos' => 4,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 1
+            'id_periodo' => 1,
+            'id_seccion' => 3
         ]);
    
     }
