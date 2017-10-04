@@ -29,7 +29,7 @@
 
           <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
             <a href="{{ url('admin/personal_asignatura/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                <i class="fa fa-pencil"></i> Asignar materias  
+                <i class="fa fa-pencil"></i> Asignar Carga Académica  
             </a>
           </div>
 
@@ -45,34 +45,26 @@
                   <tr>
                     <th>Nro</th>
                     <th>Nombres</th>
-                    <th>Apellidos</th>
+                    <!-- <th>Apellidos</th>
                     <th>Especialidad</th>
                     <th>Asignatura</th>
                     <th>Sección</th>
                     <th>Período</th>
-                    <th>Opciones</th>
+                    <th>Opciones</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($personal->asignacion as $perso)
+                @foreach($personal as $perso)
+                  @foreach($perso->asignacion_a as $key)
                   <tr>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$num=$num+1}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> </a></td>
-                    <!-- <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->apellidos}}</a></td>
-                    <td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->titulo}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->asignatura}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->seccion}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->periodo}}</a></td>
-                    -->
-                   <!-- <div class="btn-group">
-                        <a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a> -->
-
-                        <!-- <a href="#" ><button onclick="personal_asignatura({{ $perso->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br> -->
-                        </div>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$perso->nombres}}</a>
                     </td>
                     
+                    
+                    
                   </tr>
+                 @endforeach 
               @endforeach
               </tbody>
               

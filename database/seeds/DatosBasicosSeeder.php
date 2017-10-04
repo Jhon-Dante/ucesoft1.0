@@ -112,6 +112,81 @@ class DatosBasicosSeeder extends Seeder
             'id_periodo' => 1,
             'id_seccion' => 3
         ]);
+
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 1,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 2,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 3,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 4,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 5,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 6,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 7,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 8,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 9,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 10,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 11,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 12,
+            'estado' => 'Cancelado',
+            'id_datosBasicos' => 4,
+            'id_periodo' => 2
+        ]);
+
+
    
     }
 }

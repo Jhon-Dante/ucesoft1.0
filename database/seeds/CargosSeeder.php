@@ -24,5 +24,8 @@ class CargosSeeder extends Seeder
         DB::table('cargos')->insert([
             'cargo' => 'Docente Básica'
         ]);
+        DB::table('cargos')->insert([
+            'cargo' => 'Docente Preescolar'
+        ]);
     }
 }

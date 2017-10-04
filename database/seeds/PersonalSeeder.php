@@ -33,7 +33,7 @@ class PersonalSeeder extends Seeder
             'nombres' => 'Maria Josefa',
             'apellidos' => 'Palacios',
             'nacionalidad' => 'E',
-            'cedula' => '000068598348596838459',
+            'cedula' => '43838459',
             'fecha_nacimiento' => '1990-05-09',
             'edad' => '27',
             'edo_civil' => 'Casado(a)',
@@ -51,7 +51,7 @@ class PersonalSeeder extends Seeder
             'nombres' => 'James',
             'apellidos' => 'Maslow',
             'nacionalidad' => 'E',
-            'cedula' => '000068598348596838459',
+            'cedula' => '59683845',
             'fecha_nacimiento' => '1994-01-21',
             'edad' => '27',
             'edo_civil' => 'Viudo(a)',
@@ -69,7 +69,7 @@ class PersonalSeeder extends Seeder
             'nombres' => 'Mario',
             'apellidos' => 'Pistache',
             'nacionalidad' => 'E',
-            'cedula' => '000068598348596838459',
+            'cedula' => '396838459',
             'fecha_nacimiento' => '1985-11-07',
             'edad' => '32',
             'edo_civil' => 'Concubino(a)',
@@ -81,6 +81,24 @@ class PersonalSeeder extends Seeder
             'celular' => '4343321',
             'correo' => 'marioelpistache@live.com',
             'id_cargo' => '4'
+        ]);
+
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'Alex',
+            'apellidos' => 'Campos',
+            'nacionalidad' => 'V',
+            'cedula' => '96838459',
+            'fecha_nacimiento' => '1985-11-07',
+            'edad' => '32',
+            'edo_civil' => 'Concubino(a)',
+            'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
+            'genero' => '0',
+            'codigo_hab' => '1',
+            'telf_hab' => '8080090',
+            'codigo_cel' => '2',
+            'celular' => '4343321',
+            'correo' => 'marioelpistache@live.com',
+            'id_cargo' => '5'
         ]);
     }
 }

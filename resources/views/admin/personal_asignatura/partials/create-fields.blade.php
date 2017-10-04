@@ -1,16 +1,28 @@
 <div class="form-group">
-		{!! Form::label('id_docente','Docente') !!}
-        {!! Form::select('id_docente',$personal,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique el docente a asignar la materia']) !!}
+		{!! Form::label('docente','Docente') !!}
+
+		<select id="id_personal" name="id_personal" class="form-control select2" required="required" title="Seleccione el docente" title="Identifique el docente a asignar la materia">
+			@foreach($personal as $key)
+				<option value="{{$key->id}}">{{$key->apellidos}}, {{$key->nombres}} - {{$key->cargo->cargo}}</option>
+			@endforeach
+		</select>
+        
 </div>
+
 <div class="form-group">
-		{!! Form::label('id_asignatura','Asignaturas') !!}
-        {!! Form::select('id_asignatura',$asignaturas,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique la asignatura del docente']) !!}
+	{!! Form::label('cursos','Cursos')  !!}
+	{!! Form::select('id_curso',['placeholder' => 'Seleccione el Curso'],null,['class' => 'form-control select2','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'id_curso']) !!}
 </div>
+
 <div class="form-group">
-		{!! Form::label('id_periodo','Periodo') !!}
-        {!! Form::select('id_periodo',$periodos,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique el periodo en el que asigna la materia con el docente']) !!}
+	{!! Form::label('secciones','Secciones')  !!}
+	{!! Form::select('id_seccion',['placeholder' => 'Seleccione la Seccion'],null,['class' => 'form-control select2','required' => 'required', 'title' => 'Seleccione la Sección','id' => 'id_seccion']) !!}
 </div>
-<div class="form-group">
-		{!! Form::label('id_seccion','Secciones') !!}
-        {!! Form::select('id_seccion',$seccion,null,['class' => 'form-control', 'required' => 'required', 'title' => 'Identifique la seccion en la que impartirá clases la materia del docente']) !!}
+
+<div class="form-group" id="asignaturas" style="display:none;">
+	{!! Form::label('asignaturas','Asignaturas')  !!}
+	
+	<select required="required" class="form-control select2" style="width:100%" multiple="multiple" name="id_asignatura[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) ">
+		
+	</select>
 </div>

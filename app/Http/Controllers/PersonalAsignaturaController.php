@@ -8,6 +8,7 @@ use App\Asignaturas;
 use App\Personal;
 use App\Periodos;
 use App\Seccion;
+use App\Cursos;
 use Laracast\Flash\Flash;
 
 class PersonalAsignaturaController extends Controller
@@ -20,12 +21,42 @@ class PersonalAsignaturaController extends Controller
     public function index()
     {
         $num=0;
-        $personal=Personal::where('id_cargo','<>',1)->get();
-        dd($personal->cargo->cargo);
+        $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
+        //dd($personal->asignacion_a);
         
         return View('admin.personal_asignatura.index', compact('personal','num'));
     }
 
+    public function buscarpersonal($id)
+    {
+        $personal=Personal::find($id);
+        //dd($personal);
+        if($personal->id_cargo==5) {
+            
+               return $cursos=Cursos::where('id',1)->get();
+        }else{
+            if ($personal->id_cargo==4) {
+
+                return $cursos=Cursos::where('id','>=',2)->where('id','<=',7)->get();
+
+            } else {
+                return $cursos=Cursos::where('id','>=',8)->where('id','<=',12)->get();
+            }
+            
+        }
+            
+        
+    }
+
+    public function buscarsecciones($id)
+    {
+        return $secciones=Seccion::where('id_curso',$id)->get();
+    }
+
+    public function buscarasignaturas($id)
+    {
+        return $asignaturas=Asignaturas::where('id_curso',$id)->get();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +64,8 @@ class PersonalAsignaturaController extends Controller
      */
     public function create()
     {
-        $personal=Personal::lists('nombres','apellidos','id');
+         
+        $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
         $asignaturas=Asignaturas::lists('asignatura','id');
         $periodos=Periodos::lists('periodo','id');
         $seccion=Seccion::lists('seccion','id');
@@ -48,7 +80,7 @@ class PersonalAsignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->id_docente);
     }
 
     /**
