@@ -39,7 +39,7 @@ class Personal extends Model
     }
     public function asignacion_p()
     {
-        return $this->belongsToMany('App\Periodo', 'personal_has_asignatura', 'id_personal','id_periodo')->withPivot('id_asignatura','id_seccion');
+        return $this->belongsToMany('App\Periodos', 'personal_has_asignatura', 'id_personal','id_periodo')->withPivot('id_asignatura','id_seccion');
     }
     public function asignacion_s()
     {

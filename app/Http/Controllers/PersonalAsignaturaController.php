@@ -22,7 +22,7 @@ class PersonalAsignaturaController extends Controller
     {
         $num=0;
         $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
-        //dd($personal->asignacion_a);
+        // dd($personal->asignacion_a);
         
         return View('admin.personal_asignatura.index', compact('personal','num'));
     }
@@ -80,8 +80,37 @@ class PersonalAsignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->id_docente);
-    }
+
+        $periodo=Periodos::where('status','Activo')->get()->first();
+        $personal=Personal::all();
+        
+
+            foreach ($personal as $p) {
+                
+                        
+                        if (count($p->asignacion_pe) > 0 && count($p->asignacion_p) > 0 && count($p->asignacion_s) > 0) {
+                        flash('DISCULPE, YA EXISTE UN DOCENTE REGISTRADO EN ESTE CURSO CON LA(S) MISMA(S) MATERIAS(A) JUNTO CON LA SECCIÓN. ELIJA OTRO DOCENTE O ELIMINE EL ACTUAL','warning');
+
+                        
+                        return redirect()->route('admin.personal_asignatura.create')->withInput();
+
+                        }else{
+
+                            for($i=0;$i<count($request->id_asignatura);$i++){
+                                $crear=\DB::table('personal_has_asignatura')->insert(array(
+                                    'id_personal' => $request->id_personal,
+                                    'id_asignatura' => $request->id_asignatura[$i],
+                                    'id_seccion' => $request->id_seccion,
+                                    'id_periodo' => $periodo->id));
+                            }//Fin del for
+
+                            flash('REGISTRO DE CARGA ACADÉMICA REALIZADA CON ÉXITO!','success');
+                            return redirect()->route('admin.personal_asignatura.index');
+
+                        }//Fin del else         
+                
+            }//fin del foreach $p
+    }// Fin del store
 
     /**
      * Display the specified resource.

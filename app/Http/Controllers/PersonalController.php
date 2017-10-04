@@ -8,6 +8,7 @@ use App\Personal;
 use App\Cargos;
 use Laracast\Flash\Flash;
 use App\Http\Requests\PersonalRequest;
+use App\User;
 
 class PersonalController extends Controller
 {
@@ -43,8 +44,14 @@ class PersonalController extends Controller
      */
     public function store(PersonalRequest $request)
     {
+
         //dd($request->all());
         $buscar=Personal::where('cedula', $request->cedula)->get();
+
+        $personal2=Personal::find($request->)
+        $usuario=User::all();
+
+
 
         $cuantos=count($buscar);
 
@@ -73,6 +80,19 @@ class PersonalController extends Controller
                 'correo'           =>$request->correo,
                 'id_cargo'         =>$request->id_cargo
                 ]);
+
+                $cargo=Cargos::where('id_cargo',$request->id_cargo)->get()->first();
+
+                $usuario=User::where('name',$request->nombres)->get()->first();
+
+                if(count($usuario) == 0){
+                    $crear=\DB::table('users')->insert(array(
+                        'name'          => $request->nombres,
+                        'email'         => $request->correo,
+                        'password'      => bcrypt('qwerty'),
+                        'tipo_user'     => $cargo->cargo
+                    );
+                }
 
             flash('Personal registrado con éxito','success');
 

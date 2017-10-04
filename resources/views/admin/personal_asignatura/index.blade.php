@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Materias
+  Carga Académica
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,14 +9,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Materias')
+        @yield('contentheader_title', 'Carga Académica')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Materias</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Carga Académica</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Lista de Materias Asignadas
+        <div class="panel-heading">Lista de Carga Académica Asignadas
 
           <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
             <a href="{{ url('admin/personal_asignatura/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
@@ -45,12 +45,9 @@
                   <tr>
                     <th>Nro</th>
                     <th>Nombres</th>
-                    <!-- <th>Apellidos</th>
-                    <th>Especialidad</th>
+                    <th>Apellidos</th>
                     <th>Asignatura</th>
-                    <th>Sección</th>
-                    <th>Período</th>
-                    <th>Opciones</th> -->
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -58,7 +55,10 @@
                   @foreach($perso->asignacion_a as $key)
                   <tr>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$num=$num+1}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$perso->nombres}}</a>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$perso->nombres}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$perso->apellidos}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$key->asignatura}}</a></td>
+                    
                     </td>
                     
                     

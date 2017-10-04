@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Estudiantes
+  Estudiantes Preinscritos 
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,14 +9,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Estudiantes')
+        @yield('contentheader_title', 'Estudiantes Preinscritos')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes preinscritos</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>

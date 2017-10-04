@@ -87,14 +87,67 @@
           <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+              <li class="active"><a href="#revenue-chart" data-toggle="tab">Preinscritos</a></li>
+              <li><a href="#sales-chart" data-toggle="tab">Inscritos</a></li>
+              <li class="pull-left header"><i class="fa fa-inbox"></i> Estudiantes</li>
             </ul>
             <div class="tab-content no-padding">
               <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+                <div class="box">
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered table-striped">
+                <tbody><tr>
+                  <th style="width: 10px">#</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Cédula</th>
+                  <th style="width: 40px"></th>
+                </tr>
+                
+                  @foreach($preinscripcion as $p)
+                  <tr>
+                    <td>{{$num=$num+1}}.-</td>
+                    <td>{{$p->datosBasicos->nombres}}</td>
+                    <td>{{$p->datosBasicos->apellidos}}</td>
+                    <td>{{$p->datosBasicos->nacionalidad}} - {{$p->datosBasicos->cedula}}</td>
+
+                  </tr>
+                  @endforeach
+                
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+            
+          </div>
+
+              </div>
+              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                <div class="box-body">
+              <table class="table table-bordered table-striped">
+                <tbody><tr>
+                  <th style="width: 10px">#</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Cédula</th>
+                  <th style="width: 40px"></th>
+                </tr>
+                
+                  @foreach($inscripcion as $p)
+                  <tr>
+                    <td>{{$num=$num+1}}.-</td>
+                    <td>{{$p->datosBasicos->nombres}}</td>
+                    <td>{{$p->datosBasicos->apellidos}}</td>
+                    <td>{{$p->datosBasicos->nacionalidad}} - {{$p->datosBasicos->cedula}}</td>
+
+                  </tr>
+                  @endforeach
+                
+              </tbody></table>
+            </div>
+              </div>
             </div>
           </div>
           <!-- /.nav-tabs-custom -->

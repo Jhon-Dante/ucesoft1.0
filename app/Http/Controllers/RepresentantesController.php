@@ -8,6 +8,7 @@ use App\Representantes;
 use App\Parentesco;
 use Laracast\Flash\Flash;
 use App\Http\Requests\RepresentantesRequest;
+use User;   
 use Redirect;
 
 class RepresentantesController extends Controller
@@ -86,14 +87,11 @@ class RepresentantesController extends Controller
             ]);
 
             $repre=DB::table('users')->insert([
-
-            'name' => $request->nombres,
-            'email' => $request->email,
-            'password' => bcrypt('qwerty'),
-            'pregunta' => 'mascota',
-            'respuesta' => 'scooby',
-            'tipo_user' => 'Representante'
-        ]);
+                'name' => $request->nombres,
+                'email' => $request->email,
+                'password' => bcrypt('qwerty'),
+                'tipo_user' => 'Representante'
+            ]);
         
         flash('Representante registrado con éxito','success');
         if ($request->desde==1) {

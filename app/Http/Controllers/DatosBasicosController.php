@@ -22,6 +22,7 @@ use App\Cursos;
 use App\Inscripcion;
 use App\Mensualidades;
 use App\AsignaturasPendientes;
+use App\User;
 
 class DatosBasicosController extends Controller
 {
@@ -115,8 +116,8 @@ class DatosBasicosController extends Controller
                                     if (count($inscripciones)>0)
                                     {
                                            $id_curso_next=$inscripciones->seccion->curso->id;
-                                           $curso_s=Seccion::where('id', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
-                                          
+                                           $curso_s=Seccion::where('id_curso', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
+                                        
                                     }
                                     else
                                     {
@@ -342,6 +343,8 @@ class DatosBasicosController extends Controller
                                             'direccion' => $request->direccion,
                                             'id_representante' => $request->id_representante
                                             ]);
+
+
                                     } else {
 
                                     //en caso de que la cedula del estudiante no venga vacía

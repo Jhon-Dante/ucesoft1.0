@@ -33,7 +33,7 @@ class Seccion extends Model
     }
     public function asignacion_p()
     {
-        return $this->belongsToMany('App\Periodo', 'personal_has_asignatura', 'id_seccion','id_periodo')->withPivot('id_personal','id_asignatura');
+        return $this->belongsToMany('App\Periodos', 'personal_has_asignatura', 'id_seccion','id_periodo')->withPivot('id_personal','id_asignatura');
     }
     public function asignacion_a()
     {

@@ -39,10 +39,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $num=0;
         $preinscripcion=Preinscripcion::all();
         $inscripcion=Inscripcion::all();
         $mensualidades=Mensualidades::where('estado','Sin Pagar')->get();
         $datosBasicos=DatosBasicos::all();
-        return view('home', compact('mensualidades','datosBasicos','inscripcion','preinscripcion'));
+        return view('home', compact('mensualidades','datosBasicos','inscripcion','preinscripcion','num'));
     }
 }
