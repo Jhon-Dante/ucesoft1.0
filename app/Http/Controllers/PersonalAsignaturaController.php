@@ -27,6 +27,15 @@ class PersonalAsignaturaController extends Controller
         return View('admin.personal_asignatura.index', compact('personal','num'));
     }
 
+    public function listado()
+    {
+        //dd('asasa');
+        $num=0;
+        $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
+        
+        
+        return View('admin.personal_asignatura.listado', compact('personal','num'));   
+    }
     public function buscarpersonal($id)
     {
         $personal=Personal::find($id);
@@ -95,14 +104,26 @@ class PersonalAsignaturaController extends Controller
                         return redirect()->route('admin.personal_asignatura.create')->withInput();
 
                         }else{
-
-                            for($i=0;$i<count($request->id_asignatura);$i++){
+                            if (count($request->id_asignatura)>0) {
+                                for($i=0;$i<count($request->id_asignatura);$i++){
                                 $crear=\DB::table('personal_has_asignatura')->insert(array(
                                     'id_personal' => $request->id_personal,
                                     'id_asignatura' => $request->id_asignatura[$i],
                                     'id_seccion' => $request->id_seccion,
                                     'id_periodo' => $periodo->id));
                             }//Fin del for
+                            } else {
+                                $asignaturas=Asignaturas::where('id_curso',$request->id_curso)->get();
+                                foreach ($asignaturas as $key ) {
+                                    $crear=\DB::table('personal_has_asignatura')->insert(array(
+                                    'id_personal' => $request->id_personal,
+                                    'id_asignatura' => $key->id,
+                                    'id_seccion' => $request->id_seccion,
+                                    'id_periodo' => $periodo->id));
+                                }
+                            }
+                            
+                            
 
                             flash('REGISTRO DE CARGA ACADÉMICA REALIZADA CON ÉXITO!','success');
                             return redirect()->route('admin.personal_asignatura.index');

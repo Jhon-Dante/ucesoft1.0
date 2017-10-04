@@ -63,31 +63,38 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($secciones as $s)
-              @if($s->curso->id >= 2 AND $s->curso->id <= 7)
-
-                  <tr>
-                    
-                     <td><a href="#">{{$num=$num+1}}</a></td>
-                    
-                     <td><a href="#">{{$s->curso->curso}}</a></td>
-                     <td><a href="#">{{$s->seccion}}</a></td>
-                     <td><a href="#">{{$periodo->periodo}}</a></td>
-                     <td>
-                      <div class="btn-group">
+            @foreach($personal as $perso)
+                  <?php $cont=0; ?>
+                  @foreach($perso->asignacion_a as $key)
+                  
+                    @if($perso->id_cargo==4)
+                    @if($cont==0)
+                    <tr>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$num=$num+1}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$key->cursos->curso}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">
+                    @foreach($key->cursos->seccion as $key2)
+                        @if($key2->id==$key->pivot->id_seccion)
+                        {{$key2->seccion}}
+                        @endif
                         
-                                <a href="{{url('admin/crearlapso',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
-                              
-                            
-                       
-                            
-                          <br><br>
-                      </div>
-                     </td>
-                      
-                    </tr>
+                    
+                    
+
+                    @endforeach
+                    </a></td>
+
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$periodo->periodo}}</a></td>
+
+                    <td><a href="{{url('admin/crearlapso',['id_seccion' => $key2->id,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                  </td>  
+                  </tr>
                   @endif
-                @endforeach
+                  <?php $cont++; ?>
+                  @endif
+
+                 @endforeach 
+              @endforeach
               </tbody>
             </table>
           </div>

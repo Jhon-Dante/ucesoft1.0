@@ -22,7 +22,7 @@
 <div class="form-group" id="asignaturas" style="display:none;">
 	{!! Form::label('asignaturas','Asignaturas')  !!}
 	
-	<select required="required" class="form-control select2" style="width:100%" multiple="multiple" name="id_asignatura[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) ">
+	<select class="form-control select2" style="width:100%" multiple="multiple" name="id_asignatura[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) ">
 		
 	</select>
 </div>

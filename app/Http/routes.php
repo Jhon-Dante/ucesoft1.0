@@ -46,16 +46,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/personal','PersonalController');
         Route::get('/personales/{id}/buscar',[
             'uses' => 'PersonalAsignaturaController@buscarpersonal',
-            'as' => 'admin.personales.buscar']
-            );
+            'as' => 'admin.personales.buscar'
+            ]);
         Route::get('/cursos/{id}/buscar',[
             'uses' => 'PersonalAsignaturaController@buscarsecciones',
             'as' => 'admin.cursos.buscarsecciones'
             ]);
+
         Route::get('/asignaturas/{id}/buscar',[
             'uses' => 'PersonalAsignaturaController@buscarasignaturas',
             'as' => 'admin.asignaturas.buscarasignaturas'
             ]);
+
         Route::get('/DatosBasicos/{cedula}/verificarPadre',[
             'uses' => 'DatosBasicosController@verificarPadre',
             'as' => 'admin.DatosBasicos.verificarPadre'
@@ -133,6 +135,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             ]);
 
         Route::resource('/personal_asignatura','PersonalAsignaturaController');
+
+        Route::get('/personalasignatura/listado',[
+            'uses' => 'PersonalAsignaturaController@listado',
+            'as' => 'admin.personalasignatura.listado'
+            ]);
         
         Route::resource('/calificaciones','CalificacionesController');
 

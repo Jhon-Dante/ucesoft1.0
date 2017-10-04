@@ -48,7 +48,7 @@ class PersonalController extends Controller
         //dd($request->all());
         $buscar=Personal::where('cedula', $request->cedula)->get();
 
-        $personal2=Personal::find($request->)
+        //$personal2=Personal::find($request->)
         $usuario=User::all();
 
 
@@ -91,7 +91,7 @@ class PersonalController extends Controller
                         'email'         => $request->correo,
                         'password'      => bcrypt('qwerty'),
                         'tipo_user'     => $cargo->cargo
-                    );
+                    ));
                 }
 
             flash('Personal registrado con éxito','success');

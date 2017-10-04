@@ -16,7 +16,7 @@
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Carga Académica de Media General</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Carga Académica de Básica</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Lista de Carga Académica Asignadas
+        <div class="panel-heading">Lista de Carga Académica de Básica Asignadas
 
           <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
             <a href="{{ url('admin/personal_asignatura/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
@@ -46,34 +46,35 @@
                     <th>Nro</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                    <th>Asignatura</th>
                     <th>Curso</th>
                     <th>Sección</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
                 @foreach($personal as $perso)
+                  <?php $cont=0; ?>
                   @foreach($perso->asignacion_a as $key)
-                    @if($perso->id_cargo==3)
-                  <tr>
+                  
+                    @if($perso->id_cargo==4)
+                  	@if($cont==0)
+                  	<tr>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$num=$num+1}}</a></td>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$perso->nombres}}</a></td>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$perso->apellidos}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$key->asignatura}}</a></td>
-                    
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$key->cursos->curso}}</a></td>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">
-            @foreach($key->cursos->seccion as $key2)
-                        @if($key2->id==$key->pivot->id_seccion)
-                        {{$key2->seccion}}
-              @endif
-                        
-                      @endforeach
+						@foreach($key->cursos->seccion as $key2)
+                    		@if($key2->id==$key->pivot->id_seccion)
+                    		{{$key2->seccion}}
+							@endif
+                    		
+                    	@endforeach
                     </a></td>
                     
-                    
-                    
                   </tr>
+                  @endif
+                  <?php $cont++; ?>
                   @endif
                  @endforeach 
               @endforeach

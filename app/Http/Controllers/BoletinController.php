@@ -15,7 +15,7 @@ use App\Periodos;
 use App\Boletin;
 use App\Asignaturas;
 use App\Seccion;
-
+use App\Personal;
 class BoletinController extends Controller
 {
     /**
@@ -31,9 +31,10 @@ class BoletinController extends Controller
         $boletin=Boletin::all();
         $num=0;
         $cali=Boletin::all();
-        
-        
-        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin','secciones','periodo'));
+        $correo=\Auth::user()->email;
+        $personal=Personal::where('correo',$correo)->get();
+        //dd($personal);
+        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin','secciones','periodo','personal'));
     }
 
     /**

@@ -65,6 +65,15 @@ class PersonalSeeder extends Seeder
             'id_cargo' => '3'
         ]);
 
+         DB::table('users')->insert([
+            'name' => 'James',
+            'email' => 'jamesmOficial@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Media General'
+        ]);
+
          DB::table('datos_basicos_personal')->insert([
             'nombres' => 'Mario',
             'apellidos' => 'Pistache',
@@ -83,6 +92,15 @@ class PersonalSeeder extends Seeder
             'id_cargo' => '4'
         ]);
 
+         DB::table('users')->insert([
+            'name' => 'Mario',
+            'email' => 'marioelpistache@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Basica'
+        ]);
+
         DB::table('datos_basicos_personal')->insert([
             'nombres' => 'Alex',
             'apellidos' => 'Campos',
@@ -97,8 +115,17 @@ class PersonalSeeder extends Seeder
             'telf_hab' => '8080090',
             'codigo_cel' => '2',
             'celular' => '4343321',
-            'correo' => 'marioelpistache@live.com',
+            'correo' => 'alex@live.com',
             'id_cargo' => '5'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Alex',
+            'email' => 'alex@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Preescolar'
         ]);
     }
 }
