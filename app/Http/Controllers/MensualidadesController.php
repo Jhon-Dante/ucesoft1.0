@@ -18,6 +18,7 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
+
         $periodo=Periodos::where('status','Activo')->first();
         $meses=Meses::all();
         $mensualidades=Mensualidades::where('id_periodo',$periodo->id)->get();
@@ -93,7 +94,8 @@ class MensualidadesController extends Controller
 
     public function buscar($id)
     {
-        return $mensualidad=Mensualidades::where('id',$id);
+        return $x=\DB::select('select mensualidades.*,meses.mes,datos_basicos.nombres,datos_basicos.apellidos,periodos.periodo from mensualidades,meses,periodos,datos_basicos where mensualidades.id_periodo=periodos.id and mensualidades.id_datosBasicos = datos_basicos.id and mensualidades.id='.$id);
+        
     }
 
     /**
@@ -105,7 +107,16 @@ class MensualidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mensualidad=Mensualidades::find($request->id_mensualidad);
+//dd($request->forma_pago);
+        $mensualidad->forma_pago=$request->forma_pago;
+        $mensualidad->codigo_operacion=$request->codigo_operacion;
+
+        $mensualidad->save();
+
+        flash('MENSUALIDAD ACTUALIZADA CON ÉXITO!','success');
+
+        return redirect()->route('admin.mensualidades.index');
     }
 
     /**

@@ -118,19 +118,20 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Editar Pago de Mensualidad del mes: <strong><p id="mes"><span></span></p></strong></h4>
+                  <h4 class="modal-title">Editar Pago de Mensualidad del mes: <strong><p id="mes2"><span></span></p></strong></h4>
+                  <h4>Pagó en </h4><strong><p id="forma_pago2"><span></span></p></strong>
                 </div>
                 <div class="modal-body">
-                  {!! Form::open(['route' => ['admin.mensualidades.update','id' => 0], 'method' => 'put']) !!}
+                  {!! Form::open(['route' => ['admin.mensualidades.update', 0], 'method' => 'put']) !!}
                   <h4>Nombre del estudiante: </h4><strong><p id="nombre2"><span></span></p></strong>
                     <h4>Periodo a pagar</h4><strong><p id="periodo2"><span></span></p></strong>
                     <h4>Forma de Pago</h4>
                     <div class="form-group">
-                        {!! Form::select('forma_pago',['1' => 'Efectivo','2' => 'Transferencia', '3' => 'Depósito'],null,['class' => 'form-control','required' => 'required','title' => 'Seleccione la forma de pago','id' => 'forma_pago'])  !!}
+                        {!! Form::select('forma_pago',['1' => 'Efectivo','2' => 'Transferencia', '3' => 'Depósito'],null,['class' => 'form-control','required' => 'required','title' => 'Seleccione la forma de pago','id' => 'forma_pago3'])  !!}
                     </div>
                     <h4>Nro Transferencia/Nro de Vaucher</h4>
                     <div class="form-group">
-                        {!! Form::text('codigo_operacion',null,['class' => 'form-control', 'disabled' => 'disabled','id' => 'codigo_operacion']) !!}
+                        {!! Form::text('codigo_operacion',null,['class' => 'form-control', 'disabled' => 'disabled','id' => 'codigo_operacion3']) !!}
                     </div>
                     <p>¿Editar mes del estudiante?</p>
                     <input type="hidden" name="id_mensualidad" id="id_mensualidad">
@@ -180,6 +181,16 @@
     }
 });
 
+  $("#forma_pago3").on("change", function (event) {
+    var id = event.target.value;
+
+    if (id==1) {
+      $("#codigo_operacion3").attr('disabled', true);
+    } else {
+      $("#codigo_operacion3").removeAttr('disabled');
+    }
+});
+
   $("#editar").on("click", function(event){
       var id=event.target.value;
 
@@ -193,19 +204,20 @@
         
         if(data.length > 0){
 
-        $('#nombre2').text(data[0].nombre);
+        $('#nombre2').text(data[0].nombres);
         $('#periodo2').text(data[0].periodo);
-            for (var i = 0; i < data.length ; i++) 
-            {  
-                $("#id_asignatura").removeAttr('disabled');
-                $("#id_asignatura").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
-                
-            }
-            
-        }else{
-            
-            $("#id_asignatura").attr('disabled', false);
-
+        $('#mes2').text(data[0].mes);
+        if (data[0].forma_pago==1) {
+          $('#forma_pago2').text('Efectivo');  
+        } else {
+          if (data[0].forma_pago==2) {
+            $('#forma_pago2').text('Transferencia, Código de Operación: '+data[0].codigo_operacion);  
+          } else {
+            $('#forma_pago2').text('Depósito, Código de Operación: '+data[0].codigo_operacion);  
+          }
+        }
+        
+               
         }
     });
   });
