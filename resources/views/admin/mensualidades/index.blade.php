@@ -40,7 +40,7 @@
                       <th>Nro</th>
                       <th>Estudiante</th>
                       @foreach($meses as $mes)
-                        <th>{{$mes->mes}}</th>
+                        <th>{{str_limit($mes->mes,3)}}</th>
                       @endforeach
                       <th>Período</th>
                     </tr>
@@ -56,7 +56,9 @@
                         @foreach($mensualidades as $key2)
                           @if($key2->id_datosBasicos==$key->id_datosBasicos)
                             @if($key2->estado=="Cancelado")
-                            <td align="center"><img src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px"></td>
+                            <td align="center"><img src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px">
+                              <button id="editar" value="{{ $key2->id }}" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal"  ><i class="fa fa-pencil"></i></button>
+                            </td>
 
                             @else
                           <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datoBasico->nombres}}','{{$key->periodo->periodo}}','{{$key2->mes->mes}}','{{$key2->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
@@ -88,10 +90,50 @@
                   {!! Form::open(['route' => ['admin.mensualidades.store'], 'method' => 'POST']) !!}
                     <h4>Nombre del estudiante: </h4><strong><p id="nombre"><span></span></p></strong>
                     <h4>Periodo a pagar</h4><strong><p id="periodo"><span></span></p></strong>
-
+                    <h4>Forma de Pago</h4>
+                    <div class="form-group">
+                        {!! Form::select('forma_pago',['1' => 'Efectivo','2' => 'Transferencia', '3' => 'Depósito'],null,['class' => 'form-control','required' => 'required','title' => 'Seleccione la forma de pago','id' => 'forma_pago'])  !!}
+                    </div>
+                    <h4>Nro Transferencia/Nro de Vaucher</h4>
+                    <div class="form-group">
+                        {!! Form::text('codigo_operacion',null,['class' => 'form-control', 'disabled' => 'disabled','id' => 'codigo_operacion']) !!}
+                    </div>
                     <p>¿Cancelar mes del estudiante?</p>
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="id_mes" id="id_mes">
+                    
+                </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary">Aceptar</button>
+                  {!! Form::close() !!}
+                </div>
+              </div>
+            </div>
+          </div>
+
+<div id="myModal"  class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                      <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Editar Pago de Mensualidad del mes: <strong><p id="mes"><span></span></p></strong></h4>
+                </div>
+                <div class="modal-body">
+                  {!! Form::open(['route' => ['admin.mensualidades.update','id' => 0], 'method' => 'put']) !!}
+                  <h4>Nombre del estudiante: </h4><strong><p id="nombre2"><span></span></p></strong>
+                    <h4>Periodo a pagar</h4><strong><p id="periodo2"><span></span></p></strong>
+                    <h4>Forma de Pago</h4>
+                    <div class="form-group">
+                        {!! Form::select('forma_pago',['1' => 'Efectivo','2' => 'Transferencia', '3' => 'Depósito'],null,['class' => 'form-control','required' => 'required','title' => 'Seleccione la forma de pago','id' => 'forma_pago'])  !!}
+                    </div>
+                    <h4>Nro Transferencia/Nro de Vaucher</h4>
+                    <div class="form-group">
+                        {!! Form::text('codigo_operacion',null,['class' => 'form-control', 'disabled' => 'disabled','id' => 'codigo_operacion']) !!}
+                    </div>
+                    <p>¿Editar mes del estudiante?</p>
+                    <input type="hidden" name="id_mensualidad" id="id_mensualidad">
                     
                 </div>
                 <div class="modal-footer">
@@ -118,5 +160,55 @@
     $('#mes').text(mes);
     $('#id_mes').val(id_mes);
   }
+
+  function editar(id) {
+    
+  }
 </script>
+
+
+@endsection
+@section('scripts')
+<script type="text/javascript">
+  $("#forma_pago").on("change", function (event) {
+    var id = event.target.value;
+
+    if (id==1) {
+      $("#codigo_operacion").attr('disabled', true);
+    } else {
+      $("#codigo_operacion").removeAttr('disabled');
+    }
+});
+
+  $("#editar").on("click", function(event){
+      var id=event.target.value;
+
+
+    $('#id_mensualidad').val(id);
+    $.get("/admin/mensualidad/"+id+"/buscar",function (data) {
+       
+      
+       $("#id_asignatura").empty();
+      
+        
+        if(data.length > 0){
+
+        $('#nombre2').text(data[0].nombre);
+        $('#periodo2').text(data[0].periodo);
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#id_asignatura").removeAttr('disabled');
+                $("#id_asignatura").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
+                
+            }
+            
+        }else{
+            
+            $("#id_asignatura").attr('disabled', false);
+
+        }
+    });
+  });
+</script>
+
 @endsection

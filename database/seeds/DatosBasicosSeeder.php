@@ -115,75 +115,99 @@ class DatosBasicosSeeder extends Seeder
 
         DB::table('mensualidades')->insert([  
             'id_mes' => 1,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 2,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 3,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 4,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 5,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 6,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 7,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 8,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 9,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 10,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 11,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
         DB::table('mensualidades')->insert([  
             'id_mes' => 12,
-            'estado' => 'Cancelado',
+            'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
-            'id_periodo' => 2
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
         ]);
 
 

@@ -18,6 +18,8 @@ class CreateMensualidadesTable extends Migration
             $table->enum('estado',['Cancelado','Sin pagar']);
             $table->integer('id_datosBasicos')->unsigned();
             $table->integer('id_periodo')->unsigned();
+            $table->integer('forma_pago');
+            $table->string('codigo_operacion')->nullable();
 
             
             $table->foreign('id_mes')->references('id')->on('meses')->onDelete('cascade');

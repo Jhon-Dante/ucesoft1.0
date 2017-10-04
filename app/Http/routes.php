@@ -116,13 +116,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.representantes.destroy']
             );
 
-        
-
-        
-        Route::get('/mensualidades', function () {
-    return view('admin.mensualidades.index');
-        });
-
        
 
         Route::resource('/mensualidades','MensualidadesController');
@@ -130,6 +123,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'MensualidadesController@destroy',
             'as' => 'admin.mensualidades.destroy']
             );
+        Route::get('/mensualidades/contabilidad',[
+            'uses' => 'MensualidadesController@contabilidad',
+            'as' => 'admin.mensualidades.contabilidad'
+            ]);
+        Route::get('/mensualidad/{id}/buscar',[
+            'uses' => 'MensualidadesController@buscar',
+            'as' => 'admin.mensualidad.buscar'
+            ]);
 
         Route::resource('/personal_asignatura','PersonalAsignaturaController');
         

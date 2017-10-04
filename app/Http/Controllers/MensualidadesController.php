@@ -43,6 +43,11 @@ class MensualidadesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function contabilidad()
+    {
+        
+    }
     public function store(Request $request)
     {
 
@@ -50,6 +55,8 @@ class MensualidadesController extends Controller
 
         if ($mensualidades->estado == 'Sin pagar') {
             $mensualidades->estado = 'Cancelado';
+            $mensualidades->forma_pago=$request->forma_pago;
+            $mensualidades->codigo_operacion=$request->codigo_operacion;
             $mensualidades->save();
 
            flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
@@ -81,7 +88,12 @@ class MensualidadesController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+    }
+
+    public function buscar($id)
+    {
+        return $mensualidad=Mensualidades::where('id',$id);
     }
 
     /**
