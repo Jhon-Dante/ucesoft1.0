@@ -26,8 +26,25 @@ class Personal extends Model
     'id_cargo'];
 
 
-     public function cargo()
+    public function cargo()
     {
         return $this->belongsTo('App\Cargos', 'id_cargo');
-   }
+    }
+
+
+    //Relación mucho a muchos
+    public function asignacion_a()
+    {
+        return $this->belongsToMany('App\asignaturas', 'personal_has_asignatura', 'id_personal','id_asignatura')->withPivot('id_seccion','id_periodo');
+    }
+    public function asignacion_p()
+    {
+        return $this->belongsToMany('App\Periodo', 'personal_has_asignatura', 'id_personal','id_periodo')->withPivot('id_asignatura','id_seccion');
+    }
+    public function asignacion_s()
+    {
+        return $this->belongsToMany('App\Seccion', 'personal_has_asignatura', 'id_personal','id_seccion')->withPivot('id_asignatura','id_periodo');
+    }
+
+
 }

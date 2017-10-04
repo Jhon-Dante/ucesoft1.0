@@ -54,21 +54,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($personal_asignatura as $pasignatura)
+                @foreach($personal->asignacion as $perso)
                   <tr>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}">{{$num=$num+1}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"> {{$pasigna->personal->nombres}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"> {{$pasigna->personal->apellidos}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$num=$num+1}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> </a></td>
+                    <!-- <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->apellidos}}</a></td>
                     <td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"> {{$pasigna->personal->titulo}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"> {{$pasigna->asignaturas->asignatura}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"> {{$pasigna->secciones->seccion}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"> {{$pasigna->periodos->periodo}}</a></td>
-                   
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->titulo}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->asignatura}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->seccion}}</a></td>
+                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"> {{$perso->asignacion->periodo}}</a></td>
+                    -->
                    <!-- <div class="btn-group">
-                        <a href="{{ route('admin.personal_asignatura.edit', [$pasigna->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a> -->
+                        <a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a> -->
 
-                        <a href="#" ><button onclick="personal_asignatura({{ $pasigna->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                        <!-- <a href="#" ><button onclick="personal_asignatura({{ $perso->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br> -->
                         </div>
                     </td>
                     
@@ -96,13 +96,13 @@
                     <h4 class="modal-title">Eliminar Curso</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este pasigna en especifico?...
+                    ¿Esta seguro que desea eliminar este perso en especifico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
                     {!! Form::open(['route' => ['admin.personal_asignatura.destroy',1033], 'method' => 'DELETE']) !!}
-                        <input type="hidden" id="pasigna" name="id">
+                        <input type="hidden" id="perso" name="id">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}
 
@@ -113,9 +113,9 @@
 
    <script type="text/javascript">
 
-        function personal_asignatura(pasigna){
+        function personal_asignatura(perso){
 
-            $('#pasigna').val(pasigna);
+            $('#perso').val(perso);
         }
 
     </script>

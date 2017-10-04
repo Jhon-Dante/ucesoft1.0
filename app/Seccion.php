@@ -25,4 +25,18 @@ class Seccion extends Model
     {
         return $this->hasMany('App\Horarios','id_seccion','id');
     }
+
+    //Relacion mucho a muchos
+    public function asignacion_pe()
+    {
+        return $this->belongsToMany('App\Personal', 'personal_has_asignatura', 'id_seccion','id_personal')->withPivot('id_periodo','id_asignatura');
+    }
+    public function asignacion_p()
+    {
+        return $this->belongsToMany('App\Periodo', 'personal_has_asignatura', 'id_seccion','id_periodo')->withPivot('id_personal','id_asignatura');
+    }
+    public function asignacion_a()
+    {
+        return $this->belongsToMany('App\asignaturas', 'personal_has_asignatura', 'id_seccion','id_asignatura')->withPivot('id_personal','id_periodo');
+    }
 }

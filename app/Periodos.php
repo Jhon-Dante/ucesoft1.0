@@ -65,4 +65,18 @@ class Periodos extends Model
 	{
 		return $this->hasMany('App\Horarios','id_periodo','id');
 	}
+
+	//Relación mucho a muchos
+	public function asignacion_pe()
+    {
+        return $this->belongsToMany('App\Personal', 'personal_has_asignatura', 'id_periodo','id_personal')->withPivot('id_seccion','id_asignatura');
+    }
+    public function asignacion_s()
+    {
+        return $this->belongsToMany('App\Seccion', 'personal_has_asignatura', 'id_periodo','id_seccion')->withPivot('id_personal','id_asignatura');
+    }
+    public function asignacion_a()
+    {
+        return $this->belongsToMany('App\asignaturas', 'personal_has_asignatura', 'id_periodo','id_asignatura')->withPivot('id_personal','id_seccion');
+    }
 }

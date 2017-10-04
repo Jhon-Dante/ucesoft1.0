@@ -3,19 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
-use App\Docente_has_asignatura;
-
 use App\Asignaturas;
-
 use App\Personal;
-
 use App\Periodos;
-
 use App\Seccion;
-
 use Laracast\Flash\Flash;
 
 class PersonalAsignaturaController extends Controller
@@ -28,8 +20,10 @@ class PersonalAsignaturaController extends Controller
     public function index()
     {
         $num=0;
-        $personal_asignatura=Docente_has_asignatura::all();
-        return View('admin.personal_asignatura.index', compact('personal_asignatura','num'));
+        $personal=Personal::where('id_cargo','<>',1)->get();
+        dd($personal->cargo->cargo);
+        
+        return View('admin.personal_asignatura.index', compact('personal','num'));
     }
 
     /**

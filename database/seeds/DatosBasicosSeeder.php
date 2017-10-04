@@ -33,7 +33,7 @@ class DatosBasicosSeeder extends Seeder
             'id_datosBasicos' => 1,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 2
+            'id_periodo' => 2,
             'id_seccion' => 2
         ]);
 
