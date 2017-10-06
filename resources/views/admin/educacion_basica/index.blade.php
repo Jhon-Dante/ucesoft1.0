@@ -74,6 +74,7 @@
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$key->cursos->curso}}</a></td>
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">
                     @foreach($key->cursos->seccion as $key2)
+
                         @if($key2->id==$key->pivot->id_seccion)
                         {{$key2->seccion}}
                         @endif
@@ -85,9 +86,13 @@
                     </a></td>
 
                     <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$periodo->periodo}}</a></td>
-
-                    <td><a href="{{url('admin/crearlapso',['id_seccion' => $key2->id,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
-                  </td>  
+                    @foreach($key->cursos->seccion as $key2)
+                    
+                        @if($key2->id==$key->pivot->id_seccion)
+                            <td><a href="{{url('admin/crearlapso',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                             </td>  
+                  @endif
+                    @endforeach
                   </tr>
                   @endif
                   <?php $cont++; ?>

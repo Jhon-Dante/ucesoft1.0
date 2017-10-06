@@ -9,8 +9,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Básica')
-        <small>Registro</small>
+        @yield('contentheader_title', 'Educación Básica')
+        <small>Registro de calificaciones</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Básica</a></li>
@@ -29,17 +29,16 @@
 
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Lapsos de los estudiante de: <strong>{{$inscripcion2->seccion->curso->curso}}</strong>, de la sección: <strong>{{$inscripcion2->seccion->seccion}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong></div>
+							<div class="panel-heading">Curso: <strong>{{$seccion->curso->curso}}</strong> - Sección: <strong>{{$seccion->seccion}}</strong></div>
 
 								<div class="panel-body">
 								
                 {!! Form::open(['route' => ['admin.educacion_basica.store'], 'method' => 'post' ]) !!}
-
+								
+									<input type="hidden" name="id_curso" value="{{$seccion->curso->id}}">
     								@include('admin.educacion_basica.partials.create-fields')
 					                
-					                <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
-					                <input type="hidden" name="id_datosBasicos" value="{{$inscripcion2->id}}">
-					                 
+					                
 					                
 					                
 					            	<div class="box-footer">

@@ -11,7 +11,7 @@ class Cursos extends Model
 
     public function asignaturas(){
 
-    	return $this->hasMany('App\Asignaturas','id_curso','id');
+    	return $this->hasMany('App\asignaturas','id_curso','id');
     }
 
     public function seccion()

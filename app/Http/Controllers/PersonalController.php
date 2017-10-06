@@ -81,8 +81,7 @@ class PersonalController extends Controller
                 'id_cargo'         =>$request->id_cargo
                 ]);
 
-                $cargo=Cargos::where('id_cargo',$request->id_cargo)->get()->first();
-
+                $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
                 $usuario=User::where('name',$request->nombres)->get()->first();
 
                 if(count($usuario) == 0){

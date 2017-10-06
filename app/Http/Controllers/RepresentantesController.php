@@ -76,7 +76,7 @@ class RepresentantesController extends Controller
                 'lugar_tra'         =>$request->lugar_tra,
                 'codigo_tra'        =>$request->codigo_tra,
                 'telf_tra'          =>$request->telf_tra,
-                'responsable_m'     =>$request->responsable_mr,
+                'responsable_m'     =>$request->responsable_m,
                 'codigo_responsable'=>$request->codigo_responsable,
                 'telf_responsable'  =>$request->telf_responsable,
                 'codigo_opcional'   =>$request->codigo_opcional,
@@ -86,7 +86,7 @@ class RepresentantesController extends Controller
                 'telf_emergencia'   =>$request->telf_emergencia
             ]);
 
-            $repre=DB::table('users')->insert([
+            $repre=\DB::table('users')->insert([
                 'name' => $request->nombres,
                 'email' => $request->email,
                 'password' => bcrypt('qwerty'),

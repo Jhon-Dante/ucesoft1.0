@@ -32,10 +32,9 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             @if(Auth::user()->tipo_user == 'Administrador(a)')
-            <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir</a></li>
+            <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir / Inscribir</a></li>
 
-            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-link"></i>Inscribir</a>
-                    </li>
+            
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -60,7 +59,7 @@
                 <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
-                    <li><a href="{{ url('admin/mensualidades/contabilidad') }}">Contabilidad</a></li>
+                    
                 </ul>
                 
             </li>

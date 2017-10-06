@@ -50,10 +50,10 @@ class BoletinController extends Controller
     public function crear($id_seccion, $id_periodo)
     {
     	
-    	$inscripcion=Inscripcion::where('id_seccion',$id_seccion)->get();
+    	$inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $inscripcion2=Inscripcion::where('id_seccion',$id_seccion)->get()->first();
         $seccion=Seccion::find($id_seccion);
-
+           
         $num=0;
     	$asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
        	$periodos=Periodos::find($id_periodo);
@@ -62,7 +62,7 @@ class BoletinController extends Controller
 
 
 
-            return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num'));
+            return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion'));
         
     }
 
@@ -74,67 +74,32 @@ class BoletinController extends Controller
      */
     public function store(Request $request)
     {
-        
 
     	$lapso=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get()->first();
         $datobasico=DatosBasicos::find($request->id_datosBasicos);
 
 
         $inscri=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-       
+            $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
+           
+            $tot=count($asig);
+            $cant=count($request->id_asignatura);
+            $k=0;
+           
+            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) { 
+                echo "estudiantes:".$request->id_datosBasicos[$i];
+                for ($j=$k; $j < $tot ; $j++) { 
+                    echo ":".$request->id_asignatura[$j];
 
+                }
+                echo "<br>".$j;
+                $k=$j;
+                $tot+=$tot;
+
+            }
         
 
-        	if (count($lapso) == 1) {
-                
-        		for($i=0;$i<count($request->id_asignatura);$i++){
-                       $crear=Boletin::create([
-	                    'id_asignatura' => $request->id_asignatura[$i],
-	                    'lapso' => 2,
-	                    'inasistencias' => $request->inasistencias[$i],
-	                    'calificacion' => $request->calificacion[$i],
-	                    'id_datosBasicos' => $request->id_datosBasicos,
-	                    'id_periodo' => $request->id_periodo,
-	                    'sugerencias' => 0
-	                	]);
-                }
-
-        	}elseif(count($lapso) == 2 ){
-
-        		for($i=0;$i<count($request->id_asignatura);$i++){
-                       $crear=Boletin::create([
-	                    'id_asignatura' => $request->id_asignatura[$i],
-	                    'lapso' => 3,
-	                    'inasistencias' => $request->inasistencias[$i],
-	                    'calificacion' => $request->calificacion[$i],
-	                    'id_datosBasicos' => $request->id_datosBasicos,
-	                    'id_periodo' => $request->id_periodo,
-	                    'sugerencias' => 0
-	                	]);
-                }
-            }else{
-
-        		for($i=0;$i<count($request->id_asignatura);$i++){
-                       $crear=Boletin::create([
-	                    'id_asignatura' => $request->id_asignatura[$i],
-	                    'lapso' => $request->lapso,
-	                    'inasistencias' => $request->inasistencias[$i],
-	                    'calificacion' => $request->calificacion[$i],
-	                    'id_datosBasicos' => $request->id_datosBasicos,
-	                    'id_periodo' => $request->id_periodo,
-	                    'sugerencias' => 0
-	                	]);
-                }
-            }
-
-                flash('REGISTRO DE NOTAS DE LAPSO DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
-            
-        $cali=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
-        if (count($cali)==null) {
-           $cali=0;
-        }
-
-        return redirect()->route('admin.educacion_basica.index');
+        	
 }
 
     /**

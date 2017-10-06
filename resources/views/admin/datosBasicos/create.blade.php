@@ -19,25 +19,51 @@
 
 	@include('alerts.requests')
 	
-{{-- div para uscar estudiante para reinscribir --}}
-<div id="mostrar2" style="display: block;">
-{!! Form::open(['route' => ['admin.DatosBasicos.buscarEstudiante'], 'method' => 'post', 'role' => 'form']) !!}
-		    		<div class="col-xs-8">
-		    			<div class="form-group">
-		    				<select class="form-control select2" id="id_estudiante" title="Seleccione el estudiante a Reinscribir" name="id_estudiante">
-		    					@foreach($datosBasicos as $db)
-									<option value="{{$db->id}}">{{$db->nacionalidad}}-{{$db->cedula}} {{$db->apellidos}}, {{$db->nombres}}</option>
-		    					@endforeach
-		    				</select>
-		    			</div>
-						<div class="form-group">
-								<button type="submit" id="regular2" style="display: block; width: 200px;" class="btn btn-block btn-info" >Reinscribir estudiante</button>
-								
+<!-- {{-- div para uscar estudiante para reinscribir --}} -->
+<div class="box box-warning direct-chat direct-chat-warning">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Inscribir estudiante Registrado/Preregistrado</h3>
+
+                  <div class="box-tools pull-right">
+                    
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <!-- Conversations are loaded here -->
+                  {!! Form::open(['route' => ['admin.DatosBasicos.buscarEstudiante'], 'method' => 'post', 'role' => 'form']) !!}
+			    		<div class="col-xs-8">
+			    			<div class="form-group">
+			    				<select class="form-control select2" id="id_estudiante" title="Seleccione el estudiante a Reinscribir" name="id_estudiante">
+			    					@foreach($datosBasicos as $db)
+										<option value="{{$db->id}}">{{$db->nacionalidad}}-{{$db->cedula}} {{$db->apellidos}}, {{$db->nombres}}</option>
+			    					@endforeach
+			    				</select>
+			    			</div>
+							<div class="form-group">
+									
+									
+							</div>
 						</div>
-					</div>
-				{!! Form::close() !!}
+					
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  
+                            <button type="submit" id="regular2" style="display: block; width: 200px;" class="btn btn-block btn-warning" >Reinscribir estudiante</button>
+                          
+                    {!! Form::close() !!}
+                  
+                </div>
+                <!-- /.box-footer-->
+              </div>
+	<div id="mostrar2" style="display: block;">
+	
 <div class="col-xs-8">
-<div class="form-group">
+<div class="form-group">¿El representante no está registrado?<br><br>
 	<a href="#" ><button style="padding: 10px 10px 10px 10px;"  class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede registrar el representante" ><i class="fa fa-user-plus"></i> Registrar Representante</button></a>
                       <br><br>
 </div>
