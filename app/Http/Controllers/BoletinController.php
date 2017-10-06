@@ -113,8 +113,10 @@ class BoletinController extends Controller
 
                
             }
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO ','success');
+            return redirect()->route('admin.educacion_basica.index');
 
-        } if (count($lapso)==1) 
+        }elseif (count($lapso)==1) 
         {
             
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
@@ -138,8 +140,10 @@ class BoletinController extends Controller
 
                
             }
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO ','success');
+            return redirect()->route('admin.educacion_basica.index');
 
-        } if (count($lapso)==2) 
+        }elseif (count($lapso)==2) 
         {
             
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
@@ -163,9 +167,12 @@ class BoletinController extends Controller
 
                
             }
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO ','success');
+            return redirect()->route('admin.educacion_basica.index');
 
         }else{
-            flash('YA TODOS LOS LAPSOS DE ');
+            flash('YA TODOS LOS LAPSOS DE ESTA SECCIÓN ESTÁN REGISTRADOS!','danger');
+            return redirect()->route('admin.educacion_basica.index');
         }
    	
 }
