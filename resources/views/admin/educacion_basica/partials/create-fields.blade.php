@@ -37,7 +37,8 @@
 							
 								<td style="font-size: 12px;">
 									<div class="form-group">
-										<select name="id_asignatura[]" title="Seleccione la calificación del estudiante" class="form-control" style="width: 5em;" >
+										<input type="text" name="id_asignatura[]" value="{{$key2->id}}">
+										<select name="calificacion[]" title="Seleccione la calificación del estudiante" class="form-control" style="width: 5em;">
 											<option value="A">A</option>
 											<option value="B">B</option>
 											<option value="C">C</option>
@@ -49,7 +50,7 @@
 
 								<td style="font-size: 12px;">
 									<div class="form-group">
-										{!! Form::number('inasistencia[]',null,['class' => 'form-control', 'style' => 'width:5em', 'placeholder' => '1','title' => 'Ingrese las inasistencias que tiene el estudiante en las asignaturas', 'min' => '0', 'maxlength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+										{!! Form::number('inasistencia[]','0',['class' => 'form-control', 'style' => 'width:5em', 'placeholder' => '1','title' => 'Ingrese las inasistencias que tiene el estudiante en las asignaturas', 'min' => '0', 'maxlength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
 									</div>
 								</td>
 								

@@ -75,31 +75,99 @@ class BoletinController extends Controller
     public function store(Request $request)
     {
 
-    	$lapso=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get()->first();
+    	$lapso=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
         $datobasico=DatosBasicos::find($request->id_datosBasicos);
 
 
+        $periodo=Periodos::where('status','Activo')->get()->first();
+
         $inscri=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-            $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
-           
-            $tot=count($asig);
-            $cant=count($request->id_asignatura);
-            $k=0;
-           
-            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) { 
-                echo "estudiantes:".$request->id_datosBasicos[$i];
-                for ($j=$k; $j < $tot ; $j++) { 
-                    echo ":".$request->id_asignatura[$j];
-
-                }
-                echo "<br>".$j;
-                $k=$j;
-                $tot+=$tot;
-
-            }
+        $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
+       
+        $tot=count($asig);
+        $cant=count($request->id_asignatura);
+        $k=0;
         
 
-        	
+        if (count($lapso)==0) 
+        {
+            
+            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+            { 
+
+                    for ($j=$k; $j < $tot ; $j++)
+                    {
+                        $crear=Boletin::create([
+                            'id_datosBasicos' => $request->id_datosBasicos[$i],
+                            'lapso' => 1,
+                            'sugerencias' => 0,
+                            'id_periodo' => $periodo->id,
+                            'id_asignatura' => $request->id_asignatura[$j],
+                            'inasistencias' => $request->inasistencia[$j],
+                            'calificacion' => $request->calificacion[$j] 
+                        ]);
+                    }
+                
+                    $k=$j;
+                    $tot+=$tot;
+
+               
+            }
+
+        } if (count($lapso)==1) 
+        {
+            
+            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+            { 
+
+                    for ($j=$k; $j < $tot ; $j++)
+                    {
+                        $crear=Boletin::create([
+                            'id_datosBasicos' => $request->id_datosBasicos[$i],
+                            'lapso' => 2,
+                            'sugerencias' => 0,
+                            'id_periodo' => $periodo->id,
+                            'id_asignatura' => $request->id_asignatura[$j],
+                            'inasistencias' => $request->inasistencia[$j],
+                            'calificacion' => $request->calificacion[$j] 
+                        ]);
+                    }
+                
+                    $k=$j;
+                    $tot+=$tot;
+
+               
+            }
+
+        } if (count($lapso)==2) 
+        {
+            
+            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+            { 
+
+                    for ($j=$k; $j < $tot ; $j++)
+                    {
+                        $crear=Boletin::create([
+                            'id_datosBasicos' => $request->id_datosBasicos[$i],
+                            'lapso' => 3,
+                            'sugerencias' => 0,
+                            'id_periodo' => $periodo->id,
+                            'id_asignatura' => $request->id_asignatura[$j],
+                            'inasistencias' => $request->inasistencia[$j],
+                            'calificacion' => $request->calificacion[$j] 
+                        ]);
+                    }
+                
+                    $k=$j;
+                    $tot+=$tot;
+
+               
+            }
+
+        }else{
+            flash('YA TODOS LOS LAPSOS DE ');
+        }
+   	
 }
 
     /**

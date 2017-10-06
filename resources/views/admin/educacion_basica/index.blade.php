@@ -70,9 +70,9 @@
                     @if($perso->id_cargo==4)
                     @if($cont==0)
                     <tr>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$num=$num+1}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$key->cursos->curso}}</a></td>
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">
+                    <td>{{$num=$num+1}}</td>
+                    <td>{{$key->cursos->curso}}</td>
+                    <td>
                     @foreach($key->cursos->seccion as $key2)
 
                         @if($key2->id==$key->pivot->id_seccion)
@@ -83,9 +83,9 @@
                     
 
                     @endforeach
-                    </a></td>
+                    </td>
 
-                    <td><a href="{{ route('admin.personal_asignatura.edit', [$perso->id]) }}">{{$periodo->periodo}}</a></td>
+                    <td>{{$periodo->periodo}}</td>
                     @foreach($key->cursos->seccion as $key2)
                     
                         @if($key2->id==$key->pivot->id_seccion)
