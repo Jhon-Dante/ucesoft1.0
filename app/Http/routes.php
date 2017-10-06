@@ -143,12 +143,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::resource('/calificaciones','CalificacionesController');
 
-        
-
-
-        Route::get('/docente_basica', function(){
-            return View('admin.docente_basica.index');
-        });
+    
 
         // Route::get('/docente_basica/lapsos', function(){
         //     return View('admin.docente_basica.lapsos.index');
@@ -185,5 +180,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/educacion_basica','BoletinController');
         
         Route::resource('/educacion_media','MediaGeneralController');
+        Route::get('/crearlapso_media/{id_inscripcion}/{id_periodo}',[
+            'uses' => 'MediaGeneralController@crear',
+            'as' => 'admin.crearlapso_media']);
 });
 

@@ -10,7 +10,7 @@
 <section class="content-header">
     <h1>
         @yield('contentheader_title', 'Media General')
-        <small>Registro</small>
+        <small>Registro de Calificaciones</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Media General</a></li>
@@ -25,24 +25,19 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Lapsos del estudiante: <strong>{{$inscripcion->datosbasicos->nombres}}</strong> en el perído: <strong>{{$periodos->periodo}}</strong>
- 				
-							</div>
+						<div class="panel-heading">Curso: <strong>{{$seccion->curso->curso}}</strong> - Sección: <strong>{{$seccion->seccion}}</strong></div>						
 
 							<div class="panel-body">
 								
                 {!! Form::open(['route' => ['admin.educacion_media.store'], 'method' => 'post' ]) !!}
     							
-					                 @include('admin.educacion_media.partials.create-fields')
-					                
-					                <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
-					                <input type="hidden" name="id_datosBasicos" value="{{$inscripcion->datosbasicos->id}}">
-					                
-					                
-					            <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>
-					              </div>
+			            @include('admin.educacion_media.partials.create-fields')
+			             
+			                
+			            <div class="box-footer">
+			                <button type="submit" class="btn btn-primary">Enviar</button>
+			                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/educacion_basica')}}"><i class="fa fa-times"></i> Cancelar</a>
+			              </div>
           							<!-- /.form-group -->
           						
           		{!! Form::close() !!} 

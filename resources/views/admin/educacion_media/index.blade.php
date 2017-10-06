@@ -55,7 +55,6 @@
             <thead>
               <tr>
                 <th>Nro</th>
-                <th>Nombre del Estudiante</th>
                 <th>Curso</th>
                 <th>Sección</th>
                 <th>Período</th>
@@ -63,31 +62,41 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($inscripcion as $inscri)
-              @if($inscri->seccion->curso->id >= 8)
+            @foreach($personal as $perso)
+                  <?php $cont=0; 
+                  ?>
+                  @foreach($perso->asignacion_a as $key)
+                  
+                    @if($perso->id_cargo==3)
+                    @if($cont==0)
+                    <tr>
+                    <td>{{$num=$num+1}}</td>
+                    <td>{{$key->cursos->curso}}</td>
+                    <td>
+                    @foreach($key->cursos->seccion as $key2)
 
-                  <tr>
+                        @if($key2->id==$key->pivot->id_seccion)
+                        {{$key2->seccion}}
+                        @endif
+                    @endforeach
+                    </td>
+
+                    <td>{{$periodo->periodo}}</td>
+                    @foreach($key->cursos->seccion as $key2)
                     
-                     <td><a href="#">{{$num=$num+1}}</a></td>
-                     <td><a href="#">{{$inscri->datosbasicos->nombres}}</a></td>
-                     <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
-                     <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
-                     <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
-                     <td>
-                      <div class="btn-group">
-                        
-                                <a href="{{url('admin/crearlapso2',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->id])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
-                              
-                            
-                       
-                            
-                          <br><br>
-                      </div>
-                     </td>
-                      
-                    </tr>
+                        @if($key2->id==$key->pivot->id_seccion)
+                            <td><a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                             </td>  
                   @endif
-                @endforeach
+                    @endforeach
+                  </tr>
+                  @endif
+                  <?php $cont++; ?>
+                  @endif
+
+                 @endforeach 
+              @endforeach
+
               </tbody>
             </table>
           </div>

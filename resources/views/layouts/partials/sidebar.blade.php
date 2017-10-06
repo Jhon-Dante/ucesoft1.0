@@ -117,15 +117,7 @@
             </li>
         
         @elseif(Auth::user()->tipo_user == 'Docente Preescolar')
-
-        
-                
-
-            
-
-           
-
-            <li class="treeview">
+        <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <!-- <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li> -->
@@ -168,10 +160,26 @@
             </li>
            
     
-
+        @elseif(Auth::user()->tipo_user == 'Docente Media General')
 
             
-            
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <!-- <li><a href=" {{ url('admin/calificaciones') }} ">Calificaciones por Período</a></li> -->
+                    <li><a href="{{ url('admin/educacion_media') }}">Educación Media General</a></li>
+                    
+                </ul>
+                
+            </li>
+
+            <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
+                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
+                        </ul>
+            </li>
         @endif
         
 

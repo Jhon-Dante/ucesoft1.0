@@ -1,91 +1,69 @@
 
-@if(count($cali) == 0)
-	<table id="example1" class="table table-bordered table-striped">
-		<tr>
-			<th>Asignaturas</th>
-			<th>Primer Lapso</th>
-			<th>Inasistencias</th>
-			<th>Segundo Lapso</th>
-			<th>Inasistencias</th>
-			<th>Primer Tercer</th>
-			<th>Inasistencias</th>
-			<th>Inasistencias totales</th>
-			<th>Total por lapso</th>
-			<th>Ponderación Total</th>
 
-		</tr>
-		@foreach($asignaturas as $asig)
-			@if($asig->id_curso == 8)
-				<tr>
-					
-					<td><strong>{{$asig->asignatura}}</strong></td>
-					<input type="hidden" name="id_asignatura[]" value="{{$asig->id}}">
-					<input type="hidden" name="lapso" value="1">
-					<div style="background-color:yellow;">
-						<td>{!! Form::number('calificacion[]',null,['class' => 'form-control','max' => '20','min' => '1']) !!}</td>
-						<td>{!! Form::number('inasistencias[]','null',['class' => 'form-control','min' => '0']) !!}</td>
+		
+		<div class="box">
+            <div class="box-header">
+              <h3 class="box-title"></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding" style="overflow: scroll;">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                	<tr>
+	                	<th style="font-size: 10px;">Nro.</th>
+						<th style="font-size: 10px;">Nombre</th>
+						<th style="font-size: 10px;">Apellido</th>
+						<th style="font-size: 10px;">Cédula</th>
+							@foreach($personal->asignacion_a as $key)
+							
+								<th style="font-size: 10px;">{{$key->codigo}}</th>
+								<th style="font-size: 12px;">Inasis</th>
+								
+							@endforeach
 						
-						
-					</div>
-					
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>	
-					
+
 				</tr>
-			@endif
-		@endforeach
-</table>
-@elseif(count($cali) >= 1)
-
-<table id="example1" class="table table-bordered table-striped">
-		<tr>
-			<th>Asignaturas</th>
-			<th>Primer Lapso</th>
-			<th>Inasistencias</th>
-			<th>Segundo Lapso</th>
-			<th>Inasistencias</th>
-			<th>Primer Tercer</th>
-			<th>Inasistencias</th>
-			<th>Inasistencias totales</th>
-			<th>Total por lapso</th>
-			<th>Ponderación Total</th>
-
-		</tr>
-			
-			@foreach($cali as $c)
-				
-					<tr>
-						
-						<td><strong>{{$c->asignatura->asignatura}}</strong></td>
-						<td>{{$c->calificacion}}</td>
-						<td>{{$c->inasistencias}}</td>
-						<input type="hidden" name="id_asignatura[]" value="{{$c->asignatura->id}}">
-						<input type="hidden" name="lapso" value="2">
-						<div style="background-color:yellow;">
-							<td>{!! Form::number('calificacion[]',null,['class' => 'form-control','max' => '20','min' => '1']) !!}</td>
-							<td>{!! Form::number('inasistencias[]','null',['class' => 'form-control','min' => '0']) !!}</td>
+				</thead>
+              <tbody>
+              	@foreach($inscripcion as $key)
+						<tr>
+							<td>{{$num=$num+1}}</td>
+							<td>{{$key->datosBasicos->nombres}}</td>
+							<td>{{$key->datosBasicos->apellidos}}</td>
+							<td>{{$key->datosBasicos->cedula}}</td>
+							{!! Form::hidden('id_datosBasicos[]',$key->datosBasicos->id) !!}
 							
+							@foreach($personal->asignacion_a as $key2)
 							
-						</div>
-						
-						
-						<td></td>
-						<td></td>
-						<td>{{$c->inasistencias}}</td>
-						<td></td>	
-						
-					</tr>
+								<td style="font-size: 12px;">
+									<div class="form-group">
+										<input type="hidden" name="id_asignatura[]" value="{{$key2->id}}">
+										<select name="id_asignatura[]" title="Seleccione la calificación del estudiante" class="form-control" style="width: 5em;" >
+										@for($i=1;$i<=20;$i++)
+											<option value="{{$i}}">{{$i}}</option>
+										@endfor
+										</select>
+									</div>
+								</td>
 
-			@endforeach
-			
-</table>
-	
-@elseif(count($cali) >= 2)
+								<td style="font-size: 12px;">
+									<div class="form-group">
+										{!! Form::number('inasistencia[]','0',['class' => 'form-control', 'style' => 'width:5em', 'placeholder' => '1','title' => 'Ingrese las inasistencias que tiene el estudiante en las asignaturas', 'min' => '0', 'maxlength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+									</div>
+								</td>
+								
 
-	
-@endif
+							@endforeach
+
+
+						</tr>
+              	@endforeach
+
+              </tbody>
+          </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+
+

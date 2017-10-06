@@ -13,8 +13,9 @@ use App\Momentos;
 use App\Calificaciones;
 use App\Periodos;
 use App\Boletin;
-use App\Asignaturas;
-
+use App\asignaturas;
+use App\Seccion;
+use App\Personal;
 class MediaGeneralController extends Controller
 {
     /**
@@ -25,13 +26,16 @@ class MediaGeneralController extends Controller
     public function index()
     {
 
+         $periodo=Periodos::where('status','Activo')->get()->first();
+        $secciones=Seccion::all();
         $inscripcion=Inscripcion::all();
         $boletin=Boletin::all();
         $num=0;
         $cali=Boletin::all();
-        
-        
-        return View('admin.educacion_media.index', compact('num','inscripcion','boletin'));
+        $correo=\Auth::user()->email;
+        $personal=Personal::where('correo',$correo)->get();
+        //dd($personal);
+        return View('admin.educacion_media.index', compact('num','inscripcion','boletin','secciones','periodo','personal'));
     }
 
     /**
@@ -44,25 +48,24 @@ class MediaGeneralController extends Controller
         dd('asdasdsdas');
     }
 
-    public function crear($id_datosBasicos, $id_periodo)
+    public function crear($id_seccion, $id_periodo)
     {
         
-        $inscripcion=Inscripcion::where('id_datosbasicos',$id_datosBasicos)->get()->first();
-        
-        
-        
-        $asignaturas=Asignaturas::all();
-        $datobasico=DatosBasicos::find($id_datosBasicos);
+    $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $inscripcion2=Inscripcion::where('id_seccion',$id_seccion)->get()->first();
+        $seccion=Seccion::find($id_seccion);
+           
+        $num=0;
+        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+
         $periodos=Periodos::find($id_periodo);
         $boletin=Boletin::all();
-        $cali=Boletin::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->groupBy('id_asignatura')->get();
-        //groupBy('id_asignatura')->
-        if (count($cali)==null ||  count($cali)==0) {
-           $cali=0;
-            }
-
-           
-            return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','asignaturas','inscripcion'));
+         $correo=\Auth::user()->email;
+        $personal=Personal::where('correo',$correo)->first();
+        //dd($personal->asignacion_a);
+        
+            return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal'));
+        
 
     }
 
