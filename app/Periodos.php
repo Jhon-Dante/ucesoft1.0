@@ -79,4 +79,10 @@ class Periodos extends Model
     {
         return $this->belongsToMany('App\asignaturas', 'personal_has_asignatura', 'id_periodo','id_asignatura')->withPivot('id_personal','id_seccion');
     }
+
+    //---asignacion guia
+    public function guias()
+    {
+    	return $this->hasMany('App\Guias','id_periodo','id');
+    }
 }

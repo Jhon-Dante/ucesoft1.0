@@ -94,7 +94,10 @@
                     
                     <li><a href=" {{ url('admin/personal/docente_basica') }}">Docentes de Básica</a></li>
                     <li><a href=" {{ url('admin/personal/docente_liceo') }}">Docentes de Media General</a></li>
-                    <li class="treeview">
+                    <li><a href=" {{ url('admin/guias') }}">Asignar Docente Guía</a></li>
+
+                    <li><a href=" {{ url('admin/personal_asignatura/guias') }}">Listar Guías</a></li>
+
                 </ul>
             </li>
 

@@ -89,13 +89,15 @@
                             @if($lapso==1)
                             <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
                             @elseif($lapso==2)
+                            <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
 
+                            @elseif($lapso==3)
+
+                            <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button></a>
 
                             @else
 
-
-
-                            
+                             <button class="btn btn-info btn-flat"><i class="fa fa-pencil"></i></button>                                                        
                             @endif
                              </td>  
                   @endif

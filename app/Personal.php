@@ -46,5 +46,10 @@ class Personal extends Model
         return $this->belongsToMany('App\Seccion', 'personal_has_asignatura', 'id_personal','id_seccion')->withPivot('id_asignatura','id_periodo');
     }
 
+    public function guias()
+    {
+        return $this->hasMany('App\Guias','id_personal','id');
+    }
+
 
 }

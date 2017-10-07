@@ -38,7 +38,7 @@
 								<td style="font-size: 12px;">
 									<div class="form-group">
 										<input type="hidden" name="id_asignatura[]" value="{{$key2->id}}">
-										<select name="id_asignatura[]" title="Seleccione la calificación del estudiante" class="form-control" style="width: 5em;" >
+										<select name="calificacion[]" title="Seleccione la calificación del estudiante" class="form-control" style="width: 5em;" >
 										@for($i=1;$i<=20;$i++)
 											<option value="{{$i}}">{{$i}}</option>
 										@endfor

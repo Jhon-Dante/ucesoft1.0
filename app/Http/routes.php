@@ -57,7 +57,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalAsignaturaController@buscarasignaturas',
             'as' => 'admin.asignaturas.buscarasignaturas'
             ]);
-
+        Route::get('/guias',[
+            'uses' => 'PersonalAsignaturaController@buscarseccionguia',
+            'as' => 'admin.personal_asignatura.buscarseccionguia'
+            ]);
+        Route::post('/asignar',[
+            'uses' => 'PersonalAsignaturaController@asignar',
+            'as' => 'admin.personal_asignatura.asignar'
+            ]);
+        Route::get('/personal_asignatura/guias',[
+            'uses' => 'PersonalAsignaturaController@listarguias',
+            'as' => 'admin.personal_asignatura.guias'
+            ]);
+        Route::get('/personal_asignatura/{id}/editar_guia',[
+            'uses' => 'PersonalAsignaturaController@editar_guia',
+            'as' => 'admin.personal_asignatura.editar_guia'
+            ]);
+        Route::post('/personal_asignatura/actualizar_asignar',[
+            'uses' => 'PersonalAsignaturaController@actualizar_asignar',
+            'as' => 'admin.personal_asignatura.actualizar_asignar'
+            ]);
         Route::get('/DatosBasicos/{cedula}/verificarPadre',[
             'uses' => 'DatosBasicosController@verificarPadre',
             'as' => 'admin.DatosBasicos.verificarPadre'

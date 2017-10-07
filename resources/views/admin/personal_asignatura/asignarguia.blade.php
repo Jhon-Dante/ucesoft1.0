@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Asignar Materias
+	Asignar Sección a Docente Guía
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,11 +9,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Asignar Materias')
+        @yield('contentheader_title', 'Asignar Sección a Docente Guía')
         <small>Asignar</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Asignar Carga Académica</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Asignar Guía</a></li>
         <li class="active">Asignar</li>
     </ol>
 </section>
@@ -25,19 +25,19 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Asignar materias al personal docente
+							<div class="panel-heading">Asignar Sección a Docente Guía
  				
 							</div>
 
 							<div class="panel-body">
 								
-                {!! Form::open(['route' => ['admin.personal_asignatura.store'], 'method' => 'post', 'name' => 'personal_asignatura', 'id' => 'personal_asignatura' ]) !!}
+                {!! Form::open(['route' => ['admin.personal_asignatura.asignar'], 'method' => 'post', 'name' => 'personal_asignatura', 'id' => 'personal_asignatura' ]) !!}
     
-					                 @include('admin.personal_asignatura.partials.create-fields')
+					                 @include('admin.personal_asignatura.partials.asignar')
 					                
 					            <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/personal_asignatura')}}"><i class="fa fa-times"></i> Cancelar</a>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/personal_asignatura/guias')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
           							<!-- /.form-group -->
           		{!! Form::close() !!} 
@@ -115,27 +115,7 @@ $("#id_curso").on("change", function (event) {
         }
     });
 
-    $.get("/admin/asignaturas/"+id+"/buscar",function (data) {
-       
-    	
-       $("#id_asignatura").empty();
-      
-        
-        if(data.length > 0){
-
-            for (var i = 0; i < data.length ; i++) 
-            {  
-                $("#id_asignatura").removeAttr('disabled');
-                $("#id_asignatura").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
-                
-            }
-            
-        }else{
-            
-            $("#id_asignatura").attr('disabled', false);
-
-        }
-    });
+    
 });
 </script>
 

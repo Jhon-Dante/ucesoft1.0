@@ -39,4 +39,9 @@ class Seccion extends Model
     {
         return $this->belongsToMany('App\asignaturas', 'personal_has_asignatura', 'id_seccion','id_asignatura')->withPivot('id_personal','id_periodo');
     }
+
+    public function guias()
+    {
+        return $this->hasMany('App\Guias','id_seccion','id');
+    }
 }
