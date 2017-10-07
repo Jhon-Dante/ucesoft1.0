@@ -33,7 +33,7 @@
     							
 			            @include('admin.educacion_media.partials.create-fields')
 			             
-			                
+			                {!! Form::hidden('lapso',$lapso)  !!}
 			            <div class="box-footer">
 			                <button type="submit" class="btn btn-primary">Enviar</button>
 			                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/educacion_basica')}}"><i class="fa fa-times"></i> Cancelar</a>

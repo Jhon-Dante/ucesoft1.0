@@ -29,13 +29,39 @@ class MediaGeneralController extends Controller
          $periodo=Periodos::where('status','Activo')->get()->first();
         $secciones=Seccion::all();
         $inscripcion=Inscripcion::all();
-        $boletin=Boletin::all();
+       
         $num=0;
         $cali=Boletin::all();
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->get();
         //dd($personal);
-        return View('admin.educacion_media.index', compact('num','inscripcion','boletin','secciones','periodo','personal'));
+        $contar=0;
+        $personal2=Personal::where('correo',$correo)->first();
+        
+        $cantidad=0;
+        //buscando lapso a registrar
+        foreach ($personal2->asignacion_a as $key) {
+            //dd($key->pivot->id_asignatura);
+            $boletin=Boletin::where('id_asignatura',$key->pivot->id_asignatura)->where('id_periodo',$periodo->id)->first();
+            $contar+=count($boletin);
+            if($key->pivot->id_periodo==$periodo->id){
+                $cantidad++;
+            }
+        }
+        //dd($cantidad);
+
+        if ($contar==0) {
+            $lapso=1;
+        } else {
+            if ($contar==$cantidad) {
+                $lapso=2;
+            } else {
+                $lapso=3;
+            }
+            
+        }
+        
+        return View('admin.educacion_media.index', compact('num','inscripcion','boletin','secciones','periodo','personal','lapso'));
     }
 
     /**
@@ -62,9 +88,33 @@ class MediaGeneralController extends Controller
         $boletin=Boletin::all();
          $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
-        //dd($personal->asignacion_a);
         
-            return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal'));
+        //dd($personal);
+        //buscando lapso a registrar
+        $contar=0;
+        $cantidad=0;
+        foreach ($personal->asignacion_a as $key) {
+            //dd($key->pivot->id_asignatura);
+            $boletin=Boletin::where('id_asignatura',$key->pivot->id_asignatura)->where('id_periodo',$id_periodo)->first();
+            $contar+=count($boletin);
+            if($key->pivot->id_periodo==$id_periodo){
+                $cantidad++;
+            }
+        }
+        //dd($contar);
+
+        if ($contar==0) {
+            $lapso=1;
+        } else {
+            if ($contar==$cantidad) {
+                $lapso=2;
+            } else {
+                $lapso=3;
+            }
+            
+        }
+
+            return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso'));
         
 
     }
@@ -77,70 +127,9 @@ class MediaGeneralController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $lapso=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get()->first();
+        //dd($request->lapso);
 
-
-        $datobasico=DatosBasicos::find($request->id_datosBasicos);
-
-
-        $inscri=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-       
-
-        
-
-            if (count($lapso) == 1) {
-
-                for($i=0;$i<count($request->id_asignatura);$i++){
-                       $crear=Boletin::create([
-                        'id_asignatura' => $request->id_asignatura[$i],
-                        'lapso' => 2,
-                        'inasistencias' => $request->inasistencias[$i],
-                        'calificacion' => $request->calificacion[$i],
-                        'id_datosBasicos' => $request->id_datosBasicos,
-                        'id_periodo' => $request->id_periodo,
-                        'sugerencias' => 0
-                        ]);
-                }
-
-            }elseif(count($lapso) == 2 ){
-
-                for($i=0;$i<count($request->id_asignatura);$i++){
-                       $crear=Boletin::create([
-                        'id_asignatura' => $request->id_asignatura[$i],
-                        'lapso' => 3,
-                        'inasistencias' => $request->inasistencias[$i],
-                        'calificacion' => $request->calificacion[$i],
-                        'id_datosBasicos' => $request->id_datosBasicos,
-                        'id_periodo' => $request->id_periodo,
-                        'sugerencias' => 0
-                        ]);
-                }
-            }else{
-
-                for($i=0;$i<count($request->id_asignatura);$i++){
-                       $crear=Boletin::create([
-                        'id_asignatura' => $request->id_asignatura[$i],
-                        'lapso' => $request->lapso,
-                        'inasistencias' => $request->inasistencias[$i],
-                        'calificacion' => $request->calificacion[$i],
-                        'id_datosBasicos' => $request->id_datosBasicos,
-                        'id_periodo' => $request->id_periodo,
-                        'sugerencias' => 0
-                        ]);
-                }
-            }
-
-                flash('REGISTRO DE NOTAS DE LAPSO DEL ESTUDIANTE REGISTRADO CON ÉXITO!','success');
-            
-        $cali=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
-        if (count($cali)==null) {
-           $cali=0;
-        }
-        dd($cali);
-
-        return redirect()->route('admin.educacion_media.index');
-}
+    }
 
     /**
      * Display the specified resource.

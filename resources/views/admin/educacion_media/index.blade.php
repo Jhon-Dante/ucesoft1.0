@@ -85,7 +85,18 @@
                     @foreach($key->cursos->seccion as $key2)
                     
                         @if($key2->id==$key->pivot->id_seccion)
-                            <td><a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                            <td>
+                            @if($lapso==1)
+                            <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                            @elseif($lapso==2)
+
+
+                            @else
+
+
+
+                            
+                            @endif
                              </td>  
                   @endif
                     @endforeach
