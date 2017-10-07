@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Boletin extends Model
 {
     protected $table='boletin';
-    protected $fillable=['id','id_asignatura','lapso','inasistencias','calificacion','id_datosBasicos','id_periodo','sugerencias'];
+    protected $fillable=['id','id_asignatura','lapso','inasistencias','calificacion','id_datosBasicos','id_periodo'];
 
     public function datosbasicos()
     {
