@@ -96,8 +96,23 @@ class PersonalAsignaturaController extends Controller
         $id_curso=$request->id_curso;
         switch($id_curso){
                       
+                      case 1:
+                      $contar=0;
+                      foreach ($personal as $keys) {
+                        foreach ($keys->asignacion_s as $key) {
+                          if($key->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
+                            $contar++;
+                          }
+                        }    
+                      }
+                      
+                      if ($contar>0) {
+                        flash('YA LA SECCIÓN SELECCIONADA SE ENCUENTRA ASIGNADA A UN DOCENTE!','error');
+                            return redirect()->back();
+                      }
 
-                      case ($id_curso >= 1 && $id_curso <=7):
+                      break;
+                      case ($id_curso >= 2 && $id_curso <=7):
                         //es de preescolar o basica
                       $contar=0;
                       foreach ($personal as $keys) {
@@ -193,8 +208,15 @@ class PersonalAsignaturaController extends Controller
     {
 
         $num=0;
-
-        $guias=Guias::all();
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $guias=Guias::all();
+        } else {
+            $correo=\Auth::user()->email;
+            $personal=Personal::where('correo',$correo)->first();
+            $guias=Guias::where('id_personal',$personal->id)->get();
+        }
+        
+        
 
         return view('admin.personal_asignatura.guias', compact('num','guias'));
     }

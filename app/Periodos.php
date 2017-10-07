@@ -85,4 +85,9 @@ class Periodos extends Model
     {
     	return $this->hasMany('App\Guias','id_periodo','id');
     }
+
+    public function personalpsecciones()
+    {
+        return $this->hasMany('App\PersonalPSecciones','id_periodo','id');
+    }
 }

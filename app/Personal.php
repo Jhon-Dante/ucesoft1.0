@@ -51,5 +51,10 @@ class Personal extends Model
         return $this->hasMany('App\Guias','id_personal','id');
     }
 
+    public function personapsecciones()
+    {
+        return $this->hasMany('App\PersonalPSecciones','id_personal','id');
+    }
+
 
 }

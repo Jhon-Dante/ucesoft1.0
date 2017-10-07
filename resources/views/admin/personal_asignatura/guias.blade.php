@@ -44,8 +44,10 @@
                 <thead>
                   <tr>
                     <th>Nro</th>
+                    @if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)")
                     <th>Nombres</th>
                     <th>Apellidos</th>
+                    @endif
                     <th>Curso</th>
                     <th>Sección</th>
                     <th>Opciones</th>
@@ -56,13 +58,23 @@
                   
                   <tr>
                     <td>{{$num=$num+1}}</td>
+                    @if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)")
                     <td>{{$guia->personal->nombres}}</td>
                     <td>{{$guia->personal->apellidos}}</td>
+                    @endif
                     <td>{{$guia->secciones->curso->curso}}</td>
                     <td>{{$guia->secciones->seccion}}</td>
-                    <td> <a href="{{ route('admin.personal_asignatura.editar_guia', [$guia->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                    <td> 
+                    @if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)")
+                    <a href="{{ route('admin.personal_asignatura.editar_guia', [$guia->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-					<button onclick="eliminar({{ $guia->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button>
+					         <button onclick="eliminar({{ $guia->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button>
+
+                    @else
+
+
+
+                    @endif
                     </td>
                    </tr>
                   
