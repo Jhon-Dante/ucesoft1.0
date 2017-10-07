@@ -37,7 +37,7 @@
 							
 								<td style="font-size: 12px;">
 									<div class="form-group">
-										<input type="text" name="id_asignatura[]" value="{{$key2->id}}">
+										<input type="hidden" name="id_asignatura[]" value="{{$key2->id}}">
 										<select name="calificacion[]" title="Seleccione la calificación del estudiante" class="form-control" style="width: 5em;">
 											<option value="A">A</option>
 											<option value="B">B</option>

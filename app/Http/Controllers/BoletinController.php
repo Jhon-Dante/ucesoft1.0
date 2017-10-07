@@ -16,6 +16,8 @@ use App\Boletin;
 use App\Asignaturas;
 use App\Seccion;
 use App\Personal;
+use App\User;
+
 class BoletinController extends Controller
 {
     /**
@@ -63,7 +65,6 @@ class BoletinController extends Controller
 
 
             return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion'));
-        
     }
 
     /**
@@ -75,15 +76,21 @@ class BoletinController extends Controller
     public function store(Request $request)
     {
 
-    	$lapso=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
-        $datobasico=DatosBasicos::find($request->id_datosBasicos);
-
-
+        
         $periodo=Periodos::where('status','Activo')->get()->first();
+        $inscri=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos[0])->get()->first();
+        $correo=\Auth::User()->email;
+        $personal=Personal::where('correo',$correo)->get()->first();       
 
-        $inscri=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+        $datobasico=DatosBasicos::find($request->id_datosBasicos);
+        
+
+
+
+        $lapso=Boletin::where('id_periodo',$periodo->id)->where('id_datosBasicos',$inscri->id)->get();
+      
         $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
-       
+
         $tot=count($asig);
         $cant=count($request->id_asignatura);
         $k=0;
@@ -93,18 +100,18 @@ class BoletinController extends Controller
         {
             
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
-            { 
+            {
+
 
                     for ($j=$k; $j < $tot ; $j++)
                     {
                         $crear=Boletin::create([
-                            'id_datosBasicos' => $request->id_datosBasicos[$i],
-                            'lapso' => 1,
-                            'sugerencias' => 0,
-                            'id_periodo' => $periodo->id,
                             'id_asignatura' => $request->id_asignatura[$j],
+                            'lapso' => 1,
                             'inasistencias' => $request->inasistencia[$j],
-                            'calificacion' => $request->calificacion[$j] 
+                            'calificacion' => $request->calificacion[$j],
+                            'id_datosBasicos' => $request->id_datosBasicos[$i],                            
+                            'id_periodo' => $periodo->id
                         ]);
                     }
                 
@@ -113,10 +120,10 @@ class BoletinController extends Controller
 
                
             }
-            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO ','success');
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
             return redirect()->route('admin.educacion_basica.index');
 
-        }elseif (count($lapso)==1) 
+        }elseif (count($lapso) == count($asig)) 
         {
             
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
@@ -124,10 +131,11 @@ class BoletinController extends Controller
 
                     for ($j=$k; $j < $tot ; $j++)
                     {
+
                         $crear=Boletin::create([
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
                             'lapso' => 2,
-                            'sugerencias' => 0,
+                            
                             'id_periodo' => $periodo->id,
                             'id_asignatura' => $request->id_asignatura[$j],
                             'inasistencias' => $request->inasistencia[$j],
@@ -140,11 +148,10 @@ class BoletinController extends Controller
 
                
             }
-            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO ','success');
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
             return redirect()->route('admin.educacion_basica.index');
 
-        }elseif (count($lapso)==2) 
-        {
+        }else{
             
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
             { 
@@ -154,7 +161,7 @@ class BoletinController extends Controller
                         $crear=Boletin::create([
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
                             'lapso' => 3,
-                            'sugerencias' => 0,
+                            
                             'id_periodo' => $periodo->id,
                             'id_asignatura' => $request->id_asignatura[$j],
                             'inasistencias' => $request->inasistencia[$j],
@@ -167,11 +174,7 @@ class BoletinController extends Controller
 
                
             }
-            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO ','success');
-            return redirect()->route('admin.educacion_basica.index');
-
-        }else{
-            flash('YA TODOS LOS LAPSOS DE ESTA SECCIÓN ESTÁN REGISTRADOS!','danger');
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
             return redirect()->route('admin.educacion_basica.index');
         }
    	

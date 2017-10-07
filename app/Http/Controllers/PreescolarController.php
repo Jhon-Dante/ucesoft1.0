@@ -12,6 +12,7 @@ use App\DatosBasicos;
 use App\Momentos;
 use App\Calificaciones;
 use App\Periodos;
+use App\Personal;
 
 class PreescolarController extends Controller
 {
@@ -22,6 +23,14 @@ class PreescolarController extends Controller
      */
     public function index()
     {
+        $usuario=\Auth::user()->id;
+        $personal=Personal::find($usuario);
+        dd($personal->asignacion_s);
+        foreach ($personal->asignacion_s as $key) {
+            
+        }
+        
+
 
         $inscripcion=Inscripcion::all();
         $calificaciones=Calificaciones::all();
@@ -105,10 +114,8 @@ class PreescolarController extends Controller
         if (count($cali)==null) {
            $cali=0;
         }
-        $calificaciones=Calificaciones::all();
-        $inscripcion=Inscripcion::all();
-        $num=0;
-        return View('admin.preescolar.index', compact('num','inscripcion'));
+
+        return redirect()->route('admin.preescolar.index', compact('num','inscripcion'));
     }
 
     /**

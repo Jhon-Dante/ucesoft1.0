@@ -38,8 +38,6 @@
 									<input type="hidden" name="id_curso" value="{{$seccion->curso->id}}">
     								@include('admin.educacion_basica.partials.create-fields')
 					                
-
-					                
 					                
 					            	<div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>

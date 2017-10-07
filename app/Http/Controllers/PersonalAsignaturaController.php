@@ -10,6 +10,8 @@ use App\Periodos;
 use App\Seccion;
 use App\Cursos;
 use App\Guias;
+use App\PersonalPSecciones;
+use App\Docente_has_asignatura;
 use Laracast\Flash\Flash;
 
 class PersonalAsignaturaController extends Controller
@@ -109,6 +111,17 @@ class PersonalAsignaturaController extends Controller
                       if ($contar>0) {
                         flash('YA LA SECCIÓN SELECCIONADA SE ENCUENTRA ASIGNADA A UN DOCENTE!','error');
                             return redirect()->back();
+                      }else{
+
+                        $create=PersonalPSecciones::create([
+                          'id_personal' => $request->id_personal,
+                          'id_seccion' => $request->id_seccion,
+                          'id_periodo' => $periodo->id
+                        ]);
+
+                        flash('REGISTRO DEL DOCENTE DE PREESCOLAR EN EL PERIODO SE HA RELIZADO DE FORMA EXITOSA!','success');
+                        return redirect()->route('admin.personal_asignatura.index');
+
                       }
 
                       break;
@@ -119,6 +132,25 @@ class PersonalAsignaturaController extends Controller
                         foreach ($keys->asignacion_s as $key) {
                           if($key->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
                             $contar++;
+                          }else{
+
+                            
+                            $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
+                            // $asig2[]=$asig;
+                            // dd(count($asig));
+                            for ($i=0; $i < count($asig) ; $i++) { 
+                               
+                               $crear=Docente_has_asignatura::create([
+                              'id_personal' => $request->id_personal,
+                              'id_asignatura' => $asig[$i]->id,
+                              'id_seccion' => $request->id_seccion,
+                              'id_periodo' => $periodo->id
+                              ]);
+                            }
+                           
+                           flash('REGISTRO DEL PERSONAL DE BÁSICA REALIZADO CON ÉXITO!','success');
+                           return redirect()->route('admin.personal_asignatura.index');
+
                           }
                         }    
                       }
@@ -166,11 +198,27 @@ class PersonalAsignaturaController extends Controller
                         flash('SELECCIONÓ ASIGNATURAS QUE YA SE ENCUENTRAN ASIGNADAS A OTROS DOCENTES!','error');
                       }
                       if($contar2==count($asignaturas)){
-                            flash('YA LA SECCIÓN SELECCIONADA TIENEN ASIGNADAS TODAS LAS ASIGNATURAS A OTROS DOENTES!','error');
+                            flash('YA LA SECCIÓN SELECCIONADA TIENEN ASIGNADAS TODAS LAS ASIGNATURAS A OTROS DOENTES!','error');  
                            
                         }
                         if ($contar2==count($asignaturas) || $contar>0) {
                             return redirect()->back();
+                        
+                        }else{
+                          
+                          for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
+                            $crear=Docente_has_asignatura::create([
+                              'id_personal' => $request->id_personal,
+                              'id_asignatura' => $request->id_asignatura[$i],
+                              'id_seccion' => $request->id_seccion,
+                              'id_periodo' => $periodo->id
+                            ]);
+                          }
+                            
+
+                          flash('REGISTRO DEL DOCENTE DE MEDIA GENERAL REALIZADO DE FORMA EXITOSA!','success');
+                          return redirect()->route('admin.personal_asignatura.index');
+
                         }
                       break;
                     
