@@ -12,7 +12,10 @@ use App\Cursos;
 use App\Guias;
 use App\PersonalPSecciones;
 use App\Docente_has_asignatura;
+use App\Inscripcion;
+use App\Boletin;
 use Laracast\Flash\Flash;
+
 
 class PersonalAsignaturaController extends Controller
 {
@@ -119,7 +122,7 @@ class PersonalAsignaturaController extends Controller
                           'id_periodo' => $periodo->id
                         ]);
 
-                        flash('REGISTRO DEL DOCENTE DE PREESCOLAR EN EL PERIODO SE HA RELIZADO DE FORMA EXITOSA!','success');
+                        flash('ASIGNACIÓN DE SECCIÓN A DOCENTE DE PREESCOLAR SE HA RELIZADO DE FORMA EXITOSA!','success');
                         return redirect()->route('admin.personal_asignatura.index');
 
                       }
@@ -148,7 +151,7 @@ class PersonalAsignaturaController extends Controller
                               ]);
                             }
                            
-                           flash('REGISTRO DEL PERSONAL DE BÁSICA REALIZADO CON ÉXITO!','success');
+                           flash('ASIGNACIÓN DE SECCIÓN A DOCENTE DE BÁSICA REALIZADO CON ÉXITO!','success');
                            return redirect()->route('admin.personal_asignatura.index');
 
                           }
@@ -216,7 +219,7 @@ class PersonalAsignaturaController extends Controller
                           }
                             
 
-                          flash('REGISTRO DEL DOCENTE DE MEDIA GENERAL REALIZADO DE FORMA EXITOSA!','success');
+                          flash('ASIGNACIÓN DE ASIGNATURAS A DOCENTE DE MEDIA GENERAL REALIZADO DE FORMA EXITOSA!','success');
                           return redirect()->route('admin.personal_asignatura.index');
 
                         }
@@ -290,7 +293,45 @@ class PersonalAsignaturaController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $num=0;
+        $guia=Guias::find($id);
+        $inscripcion=Inscripcion::where('id_seccion',$guia->id_seccion)->where('id_periodo',$guia->id_periodo)->get();
+        $seccion=Seccion::find($guia->id_seccion);
+        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+        $id_periodo=$guia->id_periodo;
+        $boletin=Boletin::where('id_periodo',$guia->id_periodo)->get();
+        
+        $k=0;
+        $i=0; 
+        $m=0;
+        foreach ($asignaturas as $key) {
+        $p=0;
+        $i=$k;
+          foreach ($key->boletin->groupBy('lapso') as $key2) {
+              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$guia->id_periodo) {
+         
+              $lap[$i]=$key2[0]->lapso;
+         
+              $i++; 
+              $p++;   
+              }
+              
+            }
+            $k=$i;
+            
+            if($i>0 and $p>0){
+              $j=$i-1;
+              $lapsos[$m]=$lap[$j]; 
+              $m++;             
+            }
+   
+        }
+        for ($b=0; $b < count($lapsos) ; $b++) { 
+          echo $lapsos[$b]."-";
+        }
+            return view('admin.personal_asignatura.vista_notas_cargadas', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos'));
+        
     }
 
     /**

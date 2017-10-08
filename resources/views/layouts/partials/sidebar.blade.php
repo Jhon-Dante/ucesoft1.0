@@ -70,6 +70,8 @@
                     <li><a href="{{ url('admin/preescolar') }}">Educación Preescolar</a></li>
                     <li><a href="{{ url('admin/educacion_basica') }}">Educación Básica</a></li>
                     <li><a href="{{ url('admin/educacion_media') }}">Educación Media General</a></li>
+                    <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li>
+                    
                 </ul>
                 
             </li>

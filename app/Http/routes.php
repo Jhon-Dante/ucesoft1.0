@@ -77,6 +77,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalAsignaturaController@actualizar_asignar',
             'as' => 'admin.personal_asignatura.actualizar_asignar'
             ]);
+        Route::get('/personal_asignatura/buscar_rectificar',[
+            'uses' => 'PersonalAsignaturaController@buscar_rectificar',
+            'as' => 'admin.personal_asignatura.buscar_rectificar'
+            ]);
         Route::get('/DatosBasicos/{cedula}/verificarPadre',[
             'uses' => 'DatosBasicosController@verificarPadre',
             'as' => 'admin.DatosBasicos.verificarPadre'

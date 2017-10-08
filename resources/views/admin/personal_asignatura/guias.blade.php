@@ -69,9 +69,9 @@
                     <a href="{{ route('admin.personal_asignatura.editar_guia', [$guia->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
 					         <button onclick="eliminar({{ $guia->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button>
-
+                    <a href="{{ route('admin.personal_asignatura.show', [$guia->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-eye"></i></button></a>
                     @else
-
+                    <a href="{{ route('admin.personal_asignatura.show', [$guia->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-eye"></i></button></a>                        
 
 
                     @endif
