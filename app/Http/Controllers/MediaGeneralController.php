@@ -196,6 +196,10 @@ class MediaGeneralController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function pdf($i,$id_datosBasicos,$id_periodo){
+        dd($id_datosBasicos);
+
+    }
     public function edit($id)
     {
         //

@@ -206,5 +206,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/crearlapso_media/{id_inscripcion}/{id_periodo}',[
             'uses' => 'MediaGeneralController@crear',
             'as' => 'admin.crearlapso_media']);
+        Route::get('educacion_media/{i}/{id_datosBasicos}/{id_periodo}', ['uses' => 'MediaGeneralController@pdf', 'as' => 'educacion_media.pdf']);
 });
 

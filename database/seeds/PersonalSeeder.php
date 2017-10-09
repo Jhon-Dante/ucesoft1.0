@@ -11,9 +11,10 @@ class PersonalSeeder extends Seeder
      */
     public function run()
     {
+        // 1
         DB::table('datos_basicos_personal')->insert([
             'nombres' => 'Carlos Adolfo',
-            'apellidos' => 'Garcia Campos',
+            'apellidos' => 'García Campos',
             'nacionalidad' => 'V',
             'cedula' => '11999543',
             'fecha_nacimiento' => '1980-05-23',
@@ -28,9 +29,18 @@ class PersonalSeeder extends Seeder
             'correo' => 'carlosagc90@live.com',
             'id_cargo' => '2'
         ]);
+        DB::table('users')->insert([
+            'name' => 'Carlos García',
+            'email' => 'carlosagc90@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Secretario(a)'
+        ]);
 
+        //2
         DB::table('datos_basicos_personal')->insert([
-            'nombres' => 'Maria Josefa',
+            'nombres' => 'María Josefa',
             'apellidos' => 'Palacios',
             'nacionalidad' => 'E',
             'cedula' => '43838459',
@@ -47,6 +57,15 @@ class PersonalSeeder extends Seeder
             'id_cargo' => '1'
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'María Palacio',
+            'email' => 'mjosefap@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Administrador(a)'
+        ]);
+        //3
          DB::table('datos_basicos_personal')->insert([
             'nombres' => 'James',
             'apellidos' => 'Maslow',
@@ -73,7 +92,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General'
         ]);
-
+         //4
          DB::table('datos_basicos_personal')->insert([
             'nombres' => 'Mario',
             'apellidos' => 'Pistache',
@@ -100,7 +119,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Basica'
         ]);
-
+         //5
         DB::table('datos_basicos_personal')->insert([
             'nombres' => 'Alex',
             'apellidos' => 'Campos',
@@ -126,6 +145,61 @@ class PersonalSeeder extends Seeder
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Preescolar'
+        ]);
+        //6
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'José',
+            'apellidos' => 'Ramírez',
+            'nacionalidad' => 'V',
+            'cedula' => '96838451',
+            'fecha_nacimiento' => '1985-11-07',
+            'edad' => '32',
+            'edo_civil' => 'Concubino(a)',
+            'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
+            'genero' => '0',
+            'codigo_hab' => '1',
+            'telf_hab' => '8080090',
+            'codigo_cel' => '2',
+            'celular' => '4343321',
+            'correo' => 'joseramirez@live.com',
+            'id_cargo' => '3'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'José Ramírez',
+            'email' => 'joseramirez@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Media General'
+        ]);
+
+        //7
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'Carmen',
+            'apellidos' => 'Prime',
+            'nacionalidad' => 'V',
+            'cedula' => '96838400',
+            'fecha_nacimiento' => '1985-11-07',
+            'edad' => '32',
+            'edo_civil' => 'Concubino(a)',
+            'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
+            'genero' => '1',
+            'codigo_hab' => '1',
+            'telf_hab' => '8080090',
+            'codigo_cel' => '2',
+            'celular' => '4343321',
+            'correo' => 'carmenprime@live.com',
+            'id_cargo' => '3'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Carmen Prime',
+            'email' => 'carmenprime@live.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Media General'
         ]);
     }
 }

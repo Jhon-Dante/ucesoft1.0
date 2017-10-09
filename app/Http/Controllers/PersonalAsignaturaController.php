@@ -70,6 +70,7 @@ class PersonalAsignaturaController extends Controller
 
     public function buscarasignaturas($id)
     {
+        
         return $asignaturas=Asignaturas::where('id_curso',$id)->get();
     }
     /**
@@ -305,19 +306,33 @@ class PersonalAsignaturaController extends Controller
         $k=0;
         $i=0; 
         $m=0;
+        $cont_lap1=0;
+        $cont_lap2=0;
+        $cont_lap3=0;
         foreach ($asignaturas as $key) {
         $p=0;
         $i=$k;
+        
           foreach ($key->boletin->groupBy('lapso') as $key2) {
+              
               if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$guia->id_periodo) {
          
               $lap[$i]=$key2[0]->lapso;
-         
+                if($key2[0]->lapso==1){
+                  $cont_lap1++;
+                }
+                if($key2[0]->lapso==2){
+                  $cont_lap2++;
+                }
+                if($key2[0]->lapso==3){
+                  $cont_lap3++;
+                }
               $i++; 
               $p++;   
               }
               
             }
+
             $k=$i;
             
             if($i>0 and $p>0){
@@ -327,10 +342,26 @@ class PersonalAsignaturaController extends Controller
             }
    
         }
-        for ($b=0; $b < count($lapsos) ; $b++) { 
-          echo $lapsos[$b]."-";
-        }
-            return view('admin.personal_asignatura.vista_notas_cargadas', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos'));
+        //verificando si esta listo el lapso 1 para imprimir boletin
+       if ($cont_lap1==count($asignaturas)) {
+         $lapso1=1;
+       }else{
+         $lapso1=0;
+       }
+       //verificando si esta listo el lapso 2 para imprimir boletin
+       if ($cont_lap2==count($asignaturas)) {
+         $lapso2=1;
+       }else{
+         $lapso2=0;
+       }
+       //verificando si esta listo el lapso 3 para imprimir boletin
+       if ($cont_lap3==count($asignaturas)) {
+         $lapso3=1;
+       }else{
+         $lapso3=0;
+       }
+
+            return view('admin.personal_asignatura.vista_notas_cargadas', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3'));
         
     }
 

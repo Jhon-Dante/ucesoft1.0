@@ -25,7 +25,7 @@
         </div>
                     <div class="col-xs-12">
                         <div class="panel panel-default">
-                        <div class="panel-heading">Curso: <strong>{{$seccion->curso->curso}}</strong> - Sección: <strong>{{$seccion->seccion}}</strong></div>                       
+                        <div class="panel-heading">Curso: <strong>{{$seccion->curso->curso}}</strong> - Sección: <strong>{{$seccion->seccion}}</strong> - Periodo: <strong>{{$guia->periodos->periodo}}</strong></div>                       
 
                             <div class="panel-body">
                                 

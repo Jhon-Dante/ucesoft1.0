@@ -11,32 +11,38 @@
 					<th style="font-size: 10px;">Nombre</th>
 					<th style="font-size: 10px;">Apellido</th>
 					<th style="font-size: 10px;">Cédula</th>
+				<?php $t2=0; ?>	
 				@foreach($asignaturas as $key)
 					<?php $i=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
 						@if($id_periodo==$key2[$i]->id_periodo)	
-							<th colspan="{{$lapsos[$i]*2}}" align="center" style="font-size: 10px;">{{$key->codigo}}</th>
-							<!-- <th colspan="{{$lapsos[$i]*2}}" style="font-size: 12px;">Inasis</th> -->
-						<?php $i++; ?>
+							<th colspan="{{$lapsos[$t2]*2}}" align="center" style="font-size: 10px;"><center>{{$key->codigo}}</center></th>
+							
+						<?php $i++;$t2++; ?>
 						@endif
 					@endforeach
 				@endforeach
+				<th colspan="3"><center>Descargar Boletín</center></th>
 				</tr>
 				<tr >
 					<td colspan="4" rowspan="2"></td>
+					<?php $t=0; ?>
 					@foreach($asignaturas as $key)
 					<?php $k=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
 						@if($id_periodo==$key2[$k]->id_periodo and $key->id==$key2[$k]->id_asignatura)	
-							@for($m=0;$m<$lapsos[$k];$m++)
+							@for($m=0;$m<$lapsos[$t];$m++)
 								<td>L{{$m+1}}</td>
 								<td>I</td>
 							@endfor
-							{{$k}}
-						<?php $k++; ?>
+							
+						<?php $k++;$t++; ?>
 						@endif
 					@endforeach
 				@endforeach
+				<td>L1</td>
+				<td>L2</td>
+				<td>L3</td>
 				</tr>
 			</thead>
             <tbody>
@@ -56,6 +62,12 @@
 							@endif
 						@endforeach
 					@endforeach
+					<td>
+					@if($lapso1==1) 
+						<a class="btn pull-right" href="{{ route('educacion_media.pdf', [1,$key->id_datosBasicos,$id_periodo]) }}"><i class="icon-print"></i></a> 
+					@endif</td>
+					<td>@if($lapso1==2) PDF @endif</td>
+					<td>@if($lapso1==3) PDF @endif</td>
 					</tr>
               	@endforeach
 					

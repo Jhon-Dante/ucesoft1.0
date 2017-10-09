@@ -110,7 +110,7 @@ class DatosBasicosSeeder extends Seeder
             'repite' => 'No',
             'pendiente' => 'No',
             'id_periodo' => 1,
-            'id_seccion' => 3
+            'id_seccion' => 14
         ]);
 
         DB::table('mensualidades')->insert([  
@@ -205,6 +205,253 @@ class DatosBasicosSeeder extends Seeder
             'id_mes' => 12,
             'estado' => 'Sin pagar',
             'id_datosBasicos' => 4,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+//----segundo inscrito
+        DB::table('datos_basicos')->insert([
+            'nacionalidad' => 'V',
+            'cedula' => '206411434',
+            'nombres' => 'John Jesús',
+            'apellidos' => 'Baddour Morgado',
+            'lugar_nac' => 'Hospital de Clínicas Achaguas, La Victoria',
+            'estado' => 'Aragua',
+            'fecha_nac' => '2004-05-29',
+            'edad' => '13',
+            'sexo' => '1',
+            'peso' => '40',
+            'talla' => 'S',
+            'salud' => 'Fractura en la Rodilla izquierda',
+            'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11',
+            'id_representante' => 3
+            
+        ]);
+
+        DB::table('inscripcion')->insert([  
+            'id_datosBasicos' => 5,
+            'repite' => 'No',
+            'pendiente' => 'No',
+            'id_periodo' => 2,
+            'id_seccion' => 14
+        ]);
+
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 1,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 2,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 3,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 4,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 5,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 6,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 7,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 8,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 9,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 10,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 11,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 12,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 5,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+
+//----tercer inscrito
+        DB::table('datos_basicos')->insert([
+            'nacionalidad' => 'V',
+            'cedula' => '20111434',
+            'nombres' => 'Martín',
+            'apellidos' => 'Lutero',
+            'lugar_nac' => 'Hospital de Clínicas Achaguas, La Victoria',
+            'estado' => 'Aragua',
+            'fecha_nac' => '2004-01-29',
+            'edad' => '13',
+            'sexo' => '1',
+            'peso' => '40',
+            'talla' => 'S',
+            'salud' => 'Fractura en la Rodilla izquierda',
+            'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11',
+            'id_representante' => 3
+            
+        ]);
+
+        DB::table('inscripcion')->insert([  
+            'id_datosBasicos' => 6,
+            'repite' => 'No',
+            'pendiente' => 'No',
+            'id_periodo' => 2,
+            'id_seccion' => 14
+        ]);
+
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 1,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 2,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 3,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 4,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 5,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 6,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 7,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 8,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 9,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 10,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 11,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
+            'id_periodo' => 2,
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        DB::table('mensualidades')->insert([  
+            'id_mes' => 12,
+            'estado' => 'Sin pagar',
+            'id_datosBasicos' => 6,
             'id_periodo' => 2,
             'forma_pago' => 1,
             'codigo_operacion' => ''
