@@ -26,6 +26,7 @@ class PreescolarController extends Controller
     public function index()
     {
         $periodo=Periodos::where('status','Activo')->first();
+        // en el caso de que sea administrador o secretaria
         $usuario=\Auth::user()->email;  //Bueso el Email del personal
         $personal=Personal::where('correo',$usuario)->first(); //Comparo ese email con el registro del personal registrado
         $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
