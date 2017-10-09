@@ -105,6 +105,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PreescolarController@mostrarmomento',
             'as' => 'admin.mostrarmomento']);
 
+        Route::get('/mostrarlapso_basica/{reporte}/{id_seccion}/{id_periodo}',[
+            'uses' => 'PreescolarController@mostrarlapso',
+            'as' => 'admin.mostrarlapso_basica']);
+
 
         Route::resource('/cargos','CargosController');
         Route::get('/cargos/{id}/destroy' ,[
@@ -169,8 +173,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         ]);
 
         Route::get('/crearlapso_basica/{id_seccion}/{id_periodo}',[
-            'uses' => 'BoletinController@crear',
-            'as' => 'admin.crearlapso_basica.crear'
+            'uses' => 'BoletinController@mostrar',
+            'as' => 'admin.crearlapso_basica'
         ]);
 
         Route::get('/educacion_media/{i}/{id_datosBasicos}/{id_periodo}', [

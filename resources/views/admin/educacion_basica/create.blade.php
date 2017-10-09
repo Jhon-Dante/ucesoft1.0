@@ -38,7 +38,8 @@
 									<input type="hidden" name="id_curso" value="{{$seccion->curso->id}}">
     								@include('admin.educacion_basica.partials.create-fields')
 					                
-					                
+					                {!! Form::hidden('lapso',$lapso)  !!}
+			                		{!! Form::hidden('id_curso',$seccion->id_curso)  !!}
 					            	<div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a></div>

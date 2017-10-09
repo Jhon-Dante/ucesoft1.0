@@ -41,10 +41,13 @@ class BoletinController extends Controller
         $lapso3=0;
        // dd($personal->asignaciones_s);
         foreach ($personal->asignacion_s as $key) {
-           
+
             foreach ($inscripcion as $key2) {
-                if ($key2->id_seccion == $key->id_seccion AND $key2->id_periodo == $key->id_periodo) {
+
+                if ($key2->seccion->seccion == $key->seccion and $key2->id_periodo == $key->pivot->id_periodo) {
+            
                     foreach ($boletin->groupBy('lapso') as $key3) {
+                        
                         if ($key3[0]->lapso == 1) {
                             $lapso1=1;
                         }
@@ -55,12 +58,12 @@ class BoletinController extends Controller
                             $lapso3=1;
                         }
                     }
-                }
+                }                    
             }
         }
         
         
-        //dd($personal);
+
         return View('admin.educacion_basica.index', compact('num','inscripcion','boletin','secciones','periodo','personal','lapso1','lapso2','lapso3'));
     }
 
@@ -82,14 +85,40 @@ class BoletinController extends Controller
         $seccion=Seccion::find($id_seccion);
            
         $num=0;
-    	$asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
-       	$periodos=Periodos::find($id_periodo);
-       	$boletin=Boletin::all();
+        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+
+        $periodos=Periodos::find($id_periodo);
+
+        $usuario=\Auth::user()->email;
+        $personal=Personal::where('correo',$usuario)->first();
+    	
+       	$contar=0;
+        $cantidad=0;
+        foreach ($personal->asignacion_a as $key) {
+            $boletin=Boletin::where('id_asignatura',$key->pivot->id_asignatura)->where('id_periodo',$id_periodo)->groupBy('lapso')->get();
+            $contar+=count($boletin);
+            if ($key->pivot->id_periodo==$id_periodo) {
+                $cantidad++;
+            }
+        }
        	
+        if ($contar == 0) {
+            $lapso=1;
+        }else{
+            if ($contar == $cantidad) {
+                $lapso=2;
+            }else{
+                if ($contar == (2*$cantidad)) {
+                    $lapso=3;
+                }else{
+                    $lapso=0;
+                }
+            }
+        }
 
 
 
-            return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion'));
+            return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso'));
     }
 
     /**
@@ -121,34 +150,55 @@ class BoletinController extends Controller
         $k=0;
         
 
-        if (count($lapso)==0) 
+        for ($i=0; $i < count($request->id_datosBasicos) ; $i++) { 
+            $calif=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',1)->first();
+            $calif2=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',2)->first();
+            $calif3=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',3)->first();
+        }
+
+        if (count($calif)==0) 
         {
-            
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
             {
+                for ($j=$k; $j < count($request->id_asignatura) ; $j++)
+                {
+                    $crear=Boletin::create([
+                        'id_asignatura' => $request->id_asignatura[$j],
+                        'lapso' => 1,
+                        'inasistencias' => $request->inasistencia[$j],
+                        'calificacion' => $request->calificacion[$j],
+                        'id_datosBasicos' => $request->id_datosBasicos[$i],                            
+                        'id_periodo' => $periodo->id
+                    ]);
+                }
+            }
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
+            return redirect()->route('admin.educacion_basica.index');
+                    
+         }
 
-
-                    for ($j=$k; $j < $tot ; $j++)
+         elseif (count($calif) == 1 and count($calif2)==0 )
+         {
+                for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+                {
+                    for ($j=$k; $j < count($request->id_asignatura) ; $j++)
                     {
                         $crear=Boletin::create([
                             'id_asignatura' => $request->id_asignatura[$j],
-                            'lapso' => 1,
+                            'lapso' => 2,
                             'inasistencias' => $request->inasistencia[$j],
                             'calificacion' => $request->calificacion[$j],
                             'id_datosBasicos' => $request->id_datosBasicos[$i],                            
                             'id_periodo' => $periodo->id
                         ]);
                     }
-                
-                    $k=$j;
-                    $tot+=$tot;
 
-               
-            }
+                }
             flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
             return redirect()->route('admin.educacion_basica.index');
 
-        }elseif (count($lapso) == count($asig)) 
+        }
+        elseif (count($calif2)==1 and count($calif3)==0) 
         {
             
             for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
@@ -157,32 +207,6 @@ class BoletinController extends Controller
                     for ($j=$k; $j < $tot ; $j++)
                     {
 
-                        $crear=Boletin::create([
-                            'id_datosBasicos' => $request->id_datosBasicos[$i],
-                            'lapso' => 2,
-                            
-                            'id_periodo' => $periodo->id,
-                            'id_asignatura' => $request->id_asignatura[$j],
-                            'inasistencias' => $request->inasistencia[$j],
-                            'calificacion' => $request->calificacion[$j] 
-                        ]);
-                    }
-                
-                    $k=$j;
-                    $tot+=$tot;
-
-               
-            }
-            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
-            return redirect()->route('admin.educacion_basica.index');
-
-        }else{
-            
-            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
-            { 
-
-                    for ($j=$k; $j < $tot ; $j++)
-                    {
                         $crear=Boletin::create([
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
                             'lapso' => 3,
@@ -193,16 +217,11 @@ class BoletinController extends Controller
                             'calificacion' => $request->calificacion[$j] 
                         ]);
                     }
-                
-                    $k=$j;
-                    $tot+=$tot;
-
                
             }
             flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
             return redirect()->route('admin.educacion_basica.index');
-        }
-   	
+   	}
 }
 
     /**
@@ -214,6 +233,10 @@ class BoletinController extends Controller
     public function show($id)
     {
         //
+    }
+    public function mostrar(Request $request)
+    {
+        dd('adasdasdasds');
     }
 
     /**
