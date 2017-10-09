@@ -9,8 +9,8 @@ class Meses extends Model
     protected $table='meses';
     protected $fillable=['id','mes'];
 
-    public function mes()
+    public function pagos()
     {
-    	return $this->hasMany('App\Mensualidades','id_mes','id');
+    	return $this->hasMany('App\Pagos','id_mes');
     }
 }

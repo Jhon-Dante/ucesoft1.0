@@ -23,6 +23,7 @@ use App\Inscripcion;
 use App\Mensualidades;
 use App\AsignaturasPendientes;
 use App\User;
+use App\Pagos;
 
 class DatosBasicosController extends Controller
 {
@@ -145,41 +146,12 @@ class DatosBasicosController extends Controller
     {
         
 
-        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
+        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->last();
         if(count($p)>0)
         {
-            $actualiza=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-            $actualiza->id_datosBasicos = $request->id_datosBasicos;
-            $actualiza->id_seccion = $request->id_seccion;
-            $actualiza->id_periodo = $request->id_periodo;
-            $actualiza->save();
-
-            $mensu=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-            if(count($mensu)>0){
-
-                for ($i=1; $i <= 12 ; $i++) { 
-                    $mensualidad=Mensualidades::where('id_datosBasicos',$request->id_datosBasicos)->get()->first();
-                    $mensualidad->id_mes = $i;
-                    $mensualidad->estado = 'Sin pagar';
-                    $mensualidad->id_datosBasicos = $request->id_datosBasicos;
-                    $mensualidad->id_periodo = $request->id_periodo;
-                    $mensualidad->save();
-                }
-            }
-            else
-            {
-
-                for ($i=1; $i <= 12 ; $i++) { 
-                    $mensualidad=\DB::table('mensualidades')->insert(array(
-                    'id_mes' => $i,
-                    'estado' => 'Sin pagar',
-                    'id_datosBasicos' => $request->id_datosBasicos,
-                    'id_periodo' => $request->id_periodo));
-                }
-            }
-
-            flash('ESTUDIANTE REINSCRITO CON ÉXITO EN EL NUEVO PERIODO!', 'success');
-
+            
+            flash('ESTUDIANTE YA SE ENCUENTRA INSCRITO PARA ESTE PERIODO!', 'success');
+            return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();
 
         }
         else
@@ -194,6 +166,13 @@ class DatosBasicosController extends Controller
                    flash('HA SELECCIONADO QUE EL ESTUDIENTE TIENE MAS DE 2 ASIGNATURAS REPITIENTES!','warning');
                 return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();
                 }else{
+                    //verificando si existen montos para las mensualidades
+                    $pagos=Pagos::all();
+                    if (count($pagos)==0) {
+                      flash('NO ES POSIBLE INSCRIBIR AL ESTUDIANTE HASTA NO ASIGNAR LOS MONTOS DE LOS PAGOS DE LAS MENSUALIDADES!','warning');
+                        return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();  
+                    } else {
+                        
 
                     if(count($request->repite)>0){
                         $repite="Si";
@@ -231,10 +210,16 @@ class DatosBasicosController extends Controller
 
                     for ($i=1; $i<=12 ; $i++) { 
                          $mensualidad=\DB::table('mensualidades')->insert(array(
-                            'id_mes' => $i,
                             'estado' => 'Sin pagar',
                             'id_datosBasicos' => $request->id_datosBasicos,
                             'id_periodo' => $request->id_periodo));
+
+                         $pagos=Pagos::where('id_mes',$i)->last();
+
+                         $mens_pago=\DB::table('mensualidades_pagos')->insert(array(
+                            'id_mensualidad' => $mensualidad->id,
+                            'id_pago' => $pago->id));
+
                      }
 
 
@@ -248,7 +233,9 @@ class DatosBasicosController extends Controller
                         else
                         {
                             flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
-                        }
+                        }3
+                    }
+                    
                 }
             }
         }

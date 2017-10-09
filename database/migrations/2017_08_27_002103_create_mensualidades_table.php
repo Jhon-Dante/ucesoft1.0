@@ -14,7 +14,6 @@ class CreateMensualidadesTable extends Migration
     {
         Schema::create('mensualidades', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_mes')->unsigned();
             $table->enum('estado',['Cancelado','Sin pagar']);
             $table->integer('id_datosBasicos')->unsigned();
             $table->integer('id_periodo')->unsigned();
@@ -22,7 +21,7 @@ class CreateMensualidadesTable extends Migration
             $table->string('codigo_operacion')->nullable();
 
             
-            $table->foreign('id_mes')->references('id')->on('meses')->onDelete('cascade');
+            
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
 

@@ -14,7 +14,6 @@ class Personal extends Model
     'cedula',
     'fecha_nacimiento',
     'fecha_ingreso',
-    'edad',
     'edo_civil',
     'direccion',
     'genero',
