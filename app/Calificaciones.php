@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Calificaciones extends Model
 {
     protected $table='calificaciones';
-    protected $fillable=['id','nro_reportes','juicios','sugerencias','id_datosBasicos','id_periodo'];
+    protected $fillable=['id','nro_reportes','juicios','sugerencia','id_datosBasicos','id_periodo'];
 
     public function datosbasicos()
     {

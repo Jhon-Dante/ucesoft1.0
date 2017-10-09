@@ -1,95 +1,33 @@
-
-@if($cali == 0)
-
+<div style="overflow: scroll;">
 	<div class="form-group">
-	</div>
-		{!! Form::label('juicios','Juicio del 1er lapso') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
+		<table id="example1" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Nro.-</th>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Cédula</th>
+					<th>Momento</th>
+					<th>Sugerencias</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($inscritos as $inscri)
+					<tr>
+						<td>{{$num=$num+1}}</td>
+						<td>{{$inscri->datosBasicos->nombres}}</td>
+						<input type="hidden" name="id_datosBasicos[]" value="{{$inscri->datosBasicos->id}}">
+						<input type="hidden" name="id_periodo" value="{{$periodos->id}}">
+						<td>{{$inscri->datosBasicos->apellidos}}</td>
+						<td>{{$inscri->datosBasicos->nacionalidad}}.-{{$inscri->datosBasicos->cedula}}</td>
+						<td>{!! Form::textarea('juicios[]',null,['class' => 'form-control']) !!}</td>
+						<td>{!! Form::textarea('sugerencia[]',null,['class' => 'form-control']) !!}</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
 
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 1er lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
-	</div>
 
-	<div class="form-group">
 	</div>
-		{!! Form::label('juicios','Juicio del 2do lapso') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 2do lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-	</div>
-		{!! Form::label('juicios','Sugerencias del 3er Lapso	') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 3er lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-	</div>
-
-@elseif($cali >= 1)
-	<div class="form-group">
-		{!! Form::label('juicios','Juicio del 1er lapso') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh','disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 1er lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh','disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('juicios','Juicio del 2do lapso') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 2do lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('juicios','Juicios del 3er Lapso	') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 3er lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-	</div>
-@elseif($cali >= 2)
-
-	<div class="form-group">
-		{!! Form::label('juicios','Juicio del 1er lapso') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh','disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 1er lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh','disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('juicios','Juicio del 2do lapso') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 2do lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh', 'disabled' => 'disabled']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('juicios','Sugerencias del 3er Lapso	') !!}
-		{!! Form::textarea('juicios',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
-	</div>
-
-	<div class="form-group">
-		{!! Form::label('sugerencias','Sugerencias del 3er lapso') !!}
-		{!! Form::text('sugerencias',null,['class' => 'form-control','placeholder' => 'Ej: Juan José', 'title' => 'Phjgh']) !!}
-	</div>
-@endif
+</div>

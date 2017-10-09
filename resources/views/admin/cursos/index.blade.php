@@ -50,8 +50,8 @@
               <tbody>
             	@foreach($cursos as $curso)
                 <tr>
-                  <td><a href="{{ route('admin.cursos.edit', [$curso->id]) }}">{{ $num=$num+1 }}</a></td>
-                  <td><a href="{{ route('admin.cursos.edit', [$curso->id]) }}"> {{$curso->curso}}</a></td>
+                  <td><a href="{{ route('admin.cursos.edit', [$curso->id]) }}">{{$curso->id}}</a></td>
+                  <td><a href="{{ route('admin.cursos.edit', [$curso->id]) }}">{{$curso->curso}}</a></td>
                   <td>
                  
                   <div class="btn-group">

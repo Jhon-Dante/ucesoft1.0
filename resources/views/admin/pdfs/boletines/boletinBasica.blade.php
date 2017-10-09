@@ -1,0 +1,1 @@
+boletinBasica.blade.php

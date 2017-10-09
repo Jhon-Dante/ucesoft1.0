@@ -55,7 +55,6 @@
             <thead>
               <tr>
                 <th>Nro</th>
-                <th>Nombre del Estudiante</th>
                 <th>Curso</th>
                 <th>Sección</th>
                 <th>Período</th>
@@ -63,23 +62,43 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($inscripcion as $inscri)
-              @if($inscri->seccion->curso->id == 1)
+           @foreach($seccion as $s)
+              @if($s->curso->id ==1)
                 <tr>
                   
 
-                 <td><a href="#">{{$num=$num+1}}</a></td>
-                 <td><a href="#">{{$inscri->datosbasicos->nombres}}</a></td>
-                 <td><a href="#">{{$inscri->seccion->curso->curso}}</a></td>
-                 <td><a href="#">{{$inscri->seccion->seccion}}</a></td>
-                 <td><a href="#">{{$inscri->periodo->periodo}}</a></td>
+                 <td>{{$num=$num+1}}</td>
+                 <td>{{$s->curso->curso}}</td>
+                 <td>{{$s->seccion}}</td>
+                 <td>{{$periodo->periodo}}</td>
+
 
                  <td>
                   <div class="btn-group">
                       
-                        
-                        <a href="{{url('admin/crearmomento',['id_inscripcion' => $inscri->datosbasicos->id, 'id_periodo' => $inscri->periodo->id])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
-                      
+                      @if(count($lapso) == 0)   
+                        <a href="{{url('admin/crearmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                          <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
+                        </a>
+                      @elseif(count($lapso) == 1 and count($lapso2) == 0)
+                        <a href="{{url('admin/crearmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                          <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                        </a>
+
+                        <a href="{{url('admin/mostrarmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                          <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
+                        </a>
+
+                      @else
+                        <a href="{{url('admin/crearmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                          <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
+                        </a>
+
+                        <a href="{{url('admin/mostrarmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                          <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
+                        </a>
+
+                      @endif
                       
 
                       

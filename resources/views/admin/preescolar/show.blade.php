@@ -10,11 +10,11 @@
 <section class="content-header">
     <h1>
         @yield('contentheader_title', 'Preescolar')
-        <small>Registro</small>
+        <small>Mostrar momentos</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Preescolar</a></li>
-        <li class="active">Juicios y sugerencias</li>
+        <li class="active">Juicios y sugerencias Registradas</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -25,25 +25,26 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Juicios y sugerencias del estudiante
- 				
+							<div class="panel-heading">Juicios y sugerencias del estudiante Registrados
+
+ 								<div class="btn-group">
+						            <a href="{{ url('admin/calificaciones.pdf',['id_seccion' => $seccion->id, 'id_periodo' => $periodos->id]) }}" class="btn btn-warning btn-flat" style="padding: 4px 10px;">
+						                <i class="fa fa-pencil"></i> Descargar PDF 
+						            </a>
+          						</div>
 							</div>
 
 							<div class="panel-body">
 								
-                {!! Form::open(['route' => ['admin.preescolar.store'], 'method' => 'post' ]) !!}
     							
-					                 @include('admin.preescolar.partials.create-fields')
+					                 @include('admin.preescolar.partials.show-fields')
 					                
 					                
 					            <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
           							<!-- /.form-group -->
-          						
-          		{!! Form::close() !!} 
-							</div>
+          												</div>
 						</div>
 					</div>
 				</div>
