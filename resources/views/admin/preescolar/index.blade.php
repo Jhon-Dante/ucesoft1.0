@@ -63,24 +63,37 @@
                 <td>{{$key->secciones->seccion}}</td>
                 <td>{{$key->periodos->periodo}}</td>
                 <td>
+
+
+
                   @if($reporte1==0)
-                    <a href="{{url('admin/crearmomento',['reporte' => $reporte1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                    <a href="{{url('admin/crearmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
                   @endif
                   @if($reporte1==1 and $reporte2==0)
-                    <a href="{{url('admin/crearmomento',['reporte' => $reporte2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                    <a href="{{url('admin/crearmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
+
+                      <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                          <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
+                      </a>
                   @endif
                   @if($reporte2==1 and $reporte3==0)
-                    <a href="{{url('admin/crearmomento',['reporte' => $reporte3,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                    <a href="{{url('admin/crearmomento',['reporte' => 3,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
+
+                    <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                          <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
+                      </a>
                   @endif
 
                   @if($reporte3==1)
                     <a href="#"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+
+
                   @endif
                   
                 </td>

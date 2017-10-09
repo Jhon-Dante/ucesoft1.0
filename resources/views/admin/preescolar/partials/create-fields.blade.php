@@ -18,7 +18,7 @@
 						<td>{{$num=$num+1}}</td>
 						<td>{{$inscri->datosBasicos->nombres}}</td>
 						<input type="hidden" name="id_datosBasicos[]" value="{{$inscri->datosBasicos->id}}">
-						<input type="hidden" name="id_periodo" value="{{$periodos->id}}">
+						<input type="hidden" name="id_periodo" value="{{$periodo->id}}">
 						<td>{{$inscri->datosBasicos->apellidos}}</td>
 						<td>{{$inscri->datosBasicos->nacionalidad}}.-{{$inscri->datosBasicos->cedula}}</td>
 						<td>{!! Form::textarea('juicios[]',null,['class' => 'form-control']) !!}</td>

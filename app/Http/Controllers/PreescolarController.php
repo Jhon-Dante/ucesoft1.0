@@ -44,20 +44,19 @@ class PreescolarController extends Controller
                 if ($key2->id_seccion==$key->id_seccion and $key2->id_periodo==$key->id_periodo) {
                     //buscando si a esos estudiantes se les ha cargado calificacion
                     foreach ($calificaciones->groupBy('nro_reporte') as $key3) {
-                        if ($key3[0]->nro_reporte==1) {
+                        if ($key3[0]->nro_reportes==1) {
                             $reporte1=1;
                         }
-                        if ($key3[0]->nro_reporte==2) {
+                        if ($key3[0]->nro_reportes==2) {
                             $reporte2=1;
                         }
-                        if ($key3[0]->nro_reporte==3) {
+                        if ($key3[0]->nro_reportes==3) {
                             $reporte3=1;
                         }
                     }
                 }
             }
         }
-        
         $num=0;
         return view('admin.preescolar.index', compact('num','personal','calificaciones','reporte1','reporte2','reporte3'));
     }
@@ -187,7 +186,7 @@ class PreescolarController extends Controller
         //
     }
 
-    public function mostrarmomento($id_seccion, $id_periodo)
+    public function mostrarmomento($reporte, $id_seccion, $id_periodo)
     {
         $num=0;
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();

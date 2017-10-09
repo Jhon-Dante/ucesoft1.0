@@ -117,6 +117,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PreescolarController@crear',
             'as' => 'admin.crearmomento']);
 
+        Route::get('/mostrarmomento/{reporte}/{id_seccion}/{id_periodo}',[
+            'uses' => 'PreescolarController@mostrarmomento',
+            'as' => 'admin.mostrarmomento']);
+
 
         Route::resource('/cargos','CargosController');
         Route::get('/cargos/{id}/destroy' ,[
