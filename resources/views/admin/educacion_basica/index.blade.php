@@ -108,7 +108,7 @@
 
                               @endif
                               @if($lapso3==1)
-                                <a href="{{url('admin/mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                <a href="{{url('admin.mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                   <button class="btn btn-info btn-flat"><i class="fa fa-eye"></i></button>
                                 </a>
                               @endif
