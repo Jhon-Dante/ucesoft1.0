@@ -340,7 +340,6 @@ class PersonalAsignaturaController extends Controller
     public function show($id)
     {
         
-        $num=0;
         $guia=Guias::find($id);
         $inscripcion=Inscripcion::where('id_seccion',$guia->id_seccion)->where('id_periodo',$guia->id_periodo)->get();
         $seccion=Seccion::find($guia->id_seccion);

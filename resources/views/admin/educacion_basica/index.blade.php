@@ -94,7 +94,7 @@
 
                                 <a href="{{url('admin/crearlapso_basica',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
 
-                                <a href="{{url('admin/mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                <a href="{{route ('admin.mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                   <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
                                 </a>
 
@@ -102,13 +102,13 @@
                               @if($lapso2==1 and $lapso3==0)
                                 <a href="{{url('admin/crearlapso_basica',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button></a>
 
-                                <a href="{{url('admin/mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                <a href="{{route ('admin/mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                   <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
                                 </a>
 
                               @endif
                               @if($lapso3==1)
-                                <a href="{{url('admin.mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                <a href="{{route ('admin.mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                   <button class="btn btn-info btn-flat"><i class="fa fa-eye"></i></button>
                                 </a>
                               @endif

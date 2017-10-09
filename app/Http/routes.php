@@ -115,7 +115,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             );
         
       
-        
+        Route::get('/mostrarlapso_basica/{id_seccion}/{id_periodo}',[
+            'uses' => 'boletinController@mostrar',
+            'as' => 'admin.mostrarlapso_basica']);
+
+
 
         Route::resource('/representantes','RepresentantesController');
         Route::get('/representantes/{id}/destroy',[
@@ -199,6 +203,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
          Route::get('preescolar/calificaciones2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
             'uses' => 'PreescolarController@boletinPreescolarEstudiante',
             'as' => 'admin.calificaciones.pdf2']);
+
+         Route::get('basica/boletin/{id_seccion}/{id_periodo}', [
+            'uses' => 'BoletinController@pdf',
+            'as' => 'admin.boletin.pdf']);
+
+         Route::get('basica/boletin2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
+            'uses' => 'BoletinController@boletinBasicaEstudiante',
+            'as' => 'admin.boletin.pdf2']);
 
         });
         

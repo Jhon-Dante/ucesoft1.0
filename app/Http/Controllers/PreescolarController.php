@@ -207,26 +207,26 @@ class PreescolarController extends Controller
             
 
 
-            foreach ($reportes2->groupBy('nro_reportes') as $key2) {
+            foreach ($reportes2->groupBy('nro_reportes') as $key2) 
+            {
 
-                if ($key2[0]->id_periodo==$periodos->id) {
+                if ($key2[0]->id_periodo==$periodos->id) 
+                {
                     
                     $repor[$i]=$key2[0]->nro_reportes;
 
                     $i++;
                     $p++;
-
-
-                    }
-                }
-
+                 }
             }
-            $k=$i;
+        }
+        $k=$i;
 
-            if ($i>0 and $p>0) {
-                $j=$i-1;
-                $lapsos[$m]=$repor[$j];
-                $m++;
+        if ($i>0 and $p>0) 
+        {
+            $j=$i-1;
+            $lapsos[$m]=$repor[$j];
+            $m++;
         }
         $n=0;
         return View('admin.preescolar.show', compact('num','inscritos','periodos','cali','seccion','id_periodo','lapsos','reportes','reportes2','n'));

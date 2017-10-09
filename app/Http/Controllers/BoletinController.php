@@ -234,9 +234,157 @@ class BoletinController extends Controller
     {
         //
     }
-    public function mostrar(Request $request)
+    public function pdf()
     {
-        dd('adasdasdasds');
+        dd('pdf');
+    }
+    public function boletinBasicaEstudiante()
+    {
+        $correo=\Auth::user()->email;
+        $personal=Personal::where('correo',$correo)->first();
+        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $seccion=Seccion::find($id_seccion);
+        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+        $periodo=Periodos::find($id_periodo);
+
+
+        $boletin=Boletin::where('id_periodo',$id_periodo)->get();
+        
+        $k=0;
+        $i=0; 
+        $m=0;
+        $cont_lap1=0;
+        $cont_lap2=0;
+        $cont_lap3=0;
+        foreach ($asignaturas as $key) {
+        $p=0;
+        $i=$k;
+        
+          foreach ($key->boletin->groupBy('lapso') as $key2) {
+              
+              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+         
+              $lap[$i]=$key2[0]->lapso;
+                if($key2[0]->lapso==1){
+                  $cont_lap1++;
+                }
+                if($key2[0]->lapso==2){
+                  $cont_lap2++;
+                }
+                if($key2[0]->lapso==3){
+                  $cont_lap3++;
+                }
+              $i++; 
+              $p++;   
+              }
+              
+            }
+
+            $k=$i;
+            
+            if($i>0 and $p>0){
+              $j=$i-1;
+              $lapsos[$m]=$lap[$j]; 
+              $m++;             
+            }
+   
+        }
+        //verificando si esta listo el lapso 1 para imprimir boletin
+       if ($cont_lap1==count($asignaturas)) {
+         $lapso1=1;
+       }else{
+         $lapso1=0;
+       }
+       //verificando si esta listo el lapso 2 para imprimir boletin
+       if ($cont_lap2==count($asignaturas)) {
+         $lapso2=1;
+       }else{
+         $lapso2=0;
+       }
+       //verificando si esta listo el lapso 3 para imprimir boletin
+       if ($cont_lap3==count($asignaturas)) {
+         $lapso3=1;
+       }else{
+         $lapso3=0;
+       }
+
+       $num=0;
+        return View('admin.educacion_basica.show', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num'));
+        
+    }
+    public function mostrar($id_seccion, $id_periodo)
+    {
+        $correo=\Auth::user()->email;
+        $personal=Personal::where('correo',$correo)->first();
+        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $seccion=Seccion::find($id_seccion);
+        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+        $periodo=Periodos::find($id_periodo);
+
+
+        $boletin=Boletin::where('id_periodo',$id_periodo)->get();
+        
+        $k=0;
+        $i=0; 
+        $m=0;
+        $cont_lap1=0;
+        $cont_lap2=0;
+        $cont_lap3=0;
+        foreach ($asignaturas as $key) {
+        $p=0;
+        $i=$k;
+        
+          foreach ($key->boletin->groupBy('lapso') as $key2) {
+              
+              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+         
+              $lap[$i]=$key2[0]->lapso;
+                if($key2[0]->lapso==1){
+                  $cont_lap1++;
+                }
+                if($key2[0]->lapso==2){
+                  $cont_lap2++;
+                }
+                if($key2[0]->lapso==3){
+                  $cont_lap3++;
+                }
+              $i++; 
+              $p++;   
+              }
+              
+            }
+
+            $k=$i;
+            
+            if($i>0 and $p>0){
+              $j=$i-1;
+              $lapsos[$m]=$lap[$j]; 
+              $m++;             
+            }
+   
+        }
+        //verificando si esta listo el lapso 1 para imprimir boletin
+       if ($cont_lap1==count($asignaturas)) {
+         $lapso1=1;
+       }else{
+         $lapso1=0;
+       }
+       //verificando si esta listo el lapso 2 para imprimir boletin
+       if ($cont_lap2==count($asignaturas)) {
+         $lapso2=1;
+       }else{
+         $lapso2=0;
+       }
+       //verificando si esta listo el lapso 3 para imprimir boletin
+       if ($cont_lap3==count($asignaturas)) {
+         $lapso3=1;
+       }else{
+         $lapso3=0;
+       }
+
+       $num=0;
+        return View('admin.educacion_basica.show', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num'));
+        
     }
 
     /**
