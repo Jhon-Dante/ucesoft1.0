@@ -73,7 +73,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalAsignaturaController@editar_guia',
             'as' => 'admin.personal_asignatura.editar_guia'
             ]);
-        Route::post('/personal_asignatura/{id_personal}/{id_asignatura}/{id_seccion}/actualizar_asignacion_mg',[
+        Route::post('/personal_asignatura/actualizar_asignacion_mg',[
             'uses' => 'PersonalAsignaturaController@actualizar_asignacion_mg',
             'as' => 'admin.personal_asignatura.actualizar_asignacion_mg'
             ]);

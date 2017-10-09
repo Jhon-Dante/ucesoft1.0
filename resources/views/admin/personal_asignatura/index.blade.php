@@ -75,8 +75,8 @@
                     <td>
 
                       <div class="btn-group">
-                    <a href="{{ route('admin.personal_asignatura.actualizar_asignacion_mg', [$perso->id,$key->id,$id_seccion]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
-
+                    
+                    <a href="#" ><button onclick="asignacion({{$perso->id}},{{$key->id}},{{$id_seccion}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
                     </td>
                     
                     
@@ -103,16 +103,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar Curso</h4>
+                    <h4 class="modal-title">Eliminar Asignación</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este perso en especifico?...
+                    ¿Esta seguro que desea eliminar esta Asignación en especifico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
                     {!! Form::open(['route' => ['admin.personal_asignatura.destroy',1033], 'method' => 'DELETE']) !!}
-                        <input type="hidden" id="perso" name="id">
+                        <input type="hidden" id="id_personal" name="id_personal">
+                        <input type="hidden" id="id_asignatura" name="id_asignatura">
+                        <input type="hidden" id="id_seccion" name="id_seccion">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}
 
@@ -123,9 +125,11 @@
 
    <script type="text/javascript">
 
-        function personal_asignatura(perso){
+        function asignacion(id_personal,id_asignatura,id_seccion){
 
-            $('#perso').val(perso);
+            $('#id_personal').val(id_personal);
+            $('#id_asignatura').val(id_asignatura);
+            $('#id_seccion').val(id_seccion);
         }
 
     </script>
