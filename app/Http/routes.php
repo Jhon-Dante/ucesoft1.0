@@ -206,7 +206,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 
          Route::get('preescolar/calificaciones/{id_seccion}/{id_periodo}', [
-            'uses' => 'PreescolarController@pdfcalificaciones',
-            'as' => 'calificaciones.pdf']);
+            'uses' => 'PreescolarController@pdf',
+            'as' => 'admin.calificaciones.pdf']);
 });
 
