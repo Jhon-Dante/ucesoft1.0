@@ -27,16 +27,41 @@ class BoletinController extends Controller
      */
     public function index()
     {
-        $periodo=Periodos::where('status','Activo')->get()->first();
-        $secciones=Seccion::all();
-        $inscripcion=Inscripcion::all();
+        $periodo=Periodos::where('status','Activo')->first();
+        $usuario=\Auth::user()->email;
+        $personal=Personal::where('correo',$usuario)->first();
+        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+        
         $boletin=Boletin::all();
         $num=0;
-        $cali=Boletin::all();
-        $correo=\Auth::user()->email;
-        $personal=Personal::where('correo',$correo)->get();
+
+
+        $lapso1=0;
+        $lapso2=0;
+        $lapso3=0;
+       // dd($personal->asignaciones_s);
+        foreach ($personal->asignacion_s as $key) {
+           
+            foreach ($inscripcion as $key2) {
+                if ($key2->id_seccion == $key->id_seccion AND $key2->id_periodo == $key->id_periodo) {
+                    foreach ($boletin->groupBy('lapso') as $key3) {
+                        if ($key3[0]->lapso == 1) {
+                            $lapso1=1;
+                        }
+                        if ($key3[0]->lapso == 2) {
+                            $lapso2=1;
+                        }
+                        if ($key3[0]->lapso == 3) {
+                            $lapso3=1;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
         //dd($personal);
-        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin','secciones','periodo','personal'));
+        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin','secciones','periodo','personal','lapso1','lapso2','lapso3'));
     }
 
     /**

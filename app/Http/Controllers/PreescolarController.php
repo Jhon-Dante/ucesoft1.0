@@ -331,7 +331,56 @@ class PreescolarController extends Controller
         $n=0;
 
 
-        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar', ['num' => $num, 'inscritos' => $inscritos, 'periodos' => $periodos, 'cali' => $cali, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'reportes' => $reportes, 'reportes2' => $reportes2, 'n' => $n])->setPaper('a4', 'landscape');
+        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolar', ['num' => $num, 'inscritos' => $inscritos, 'periodos' => $periodos, 'cali' => $cali, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'reportes' => $reportes, 'reportes2' => $reportes2, 'n' => $n])->setPaper('a4', 'landscape');
+
+        return $dompdf->stream();
+    }
+
+    public function boletinPreescolarEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
+    {
+        $num=0;
+        $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $seccion=Seccion::find($id_seccion);
+        $periodos=Periodos::find($id_periodo);
+        $cali=Calificaciones::where('id_periodo',$id_periodo)->get();
+        $reportes=Calificaciones::where('id_periodo',$id_periodo)->get();
+        $reportes2=Calificaciones::where('id_periodo',$id_periodo)->groupBy('nro_reportes')->get();
+        // dd(count($reportes2));
+
+        $k=0;
+        $i=0;
+        $m=0;
+        foreach ($reportes2 as $key) {
+            $p=0;
+            $i=$k;
+            
+
+
+            foreach ($reportes2->groupBy('nro_reportes') as $key2) {
+
+                if ($key2[0]->id_periodo==$periodos->id) {
+                    
+                    $repor[$i]=$key2[0]->nro_reportes;
+
+                    $i++;
+                    $p++;
+
+
+                    }
+                }
+
+            }
+            $k=$i;
+
+            if ($i>0 and $p>0) {
+                $j=$i-1;
+                $lapsos[$m]=$repor[$j];
+                $m++;
+        }
+        $n=0;
+
+
+        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscritos' => $inscritos, 'periodos' => $periodos, 'cali' => $cali, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'reportes' => $reportes, 'reportes2' => $reportes2, 'n' => $n, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
         return $dompdf->stream();
     }

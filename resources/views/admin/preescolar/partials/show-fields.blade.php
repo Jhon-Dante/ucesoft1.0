@@ -9,6 +9,7 @@
 						<td colspan="2"><strong>Momento {{$n=$n+1}} </strong></td>
 
 					@endforeach
+					<td></td>
 				</tr>
 				<tr>
 					<th>Nro.-</th>
@@ -19,6 +20,7 @@
 									<th>Juicio</th>
 									<th>Sugerencias</th>
 						@endforeach
+					<th>Descargar Boleta</th>
 					
 				</tr>
 			</thead>
@@ -35,10 +37,21 @@
 
 							@foreach($reportes as $c)
 								@if($c->id_periodo == $periodos->id and $c->id_datosBasicos == $inscri->datosBasicos->id)
-									<td>{{$c->juicios}}</td>
-									<td>{{$c->sugerencia}}</td>
+
+										<td>{{$c->juicios}}</td>
+										<td>{{$c->sugerencia}}</td>
+									
 								@endif
 							@endforeach
+
+							<td>
+								
+										
+								<a href="{{route ('admin.calificaciones.pdf2',['id_datosBasicos' => $inscri->datosBasicos->id,'id_seccion' => $inscri->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+				                <button class="btn btn-info btn-flat"><i class="fa fa-file-pdf-o"></i></button>
+				                </a>
+
+							</td>
 						</tr>
 				@endforeach
 			</tbody>

@@ -165,12 +165,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/educacion_media','MediaGeneralController');
         Route::get('/crearlapso_media/{id_inscripcion}/{id_periodo}',[
             'uses' => 'MediaGeneralController@crear',
-            'as' => 'admin.crearlapso_media']);
-        Route::get('/educacion_media/{i}/{id_datosBasicos}/{id_periodo}', ['uses' => 'MediaGeneralController@pdf', 'as' => 'admin.educacion_media.pdf']);
+            'as' => 'admin.crearlapso_media'
+        ]);
+
+        Route::get('/crearlapso_basica/{id_seccion}/{id_periodo}',[
+            'uses' => 'BoletinController@crear',
+            'as' => 'admin.crearlapso_basica.crear'
+        ]);
+
+        Route::get('/educacion_media/{i}/{id_datosBasicos}/{id_periodo}', [
+            'uses' => 'MediaGeneralController@pdf', 
+            'as' => 'admin.educacion_media.pdf']);
 
 
          Route::get('preescolar/calificaciones/{id_seccion}/{id_periodo}', [
             'uses' => 'PreescolarController@pdf',
             'as' => 'admin.calificaciones.pdf']);
+        
+
+         Route::get('preescolar/calificaciones2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
+            'uses' => 'PreescolarController@boletinPreescolarEstudiante',
+            'as' => 'admin.calificaciones.pdf2']);
 });
 

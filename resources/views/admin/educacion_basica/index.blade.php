@@ -52,54 +52,62 @@
           <div class="panel-body">
             <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Nro</th>
-                
-                <th>Curso</th>
-                <th>Sección</th>
-                <th>Período</th>
-                <th>Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-            @foreach($personal as $perso)
-                  <?php $cont=0; ?>
-                  @foreach($perso->asignacion_a as $key)
+              <thead>
+                <tr>
+                  <th>Nro</th>
                   
-                    @if($perso->id_cargo==4)
-                    @if($cont==0)
-                    <tr>
-                    <td>{{$num=$num+1}}</td>
-                    <td>{{$key->cursos->curso}}</td>
-                    <td>
-                    @foreach($key->cursos->seccion as $key2)
+                  <th>Curso</th>
+                  <th>Sección</th>
+                  <th>Período</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <?php $cont=0; ?>
+                  @foreach($personal->asignacion_a as $key)
+                    @if($personal->id_cargo==4)
+                      @if($cont==0)
+                        <tr>
+                          <td>{{$num=$num+1}}</td>
+                          <td>{{$key->cursos->curso}}</td>
+                          <td>
+                            @foreach($key->cursos->seccion as $key2)
 
-                        @if($key2->id==$key->pivot->id_seccion)
-                        {{$key2->seccion}}
-                        @endif
-                        
-                    
-                    
+                              @if($key2->id==$key->pivot->id_seccion)
+                                {{$key2->seccion}}
+                              @endif
 
-                    @endforeach
-                    </td>
+                            @endforeach
+                          </td>
+                          <td>{{$periodo->periodo}}</td>
+                          @foreach($key->cursos->seccion as  $key2)
+                            @if($key2->id == $key->pivot->id_seccion)
 
-                    <td>{{$periodo->periodo}}</td>
-                    @foreach($key->cursos->seccion as $key2)
-                    
-                        @if($key2->id==$key->pivot->id_seccion)
-                            <td><a href="{{url('admin/crearlapso',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
-                             </td>  
-                  @endif
-                    @endforeach
-                  </tr>
-                  @endif
-                  <?php $cont++; ?>
-                  @endif
+                            <td>
+                              @if($lapso1==0)
+                                 <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                              @endif
+                              @if($lapso1==1 and $lapso2==0)
+                                <a href=""></a>
+                              @endif
+                              @if($lapso2==1 and $lapso3==0)
+                                <a href=""></a>
+                              @endif
+                              @if($lapso3==1)
+                                <a href=""></a>
+                              @endif
+                            </td>
 
-                 @endforeach 
-              @endforeach
+                            @endif
+
+                        @endforeach
+                      @endif
+                      <?php $cont++; ?>
+                    @endif
+                  @endforeach
+                
+            
               </tbody>
             </table>
           </div>
