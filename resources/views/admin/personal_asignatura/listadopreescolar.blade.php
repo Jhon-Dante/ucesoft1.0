@@ -9,14 +9,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Carga Académica')
+        @yield('contentheader_title', 'Carga Académica de Preescolar')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Carga Académica de Media General</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Carga Académica de Preescolar</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Lista de Carga Académica Asignadas
+        <div class="panel-heading">Lista de Carga Académica de Preescolar Asignadas
 
           <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
             <a href="{{ url('admin/personal_asignatura/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
@@ -46,42 +46,25 @@
                     <th>Nro</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                    <th>Asignatura</th>
-                    <th>Curso</th>
                     <th>Sección</th>
-                    <th>Opciones</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach($personal as $perso)
-                  @foreach($perso->asignacion_a as $key)
-                    @if($perso->id_cargo==3)
-                  <tr>
-                    <td>{{$num=$num+1}}</td>
-                    <td>{{$perso->nombres}}</td>
-                    <td>{{$perso->apellidos}}</td>
-                    <td>{{$key->asignatura}}</td>
-                    
-                    <td>{{$key->cursos->curso}}</td>
-                    <td>
-                      @foreach($key->cursos->seccion as $key2)
-                        @if($key2->id==$key->pivot->id_seccion)
-                        {{$key2->seccion}}
-                        <?php $id_seccion=$key2->id; ?>
-                        @endif
-                        
-                      @endforeach
-                    </td>
-                    <td>
-
-                      <div class="btn-group">
-                    <a href="{{ route('admin.personal_asignatura.actualizar_asignacion_mg', [$perso->id,$key->id,$id_seccion]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
-
-                    </td>
-                    
-                    
-                  </tr>
-                  @endif
+                  <?php $cont=0; ?>
+                  @foreach($perso->personapsecciones as $key)
+                  	@if($key->id_periodo==$periodo->id)
+                  	<tr>
+	                    <td>{{$num=$num+1}}</td>
+	                    <td>{{$perso->nombres}}</td>
+	                    <td>{{$perso->apellidos}}</td>
+	                    <td>{{$key->secciones->seccion}}</td>
+	                    <td>
+							
+	                    </td>
+                    </tr>
+                  	@endif
                  @endforeach 
               @endforeach
               </tbody>

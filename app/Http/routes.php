@@ -73,9 +73,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalAsignaturaController@editar_guia',
             'as' => 'admin.personal_asignatura.editar_guia'
             ]);
-        Route::post('/personal_asignatura/actualizar_asignar',[
-            'uses' => 'PersonalAsignaturaController@actualizar_asignar',
-            'as' => 'admin.personal_asignatura.actualizar_asignar'
+        Route::post('/personal_asignatura/{id_personal}/{id_asignatura}/{id_seccion}/actualizar_asignacion_mg',[
+            'uses' => 'PersonalAsignaturaController@actualizar_asignacion_mg',
+            'as' => 'admin.personal_asignatura.actualizar_asignacion_mg'
             ]);
         Route::get('/personal_asignatura/buscar_rectificar',[
             'uses' => 'PersonalAsignaturaController@buscar_rectificar',
@@ -86,22 +86,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.DatosBasicos.verificarPadre'
             ]);
         
-        
-
-        // Route::resource('/deducciones','DeduccionesController');
-        // Route::get('/deducciones/{id}/destroy' ,[
-        //     'uses' => 'DeduccionesController@destroy',
-        //     'as' => 'admin.deducciones.destroy']
-        //     );
-
-        // Route::resource('/pago_x_cestat','Pago_x_cestatController');
-
-        // Route::resource('/retenciones','RetencionesController');
-        // Route::get('/retenciones/{id}/destroy' ,[
-        //     'uses' => 'RetencionesController@destroy',
-        //     'as' => 'admin.retenciones.destroy']
-        //     );
-
         Route::resource('/aulas','AulasController');
 
         Route::resource('/horarios','HorariosController');
@@ -159,32 +143,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalAsignaturaController@listado',
             'as' => 'admin.personalasignatura.listado'
             ]);
+        Route::get('/personalasignatura/docente_preescolar',[
+            'uses' => 'PersonalAsignaturaController@listadopreescolar',
+            'as' => 'admin.personalasignatura.listadopreescolar'
+            ]);
         
         Route::resource('/calificaciones','CalificacionesController');
-
-    
-
-        // Route::get('/docente_basica/lapsos', function(){
-        //     return View('admin.docente_basica.lapsos.index');
-        // });
-
-        // Route::get('/docente_basica/lapsos/create', function(){
-        //     return View('admin.docente_basica.lapsos.create');
-        // });
-
-
-
-        // Route::get('/docente_liceo', function(){
-        //     return View('admin.docente_liceo.index');
-        // });
-
-        // Route::get('/docente_liceo/lapsos', function(){
-        //     return View('admin.docente_liceo.lapsos.index');
-        // });
-
-        // Route::get('/docente_liceo/lapsos/create', function(){
-        //     return View('admin.docente_liceo.lapsos.create');
-        // });
 
         Route::resource('/horario_tarde','HorarioTardeController');
 

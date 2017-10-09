@@ -55,7 +55,7 @@
                 @foreach($personal as $perso)
                   <?php $cont=0; ?>
                   @foreach($perso->asignacion_a as $key)
-                  
+                  @if($key->id_periodo==$periodo->id)
                     @if($perso->id_cargo==4)
                   	@if($cont==0)
                   	<tr>
@@ -73,8 +73,10 @@
                     </a></td>
                     
                   </tr>
+
                   @endif
                   <?php $cont++; ?>
+                  @endif
                   @endif
                  @endforeach 
               @endforeach

@@ -37,10 +37,11 @@ class PersonalAsignaturaController extends Controller
     {
         //dd('asasa');
         $num=0;
+        $periodo=Periodos::where('status','Activo')->first();
         $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
         
         
-        return View('admin.personal_asignatura.listado', compact('personal','num'));   
+        return View('admin.personal_asignatura.listado', compact('personal','num','periodo'));   
     }
     public function buscarpersonal($id)
     {
@@ -97,7 +98,7 @@ class PersonalAsignaturaController extends Controller
     public function store(Request $request)
     {
 
-        $periodo=Periodos::where('status','Activo')->get()->first();
+        $periodo=Periodos::where('status','Activo')->first();
         $personal=Personal::all();
         $id_curso=$request->id_curso;
         switch($id_curso){
@@ -124,7 +125,7 @@ class PersonalAsignaturaController extends Controller
                         ]);
 
                         flash('ASIGNACIÓN DE SECCIÓN A DOCENTE DE PREESCOLAR SE HA RELIZADO DE FORMA EXITOSA!','success');
-                        return redirect()->route('admin.personal_asignatura.index');
+                        return redirect()->route('admin.personal_asignatura.listadopreescolar');
 
                       }
 
@@ -153,7 +154,7 @@ class PersonalAsignaturaController extends Controller
                             }
                            
                            flash('ASIGNACIÓN DE SECCIÓN A DOCENTE DE BÁSICA REALIZADO CON ÉXITO!','success');
-                           return redirect()->route('admin.personal_asignatura.index');
+                           return redirect()->route('admin.personal_asignatura.listado');
 
                           }
                         }    
@@ -282,9 +283,17 @@ class PersonalAsignaturaController extends Controller
         return view('admin.personal_asignatura.editar_guia', compact('guia','cursos','secciones'));
     }
 
-    public function actualizar_signar(Request $request,$id)
+    public function actualizar_asignacion_mg($id_personal,$id_asignatura,$id_seccion)
     {
-        dd($request->all());
+        $periodo=Periodos::where('status','Activo')->first();
+        $boletin=Boletin::where('id_asignatura',$id_asignatura)->where('id_periodo',$periodo->id)->get();
+        $hallada=count($boletin);
+        if ($hallada>0) {
+          flash('NO ES POSIBLE CAMBIAR LA ASIGNACIÓN DEBIDO A QUE EL DOCENTE YA HA CARGADO CALIFICACIÓN EN DICHA ASIGNATURA !','error');
+            return redirect()->route('admin.personal_asignatura.index');
+        }else{
+          
+        }
     }
     /**
      * Display the specified resource.
@@ -365,6 +374,15 @@ class PersonalAsignaturaController extends Controller
         
     }
 
+    public function listadopreescolar()
+    {
+        $num=0;
+        $periodo=Periodos::where('status','Activo')->first();
+
+        $personal=Personal::where('id_cargo',5)->get();
+
+        return view('admin.personal_asignatura.listadopreescolar', compact('num','personal','periodo'));      
+    }
     /**
      * Show the form for editing the specified resource.
      *

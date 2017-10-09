@@ -88,12 +88,12 @@
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Personal</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href=" {{ url('admin/personal')            }} ">Listado</a></li>
+                    <li><a href=" {{ url('admin/personal')            }} ">Listado de Personal</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura/create') }} ">Asignar Carga Académica</a></li>
+                    <li><a href=" {{ url('admin/personalasignatura/docente_preescolar') }}">Carga Académica de Preescolar</a></li>
                     <li><a href=" {{ url('admin/personalasignatura/listado')       }}">Carga Académica de Básica</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura')       }}">Carga Académica de Media G.</a></li>
                     <li><a href=" {{ url('admin/tipo_empleado')       }}">Tipos de empleados</a></li>
-                    
                     <li><a href=" {{ url('admin/personal/docente_basica') }}">Docentes de Básica</a></li>
                     <li><a href=" {{ url('admin/personal/docente_liceo') }}">Docentes de Media General</a></li>
                     <li><a href=" {{ url('admin/guias') }}">Asignar Docente Guía</a></li>
