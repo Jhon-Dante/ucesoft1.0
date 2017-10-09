@@ -113,17 +113,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'HorariosController@crear',
             'as' => 'admin.crearhorario']);
 
-        Route::get('/crearmomento/{id_inscripcion}/{id_periodo}',[
+        Route::get('/crearmomento/{reporte}/{id_inscripcion}/{id_periodo}',[
             'uses' => 'PreescolarController@crear',
             'as' => 'admin.crearmomento']);
-
-        Route::get('/crearlapso/{id_inscripcion}/{id_periodo}',[
-            'uses' => 'BoletinController@crear',
-            'as' => 'admin.crearlapso']);
-
-        Route::get('/crearlapso2/{id_inscripcion}/{id_periodo}',[
-            'uses' => 'MediaGeneralController@crear',
-            'as' => 'admin.crearlapso']);
 
 
         Route::resource('/cargos','CargosController');
@@ -206,7 +198,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/crearlapso_media/{id_inscripcion}/{id_periodo}',[
             'uses' => 'MediaGeneralController@crear',
             'as' => 'admin.crearlapso_media']);
-        Route::get('educacion_media/{i}/{id_datosBasicos}/{id_periodo}', ['uses' => 'MediaGeneralController@pdf', 'as' => 'educacion_media.pdf']);
+        Route::get('/educacion_media/{i}/{id_datosBasicos}/{id_periodo}', ['uses' => 'MediaGeneralController@pdf', 'as' => 'admin.educacion_media.pdf']);
 
 
          Route::get('preescolar/calificaciones/{id_seccion}/{id_periodo}', [

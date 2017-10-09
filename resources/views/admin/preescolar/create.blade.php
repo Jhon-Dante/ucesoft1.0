@@ -25,7 +25,7 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Juicios y sugerencias del estudiante
+							<div class="panel-heading">Sección: <strong>{{$seccion->seccion}}</strong> - Periodo: <strong>{{$periodo->periodo}}</strong>
  				
 							</div>
 
@@ -34,7 +34,7 @@
                 {!! Form::open(['route' => ['admin.preescolar.store'], 'method' => 'post' ]) !!}
     							
 					                 @include('admin.preescolar.partials.create-fields')
-					                
+					                <input type="hidden" name="reporte" value="{{$reporte}}">
 					                
 					            <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>

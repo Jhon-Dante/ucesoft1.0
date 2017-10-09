@@ -25,23 +25,41 @@ class PreescolarController extends Controller
      */
     public function index()
     {
+        $periodo=Periodos::where('status','Activo')->first();
         $usuario=\Auth::user()->email;  //Bueso el Email del personal
-        $personal=Personal::where('correo',$usuario)->get()->first(); //Comparo ese email con el registro del personal registrado
-        $asignacion=PersonalPSecciones::where('id_personal',$personal->id)->get()->first(); //Veo la asignacion que tiene ese personal 
-        $seccion=Seccion::where('id',$asignacion->id_seccion)->get();
-        $seccion2=Seccion::where('id',$asignacion->id_seccion)->get()->first(); //Trae la sección con la que está relacionada el personal
-        $periodo=Periodos::where('status','Activo')->get()->first(); 
-
-
-
-        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->where('id_seccion',$seccion2->id)->get()->first();
-
-        $lapso=Calificaciones::where('id_datosBasicos',$inscripcion->id)->where('id_periodo',$periodo->id)->get()->first();
-        $lapso2=Calificaciones::where('id_datosBasicos',$inscripcion->id)->where('id_periodo',$periodo->id)->where('nro_reportes',2)->get()->first();
-
+        $personal=Personal::where('correo',$usuario)->first(); //Comparo ese email con el registro del personal registrado
+        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+        
+        
         $calificaciones=Calificaciones::all();
+        //inicializando reportes
+        $reporte1=0;
+        $reporte2=0;
+        $reporte3=0;
+        //consultando las asignaciones de secciones del personal
+        foreach ($personal->personapsecciones as $key) {
+            //verificando los datos en inscripcion
+            foreach ($inscripcion as $key2) {
+                //buscando si existen estudiantes inscritos en la seccion asignada al personal
+                if ($key2->id_seccion==$key->id_seccion and $key2->id_periodo==$key->id_periodo) {
+                    //buscando si a esos estudiantes se les ha cargado calificacion
+                    foreach ($calificaciones->groupBy('nro_reporte') as $key3) {
+                        if ($key3[0]->nro_reporte==1) {
+                            $reporte1=1;
+                        }
+                        if ($key3[0]->nro_reporte==2) {
+                            $reporte2=1;
+                        }
+                        if ($key3[0]->nro_reporte==3) {
+                            $reporte3=1;
+                        }
+                    }
+                }
+            }
+        }
+        
         $num=0;
-        return View('admin.preescolar.index', compact('num','inscripcion','calificaciones','personal','seccion','periodo','lapso','lapso2'));
+        return view('admin.preescolar.index', compact('num','personal','calificaciones','reporte1','reporte2','reporte3'));
     }
 
     /**
@@ -54,16 +72,19 @@ class PreescolarController extends Controller
         dd('asdasdsdas');
     }
 
-    public function crear($id_seccion, $id_periodo)
+    public function crear($reporte,$id_seccion, $id_periodo)
     {
+        
         $num=0;
-        $periodos=Periodos::find($id_periodo);
-        $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$periodos->id)->get();
-        $cali=Calificaciones::all();
+        $seccion=Seccion::find($id_seccion);
+
+        $periodo=Periodos::find($id_periodo);
+        $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        
 
         // inscripcion::where('id_seccion')->get()->first();
         
-       return View('admin.preescolar.create', compact('num','inscritos','periodos','calificaciones','cali'));
+       return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion'));
     }
 
     /**

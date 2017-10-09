@@ -7,7 +7,7 @@
 					<th>Nombres</th>
 					<th>Apellidos</th>
 					<th>Cédula</th>
-					<th>Momento</th>
+					<th>Juicio</th>
 					<th>Sugerencias</th>
 					
 				</tr>

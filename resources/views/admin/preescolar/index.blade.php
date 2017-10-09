@@ -39,11 +39,6 @@
                 <p style="padding: 4px 10px;" class="btn btn-warning" >Momento 1</p>
               </div>
 
-              
-
-              
-              
-
           </div>
 
           <div class="col-xs-12">
@@ -62,53 +57,33 @@
               </tr>
             </thead>
             <tbody>
-           @foreach($seccion as $s)
-              @if($s->curso->id ==1)
-                <tr>
-                  
-
-                 <td>{{$num=$num+1}}</td>
-                 <td>{{$s->curso->curso}}</td>
-                 <td>{{$s->seccion}}</td>
-                 <td>{{$periodo->periodo}}</td>
-
-
-                 <td>
-                  <div class="btn-group">
-                      
-                      @if(count($lapso) == 0)   
-                        <a href="{{url('admin/crearmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+            @foreach($personal->personapsecciones as $key)
+                <td>{{$num=$num+1}}</td>
+                <td>{{$key->secciones->curso->curso}}</td>
+                <td>{{$key->secciones->seccion}}</td>
+                <td>{{$key->periodos->periodo}}</td>
+                <td>
+                  @if($reporte1==0)
+                    <a href="{{url('admin/crearmomento',['reporte' => $reporte1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
-                      @elseif(count($lapso) == 1 and count($lapso2) == 0)
-                        <a href="{{url('admin/crearmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                  @endif
+                  @if($reporte1==1 and $reporte2==0)
+                    <a href="{{url('admin/crearmomento',['reporte' => $reporte2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
-
-                        <a href="{{url('admin/mostrarmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
-                          <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
-                        </a>
-
-                      @else
-                        <a href="{{url('admin/crearmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
+                  @endif
+                  @if($reporte2==1 and $reporte3==0)
+                    <a href="{{url('admin/crearmomento',['reporte' => $reporte3,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
+                  @endif
 
-                        <a href="{{url('admin/mostrarmomento',['id_seccion' => $s->id, 'id_periodo' => $periodo->id])}}">
-                          <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
-                        </a>
-
-                      @endif
-                      
-
-                      
-
-                      <br><br>
-                      </div>
-                    </td>
-                    
-                  </tr>
-              @endif
+                  @if($reporte3==1)
+                    <a href="#"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+                  @endif
+                  
+                </td>
             @endforeach
               </tbody>
             </table>

@@ -63,8 +63,9 @@
 						@endforeach
 					@endforeach
 					<td>
-					@if($lapso1==1) 
-						<a class="btn pull-right" href="{{ route('educacion_media.pdf', [1,$key->id_datosBasicos,$id_periodo]) }}"><i class="icon-print"></i></a> 
+					@if($lapso1==1)
+
+						<a href="{{ route('admin.educacion_media.pdf', [1,$key->id_datosBasicos,$id_periodo]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a> 
 					@endif</td>
 					<td>@if($lapso1==2) PDF @endif</td>
 					<td>@if($lapso1==3) PDF @endif</td>

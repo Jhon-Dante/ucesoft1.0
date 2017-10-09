@@ -26,7 +26,7 @@ class MediaGeneralController extends Controller
     public function index()
     {
 
-         $periodo=Periodos::where('status','Activo')->get()->first();
+         $periodo=Periodos::where('status','Activo')->first();
         $secciones=Seccion::all();
         $inscripcion=Inscripcion::all();
        
