@@ -146,12 +146,12 @@ class DatosBasicosController extends Controller
     {
         
 
-        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->last();
+        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get()->last();
         if(count($p)>0)
         {
             
             flash('ESTUDIANTE YA SE ENCUENTRA INSCRITO PARA ESTE PERIODO!', 'success');
-            return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();
+            return redirect()->Route('admin.DatosBasicos.create')->withInput();
 
         }
         else
@@ -170,7 +170,7 @@ class DatosBasicosController extends Controller
                     $pagos=Pagos::all();
                     if (count($pagos)==0) {
                       flash('NO ES POSIBLE INSCRIBIR AL ESTUDIANTE HASTA NO ASIGNAR LOS MONTOS DE LOS PAGOS DE LAS MENSUALIDADES!','warning');
-                        return redirect()->route('admin.DatosBasicos.reinscribir')->withInput();  
+                        return redirect()->Route('admin.DatosBasicos.create')->withInput();  
                     } else {
                         
 
@@ -207,18 +207,21 @@ class DatosBasicosController extends Controller
                             'pend_rep' => 'pendiente'));
                     }
                                         
-
-                    for ($i=1; $i<=12 ; $i++) { 
-                         $mensualidad=\DB::table('mensualidades')->insert(array(
+                    $mensualidad=\DB::table('mensualidades')->insert(array(
                             'estado' => 'Sin pagar',
                             'id_datosBasicos' => $request->id_datosBasicos,
-                            'id_periodo' => $request->id_periodo));
+                            'id_periodo' => $request->id_periodo,
+                            'forma_pago' => 1,
+                            'codigo_operacion' => ''
+                        ));
 
-                         $pagos=Pagos::where('id_mes',$i)->last();
+                    for ($i=1; $i<=12 ; $i++) { 
+                         
+                         $pagos=Pagos::where('id_mes',$i)->get()->last();
 
                          $mens_pago=\DB::table('mensualidades_pagos')->insert(array(
                             'id_mensualidad' => $mensualidad->id,
-                            'id_pago' => $pago->id));
+                            'id_pago' => $pagos->id));
 
                      }
 
@@ -233,11 +236,11 @@ class DatosBasicosController extends Controller
                         else
                         {
                             flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
-                        }3
+                        }
                     }
                     
                 }
-            }
+             }
         }
         return redirect()->route('admin.DatosBasicos.index');
         

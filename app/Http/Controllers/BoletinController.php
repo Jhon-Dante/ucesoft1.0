@@ -115,10 +115,10 @@ class BoletinController extends Controller
                 }
             }
         }
+        $ins=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
 
 
-
-            return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso'));
+            return View('admin.educacion_basica.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso','ins'));
     }
 
     /**
@@ -238,7 +238,7 @@ class BoletinController extends Controller
     {
         dd('pdf');
     }
-    public function boletinBasicaEstudiante()
+    public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
     {
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
@@ -309,11 +309,14 @@ class BoletinController extends Controller
        }
 
        $num=0;
-        return View('admin.educacion_basica.show', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num'));
+        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+
+        return $dompdf->stream();
         
     }
     public function mostrar($id_seccion, $id_periodo)
     {
+
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
         $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
@@ -383,7 +386,7 @@ class BoletinController extends Controller
        }
 
        $num=0;
-        return View('admin.educacion_basica.show', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num'));
+        return View('admin.educacion_basica.show', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num','id_periodo'));
         
     }
 

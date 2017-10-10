@@ -37,7 +37,9 @@
 					                <input type="hidden" name="reporte" value="{{$reporte}}">
 					                
 					            <div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
+					            	@if(count($ins)>0)
+					                	<button type="submit" class="btn btn-primary">Enviar</button>
+					                @endif
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
           							<!-- /.form-group -->

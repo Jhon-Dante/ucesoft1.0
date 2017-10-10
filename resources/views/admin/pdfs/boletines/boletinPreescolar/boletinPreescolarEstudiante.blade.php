@@ -91,5 +91,23 @@
 
 	</div>
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<footer>
+		<table align="center" width="100%">
+			<thead>
+				<tr>
+					<th>_________________________________</th>
+					<th>_________________________________</th>
+					<th>_________________________________</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Firma del profesor encargado</td>
+					<td>Sello de la institución</td>
+					<td>Firma del director</td>
+				</tr>
+			</tbody>
+		</table>
 </body>
 </html>

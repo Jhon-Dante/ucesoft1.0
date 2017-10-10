@@ -23,4 +23,8 @@ class Mensualidades extends Model
     {
         return $this->belongsToMany('App\Pagos','mensualidades_pagos','id_mensualidad','id_pago');
     }
+    public function mes()
+    {
+        return $this->belongsTo('App\Meses','id_mes','id');
+    }
 }

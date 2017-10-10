@@ -21,7 +21,6 @@ class CreateMensualidadesTable extends Migration
             $table->string('codigo_operacion')->nullable();
 
             
-            
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
 

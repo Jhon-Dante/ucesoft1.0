@@ -13,4 +13,8 @@ class Meses extends Model
     {
     	return $this->hasMany('App\Pagos','id_mes');
     }
+    public function mes()
+    {
+    	return $this->hasMany('App\Mensualidades','id_mes');
+    }
 }

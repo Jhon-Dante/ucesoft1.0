@@ -41,8 +41,10 @@
 					                {!! Form::hidden('lapso',$lapso)  !!}
 			                		{!! Form::hidden('id_curso',$seccion->id_curso)  !!}
 					            	<div class="box-footer">
-					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a></div>
+									@if($ins > 0)
+					                	<button type="submit" class="btn btn-primary">Enviar</button>
+									@endif
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/educacion_basica')}}"><i class="fa fa-times"></i> Cancelar</a></div>
           							<!-- /.form-group -->
           						
           		{!! Form::close() !!} 

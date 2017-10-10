@@ -83,7 +83,7 @@ class MediaGeneralController extends Controller
     public function crear($id_seccion, $id_periodo)
     {
         
-    $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $inscripcion2=Inscripcion::where('id_seccion',$id_seccion)->get()->first();
         $seccion=Seccion::find($id_seccion);
            
@@ -124,8 +124,10 @@ class MediaGeneralController extends Controller
             }
             
         }
+
+        $ins=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
         //  dd($lapso);
-            return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso'));
+        return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso','ins'));
         
 
     }
@@ -177,6 +179,11 @@ class MediaGeneralController extends Controller
             }
             flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO '.$request->lapso,'success');
             return redirect()->route('admin.educacion_media.index');
+    }
+
+    public function mostrar($id_seccion, $id_periodo)
+    {
+        dd('1433241214');
     }
 
     /**

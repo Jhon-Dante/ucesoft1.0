@@ -33,6 +33,7 @@
             </div>
             <div class="panel-body">
               <div class="box-body">
+                <div style="overflow: scroll;">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -72,6 +73,7 @@
                     
               </tbody> 
             </table>
+          </div>
           </div>
         </div>
       </div>

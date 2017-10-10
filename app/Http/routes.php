@@ -85,6 +85,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'DatosBasicosController@verificarPadre',
             'as' => 'admin.DatosBasicos.verificarPadre'
             ]);
+        Route::get('/personal_asignatura/actualizar_asignacion_mg',[
+            'uses' => 'PersonalAsignaturaController@actualizar_asignacion_mg',
+            'as' => 'admin.personal_asignatura.actualizar_asignacion_mg'
+            ]);
         
         
 
@@ -103,21 +107,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PreescolarController@crear',
             'as' => 'admin.crearmomento']);
 
-        Route::get('/mostrarmomento/{reporte}/{id_seccion}/{id_periodo}',[
-            'uses' => 'PreescolarController@mostrarmomento',
-            'as' => 'admin.mostrarmomento']);
-
-
         Route::resource('/cargos','CargosController');
         Route::get('/cargos/{id}/destroy' ,[
             'uses' => 'CargosController@destroy',
             'as' => 'admin.cargos.destroy']
             );
-        
+
+        Route::get('/mostrarmomento/{reporte}/{id_seccion}/{id_periodo}',[
+            'uses' => 'PreescolarController@mostrarmomento',
+            'as' => 'admin.mostrarmomento']);
       
         Route::get('/mostrarlapso_basica/{id_seccion}/{id_periodo}',[
             'uses' => 'boletinController@mostrar',
             'as' => 'admin.mostrarlapso_basica']);
+
+        Route::get('/mostrarlapso_media/{id_seccion}/{id_periodo}',[
+            'uses' => 'MediaGeneralController@mostrar',
+            'as' => 'admin.mostrarlapso_media']);
 
 
 
@@ -212,6 +218,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'BoletinController@boletinBasicaEstudiante',
             'as' => 'admin.boletin.pdf2']);
 
+         Route::get('/crearlapso_basica/{id_seccion}/{id_periodo}',[
+            'uses' => 'BoletinController@crear',
+            'as' => 'admin.crearlapso_basica']);
         });
         
         

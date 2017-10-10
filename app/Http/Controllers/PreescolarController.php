@@ -80,11 +80,12 @@ class PreescolarController extends Controller
 
         $periodo=Periodos::find($id_periodo);
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $ins=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
         
 
         // inscripcion::where('id_seccion')->get()->first();
         
-       return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion'));
+       return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion','ins'));
     }
 
     /**

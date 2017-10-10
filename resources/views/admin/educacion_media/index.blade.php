@@ -86,18 +86,32 @@
                     
                         @if($key2->id==$key->pivot->id_seccion)
                             <td>
+
                             @if($lapso==1)
-                            <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+
+                              <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+
                             @elseif($lapso==2)
-                            <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
+
+                              <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
+
+                              <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                    <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
+                                  </a>
 
                             @elseif($lapso==3)
 
-                            <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button></a>
+                              <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button></a>
+
+                              <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                  <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
+                                </a>
 
                             @else
 
-                             <button class="btn btn-info btn-flat"><i class="fa fa-pencil"></i></button>                                                        
+                             <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                                  <button class="btn btn-success btn-flat"><i class="fa fa-eye"></i></button>
+                                </a>                                                        
                             @endif
                              </td>  
                   @endif
