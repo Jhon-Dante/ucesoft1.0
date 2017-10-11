@@ -41,8 +41,16 @@
                       <th>Nro</th>
                       <th>Estudiante</th>
                       @foreach($meses as $mes)
-                        <th>{{str_limit($mes->mes,3)}}</th>
+                        @if($mes->id>=9 and $mes->id<=12)
+                          <th>{{str_limit($mes->mes,3)}}</th>
+                        @endif
                       @endforeach
+                      @foreach($meses as $mes)
+                        @if($mes->id>=1 and $mes->id<=8)
+                          <th>{{str_limit($mes->mes,3)}}</th>
+                        @endif
+                      @endforeach
+                      
                       <th>Período</th>
                     </tr>
                   </thead>
@@ -52,18 +60,31 @@
                       <tr>
 
                         <td>{{ $num=$num+1 }}</td>
-                        <td>{{$key->datoBasico->nombres}}</td>
+                        <td>{{$key->datosbasicos->nombres}}</td>
 
                         @foreach($mensualidades as $key2)
-                          @if($key2->id_datosBasicos==$key->id_datosBasicos)
+                          @if($key2->id_inscripcion==$key->id and $key->id_periodo==$id_periodo)
                             @if($key2->estado=="Cancelado")
-                            <td align="center"><img src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px">
-                              <button id="editar" value="{{ $key2->id }}" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal"  ><i class="fa fa-pencil"></i></button>
+                            <td align="center">
+                            <a href="#" id="cancelar" data-toggle="modal" onclick="cancelar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key2->pagos->meses->mes}}')" data-target="#myModal3"><img src="../img/iconos/cancelar.png" style="border-radius: 50px; width: 26px; height: 26px"></a>
+                              <a href="#" id="editar" data-toggle="modal" onclick="editar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}','{{$key2->forma_pago}}')" data-target="#myModal"><img src="../img/iconos/editar.png" style="border-radius: 50px; width: 26px; height: 26px"></a>
                             </td>
 
                             @else
-                          <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datoBasico->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos[0]->meses->mes}}','{{$key2->pagos[0]->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
-                          
+                            <td align="center">
+                            @if($id_mes>=1 and $id_mes<9 and $key2->pagos->id_mes>=1 and $key2->pagos->id_mes<9 and $fin==$anio_actual  and $key2->pagos->id_mes<=$id_mes)
+                          <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
+                            @elseif($id_mes>8 and $id_mes<13 and $key2->pagos->id_mes>8 and $key2->pagos->id_mes<13 and $inicio==$anio_actual and $key2->pagos->id_mes<=$id_mes)
+                          <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
+                                 
+
+                            @else
+
+                              <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px"> 
+
+                            @endif
+                            <!-- evaluando los meses del año anterior -->
+                            </td>
                             @endif
                           @endif
                         @endforeach
@@ -136,7 +157,7 @@
                         {!! Form::text('codigo_operacion',null,['class' => 'form-control', 'disabled' => 'disabled','id' => 'codigo_operacion3']) !!}
                     </div>
                     <p>¿Editar mes del estudiante?</p>
-                    <input type="hidden" name="id_mensualidad" id="id_mensualidad">
+                    <input type="hidden" name="id_mensualidad" id="id_mensualidad3">
                     
                 </div>
                 <div class="modal-footer">
@@ -147,6 +168,30 @@
               </div>
             </div>
           </div>
+<div id="myModal3"  class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                      <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Está seguro que desea Borrar el Pago de Mensualidad del mes: <strong><p id="mes3"><span></span></p></strong></h4>
+                </div>
+                <div class="modal-body">
+                  {!! Form::open(['route' => ['admin.mensualidades.destroy',0133], 'method' => 'put']) !!}
+                  <h4>Nombre del estudiante: </h4><strong><p id="nombre3"><span></span></p></strong>
+                    
+                    <input type="hidden" name="id_mensualidad2" id="id_mensualidad2">
+                    
+                </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary">Aceptar</button>
+                  {!! Form::close() !!}
+                </div>
+              </div>
+            </div>
+          </div>
+
 </div><!-- /.content-wrapper -->
 
 
@@ -164,8 +209,33 @@
     $('#id_mes').val(id_mes);
   }
 
-  function editar(id) {
-    
+  function editar(id,nombre,periodo,mes,id_mes,forma_pago) {
+    var inputElement = document.createElement('input');
+    $('#id_mensualidad3').val(id);
+    $('#nombre2').text(nombre);
+    $('#periodo2').text(periodo);
+    $('#mes2').text(mes);
+    $('#id_mes2').val(id_mes);
+
+    if (forma_pago==1) {
+
+    $('#forma_pago2').text('Efectivo');
+    } else {
+      if (forma_pago==2) {
+
+    $('#forma_pago2').text('Transferencia');
+      } else {
+
+    $('#forma_pago2').text('Depósito');
+      }
+    }
+  }
+
+  function cancelar(id_mensualidad,nombre,mes) {
+    $('#id_mensualidad2')->val(id_mensualidad);
+    $('#mes3').text(mes);
+    $('#nombre3').text(nombre);
+
   }
 </script>
 

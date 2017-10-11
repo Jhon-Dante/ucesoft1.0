@@ -11,6 +11,8 @@ class MesesSeeder extends Seeder
      */
     public function run()
     {
+
+        
         \DB::table('meses')->insert(array(
         	'mes' => 'Enero'
         ));
@@ -36,16 +38,16 @@ class MesesSeeder extends Seeder
         	'mes' => 'Agosto'
         ));
         \DB::table('meses')->insert(array(
-        	'mes' => 'Septiembre'
+            'mes' => 'Septiembre'
         ));
         \DB::table('meses')->insert(array(
-        	'mes' => 'Octubre'
+            'mes' => 'Octubre'
         ));
         \DB::table('meses')->insert(array(
-        	'mes' => 'Noviembre'
+            'mes' => 'Noviembre'
         ));
         \DB::table('meses')->insert(array(
-        	'mes' => 'Diciembre'
+            'mes' => 'Diciembre'
         ));
     }
 }

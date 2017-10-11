@@ -216,7 +216,20 @@ class DatosBasicosController extends Controller
                                         
                     
                     $inscripcion=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->first();
-                    for ($i=1; $i<=12 ; $i++) { 
+                    //registrando mensualidades del año anterior
+                    for ($i=9; $i<=12 ; $i++) { 
+                         
+                         $pagos=Pagos::where('id_mes',$i)->get()->last();
+                        $mensualidades=Mensualidades::create([
+                            'id_inscripcion' => $inscripcion->id,
+                            'id_pago' => $pagos->id,
+                            'estado' => 'Sin pagar',
+                            'forma_pago' => 1,
+                            'codigo_operacion' => '']);
+
+                     }
+
+                    for ($i=1; $i<=8 ; $i++) { 
                          
                          $pagos=Pagos::where('id_mes',$i)->get()->last();
                         $mensualidades=Mensualidades::create([

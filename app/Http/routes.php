@@ -142,10 +142,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
        
 
         Route::resource('/mensualidades','MensualidadesController');
-        Route::get('/mensualidades/{id}/destroy',[
-            'uses' => 'MensualidadesController@destroy',
-            'as' => 'admin.mensualidades.destroy']
-            );
         Route::get('/mensualidades/contabilidad',[
             'uses' => 'MensualidadesController@contabilidad',
             'as' => 'admin.mensualidades.contabilidad'

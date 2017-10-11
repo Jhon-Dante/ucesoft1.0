@@ -36,6 +36,24 @@ class DatosBasicosSeeder extends Seeder
             'id_periodo' => 2,
             'id_seccion' => 2
         ]);
+        for ($i=9; $i <=12 ; $i++) {  
+        DB::table('mensualidades')->insert([ 
+            'id_inscripcion' => 1,
+            'id_pago' => $i,
+            'estado' => 'Sin pagar',
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        }
+         for ($i=1; $i <=8 ; $i++) {  
+        DB::table('mensualidades')->insert([ 
+            'id_inscripcion' => 1,
+            'id_pago' => $i,
+            'estado' => 'Sin pagar',
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        }
 
         DB::table('datos_basicos')->insert([
             'nacionalidad' => 'E',
@@ -112,10 +130,18 @@ class DatosBasicosSeeder extends Seeder
             'id_periodo' => 1,
             'id_seccion' => 14
         ]);
-            
-        for ($i=1; $i <=12 ; $i++) {  
+        for ($i=9; $i <=12 ; $i++) {  
         DB::table('mensualidades')->insert([ 
-            'id_inscripcion' => 1,
+            'id_inscripcion' => 2,
+            'id_pago' => $i,
+            'estado' => 'Sin pagar',
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);    
+        }
+        for ($i=1; $i <=8 ; $i++) {  
+        DB::table('mensualidades')->insert([ 
+            'id_inscripcion' => 2,
             'id_pago' => $i,
             'estado' => 'Sin pagar',
             'forma_pago' => 1,
@@ -151,10 +177,18 @@ class DatosBasicosSeeder extends Seeder
             'id_seccion' => 14
         ]);
         
-        
-        for ($i=1; $i <=12 ; $i++) { 
+        for ($i=9; $i <=12 ; $i++) { 
         DB::table('mensualidades')->insert([ 
-            'id_inscripcion' => 2,
+            'id_inscripcion' => 3,
+            'id_pago' => $i,
+            'estado' => 'Sin pagar',
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        }  
+        for ($i=1; $i <=8 ; $i++) { 
+        DB::table('mensualidades')->insert([ 
+            'id_inscripcion' => 3,
             'id_pago' => $i,
             'estado' => 'Sin pagar',
             'forma_pago' => 1,
@@ -189,10 +223,18 @@ class DatosBasicosSeeder extends Seeder
             'id_periodo' => 2,
             'id_seccion' => 14
         ]);
-
-        for ($i=1; $i <=12 ; $i++) {  
+        for ($i=9; $i <=12 ; $i++) {  
         DB::table('mensualidades')->insert([ 
-            'id_inscripcion' => 3,
+            'id_inscripcion' => 4,
+            'id_pago' => $i,
+            'estado' => 'Sin pagar',
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        }
+        for ($i=1; $i <=8 ; $i++) {  
+        DB::table('mensualidades')->insert([ 
+            'id_inscripcion' => 4,
             'id_pago' => $i,
             'estado' => 'Sin pagar',
             'forma_pago' => 1,
@@ -227,10 +269,18 @@ class DatosBasicosSeeder extends Seeder
             'id_periodo' => 2,
             'id_seccion' => 1
         ]);
-        
-        for ($i=1; $i <=12 ; $i++) {  
+        for ($i=9; $i <=12 ; $i++) {  
         DB::table('mensualidades')->insert([ 
-            'id_inscripcion' => 4,
+            'id_inscripcion' => 5,
+            'id_pago' => $i,
+            'estado' => 'Sin pagar',
+            'forma_pago' => 1,
+            'codigo_operacion' => ''
+        ]);
+        }
+        for ($i=1; $i <=8 ; $i++) {  
+        DB::table('mensualidades')->insert([ 
+            'id_inscripcion' => 5,
             'id_pago' => $i,
             'estado' => 'Sin pagar',
             'forma_pago' => 1,

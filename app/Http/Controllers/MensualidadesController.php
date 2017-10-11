@@ -20,15 +20,24 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
+        $id_mes=date('m');
+        $anio_actual=date('Y');
+        //dd($id_mes);
+        //----
+        $inicio = substr(Session::get('periodoNombre'),0, 4);
+        //dd($inicio); 
+        $fin = substr(Session::get('periodoNombre'), 7);
+        //dd($fin); 
+        //---
         $id_periodo=Session::get('periodo');
         $periodo=Periodos::where('id',$id_periodo)->first();
         $meses=Meses::all();
-        $mensualidades=Mensualidades::where('id_periodo',$periodo->id)->get();
-        $estudiantes=Mensualidades::where('id_periodo',$periodo->id)->groupBy('id_datosBasicos')->get();
+        $mensualidades=Mensualidades::all();
+        $estudiantes=Inscripcion::where('id_periodo',$periodo->id)->get();
         //dd($mensualidades);
         
         $num=0;
-        return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes'));
+        return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual'));
     }
 
     /**
@@ -54,42 +63,29 @@ class MensualidadesController extends Controller
     }
     public function store(Request $request)
     {
-        //dd($request->all());
-        //buscando el ultimo monto registrado para este mes
-        $ultimo_monto_mes=Pagos::where('id_mes',$request->id_mes)->get()->last();
-        //buscando el periodo con el que se inicio sesion
-        $id_periodo=Session::get('periodo');
-        /*$mensualidades=Mensualidades::find(10);
-        foreach ($mensualidades->pagos as $key) {
-            echo $key;
-        }*/
+        //buscando la mensualidad previamente registrada
+        $buscar_mens=Mensualidades::find($request->id);
+        //buscando el ultimo monto registrado para ese mes
+        $pagos=Pagos::where('id_mes',$request->id_mes)->get()->last();
+
+        if ($pagos->id==$buscar_mens->id_pago) {
+            # quiere decir que no se ha modificado el monto de esta mes
+            $buscar_mens->estado="Cancelado";
+            $buscar_mens->save();
+
+        } else {
+            # quiere decir que hay que actualizar el id de pago
+            $buscar_mens->id_pago=$pagos->id;
+            $buscar_mens->estado="Cancelado";
+            $buscar_mens->save();
+
+        }
         
-        $buscar=\DB::select("SELECT mensualidades_pagos.id AS id_mens_pag FROM mensualidades,pagos,mensualidades_pagos,meses WHERE mensualidades.id=mensualidades_pagos.id_mensualidad and meses.id=".$request->id_mes." and mensualidades.id=".$request->id." group by mensualidades_pagos.id ");
-        foreach ($buscar as $key) {
-            $id_mens_pag=$key->id_mens_pag;
-        }
-        $cambiar=\DB::update("UPDATE mensualidades_pagos SET id_pago=".$ultimo_monto_mes->id." WHERE id=".$id_mens_pag."");
+        flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
 
-        dd($buscar);
-        //registrando ultimo pago actualizado del mes con el estudiante
-        //$pagando=\DB::table('mensualidades_pagos')->insert(array('id_mensualidad' => , ););
-        
-        /*$mensualidades=Mensualidades::where('id',$request->id)->where('id_mes',$request->id_mes)->get()->first();
+        return redirect()->route('admin.mensualidades.index');
 
-        if ($mensualidades->estado == 'Sin pagar') {
-            $mensualidades->estado = 'Cancelado';
-            $mensualidades->forma_pago=$request->forma_pago;
-            $mensualidades->codigo_operacion=$request->codigo_operacion;
-            $mensualidades->save();
 
-           flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
-        }
-        else
-        {
-            flash('LA MENSUALIDAD YA ESTÁ PAGADA!','alert');
-        }
-
-        return redirect()->route('admin.mensualidades.index');*/
     }
 
     /**
@@ -129,8 +125,9 @@ class MensualidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $mensualidad=Mensualidades::find($request->id_mensualidad);
-//dd($request->forma_pago);
+        //dd($request->forma_pago);
         $mensualidad->forma_pago=$request->forma_pago;
         $mensualidad->codigo_operacion=$request->codigo_operacion;
 
@@ -147,8 +144,8 @@ class MensualidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        dd($request->all());
     }
 }
