@@ -194,13 +194,14 @@
 
 </div><!-- /.content-wrapper -->
 
-
-
+@endsection
+@section('scripts')
 
 <script type="text/javascript">
   
   function pagar(id,nombre,periodo,mes,id_mes)
   {
+    console.log(nombre);
     var inputElement = document.createElement('input');
     $('#id').val(id);
     $('#nombre').text(nombre);
@@ -232,7 +233,7 @@
   }
 
   function cancelar(id_mensualidad,nombre,mes) {
-    $('#id_mensualidad2')->val(id_mensualidad);
+    $('#id_mensualidad2').val(id_mensualidad);
     $('#mes3').text(mes);
     $('#nombre3').text(nombre);
 
@@ -240,8 +241,6 @@
 </script>
 
 
-@endsection
-@section('scripts')
 <script type="text/javascript">
   $("#forma_pago").on("change", function (event) {
     var id = event.target.value;
