@@ -17,6 +17,6 @@ class Pagos extends Model
 
     public function mensualidades()
     {
-    	return $this->belongsToMany('App\Mensualidades','mensualidades_pagos','id_pago','id_mensualidad');
+    	return $this->hasMany('App\Mensualidades','id_pago','id');
     }
 }

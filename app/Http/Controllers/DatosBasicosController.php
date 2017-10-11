@@ -145,8 +145,8 @@ class DatosBasicosController extends Controller
     public function reinscribir(Request $request)
     {
         
-
-        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get()->last();
+        $id_periodo=Session::get('periodo');
+        $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->last();
         if(count($p)>0)
         {
             
@@ -190,7 +190,7 @@ class DatosBasicosController extends Controller
                                                 'repite' => $repite,
                                                 'pendiente' => $pendiente,
                                                 'id_seccion' => $request->id_seccion,
-                                                'id_periodo' => $request->id_periodo
+                                                'id_periodo' => $id_periodo
                         ]);
                     
                     for($i=0;$i<count($request->repite);$i++){
@@ -207,21 +207,17 @@ class DatosBasicosController extends Controller
                             'pend_rep' => 'pendiente'));
                     }
                                         
-                    $mensualidad=\DB::table('mensualidades')->insert(array(
-                            'estado' => 'Sin pagar',
-                            'id_datosBasicos' => $request->id_datosBasicos,
-                            'id_periodo' => $request->id_periodo,
-                            'forma_pago' => 1,
-                            'codigo_operacion' => ''
-                        ));
-
+                    
+                    $inscripcion=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->first();
                     for ($i=1; $i<=12 ; $i++) { 
                          
                          $pagos=Pagos::where('id_mes',$i)->get()->last();
-
-                         $mens_pago=\DB::table('mensualidades_pagos')->insert(array(
-                            'id_mensualidad' => $mensualidad->id,
-                            'id_pago' => $pagos->id));
+                        $mensualidades=Mensualidades::create([
+                            'id_inscripcion' => $inscripcion->id,
+                            'id_pago' => $pagos->id,
+                            'estado' => 'Sin pagar',
+                            'forma_pago' => 1,
+                            'codigo_operacion' => '']);
 
                      }
 

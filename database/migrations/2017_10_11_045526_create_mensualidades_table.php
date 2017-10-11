@@ -14,16 +14,14 @@ class CreateMensualidadesTable extends Migration
     {
         Schema::create('mensualidades', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_inscripcion')->unsigned();
+            $table->integer('id_pago')->unsigned();
             $table->enum('estado',['Cancelado','Sin pagar']);
-            $table->integer('id_datosBasicos')->unsigned();
-            $table->integer('id_periodo')->unsigned();
             $table->integer('forma_pago');
             $table->string('codigo_operacion')->nullable();
 
-            
-            $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
-            $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
-
+            $table->foreign('id_inscripcion')->references('id')->on('inscripcion')->onDelete('cascade');
+            $table->foreign('id_pago')->references('id')->on('pagos')->onDelete('cascade');
             $table->timestamps();
         });
     }

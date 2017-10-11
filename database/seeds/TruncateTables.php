@@ -34,7 +34,6 @@ class TruncateTables extends Seeder
     	DB::select('TRUNCATE inscripcion');
     	DB::select('TRUNCATE items_evaluacion');
     	DB::select('TRUNCATE mensualidades');
-    	DB::select('TRUNCATE mensualidades_pagos');
     	DB::select('TRUNCATE meses');
     	DB::select('TRUNCATE migrations');
     	DB::select('TRUNCATE momentos');

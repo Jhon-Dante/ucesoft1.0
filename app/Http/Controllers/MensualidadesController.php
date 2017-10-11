@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Mensualidades;
+use App\Inscripcion;
 use App\Meses;
 use App\Pagos;
 use App\Periodos;
@@ -53,14 +54,24 @@ class MensualidadesController extends Controller
     }
     public function store(Request $request)
     {
-
+        //dd($request->all());
         //buscando el ultimo monto registrado para este mes
         $ultimo_monto_mes=Pagos::where('id_mes',$request->id_mes)->get()->last();
         //buscando el periodo con el que se inicio sesion
         $id_periodo=Session::get('periodo');
-        $mensualidades=Mensualidades::where('id',$request->id)->first();
-        dd($mensualidades->pagos);
-        //registrando ulitmo pago actualizado del mes con el estudiante
+        /*$mensualidades=Mensualidades::find(10);
+        foreach ($mensualidades->pagos as $key) {
+            echo $key;
+        }*/
+        
+        $buscar=\DB::select("SELECT mensualidades_pagos.id AS id_mens_pag FROM mensualidades,pagos,mensualidades_pagos,meses WHERE mensualidades.id=mensualidades_pagos.id_mensualidad and meses.id=".$request->id_mes." and mensualidades.id=".$request->id." group by mensualidades_pagos.id ");
+        foreach ($buscar as $key) {
+            $id_mens_pag=$key->id_mens_pag;
+        }
+        $cambiar=\DB::update("UPDATE mensualidades_pagos SET id_pago=".$ultimo_monto_mes->id." WHERE id=".$id_mens_pag."");
+
+        dd($buscar);
+        //registrando ultimo pago actualizado del mes con el estudiante
         //$pagando=\DB::table('mensualidades_pagos')->insert(array('id_mensualidad' => , ););
         
         /*$mensualidades=Mensualidades::where('id',$request->id)->where('id_mes',$request->id_mes)->get()->first();

@@ -31,4 +31,9 @@ class Inscripcion extends Model
    	{
    		return $this->hasMany('App\Asignaturas_inscripcion','id_inscripcion','id');
    	}
+
+    public function mensualidades()
+    {
+        return $this->hasMany('App\Mensualidades','id_inscripcion','id');
+    }
 }

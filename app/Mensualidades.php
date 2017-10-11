@@ -7,24 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Mensualidades extends Model
 {
     protected $table='mensualidades';
-    protected $fillable=['id','estado','id_datosBasicos','id_periodo'];
+    protected $fillable=['id','id_inscripcion','id_pago','estado','forma_pago','codigo_operacion'];
 
    
-    public function datoBasico()
+    public function inscripcion()
     {
-    	return $this->belongsTo('App\DatosBasicos','id_datosBasicos','id');
+    	return $this->belongsTo('App\Inscripcion','id_inscripcion','id');
     }
-    public function periodo()
-    {
-    	return $this->belongsTo('App\Periodos','id_periodo','id');
-    }
-
+    
     public function pagos()
     {
-        return $this->belongsToMany('App\Pagos','mensualidades_pagos','id_mensualidad','id_pago');
+        return $this->belongsTo('App\Pagos','id_pago','id');
     }
-    public function mes()
-    {
-        return $this->belongsTo('App\Meses','id_mes','id');
-    }
+    
 }
