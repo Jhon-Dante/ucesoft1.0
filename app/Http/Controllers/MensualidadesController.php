@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Mensualidades;
 use App\Meses;
+use App\Pagos;
 use App\Periodos;
-
+use Session;
 class MensualidadesController extends Controller
 {
     /**
@@ -18,12 +19,13 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
-
-        $periodo=Periodos::where('status','Activo')->first();
+        $id_periodo=Session::get('periodo');
+        $periodo=Periodos::where('id',$id_periodo)->first();
         $meses=Meses::all();
         $mensualidades=Mensualidades::where('id_periodo',$periodo->id)->get();
         $estudiantes=Mensualidades::where('id_periodo',$periodo->id)->groupBy('id_datosBasicos')->get();
-        //dd($estudiantes);
+        //dd($mensualidades);
+        
         $num=0;
         return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes'));
     }
@@ -52,7 +54,16 @@ class MensualidadesController extends Controller
     public function store(Request $request)
     {
 
-        $mensualidades=Mensualidades::where('id',$request->id)->where('id_mes',$request->id_mes)->get()->first();
+        //buscando el ultimo monto registrado para este mes
+        $ultimo_monto_mes=Pagos::where('id_mes',$request->id_mes)->get()->last();
+        //buscando el periodo con el que se inicio sesion
+        $id_periodo=Session::get('periodo');
+        $mensualidades=Mensualidades::where('id',$request->id)->first();
+        dd($mensualidades->pagos);
+        //registrando ulitmo pago actualizado del mes con el estudiante
+        //$pagando=\DB::table('mensualidades_pagos')->insert(array('id_mensualidad' => , ););
+        
+        /*$mensualidades=Mensualidades::where('id',$request->id)->where('id_mes',$request->id_mes)->get()->first();
 
         if ($mensualidades->estado == 'Sin pagar') {
             $mensualidades->estado = 'Cancelado';
@@ -67,7 +78,7 @@ class MensualidadesController extends Controller
             flash('LA MENSUALIDAD YA ESTÁ PAGADA!','alert');
         }
 
-        return redirect()->route('admin.mensualidades.index');
+        return redirect()->route('admin.mensualidades.index');*/
     }
 
     /**

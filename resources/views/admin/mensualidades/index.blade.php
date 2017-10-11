@@ -62,7 +62,7 @@
                             </td>
 
                             @else
-                          <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datoBasico->nombres}}','{{$key->periodo->periodo}}','{{$key2->mes->mes}}','{{$key2->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
+                          <td align="center"><a href="#" id="Enero" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datoBasico->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos[0]->meses->mes}}','{{$key2->pagos[0]->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a></td>
                           
                             @endif
                           @endif
