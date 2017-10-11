@@ -3,6 +3,11 @@
 	{!! Form::label('plantel','Plantel de procedencia') !!}
 	{!! Form::text('plantel',null,['class' => 'form-control','placeholder' => 'U.E.N "Simón Bolívar"' , 'title' => 'Ingrese los datos del plantel de procedencia', 'id' => 'plantel']) !!}
 </div>
+
+<div class="form-group">
+	{!! Form::label('id_curso','Curso:') !!}
+	{!! Form::select('id_curso',['placeholder' => 'Seleccione el curso'],null,['class' => 'form_control', 'id' => 'id_curso']) !!}
+</div>
 <div class="form-group">
 	{!! Form::label('regular','¿Lleva Materia Pendiente?') !!}
 	{{-- {!! Form::checkbox('pendiente','Si',['id' => 'pendiente','title' => 'Seleccione si el estudiante tiene materia(s) pendiente(s)']) !!} --}}

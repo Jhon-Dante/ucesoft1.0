@@ -41,7 +41,7 @@
 					                {!! Form::hidden('lapso',$lapso)  !!}
 			                		{!! Form::hidden('id_curso',$seccion->id_curso)  !!}
 					            	<div class="box-footer">
-									@if($ins > 0)
+									@if(count($ins) > 0)
 					                	<button type="submit" class="btn btn-primary">Enviar</button>
 									@endif
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/educacion_basica')}}"><i class="fa fa-times"></i> Cancelar</a></div>

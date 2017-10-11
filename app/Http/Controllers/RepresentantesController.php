@@ -85,7 +85,7 @@ class RepresentantesController extends Controller
                 'codigo_emergencia' =>$request->codigo_emergencia,
                 'telf_emergencia'   =>$request->telf_emergencia
             ]);
-
+            
             $repre=\DB::table('users')->insert([
                 'name' => $request->nombres,
                 'email' => $request->email,

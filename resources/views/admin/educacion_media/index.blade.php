@@ -95,7 +95,7 @@
 
                               <a href="{{url('admin/crearlapso_media',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button></a>
 
-                              <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
+                            <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                     <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
                                   </a>
 
@@ -108,7 +108,7 @@
                                 </a>
 
                             @else
-
+                            
                              <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                   <button class="btn btn-success btn-flat"><i class="fa fa-eye"></i></button>
                                 </a>                                                        

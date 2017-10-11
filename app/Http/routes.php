@@ -33,6 +33,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
                 'uses' => 'DatosBasicosController@reinscribir',
                 'as' => 'admin.DatosBasicos.reinscribir'
             ]);
+
+        Route::get('/cursos/{id}/busca',[
+            'uses' => 'DatosBasicosController@buscarcurso',
+            'as' => 'admin.cursos.buscarsecciones'
+        ]);
+
         Route::post('/DatosBasicos/buscarEstudiante',[
                 'uses' => 'DatosBasicosController@buscarEstudiante',
                 'as' => 'admin.DatosBasicos.buscarEstudiante'
@@ -198,6 +204,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/crearlapso_media/{id_inscripcion}/{id_periodo}',[
             'uses' => 'MediaGeneralController@crear',
             'as' => 'admin.crearlapso_media']);
+
         Route::get('/educacion_media/{i}/{id_datosBasicos}/{id_periodo}', ['uses' => 'MediaGeneralController@pdf', 'as' => 'admin.educacion_media.pdf']);
 
 
@@ -218,10 +225,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'BoletinController@boletinBasicaEstudiante',
             'as' => 'admin.boletin.pdf2']);
 
+         Route::get('media/boletin/{id_seccion}/{id_periodo}', [
+            'uses' => 'MediaGeneralController@pdf',
+            'as' => 'admin.media_general.pdf']);
+
+         Route::get('media/boletin2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
+            'uses' => 'MediaGeneralController@boletinMediaEstudiante',
+            'as' => 'admin.media_general.pdf2']);
+
          Route::get('/crearlapso_basica/{id_seccion}/{id_periodo}',[
             'uses' => 'BoletinController@crear',
             'as' => 'admin.crearlapso_basica']);
-        });
+
+});
         
         
 

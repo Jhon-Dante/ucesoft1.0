@@ -269,5 +269,94 @@
 	</script>
 
 
+
+<script type="text/javascript">
+
+
+$("#id_personal").on("change", function (event) {
+    var id = event.target.value;
+
+    $.get("/admin/personales/"+id+"/buscar",function (data) {
+       
+    	
+       $("#id_curso").empty();
+       $("#id_curso").append('<option value="" selected disabled> Seleccione el Curso</option>');
+        var contar=0;
+        if(data.length > 0){
+
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#id_curso").removeAttr('disabled');
+                $("#id_curso").append('<option value="'+ data[i].id + '">' + data[i].curso +'</option>');
+                if(data[i].id==8){
+                	contar++;
+                }
+            }
+            
+            if (contar>0) { 
+            	$("#asignaturas").show(); 
+            }else{
+            	$("#asignaturas").hide();
+            }
+        }else{
+            
+            $("#id_curso").attr('disabled', false);
+
+        }
+    });
+});
+
+$("#id_curso").on("change", function (event) {
+    var id = event.target.value;
+
+    $.get("/admin/cursos/"+id+"/busca",function (data) {
+       
+    	
+       $("#id_seccion").empty();
+       $("#id_seccion").append('<option value="" selected disabled> Seleccione la Sección</option>');
+        
+        if(data.length > 0){
+
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#id_seccion").removeAttr('disabled');
+                $("#id_seccion").append('<option value="'+ data[i].id + '">' + data[i].seccion +'</option>');
+                
+            }
+            
+        }else{
+            
+            $("#id_seccion").attr('disabled', false);
+
+        }
+    });
+
+    $.get("/admin/asignaturas/"+id+"/buscar",function (data) {
+       
+    	
+       $("#id_asignatura").empty();
+      
+        
+        if(data.length > 0){
+
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#id_asignatura").removeAttr('disabled');
+                $("#id_asignatura").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
+                
+            }
+            
+        }else{
+            
+            $("#id_asignatura").attr('disabled', false);
+
+        }
+    });
+});
+</script>
+
+
+
+
   
 @endsection

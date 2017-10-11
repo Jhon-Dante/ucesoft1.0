@@ -1,0 +1,1 @@
+boletinMedia.blade.php

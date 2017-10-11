@@ -59,8 +59,15 @@ class DatosBasicosController extends Controller
         $parentesco=Parentesco::lists('parentesco','id');//para formulario de representante
         $asignaturas=Asignaturas::all();
         $estados=['Amazonas','Anzoátegui','Apure','Aragua','Barinas','Bolívar','Carabobo','Cojedes','Delta Amacuro','Distrito Capital','Falcón','Guárico','Lara','Mérida','Miranda','Monagas','Nueva Esparta','Portuguesa','Sucre','Táchira','Trujillo','Vargas','Yaracuy','Zulia'];
+        $cursos=Cursos::lists('curso','id');
+        $asignaturas2=Asignaturas::lists('asignatura','id');
                 
-        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','parentesco','asignaturas','estados','periodos'));
+        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','parentesco','asignaturas','estados','periodos','cursos','asignaturas'));
+    }
+
+    public function buscarcurso($id)
+    {
+        return $asignaturas3=Asignaturas::where('id_curso',$id)->get();
     }
 
     public function buscarEstudiante(Request $request)

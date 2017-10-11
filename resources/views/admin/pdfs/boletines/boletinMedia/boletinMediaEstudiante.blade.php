@@ -40,7 +40,7 @@
 						<tr>
 							<td>{{$key->datosBasicos->nombres}}</td>
 							<td>{{$key->datosBasicos->apellidos}}</td>
-							<td>{{$key->datosBasicos->cedula}}</td>
+							<td>{{$key->datosBasicos->nacionalidad}}.-{{$key->datosBasicos->cedula}}</td>
 							<td>{{$key->seccion->curso->curso}}</td>
 							<td>{{$key->seccion->seccion}}</td>
 							<td>{{$key->periodo->periodo}}</td>
@@ -49,7 +49,7 @@
 	    		</tbody>
 	    	</table>
 	    	<br><br>	
-	        <table id="example1" class="table table-bordered table-striped">
+	        <table id="example1" class="table table-bordered table-striped" width="100%">
 	            <thead>
 	            	<tr>
 
@@ -82,7 +82,6 @@
 							@endif
 						@endforeach
 					@endforeach
-
 					</tr>
 				</thead>
 	            <tbody>

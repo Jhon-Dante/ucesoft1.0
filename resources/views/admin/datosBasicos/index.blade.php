@@ -178,23 +178,7 @@
         <strong>Dirección: </strong> 
         <p id="direccion"><span></span></p>
         <br>
-        <strong>Nombre del Padre: </strong> 
-        <p id="nombre_p"><span></span></p>
-        <br>
-        <strong>Cédula del Padre: </strong> 
-        <p id="cedula_p"><span></span></p>
-        <br>
-        <strong>¿El padre vive?: </strong> 
-        <p id="vive_p"><span></span></p>
-        <br>
-        <strong>Nombre de la madre: </strong> 
-        <p id="nombre_m"><span></span></p>
-        <br>
-        <strong>Cédula de la madre: </strong> 
-        <p id="cedula_m"><span></span></p>
-        <br>
-        <strong>¿La madre vive?: </strong> 
-        <p id="vive_m"><span></span></p>
+        
         <br>
       </div>
       <div class="modal-footer">
