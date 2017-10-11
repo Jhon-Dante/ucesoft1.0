@@ -146,6 +146,16 @@ class MensualidadesController extends Controller
      */
     public function destroy(Request $request)
     {
-        dd($request->all());
+        $mensualidad=Mensualidades::find($request->id_mensualidad2);
+
+        $mensualidad->estado="Sin Pagar";
+        $mensualidad->forma_pago=1;
+        $mensualidad->codigo_operacion='';
+
+        $mensualidad->save();
+
+        flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!','success');
+
+        return redirect()->route('admin.mensualidades.index');
     }
 }

@@ -177,7 +177,7 @@
                   <h4 class="modal-title">Está seguro que desea Borrar el Pago de Mensualidad del mes: <strong><p id="mes3"><span></span></p></strong></h4>
                 </div>
                 <div class="modal-body">
-                  {!! Form::open(['route' => ['admin.mensualidades.destroy',0133], 'method' => 'put']) !!}
+                  {!! Form::open(['route' => ['admin.mensualidades.destroy',0133], 'method' => 'DELETE']) !!}
                   <h4>Nombre del estudiante: </h4><strong><p id="nombre3"><span></span></p></strong>
                     
                     <input type="hidden" name="id_mensualidad2" id="id_mensualidad2">
