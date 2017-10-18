@@ -24,6 +24,7 @@ use App\Mensualidades;
 use App\AsignaturasPendientes;
 use App\User;
 use App\Pagos;
+use Session;
 
 class DatosBasicosController extends Controller
 {
@@ -72,25 +73,43 @@ class DatosBasicosController extends Controller
 
     public function buscarEstudiante(Request $request)
     {
-            $inscripciones=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
+            $inscripciones=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
             $secciones=Seccion::all();
-            $buscamensu=Mensualidades::where('id_datosbasicos',$request->id_estudiante)->where('estado','Sin pagar')->get();
+            if (count($inscripciones)!=0) {
+                $inscripciones2=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->where('id_periodo',$inscripciones->id_periodo-1)->get()->first();
+            }
+            
+            //dd($inscripciones2);
+            if (count($inscripciones)==0) {
+                $buscamensu=0;
+            } else {
+                //dd($inscripciones2->id);
+               //$buscamensu=Mensualidades::where('id_inscripcion',$inscripciones2->id)->where('estado','Sin pagar')->get();
+                $buscamensu=0;
+            }
+            
+            
             
             $buscaPendiente=0;
-            $buscaRepite=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
+            $buscaRepite=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
             if ($buscaRepite == null) {
                 $buscaRepite == 0;
             }
             
-            $buscaPendiente=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
+            $buscaPendiente=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
             if ($buscaPendiente == null) {
                 $buscaPendiente == 0;
                 
             }
-            $buscaRepite=   Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
-            $buscaPendiente=Inscripcion::where('id_datosbasicos',$request->id_estudiante)->get()->first();
+            $buscaRepite=   Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
+            $buscaPendiente=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
 
-            $encuentra=count($buscamensu);
+            if (count($inscripciones)==0) {
+                $encuentra=0;
+            } else {
+               $encuentra=0;
+            }
+            
             
 
             // $encuentra2=count($buscaRepite);

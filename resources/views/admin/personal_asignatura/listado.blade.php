@@ -114,7 +114,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
-                    {!! Form::open(['route' => ['admin.personal_asignatura.actualizar_asignacion_mg'], 'method' => 'post']) !!}
+                    {!! Form::open(['route' => ['admin.personal_asignatura.actualizar_asignacion_mg'], 'method' => 'DELETE']) !!}
                         <input type="hidden" id="id_personal" name="id_personal">
                         <input type="hidden" id="id_seccion" name="id_seccion">
                         <button type="submit" class="btn btn-primary">Aceptar</button>

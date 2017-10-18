@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista de Mensualidades registrados
+            <div class="panel-heading">Lista de Mensualidades registrados <img src="../img/iconos/cancelar.png" style="border-radius: 50px; width: 26px; height: 26px"> Volver a colocar como Sin Pagar <img src="../img/iconos/editar.png" style="border-radius: 50px; width: 26px; height: 26px">Editar la Forma de Pago <img src="../img/iconos/mal.png" style="border-radius: 50px; width: 26px; height: 26px"> Pagar <img src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 26px; height: 26px"> No se puede Pagar
             </div>
 
             <div class="col-xs-12">

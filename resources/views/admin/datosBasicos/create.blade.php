@@ -198,11 +198,11 @@
 
 			if($(this).is(":checked")) 
 			{
-					$("#id_asignaturarep").removeAttr('disabled');
+					$("#id_asignaturare").removeAttr('disabled');
 				
 			} else {
 
-					$("#id_asignaturarep").prop('disabled', true);
+					$("#id_asignaturare").prop('disabled', true);
 					
 			}
 		});
@@ -312,15 +312,33 @@ $("#id_curso").on("change", function (event) {
     $.get("/admin/cursos/"+id+"/busca",function (data) {
        
     	
-       $("#id_seccion").empty();
-       $("#id_seccion").append('<option value="" selected disabled> Seleccione la Sección</option>');
+       $("#id_asignatura").empty();
+       $("#id_asignatura").append('<option value="" selected disabled> Seleccione la asignatura</option>');
+
+       if(data.length > 0){
+
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#id_asignatura").removeAttr('disabled');
+                $("#id_asignatura").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
+                
+            }
+            
+        }else{
+            
+            $("#id_seccion").attr('disabled', false);
+
+        }
+
+       $("#id_asignaturare").empty();
+       $("#id_asignaturare").append('<option value="" selected disabled> Seleccione la asignatura</option>');
         
         if(data.length > 0){
 
             for (var i = 0; i < data.length ; i++) 
             {  
-                $("#id_seccion").removeAttr('disabled');
-                $("#id_seccion").append('<option value="'+ data[i].id + '">' + data[i].seccion +'</option>');
+                $("#id_asignaturare").removeAttr('disabled');
+                $("#id_asignaturare").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
                 
             }
             

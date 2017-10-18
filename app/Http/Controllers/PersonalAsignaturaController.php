@@ -125,7 +125,7 @@ class PersonalAsignaturaController extends Controller
                         ]);
 
                         flash('ASIGNACIÓN DE SECCIÓN A DOCENTE DE PREESCOLAR SE HA RELIZADO DE FORMA EXITOSA!','success');
-                        return redirect()->route('admin.personal_asignatura.listadopreescolar');
+                        return redirect()->route('admin.personal_asignatura.index');
 
                       }
 
