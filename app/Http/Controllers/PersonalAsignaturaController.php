@@ -100,17 +100,21 @@ class PersonalAsignaturaController extends Controller
 
         $periodo=Periodos::where('status','Activo')->first();
         $personal=Personal::all();
+        $personal2=Personal::find($request->id_personal);
         $id_curso=$request->id_curso;
         switch($id_curso){
                       
                       case 1:
                       $contar=0;
-                      foreach ($personal as $keys) {
-                        foreach ($keys->asignacion_s as $key) {
-                          if($key->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
-                            $contar++;
-                          }
-                        }    
+                      $busca=PersonalPSecciones::all();
+                      foreach ($busca as $keys) {
+                        
+                        
+                           //dd($keys->id_seccion,$request->id_seccion,$keys->id_periodo,$periodo->id);
+                           if($keys->id_seccion==$request->id_seccion and $keys->id_periodo==$periodo->id){
+                             $contar++;
+                           }
+                            
                       }
                       
                       if ($contar>0) {
@@ -135,12 +139,16 @@ class PersonalAsignaturaController extends Controller
                       $contar=0;
                       foreach ($personal as $keys) {
                         foreach ($keys->asignacion_s as $key) {
-                          if($key->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
+                          // dd($key->pivot->id_seccion,$request->id_seccion,$key->pivot->id_periodo,$periodo->id);
+                          if($key->pivot->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
                             $contar++;
+                            
                           }
                         }    
                       }
                       
+                     
+
                       if ($contar>0) {
                         flash('YA LA SECCIÓN SELECCIONADA SE ENCUENTRA ASIGNADA A UN DOCENTE!','error');
                             return redirect()->back();
@@ -176,6 +184,7 @@ class PersonalAsignaturaController extends Controller
                         $contar=0;
                         foreach ($personal as $keys) {
                             foreach ($keys->asignacion_s as $key) {
+
                             for ($i=0; $i <count($request->id_asignatura) ; $i++) { 
                                 
                               if($key->pivot->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id and $key->pivot->id_asignatura==$request->id_asignatura[$i]){
@@ -191,7 +200,7 @@ class PersonalAsignaturaController extends Controller
                         foreach ($personal as $keys) {
                             foreach ($keys->asignacion_s as $key) {
                             
-                              if($key->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
+                              if($key->pivot->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id){
                                 $contar2++;
                               }  
                                 
@@ -455,48 +464,98 @@ class PersonalAsignaturaController extends Controller
      */
     public function destroy(Request $request)
     {
+
+
         $periodo=Periodos::where('status','Activo')->first();
         $personal=Personal::find($request->id_personal);
+        $seccion=Seccion::find($request->id_seccion);
 
           $hallada=0;
-        foreach ($personal->asignacion_s as $key) {
-          if ($key->pivot->id_seccion==$request->id_seccion and $key->pivot->id_asignatura==$request->id_asignatura and $key->pivot->id_periodo==$periodo->id) {
-            $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$periodo->id)->get();
-            foreach ($inscripcion as $key2) {
-              $boletin=Boletin::where('id_asignatura',$request->id_asignatura)->where('id_datosBasicos',$key2->id_datosBasicos)->where('id_periodo',$periodo->id)->get();
-              if (count($boletin)>0) {
-                $hallada++;
+          if($seccion->curso->id <= 7){
+
+            // dd($request->all());
+            foreach ($personal->asignacion_s as $key) {
+              //dd($key->pivot->id_seccion,$request->id_seccion,$key->pivot->id_periodo,$periodo->id);
+              if ($key->pivot->id_seccion==$request->id_seccion and $key->pivot->id_periodo==$periodo->id) {
+                $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$periodo->id)->get();
+
+
+                foreach ($inscripcion as $key2) {
+                  $boletin=Boletin::where('id_datosBasicos',$key2->id_datosBasicos)->where('id_periodo',$periodo->id)->get();
+                  if (count($boletin)>0) {
+                    $hallada++;
+                  }
+                }
               }
             }
-                
-
-          }
-        }
-        
-        
-        if ($hallada>0) {
-          flash('NO ES POSIBLE ELIMINAR LA ASIGNACIÓN DEBIDO A QUE EL DOCENTE YA HA CARGADO CALIFICACIÓN EN DICHA ASIGNATURA !','error');
-            return redirect()->route('admin.personal_asignatura.index');
-        }else{
-          $personal=Personal::find($request->id_personal);
-          $cont=0;
-
-          foreach ($personal->asignacion_a as $key3) {
             
-            if ($key3->pivot->id_seccion==$request->id_seccion and $key3->pivot->id_asignatura==$request->id_asignatura and $key3->pivot->id_periodo==$periodo->id) {
-                $personal->asignacion_a()->detach($request->id_asignatura);
-                $cont++;
-            }
+            
+            if ($hallada>0) {
+              flash('NO ES POSIBLE ELIMINAR LA ASIGNACIÓN DEBIDO A QUE EL DOCENTE YA HA CARGADO CALIFICACIÓN EN DICHA ASIGNATURA !','error');
+                return redirect()->back();
+            }else{
+              $personal=Personal::find($request->id_personal);
+              $cont=0;
+
+              foreach ($personal->asignacion_a as $key3) {
+                // dd($key3->pivot->id_seccion,$request->id_seccion,$key3->pivot->id_asignatura,$request->id_asignatura,$key3->pivot->id_periodo,$periodo->id);
+
+                //verificar la seccion, curso y asignatura
+                if ($key3->pivot->id_seccion==$request->id_seccion and $key3->pivot->id_periodo==$periodo->id) {
+                    $personal->asignacion_a()->detach($request->id_asignatura);
+                    $cont++;
+
+                }
+
+              }
           }
+          }else{
+            //dd('afssdfasf');
+            foreach ($personal->asignacion_s as $key) {
+              //dd($key->pivot->id_seccion,$request->id_seccion,$key->pivot->id_asignatura,$request->id_asignatura,$key->pivot->id_periodo,$periodo->id);
+              if ($key->pivot->id_seccion==$request->id_seccion and $key->pivot->id_asignatura==$request->id_asignatura and $key->pivot->id_periodo==$periodo->id) {
+                $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$periodo->id)->get();
+
+                foreach ($inscripcion as $key2) {
+                  $boletin=Boletin::where('id_asignatura',$request->id_asignatura)->where('id_datosBasicos',$key2->id_datosBasicos)->where('id_periodo',$periodo->id)->get();
+                  if (count($boletin)>0) {
+                    $hallada++;
+                  }
+                }
+              }
+            }
+            
+            
+            if ($hallada>0) {
+              flash('NO ES POSIBLE ELIMINAR LA ASIGNACIÓN DEBIDO A QUE EL DOCENTE YA HA CARGADO CALIFICACIÓN EN DICHA ASIGNATURA !','error');
+                return redirect()->back();
+            }else{
+              $personal=Personal::find($request->id_personal);
+              $cont=0;
+
+              foreach ($personal->asignacion_a as $key3) {
+                // dd($key3->pivot->id_seccion,$request->id_seccion,$key3->pivot->id_asignatura,$request->id_asignatura,$key3->pivot->id_periodo,$periodo->id);
+
+                //verificar la seccion, curso y asignatura
+                if ($key3->pivot->id_seccion==$request->id_seccion and $key3->pivot->id_asignatura==$request->id_asignatura and $key3->pivot->id_periodo==$periodo->id) {
+                    $personal->asignacion_a()->detach($request->id_asignatura);
+                    $cont++;
+
+                }
+
+              }
+          }
+          }
+
           if ($cont>0) {
             flash('ASIGNACIÓN ELIMINADA CON ÉXITO !','success');
-            return redirect()->route('admin.personal_asignatura.index');
+            return redirect()->back();
           } else {
             flash('ASIGNACIÓN NO FUE ELIMINADA CON ÉXITO !','error');
-            return redirect()->route('admin.personal_asignatura.index');
+            return redirect()->back();
           }
           
           
-        }
+        
     }
 }

@@ -16,7 +16,7 @@ class MensualidadesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsex
      */
     public function index()
     {
@@ -34,10 +34,27 @@ class MensualidadesController extends Controller
         $meses=Meses::all();
         $mensualidades=Mensualidades::all();
         $estudiantes=Inscripcion::where('id_periodo',$periodo->id)->get();
-        //dd($mensualidades);
+        $pagos=Pagos::all();
+        $monto=0;
+       
+        
+       foreach ($mensualidades as $key) {
+            foreach ($estudiantes as $key2) {
+                if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
+
+                    $monto+=$key->pagos->monto;
+
+                    
+                }
+
+            }
+           
+       }
+
+
         
         $num=0;
-        return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual'));
+        return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto'));
     }
 
     /**

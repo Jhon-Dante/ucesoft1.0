@@ -59,6 +59,7 @@
                 <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
+                    <li><a href="{{ url('admin/pagos_monto') }}">Crear montos</a></li>
                     
                 </ul>
                 
@@ -90,7 +91,7 @@
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/personal')            }} ">Listado de Personal</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura/create') }} ">Asignar Carga Académica</a></li>
-                    <li><a href=" {{ url('admin/personalasignatura/docente_preescolar') }}">Carga Académica de Preescolar</a></li>
+                    <!-- <li><a href=" {{ url('admin/personalasignatura/docente_preescolar') }}">Carga Académica de Preescolar</a></li> -->
                     <li><a href=" {{ url('admin/personalasignatura/listado')       }}">Carga Académica de Básica</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura')       }}">Carga Académica de Media G.</a></li>
                     <li><a href=" {{ url('admin/tipo_empleado')       }}">Tipos de empleados</a></li>

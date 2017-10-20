@@ -16,8 +16,10 @@ class CreatePagosTable extends Migration
             $table->increments('id');
             $table->integer('id_mes')->unsigned();
             $table->float('monto');
+            $table->integer('id_periodo')->unsigned();
 
             $table->foreign('id_mes')->references('id')->on('meses')->onDelete('cascade');
+            $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
             $table->timestamps();
         });
     }

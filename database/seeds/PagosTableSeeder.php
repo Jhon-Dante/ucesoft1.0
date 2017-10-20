@@ -15,7 +15,8 @@ class PagosTableSeeder extends Seeder
     		
         DB::table('pagos')->insert([
             'id_mes' => $i,
-            'monto' => 22576.00
+            'monto' => 22576.00,
+            'id_periodo' => 2
             ]);
 
     	}

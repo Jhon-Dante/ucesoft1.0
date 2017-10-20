@@ -8,7 +8,7 @@ class Pagos extends Model
 {
     protected $table='pagos';
 
-    protected $fillable=['id_mes','monto'];
+    protected $fillable=['id_mes','monto','id_periodo'];
 
     public function meses()
     {
@@ -18,5 +18,10 @@ class Pagos extends Model
     public function mensualidades()
     {
     	return $this->hasMany('App\Mensualidades','id_pago','id');
+    }
+
+    public function periodo()
+    {
+        return $this->belongsTo('App\Periodos','id_periodo','id');
     }
 }

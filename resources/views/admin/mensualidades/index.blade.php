@@ -21,16 +21,68 @@
     </ol>
 </section>
 <!-- Main content -->
+
+<section class="content">
+    <div class="row">
+          <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3>{{count($mensualidades)}}</h3>
+
+                <p>Mensualidades sin pagar</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-link"></i>
+              </div>
+              <a href=" {{ url('admin/mensualidades')         }} " class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        <!-- ./col -->
+        
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{count($estudiantes)}}</h3>
+
+              <p>Lista de estudiantes inscritos en el período</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{$monto}} Bs.F.</h3>
+
+              <p>Total ganado en Bolívares</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+  <hr><div class="col-xs-12">
+            @include('flash::message')
+            </div>
 <section class="content spark-screen">
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
+            
             <div class="panel-heading">Lista de Mensualidades registrados <img src="../img/iconos/cancelar.png" style="border-radius: 50px; width: 26px; height: 26px"> Volver a colocar como Sin Pagar <img src="../img/iconos/editar.png" style="border-radius: 50px; width: 26px; height: 26px">Editar la Forma de Pago <img src="../img/iconos/mal.png" style="border-radius: 50px; width: 26px; height: 26px"> Pagar <img src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 26px; height: 26px"> No se puede Pagar
             </div>
 
-            <div class="col-xs-12">
-            @include('flash::message')
-            </div>
+            
             <div class="panel-body">
               <div class="box-body">
                 <div style="overflow: scroll;">

@@ -90,4 +90,11 @@ class Periodos extends Model
     {
         return $this->hasMany('App\PersonalPSecciones','id_periodo','id');
     }
+
+    //---pagos
+
+    public function pagos()
+    {
+    	return $this->hasMany('App\Pagos','id_periodo','id');
+    }
 }
