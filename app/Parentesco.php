@@ -19,4 +19,9 @@ class Parentesco extends Model
     {
     	return $this->hasMany('App\Padres','id_parentesco','id');
     }
+
+    public function parentesco()
+    {
+        return $this->hasMany('App\DatosBasicos','id_parentesco','id');
+    }
 }

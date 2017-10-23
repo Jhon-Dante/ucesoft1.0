@@ -38,6 +38,16 @@ class RepresentantesSeeder extends Seeder
         	'telf_emergencia' => '3454321'
 
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Román César',
+            'email' => 'Roman@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Representante'
+        ]);
+
         DB::table('representantes')->insert([
         	'nacionalidad' => 'E',
         	'cedula' => '12343349',
@@ -65,6 +75,16 @@ class RepresentantesSeeder extends Seeder
         	'telf_emergencia' => '3432342'
 
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Enrique María',
+            'email' => 'Enrique@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Representante'
+        ]);
+
         DB::table('representantes')->insert([
         	'nacionalidad' => 'V',
         	'cedula' => '20212314',
@@ -92,6 +112,16 @@ class RepresentantesSeeder extends Seeder
         	'telf_emergencia' => '3454321'
 
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Sofía',
+            'email' => 'Sofia@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Representante'
+        ]);
+
         DB::table('representantes')->insert([
         	'nacionalidad' => 'V',
         	'cedula' => '9876775',
@@ -119,6 +149,17 @@ class RepresentantesSeeder extends Seeder
         	'telf_emergencia' => '3454321'
 
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Carmen',
+            'email' => 'Carmen@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Representante'
+        ]);
+
+
         DB::table('representantes')->insert([
         	'nacionalidad' => 'V',
         	'cedula' => '8789654',
@@ -146,5 +187,15 @@ class RepresentantesSeeder extends Seeder
         	'telf_emergencia' => '3454321'
 
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Shakira',
+            'email' => 'Shakira@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Representante'
+        ]);
+
     }
 }

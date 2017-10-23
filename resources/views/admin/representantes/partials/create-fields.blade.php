@@ -24,11 +24,6 @@
 	{!! Form::label('profesion','Profesión') !!}
 	{!! Form::text('profesion',null, ['class' => 'form-control','placeholder' => 'Administrador', 'title' => 'Ingrese la profesión del representante']) !!}
 </div>
-<div class="form-group{{ $errors->has('id_parentesco') ? ' has-error' : '' }}">
-(<span style="color: red;">*</span>)
-		{!! Form::label('parentesco','Parentesco') !!}
-        {!! Form::select('id_parentesco',$parentesco,null,['class' => 'form-control',  'title' => 'Identifique el parentesco del representante con el estudiante']) !!}
-</div>
 <div class="form-group{{ $errors->has('vive_estu') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('vive_estu','¿Vive con el estudiante?') !!}

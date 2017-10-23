@@ -28,7 +28,10 @@ class CreateDatosBasicosTable extends Migration
             $table->text('salud');
             $table->text('direccion');
             $table->integer('id_representante')->unsigned();
+            $table->integer('id_parentesco')->unsigned();
 
+
+            $table->foreign('id_parentesco')->references('id')->on('parentesco')->onDelete('cascade');
             $table->foreign('id_representante')->references('id')->on('representantes')->onDelete('cascade');
             $table->timestamps();
         });

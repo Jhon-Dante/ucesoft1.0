@@ -10,6 +10,10 @@ use App\Inscripcion;
 use App\Meses;
 use App\Pagos;
 use App\Periodos;
+use App\Personal;
+use App\Representantes;
+use App\DatosBasicos;
+use App\User;
 use Session;
 class MensualidadesController extends Controller
 {
@@ -20,41 +24,102 @@ class MensualidadesController extends Controller
      */
     public function index()
     {
-        $id_mes=date('m');
-        $anio_actual=date('Y');
-        //dd($id_mes);
-        //----
-        $inicio = substr(Session::get('periodoNombre'),0, 4);
-        //dd($inicio); 
-        $fin = substr(Session::get('periodoNombre'), 7);
-        //dd($fin); 
-        //---
-        $id_periodo=Session::get('periodo');
-        $periodo=Periodos::where('id',$id_periodo)->first();
-        $meses=Meses::all();
-        $mensualidades=Mensualidades::all();
-        $estudiantes=Inscripcion::where('id_periodo',$periodo->id)->get();
-        $pagos=Pagos::all();
-        $monto=0;
-       
+        $email=\Auth::user()->email;
+        $personal=Personal::where('correo',$email)->first();
+        $representante=Representantes::where('email',$email)->first();
+        $admin=User::where('email',$email)->first();
         
-       foreach ($mensualidades as $key) {
-            foreach ($estudiantes as $key2) {
-                if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
+        if (count($personal)>0 || count($admin)>0 AND count($representante) == 0) {
 
-                    $monto+=$key->pagos->monto;
 
-                    
-                }
-
-            }
+           $id_mes=date('m');
+            $anio_actual=date('Y');
+            //dd($id_mes);
+            //----
+            $inicio = substr(Session::get('periodoNombre'),0, 4);
+            //dd($inicio); 
+            $fin = substr(Session::get('periodoNombre'), 7);
+            //dd($fin); 
+            //---
+            $id_periodo=Session::get('periodo');
+            $periodo=Periodos::where('id',$id_periodo)->first();
+            $meses=Meses::all();
+            $mensualidades=Mensualidades::all();
+            $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+            $pagos=Pagos::all();
+            $monto=0;
            
-       }
+            
+           foreach ($mensualidades as $key) {
+                foreach ($inscripcion as $key2) {
+                    if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
+
+                        $monto+=$key->pagos->monto;
+
+                        
+                    }
+
+                }
+               
+           }
 
 
-        
-        $num=0;
-        return View('admin.mensualidades.index',compact('num','mensualidades','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto'));
+            
+        }elseif(count($representante)>0 AND count($personal) == 0){
+
+            $representante=Representantes::where('email',$email)->first();
+            $datosBasicos=DatosBasicos::where('id_representante',$representante->id)->get();
+            $id_mes=date('m');
+            $anio_actual=date('Y');
+            //dd($id_mes);
+            //----
+            $inicio = substr(Session::get('periodoNombre'),0, 4);
+            //dd($inicio); 
+            $fin = substr(Session::get('periodoNombre'), 7);
+            //dd($fin); 
+            //---
+            $id_periodo=Session::get('periodo');
+            $periodo=Periodos::where('id',$id_periodo)->first();
+            $meses=Meses::all();
+            $mensualidades=Mensualidades::all();
+            $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+            $pagos=Pagos::all();
+            $monto=0;
+           
+           foreach ($representante->datos_basicos as $key) {
+                foreach ($inscripcion as $key2 ) {
+                    foreach ($mensualidades as $key3) {
+                        if ($key2->id_datosBasicos == $key->id) {
+                            if ($key3->id_inscripcion == $key2->id) {
+                                $mensualidades=Mensualidades::where('id_inscripcion',$key2->id)->get();
+                                //dd(count($key3));
+                                $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->where('id',$key2->id)->get();
+                                $mensualidades2=Mensualidades::where('id_inscripcion',$key2->id)->where('estado','Sin Pagar')->get();
+                            }
+                        }
+                    }
+                }    
+            }
+            
+                   // foreach ($mensualidades as $key) {
+                   //      foreach ($inscripcion as $key2) {
+                   //          if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
+
+                   //              $monto+=$key->pagos->monto;
+
+                                
+                   //          }
+
+                   //      }
+                       
+                   // }
+
+        }
+
+
+            //dd(count($mensualidades2));
+            $num=0;
+            return View('admin.mensualidades.index',compact('num','mensualidades','mensualidades2','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto','inscripcion'));
     }
 
     /**

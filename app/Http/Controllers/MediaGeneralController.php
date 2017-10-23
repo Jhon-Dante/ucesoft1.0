@@ -16,6 +16,7 @@ use App\Boletin;
 use App\asignaturas;
 use App\Seccion;
 use App\Personal;
+use App\Representantes;
 class MediaGeneralController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class MediaGeneralController extends Controller
     public function index()
     {
 
-         $periodo=Periodos::where('status','Activo')->first();
+        $periodo=Periodos::where('status','Activo')->first();
         $secciones=Seccion::all();
         $inscripcion=Inscripcion::all();
        
@@ -269,13 +270,19 @@ class MediaGeneralController extends Controller
     public function boletinMediaEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
     {
 
+
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
-        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->get();
-        $seccion=Seccion::find($id_seccion);
-        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
-        $periodo=Periodos::find($id_periodo);
+        $representante=Representantes::where('email',$email)->first();
 
+        if(count($representante)=0 AND count($personal) > 0) {
+            $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->get();
+            $seccion=Seccion::find($id_seccion);
+            $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+            $periodo=Periodos::find($id_periodo);
+        }elseif (count($representante)>0 AND count($personal) == 0) {
+            # code...
+        }
 
         $boletin=Boletin::where('id_periodo',$id_periodo)->get();
         
@@ -356,6 +363,27 @@ class MediaGeneralController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function notas()
+    {
+        $email=\Auth::user()->email;
+        $representante=Representantes::where('email',$email)->first();
+        $datosBasicos=DatosBasicos::where('id_representante',$representante->id)->get();
+        $inscripcion=Inscripcion::all();
+        $boletin=Boletin::all();
+
+        foreach ($representante->datos_basicos as $key) {
+            foreach ($inscripcion as $key2) {
+                if ($key2->id_datosBasicos == $key->id) {
+                    $inscripcion=Inscripcion::where('id_datosBasicos',$key->id)->get();
+                }
+            }
+        }
+
+        $num=0;
+        return View('admin.calificaciones.notas.index', compact('num','boletin','inscripcion','datosBasicos'));
+
     }
 
     /**

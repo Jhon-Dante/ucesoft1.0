@@ -108,30 +108,31 @@
 </section>
 
 </div><!-- /.content-wrapper -->
+
 <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+  <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar Estudiante</h4>
-                </div>
-                <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este estudiante en especifico?...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Eliminar Estudiante</h4>
+          </div>
+          <div class="modal-body">
+              ¿Esta seguro que desea eliminar este estudiante en especifico?...
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
-                    {!! Form::open(['route' => ['admin.DatosBasicos.destroy',0133], 'method' => 'DELETE']) !!}
-                        <input type="text" id="id_datoBasico" name="datoBasico">
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                    {!! Form::close() !!}
+              {!! Form::open(['route' => ['admin.DatosBasicos.destroy',0133], 'method' => 'DELETE']) !!}
+                  <input type="text" id="id_datoBasico" name="datoBasico">
+                  <button type="submit" class="btn btn-primary">Aceptar</button>
+              {!! Form::close() !!}
 
-                </div>
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
+</div>
 
 <div id="myModal2"  class="modal fade" role="dialog">
   <div class="modal-dialog">

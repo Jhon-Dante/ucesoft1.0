@@ -240,6 +240,7 @@ class BoletinController extends Controller
     }
     public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
     {
+
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
         $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();

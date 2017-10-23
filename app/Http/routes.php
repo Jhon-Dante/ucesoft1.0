@@ -233,11 +233,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'BoletinController@crear',
             'as' => 'admin.crearlapso_basica']);
 
-
           //pagos
 
          Route::resource('/pagos_monto','PagosController');
 
+
+         Route::get('/notas',[
+            'uses' => 'MediaGeneralController@notas',
+            'as' => 'admin.notas']);
 });
         
         

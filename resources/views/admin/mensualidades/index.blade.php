@@ -28,7 +28,7 @@
             <!-- small box -->
             <div class="small-box bg-red">
               <div class="inner">
-                <h3>{{count($mensualidades)}}</h3>
+                <h3>{{count($mensualidades2)}}</h3>
 
                 <p>Mensualidades sin pagar</p>
               </div>
@@ -45,9 +45,9 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>{{count($estudiantes)}}</h3>
+              <h3>{{count($inscripcion)}}</h3>
 
-              <p>Lista de estudiantes inscritos en el período</p>
+              <p>Lista de inscripcion inscritos en el período</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -108,7 +108,7 @@
                   </thead>
                   <tbody>
                     
-                    @foreach($estudiantes as $key)
+                    @foreach($inscripcion as $key)
                       <tr>
 
                         <td>{{ $num=$num+1 }}</td>
@@ -117,24 +117,28 @@
                         @foreach($mensualidades as $key2)
                           @if($key2->id_inscripcion==$key->id and $key->id_periodo==$id_periodo)
                             @if($key2->estado=="Cancelado")
-                            <td align="center">
-                            <a href="#" id="cancelar" data-toggle="modal" onclick="cancelar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key2->pagos->meses->mes}}')" data-target="#myModal3"><img src="../img/iconos/cancelar.png" style="border-radius: 50px; width: 26px; height: 26px"></a>
-                              <a href="#" id="editar" data-toggle="modal" onclick="editar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}','{{$key2->forma_pago}}')" data-target="#myModal"><img src="../img/iconos/editar.png" style="border-radius: 50px; width: 26px; height: 26px"></a>
-                            </td>
+                              <td align="center">
+                                
+                              <a href="#" id="cancelar" data-toggle="modal" onclick="cancelar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key2->pagos->meses->mes}}')" data-target="#myModal3"><img src="../img/iconos/cancelar.png" style="border-radius: 50px; width: 26px; height: 26px"></a>
+                                <a href="#" id="editar" data-toggle="modal" onclick="editar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}','{{$key2->forma_pago}}')" data-target="#myModal"><img src="../img/iconos/editar.png" style="border-radius: 50px; width: 26px; height: 26px"></a>
+                              </td>
 
                             @else
                             <td align="center">
-                            @if($id_mes>=1 and $id_mes<9 and $key2->pagos->id_mes>=1 and $key2->pagos->id_mes<9 and $fin==$anio_actual  and $key2->pagos->id_mes<=$id_mes)
-                          <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
-                            @elseif($id_mes>8 and $id_mes<13 and $key2->pagos->id_mes>8 and $key2->pagos->id_mes<13 and $inicio==$anio_actual and $key2->pagos->id_mes<=$id_mes)
-                          <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
-                                 
+                              @if($id_mes>=1 and $id_mes<9 and $key2->pagos->id_mes>=1 and $key2->pagos->id_mes<9 and $fin==$anio_actual  and $key2->pagos->id_mes<=$id_mes)
 
-                            @else
+                                <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
 
-                              <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px"> 
+                              @elseif($id_mes>8 and $id_mes<13 and $key2->pagos->id_mes>8 and $key2->pagos->id_mes<13 and $inicio==$anio_actual and $key2->pagos->id_mes<=$id_mes)
 
-                            @endif
+                            <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
+                                   
+
+                              @else
+
+                                <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px"> 
+
+                              @endif
                             <!-- evaluando los meses del año anterior -->
                             </td>
                             @endif

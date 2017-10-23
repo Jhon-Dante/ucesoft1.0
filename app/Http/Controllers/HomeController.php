@@ -13,6 +13,8 @@ use App\Mensualidades;
 use App\DatosBasicos;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Session;
+use App\Representantes;
 
 /**
  * Class HomeController
@@ -39,11 +41,45 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $usuario=\Auth::user()->tipo_user;
         $num=0;
-        $preinscripcion=Preinscripcion::all();
-        $inscripcion=Inscripcion::all();
-        $mensualidades=Mensualidades::where('estado','Sin Pagar')->get();
-        $datosBasicos=DatosBasicos::all();
+        
+
+        if ($usuario == 'Administrador(a)') {
+            $preinscripcion=Preinscripcion::all();
+            $inscripcion=Inscripcion::all();
+            $datosBasicos=DatosBasicos::all();
+            $mensualidades=Mensualidades::where('estado','Sin Pagar')->get();
+
+        }
+        elseif ($usuario == 'Representante') 
+        {
+            $mensualidades=Mensualidades::where('estado','Sin Pagar')->get();
+            $email=\Auth::user()->email;
+            $representante=Representantes::where('email',$email)->first();
+            $datosBasicos=DatosBasicos::where('id_representante',$representante->id)->get();
+            $inscripcion=Inscripcion::all();
+            
+            $cont=0;
+            foreach ($representante->datos_basicos as $key) {
+                foreach ($inscripcion as $key2 ) {
+                    foreach ($mensualidades as $key3) {
+                        if ($key2->id_datosBasicos == $key->id) {
+                            if ($key3->id_inscripcion == $key2->id_datosBasicos) {
+                                $mensualidades=Mensualidades::where('estado','Sin Pagar')->where('id_inscripcion',$key2->id)->get();
+                            }
+                        
+                        }
+                    }
+                }    
+            }
+        }
+
+        
+
+        
+        
+        
         return view('home', compact('mensualidades','datosBasicos','inscripcion','preinscripcion','num'));
     }
 }

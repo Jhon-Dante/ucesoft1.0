@@ -87,7 +87,7 @@
                             <td>
                               @if($lapso1==0)
 
-                                 <a href="{{url('admin/crearlapso_basica',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button></a>
+                                 <a href="{{url('admin/crearlapso_basica',['id_seccion' => $key->pivot->id_seccion,  'id_periodo' => $periodo->id ])}}"> <button class="btn btn-warning btn-flat" onclick="Contraseña()" data-toggle="modal" data-target=""><i class="fa fa-pencil"></i></button></a>
 
                               @endif
                               @if($lapso1==1 and $lapso2==0)
@@ -133,4 +133,8 @@
 </section>
 
 </div><!-- /.content-wrapper -->
+
+
+
+
 @endsection

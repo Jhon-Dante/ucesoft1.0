@@ -51,6 +51,7 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
+        
         $representantes=Representantes::all();
         $padres=Padres::all();
         $datosBasicos=DatosBasicos::all();
@@ -288,6 +289,7 @@ class DatosBasicosController extends Controller
      */
     public function store(DatosBasicosRequest $request)
     {
+        dd($request->all());
         //primero verificar los checkbox de Academicos
         if ($request->pendiente=="Si" and count($request->id_asignatura)==0) {
             flash('HA SELECCIONADO QUE EL ESTUDIANTE TIENE ASIGNATURA(S) PENDIENTE(S) Y NO A SELECCIONADO LA(S) ASIGNATURA(S) QUE TIENE PENDIENTE!','warning');
@@ -366,7 +368,8 @@ class DatosBasicosController extends Controller
                                             'talla' => $request->talla,
                                             'salud' => $request->salud,
                                             'direccion' => $request->direccion,
-                                            'id_representante' => $request->id_representante
+                                            'id_representante' => $request->id_representante,
+                                            'id_parentesco' => $request->id_parentesco
                                             ]);
 
 
@@ -394,7 +397,8 @@ class DatosBasicosController extends Controller
                                             'talla' => $request->talla,
                                             'salud' => $request->salud,
                                             'direccion' => $request->direccion,
-                                            'id_representante' => $request->id_representante
+                                            'id_representante' => $request->id_representante,
+                                            'id_parentesco' => $request->id_parentesco
                                             ]);
                                     }
 
