@@ -62,7 +62,7 @@ class MensualidadesController extends Controller
                 }
                
            }
-
+           $mensualidades2=0;
 
             
         }elseif(count($representante)>0 AND count($personal) == 0){

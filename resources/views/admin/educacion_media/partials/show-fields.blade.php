@@ -55,7 +55,7 @@
 					@foreach($asignaturas as $key3)
 						
 						@foreach($key3->boletin as $key2)
-							@if($periodo->id==$key2->id_periodo and $key2->id_datosBasicos==$key->id_datosBasicos)	
+							@if($key2->id_periodo==$periodo->id and $key2->id_datosBasicos==$key->id_datosBasicos)	
 								<th  style="font-size: 10px;">{{$key2->calificacion}}</th>
 								<th  style="font-size: 12px;">{{$key2->inasistencias}}</th>
 							

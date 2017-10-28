@@ -17,6 +17,8 @@ use App\Asignaturas;
 use App\Seccion;
 use App\Personal;
 use App\User;
+use App\Mensualidades;
+use App\Representantes;
 
 class BoletinController extends Controller
 {
@@ -243,14 +245,23 @@ class BoletinController extends Controller
 
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
-        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $representante=Representantes::where('email',$correo)->first();
+        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->get();
+        $inscripcion2=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
         $seccion=Seccion::find($id_seccion);
         $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
         $periodo=Periodos::find($id_periodo);
-
+        $mensualidades=Mensualidades::where('id_inscripcion',$inscripcion2->id)->where('estado','Cancelado')->get();
 
         $boletin=Boletin::where('id_periodo',$id_periodo)->get();
-        
+        $boletin2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
+
+        if (count($boletin2) == 0) {
+            flash('EL ESTUDIANTE TODAVÍA NO TIENE NOTAS CARGADAS','warning');
+                return redirect()->back();
+        }
+
+
         $k=0;
         $i=0; 
         $m=0;
@@ -261,59 +272,62 @@ class BoletinController extends Controller
         $p=0;
         $i=$k;
         
-          foreach ($key->boletin->groupBy('lapso') as $key2) {
-              
-              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
-         
-              $lap[$i]=$key2[0]->lapso;
-                if($key2[0]->lapso==1){
-                  $cont_lap1++;
+            if(count($mensualidades)<3){
+                flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                return redirect()->back();
+            }else{
+              foreach ($key->boletin->groupBy('lapso') as $key2) {
+                  
+                  if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+                    
+                  $lap[$i]=$key2[0]->lapso;
+                    if($key2[0]->lapso==1){
+                      $cont_lap1++;
+                    }
+                    if($key2[0]->lapso==2){
+                      $cont_lap2++;
+                    }
+                    if($key2[0]->lapso==3){
+                      $cont_lap3++;
+                    }
+                  $i++; 
+                  $p++;   
+                  }
+                  
                 }
-                if($key2[0]->lapso==2){
-                  $cont_lap2++;
-                }
-                if($key2[0]->lapso==3){
-                  $cont_lap3++;
-                }
-              $i++; 
-              $p++;   
-              }
-              
-            }
 
-            $k=$i;
-            
-            if($i>0 and $p>0){
-              $j=$i-1;
-              $lapsos[$m]=$lap[$j]; 
-              $m++;             
+                $k=$i;
+                
+                if($i>0 and $p>0){
+                  $j=$i-1;
+                  $lapsos[$m]=$lap[$j]; 
+                  $m++;             
+                }
+       
             }
-   
+            //verificando si esta listo el lapso 1 para imprimir boletin
+           if ($cont_lap1==count($asignaturas)) {
+             $lapso1=1;
+           }else{
+             $lapso1=0;
+           }
+           //verificando si esta listo el lapso 2 para imprimir boletin
+           if ($cont_lap2==count($asignaturas)) {
+             $lapso2=1;
+           }else{
+             $lapso2=0;
+           }
+           //verificando si esta listo el lapso 3 para imprimir boletin
+           if ($cont_lap3==count($asignaturas)) {
+             $lapso3=1;
+           }else{
+             $lapso3=0;
+           }
         }
-        //verificando si esta listo el lapso 1 para imprimir boletin
-       if ($cont_lap1==count($asignaturas)) {
-         $lapso1=1;
-       }else{
-         $lapso1=0;
-       }
-       //verificando si esta listo el lapso 2 para imprimir boletin
-       if ($cont_lap2==count($asignaturas)) {
-         $lapso2=1;
-       }else{
-         $lapso2=0;
-       }
-       //verificando si esta listo el lapso 3 para imprimir boletin
-       if ($cont_lap3==count($asignaturas)) {
-         $lapso3=1;
-       }else{
-         $lapso3=0;
-       }
-
        $num=0;
         $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
         return $dompdf->stream();
-        
     }
     public function mostrar($id_seccion, $id_periodo)
     {
@@ -341,7 +355,7 @@ class BoletinController extends Controller
           foreach ($key->boletin->groupBy('lapso') as $key2) {
               
               if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
-         
+                //dd(count($key2));
               $lap[$i]=$key2[0]->lapso;
                 if($key2[0]->lapso==1){
                   $cont_lap1++;

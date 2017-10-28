@@ -15,6 +15,7 @@ use App\Periodos;
 use App\Personal;
 use App\PersonalPSecciones;
 use App\Seccion;
+use App\Mensualidades;
 
 class PreescolarController extends Controller
 {
@@ -342,12 +343,22 @@ class PreescolarController extends Controller
     {
         $num=0;
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $inscripcion2=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
         $seccion=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);
         $cali=Calificaciones::where('id_periodo',$id_periodo)->get();
         $reportes=Calificaciones::where('id_periodo',$id_periodo)->get();
         $reportes2=Calificaciones::where('id_periodo',$id_periodo)->groupBy('nro_reportes')->get();
         // dd(count($reportes2));
+
+        $mensualidades=Mensualidades::where('id_inscripcion',$inscripcion2->id)->where('estado','Cancelado')->get();
+
+        $boletin2=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
+
+        if (count($boletin2) == 0) {
+            flash('EL ESTUDIANTE TODAVÍA NO TIENE NOTAS CARGADAS','warning');
+                return redirect()->back();
+        }
 
         $k=0;
         $i=0;
@@ -357,34 +368,38 @@ class PreescolarController extends Controller
             $i=$k;
             
 
+            if(count($mensualidades)<3){
+                flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                return redirect()->back();
+            }else{
+                foreach ($reportes2->groupBy('nro_reportes') as $key2) {
 
-            foreach ($reportes2->groupBy('nro_reportes') as $key2) {
+                    if ($key2[0]->id_periodo==$periodos->id) {
+                        
+                        $repor[$i]=$key2[0]->nro_reportes;
 
-                if ($key2[0]->id_periodo==$periodos->id) {
-                    
-                    $repor[$i]=$key2[0]->nro_reportes;
-
-                    $i++;
-                    $p++;
+                        $i++;
+                        $p++;
 
 
+                        }
                     }
+
                 }
+                $k=$i;
 
+                if ($i>0 and $p>0) {
+                    $j=$i-1;
+                    $lapsos[$m]=$repor[$j];
+                    $m++;
             }
-            $k=$i;
+            $n=0;
 
-            if ($i>0 and $p>0) {
-                $j=$i-1;
-                $lapsos[$m]=$repor[$j];
-                $m++;
+
+            $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscritos' => $inscritos, 'periodos' => $periodos, 'cali' => $cali, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'reportes' => $reportes, 'reportes2' => $reportes2, 'n' => $n, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+
+            return $dompdf->stream();
         }
-        $n=0;
-
-
-        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscritos' => $inscritos, 'periodos' => $periodos, 'cali' => $cali, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'reportes' => $reportes, 'reportes2' => $reportes2, 'n' => $n, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
-
-        return $dompdf->stream();
     }
 
     /**

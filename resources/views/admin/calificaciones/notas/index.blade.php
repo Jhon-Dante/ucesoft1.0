@@ -65,21 +65,33 @@
                 </tr>
               </thead>
               <tbody>
-                
-				@foreach($inscripcion as $inscri)
-					<td>{{$num=$num+1}}</td>
-					<td>{{$inscri->datosBasicos->nombres}}</td>
-					<td>{{$inscri->datosBasicos->apellidos}}</td>
-					<td>{{$inscri->datosBasicos->nacionalidad}} - {{$inscri->datosBasicos->cedula}}</td>
-					<td>{{$inscri->seccion->curso->curso}}</td>
-					<td>{{$inscri->seccion->seccion}}</td>
-					<td>{{$inscri->periodo->periodo}}</td>
-					<td>
-						<a href="{{ route('admin.boletin.pdf2', ['id_datosBasicos' => $inscri->datosBasicos->id, 'id_seccion' => $inscri->seccion->id, 'id_periodo' => $inscri->id_periodo]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
-                    </td>
-                 
-                
+				
+				@foreach($datosBasicos as $key)
+					@foreach($key->inscripcion as $key2)
+					<tr>
+						@if($key2->id_periodo == Session::get('periodo'))
+							<td>{{$num=$num+1}}</td>
+							<td>{{$key2->datosBasicos->nombres}}</td>
+							<td>{{$key2->datosBasicos->apellidos}}</td>
+							<td>{{$key2->datosBasicos->nacionalidad}} - {{$key2->datosBasicos->cedula}}</td>
+							<td>{{$key2->seccion->curso->curso}}</td>
+							<td>{{$key2->seccion->seccion}}</td>
+							<td>{{$key2->periodo->periodo}}</td>
+							<td>
+								@if($key2->seccion->curso->id == 1)
+									<a href="{{route ('admin.calificaciones.pdf2',['id_datosBasicos' => $key2->datosBasicos->id,'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo])}}">
+				                <button class="btn btn-danger btn-flat"><i class="fa fa-file-pdf-o"></i></button>
+								@elseif($key2->seccion->curso->id <= 7)
+									<a href="{{ route('admin.boletin.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo]) }}"><button class="btn btn-success btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+								@else
+									<a href="{{ route('admin.media_general.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->periodo->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+								@endif
+		                    </td>
+                 		@endif
+                 	</tr>
+                	@endforeach
             	@endforeach
+            	
               </tbody>
             </table>
           </div>

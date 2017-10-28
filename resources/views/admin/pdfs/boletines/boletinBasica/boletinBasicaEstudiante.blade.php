@@ -67,9 +67,8 @@
 
 					</tr>
 					<tr >
-
-						<?php $t=0; ?>
-						@foreach($asignaturas as $key)
+					<?php $t=0; ?>
+					@foreach($asignaturas as $key)
 						<?php $k=0; ?>
 						@foreach($key->boletin->groupBy($key->id) as $key2)
 							@if($periodo->id==$key2[$k]->id_periodo and $key->id==$key2[$k]->id_asignatura)	
@@ -82,7 +81,6 @@
 							@endif
 						@endforeach
 					@endforeach
-
 					</tr>
 				</thead>
 	            <tbody>

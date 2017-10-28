@@ -17,6 +17,8 @@ use App\asignaturas;
 use App\Seccion;
 use App\Personal;
 use App\Representantes;
+use App\Mensualidades;
+
 class MediaGeneralController extends Controller
 {
     /**
@@ -140,48 +142,103 @@ class MediaGeneralController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $periodo=Periodos::where('status','Activo')->get()->first();
-        $contar=0;
-        $correo=\Auth::user()->email;
-        $personal=Personal::where('correo',$correo)->first();
+   {
+
         
-        $cantidad=0;
-        //buscando lapso a registrar
-        foreach ($personal->asignacion_a as $key) {
-            
-            if($key->pivot->id_periodo==$periodo->id){
-                $cantidad++;
-            }
-        }
-        $tot=$cantidad;
+        $periodo=Periodos::where('status','Activo')->get()->first();
+        $inscri=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos[0])->get()->first();
+        $correo=\Auth::User()->email;
+        $personal=Personal::where('correo',$correo)->get()->first();       
+
+        $datobasico=DatosBasicos::find($request->id_datosBasicos);
+        
+
+
+
+        $lapso=Boletin::where('id_periodo',$periodo->id)->where('id_datosBasicos',$inscri->id)->get();
+      
+        $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
+
+        $tot=count($asig);
         $cant=count($request->id_asignatura);
         $k=0;
         
-        for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+
+        for ($i=0; $i < count($request->id_datosBasicos) ; $i++) { 
+            $calif=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',1)->first();
+            $calif2=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',2)->first();
+            $calif3=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',3)->first();
+        }
+
+        if (count($calif)==0) 
+        {
+            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+            {
+                for ($j=$k; $j < count($request->id_asignatura) ; $j++)
+                {
+                    $crear=Boletin::create([
+                        
+                        'id_asignatura' => $request->id_asignatura[$j],
+                        'lapso' => 1,
+                        'inasistencias' => $request->inasistencia[$j],
+                        'calificacion' => $request->calificacion[$j],
+                        'id_datosBasicos' => $request->id_datosBasicos[$i],                            
+                        'id_periodo' => $periodo->id
+                    ]);
+                }
+            }
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
+            return redirect()->route('admin.educacion_media.index');
+                    
+         }
+
+         elseif (count($calif) == 1 and count($calif2)==0 )
+         {
+                for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
+                {
+                    for ($j=$k; $j < count($request->id_asignatura) ; $j++)
+                    {
+                        dd(count($request->id_asignatura));
+                        $crear=Boletin::create([
+                            'id_asignatura' => $request->id_asignatura[$j],
+                            'lapso' => 2,
+                            'inasistencias' => $request->inasistencia[$j],
+                            'calificacion' => $request->calificacion[$j],
+                            'id_datosBasicos' => $request->id_datosBasicos[$i],                            
+                            'id_periodo' => $periodo->id
+                        ]);
+                    }
+
+                }
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
+            return redirect()->route('admin.educacion_media.index');
+
+        }
+        elseif (count($calif2)==1 and count($calif3)==0) 
+        {
+            
+            for ($i=0; $i < count($request->id_datosBasicos) ; $i++) 
             { 
 
                     for ($j=$k; $j < $tot ; $j++)
                     {
+
                         $crear=Boletin::create([
-                            'id_asignatura' => $request->id_asignatura[$j],
-                            'lapso' => $request->lapso,
-                            'inasistencias' => $request->inasistencia[$j],
-                            'calificacion' => $request->calificacion[$j],
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
-                            'id_periodo' => $periodo->id
+                            'lapso' => 3,
+                            
+                            'id_periodo' => $periodo->id,
+                            'id_asignatura' => $request->id_asignatura[$j],
+                            'inasistencias' => $request->inasistencia[$j],
+                            'calificacion' => $request->calificacion[$j] 
                         ]);
                     }
-                
-                    $k=$j;
-                    $tot+=$tot;
-
                
             }
-            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO '.$request->lapso,'success');
+            flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
             return redirect()->route('admin.educacion_media.index');
     }
-
+}
     public function mostrar($id_seccion, $id_periodo)
     {
         $correo=\Auth::user()->email;
@@ -273,19 +330,23 @@ class MediaGeneralController extends Controller
 
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
-        $representante=Representantes::where('email',$email)->first();
-
-        if(count($representante)=0 AND count($personal) > 0) {
-            $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->get();
-            $seccion=Seccion::find($id_seccion);
-            $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
-            $periodo=Periodos::find($id_periodo);
-        }elseif (count($representante)>0 AND count($personal) == 0) {
-            # code...
-        }
+        $representante=Representantes::where('email',$correo)->first();
+        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->get();
+        $inscripcion2=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
+        $seccion=Seccion::find($id_seccion);
+        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+        $periodo=Periodos::find($id_periodo);
+        $mensualidades=Mensualidades::where('id_inscripcion',$inscripcion2->id)->where('estado','Cancelado')->get();
 
         $boletin=Boletin::where('id_periodo',$id_periodo)->get();
-        
+        $boletin2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
+
+        if (count($boletin2) == 0) {
+            flash('EL ESTUDIANTE TODAVÍA NO TIENE NOTAS CARGADAS','warning');
+                return redirect()->back();
+        }
+
+
         $k=0;
         $i=0; 
         $m=0;
@@ -296,54 +357,58 @@ class MediaGeneralController extends Controller
         $p=0;
         $i=$k;
         
-          foreach ($key->boletin->groupBy('lapso') as $key2) {
-              
-              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
-         
-              $lap[$i]=$key2[0]->lapso;
-                if($key2[0]->lapso==1){
-                  $cont_lap1++;
+            if(count($mensualidades)<3){
+                flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                return redirect()->back();
+            }else{
+              foreach ($key->boletin->groupBy('lapso') as $key2) {
+                  
+                  if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+                    
+                  $lap[$i]=$key2[0]->lapso;
+                    if($key2[0]->lapso==1){
+                      $cont_lap1++;
+                    }
+                    if($key2[0]->lapso==2){
+                      $cont_lap2++;
+                    }
+                    if($key2[0]->lapso==3){
+                      $cont_lap3++;
+                    }
+                  $i++; 
+                  $p++;   
+                  }
+                  
                 }
-                if($key2[0]->lapso==2){
-                  $cont_lap2++;
-                }
-                if($key2[0]->lapso==3){
-                  $cont_lap3++;
-                }
-              $i++; 
-              $p++;   
-              }
-              
-            }
 
-            $k=$i;
-            
-            if($i>0 and $p>0){
-              $j=$i-1;
-              $lapsos[$m]=$lap[$j]; 
-              $m++;             
+                $k=$i;
+                
+                if($i>0 and $p>0){
+                  $j=$i-1;
+                  $lapsos[$m]=$lap[$j]; 
+                  $m++;             
+                }
+       
             }
-   
+            //verificando si esta listo el lapso 1 para imprimir boletin
+           if ($cont_lap1==count($asignaturas)) {
+             $lapso1=1;
+           }else{
+             $lapso1=0;
+           }
+           //verificando si esta listo el lapso 2 para imprimir boletin
+           if ($cont_lap2==count($asignaturas)) {
+             $lapso2=1;
+           }else{
+             $lapso2=0;
+           }
+           //verificando si esta listo el lapso 3 para imprimir boletin
+           if ($cont_lap3==count($asignaturas)) {
+             $lapso3=1;
+           }else{
+             $lapso3=0;
+           }
         }
-        //verificando si esta listo el lapso 1 para imprimir boletin
-       if ($cont_lap1==count($asignaturas)) {
-         $lapso1=1;
-       }else{
-         $lapso1=0;
-       }
-       //verificando si esta listo el lapso 2 para imprimir boletin
-       if ($cont_lap2==count($asignaturas)) {
-         $lapso2=1;
-       }else{
-         $lapso2=0;
-       }
-       //verificando si esta listo el lapso 3 para imprimir boletin
-       if ($cont_lap3==count($asignaturas)) {
-         $lapso3=1;
-       }else{
-         $lapso3=0;
-       }
-
        $num=0;
         $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinMedia.boletinMediaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
@@ -368,19 +433,23 @@ class MediaGeneralController extends Controller
     public function notas()
     {
         $email=\Auth::user()->email;
+
         $representante=Representantes::where('email',$email)->first();
         $datosBasicos=DatosBasicos::where('id_representante',$representante->id)->get();
         $inscripcion=Inscripcion::all();
         $boletin=Boletin::all();
-
-        foreach ($representante->datos_basicos as $key) {
-            foreach ($inscripcion as $key2) {
-                if ($key2->id_datosBasicos == $key->id) {
-                    $inscripcion=Inscripcion::where('id_datosBasicos',$key->id)->get();
-                }
-            }
-        }
-
+        //dd(count($datosBasicos));
+        $cont=0;
+        // foreach ($datosBasicos as $key) {
+        //     foreach ($inscripcion as $key2) {
+        //         if ($key2->id_datosBasicos == $key->id) {
+        //             $inscripcion=Inscripcion::where('id_datosBasicos',$key->id)->get();
+                    
+        //         }
+        //     }
+        //     $cont++;
+        // }
+        //dd($cont);
         $num=0;
         return View('admin.calificaciones.notas.index', compact('num','boletin','inscripcion','datosBasicos'));
 

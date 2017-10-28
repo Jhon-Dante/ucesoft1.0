@@ -22,7 +22,7 @@
 <div class="form-group{{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('fecha_nacimiento','Fecha de nacimiento') !!}
-	{!! Form::date('fecha_nacimiento',null,['class' => 'form-control','placeholder' => 'Ingrese aquí la Dirección de Habitación', 'title' => 'Ingrese la fecha de nacimiento del personal']) !!}
+	{!! Form::date('fecha_nacimiento',null,['class' => 'form-control', 'title' => 'Ingrese la fecha de nacimiento del personal']) !!}
 </div>
 <div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)

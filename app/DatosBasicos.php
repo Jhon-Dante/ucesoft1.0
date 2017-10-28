@@ -35,7 +35,7 @@ class DatosBasicos extends Model
 	}
 	public function inscripcion()
 	{
-		return $this->hasMany('App\Inscripcion','id_datosbBasicos','id');
+		return $this->hasMany('App\Inscripcion','id_datosBasicos','id');
 	}
 	public function mensualidad()
 	{
