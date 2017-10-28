@@ -47,7 +47,6 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -57,9 +56,6 @@
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->nombres}}</a></td>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->apellidos}}</a></td>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$representante->nacionalidad}} - {{$representante->cedula}}</a></td>
-                  
-                 <td><a href="{{ route('admin.representantes.edit', [$representante->parentesco->parentesco] ) }}"> {{$representante->parentesco->parentesco}}</a></td>
-                  <td>
 
                   <div class="btn-group">
 
@@ -68,7 +64,6 @@
                       '{{$representante->nombres}}',
                       '{{$representante->apellidos}}',
                       '{{$representante->profesion}}',
-                      '{{$representante->parentesco->parentesco}}',
                       '{{$representante->vive_estu}}',
                       '{{$representante->ingreso_apx}} Bs.F.',
                       '{{$representante->n_familia}}',
@@ -151,9 +146,6 @@
         <strong>Profesión: </strong>
         <p id="profesion"><span></span></p>
         <br>
-        <strong>Parentesco: </strong>
-        <p id="parentesco"><span></span></p>
-        <br>
         <strong>¿Vive con el estudiante? </strong>
         <p id="vive_estu"><span></span></p>
         <br>
@@ -200,13 +192,12 @@
   {
     $("#id_representante").val(id);
   }
-  function mostrardatos(cedula,nombres,apellidos,profesion,parentesco,vive_estu,ingreso_apx,n_familia,direccion,telf_hab,lugar_tra,telf_tra,responsable_m,telf_responsable,telf_opcional,telf_emergencia) 
+  function mostrardatos(cedula,nombres,apellidos,profesion,vive_estu,ingreso_apx,n_familia,direccion,telf_hab,lugar_tra,telf_tra,responsable_m,telf_responsable,telf_opcional,telf_emergencia) 
   {
     $('#cedula').text(cedula);
     $('#nombres').text(nombres);
     $('#apellidos').text(apellidos);
     $('#profesion').text(profesion);
-    $('#parentesco').text(parentesco);
     $('#vive_estu').text(vive_estu);
     $('#ingreso_apx').text(ingreso_apx);
     $('#n_familia').text(n_familia);

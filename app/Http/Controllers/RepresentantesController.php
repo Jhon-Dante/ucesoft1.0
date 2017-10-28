@@ -32,8 +32,8 @@ class RepresentantesController extends Controller
      */
     public function create()
     {  
-        $parentesco=Parentesco::lists('parentesco','id');
-        return View('admin.representantes.create', compact('parentesco'));
+        
+        return View('admin.representantes.create');
     }
 
     /**
@@ -65,7 +65,6 @@ class RepresentantesController extends Controller
                 'nombres'           =>$request->nombres,
                 'apellidos'         =>$request->apellidos,
                 'profesion'         =>$request->profesion,
-                'id_parentesco'     =>$request->id_parentesco,
                 'vive_estu'         =>$request->vive_estu,
                 'ingreso_apx'       =>$request->ingreso_apx,
                 'n_familia'         =>$request->n_familia,
@@ -123,8 +122,7 @@ class RepresentantesController extends Controller
     public function edit($id)
     {
         $representantes = Representantes::find($id);
-        $parentesco = Parentesco::lists('parentesco', 'id');
-        return view('admin.representantes.edit', compact('representantes', 'parentesco'));
+        return view('admin.representantes.edit', compact('representantes'));
     }
 
     /**

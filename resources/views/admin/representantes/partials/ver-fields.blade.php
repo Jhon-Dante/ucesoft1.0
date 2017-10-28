@@ -19,10 +19,6 @@
 	{{$representante->profesion}}
 </div>
 <div class="form-group">
-	{!! Form::label('id_parentesco','Parentesco:') !!}
-	{{$representante->parentesco->parentesco}}
-</div>
-<div class="form-group">
 	{!! Form::label('vive_estu','¿Vive con el estudiante?:') !!}
 	{{$representante->vive_estu}}
 </div>

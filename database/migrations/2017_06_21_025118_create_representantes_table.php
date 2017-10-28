@@ -19,7 +19,6 @@ class CreateRepresentantesTable extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('profesion');
-            $table->integer('id_parentesco')->unsigned();
             $table->string('vive_estu');
             $table->string('ingreso_apx');
             $table->string('n_familia');
@@ -44,7 +43,6 @@ class CreateRepresentantesTable extends Migration
             $table->integer('codigo_emergencia');
             $table->string('telf_emergencia');
             
-            $table->foreign('id_parentesco')->references('id')->on('parentesco')->onDelete('cascade');
 
             $table->timestamps();
         });

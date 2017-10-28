@@ -23,15 +23,6 @@
 	{!! Form::label('profesion','Profesión') !!}
 	{!! Form::text('profesion',$representantes->profesion, ['class' => 'form-control','placeholder' => 'Administrador', 'title' => 'Ingrese la profesión del representante']) !!}
 </div>
-<div class="form-group">
-(<span style="color: red;">*</span>)
-		{!! Form::label('parentesco','Parentesco') !!}
-        {!! Form::select('id_parentesco',$parentesco, $representantes->id_parentesco, ['class' => 'form-control',  'title' => 'Identifique el parentesco del representante con el estudiante']) !!}
-</div>
-
-
-<!-- -->
-
 
 <div class="form-group">
 (<span style="color: red;">*</span>)
