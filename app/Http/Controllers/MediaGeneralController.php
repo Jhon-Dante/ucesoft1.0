@@ -177,7 +177,6 @@ class MediaGeneralController extends Controller
                 for ($j=$k; $j < count($request->id_asignatura) ; $j++)
                 {
                     $crear=Boletin::create([
-                        
                         'id_asignatura' => $request->id_asignatura[$j],
                         'lapso' => 1,
                         'inasistencias' => $request->inasistencia[$j],

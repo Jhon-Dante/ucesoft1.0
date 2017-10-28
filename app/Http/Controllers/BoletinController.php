@@ -242,7 +242,7 @@ class BoletinController extends Controller
     }
     public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
     {
-
+        
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
         $representante=Representantes::where('email',$correo)->first();
@@ -252,7 +252,7 @@ class BoletinController extends Controller
         $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
         $periodo=Periodos::find($id_periodo);
         $mensualidades=Mensualidades::where('id_inscripcion',$inscripcion2->id)->where('estado','Cancelado')->get();
-
+        
         $boletin=Boletin::where('id_periodo',$id_periodo)->get();
         $boletin2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
 
@@ -261,7 +261,7 @@ class BoletinController extends Controller
                 return redirect()->back();
         }
 
-
+        
         $k=0;
         $i=0; 
         $m=0;

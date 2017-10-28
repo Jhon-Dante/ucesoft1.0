@@ -96,7 +96,7 @@ class DatosBasicosSeeder extends Seeder
             'talla' => 'S',
             'salud' => 'Sordera, Taquicardia',
             'direccion' => 'Calle Mariano Montilla, casa nro. 03',
-            'id_representante' => 3,
+            'id_representante' => 1,
             'id_parentesco' => 1
             
         ]);
@@ -169,7 +169,7 @@ class DatosBasicosSeeder extends Seeder
             'talla' => 'S',
             'salud' => 'Fractura en la Rodilla izquierda',
             'direccion' => 'Las Mercedes, Urb. El Bosque, Apart. 3, hab. 11',
-            'id_representante' => 3,
+            'id_representante' => 1,
             'id_parentesco' => 1
             
         ]);
