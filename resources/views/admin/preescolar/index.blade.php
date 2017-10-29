@@ -68,12 +68,12 @@
 
                   @if($reporte1==0)
                     <a href="{{url('admin/crearmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
-                          <button class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
-                        </a>
+                          <button data-toggle="modal" onclick="cursos({{ '{{$key->id_seccion}}','{{$key->id_periodo}}' }})" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
+                    </a>
                   @endif
                   @if($reporte1==1 and $reporte2==0)
                     <a href="{{url('admin/crearmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
-                          <button class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                          <button data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
                         </a>
 
                       <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
@@ -82,7 +82,7 @@
                   @endif
                   @if($reporte2==1 and $reporte3==0)
                     <a href="{{url('admin/crearmomento',['reporte' => 3,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
-                          <button class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
+                          <button class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></button>
                         </a>
 
                     <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
@@ -107,5 +107,34 @@
   </div>
 </section>
 
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Ingrese la contraseña</h4>
+        </div>
+        {!! Form::open(['route' => ['admin.crearmomento']]) !!}
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          {!! Form::close() !!}
+
+         </div>
+       </div>
+     </div>
+   </div>
 </div><!-- /.content-wrapper -->
+
+
+
+   <script type="text/javascript">
+
+        function cursos(curso){
+
+            $('#curso').val(curso);
+        }
 @endsection

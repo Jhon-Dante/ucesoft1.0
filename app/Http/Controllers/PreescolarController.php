@@ -191,6 +191,7 @@ class PreescolarController extends Controller
 
     public function mostrarmomento($reporte, $id_seccion, $id_periodo)
     {
+
         $num=0;
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $seccion=Seccion::find($id_seccion);
@@ -237,6 +238,7 @@ class PreescolarController extends Controller
     public function calificaciones($id_seccion, $id_periodo)
     {
         $num=0;
+
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $seccion=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);
@@ -293,6 +295,7 @@ class PreescolarController extends Controller
     public function pdf($id_seccion, $id_periodo)
     {
         $num=0;
+        
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $seccion=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);

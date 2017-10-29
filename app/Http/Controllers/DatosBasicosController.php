@@ -74,8 +74,12 @@ class DatosBasicosController extends Controller
 
     public function buscarEstudiante(Request $request)
     {
-            $inscripciones=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
+        //dd('asdasdasd');
+            $inscripciones=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->first();
+            $datosBasicos2=DatosBasicos::find($request->id_estudiante);
+            $asignaturas=Asignaturas::all();
             $secciones=Seccion::all();
+            $periodos=Periodos::where('status','Activo')->first();
             if (count($inscripciones)!=0) {
                 $inscripciones2=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->where('id_periodo',$inscripciones->id_periodo-1)->get()->first();
             }
@@ -160,13 +164,13 @@ class DatosBasicosController extends Controller
                 }//Fin del else de repite
             }//Fin del else de mensualidades
                     
-                    
-        return redirect()->route('admin.datosBasicos.reinscribir');
+                    //dd($inscripciones);
+        return View('admin.DatosBasicos.reinscribir', compact('inscripciones','inscripciones2','datosBasicos2','curso_s','secciones','asignaturas','periodos'));
     }//Fin de la función buscarEstudiante
 
     public function reinscribir(Request $request)
     {
-        
+
         $id_periodo=Session::get('periodo');
         $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->last();
         if(count($p)>0)

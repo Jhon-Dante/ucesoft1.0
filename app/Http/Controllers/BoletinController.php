@@ -256,78 +256,107 @@ class BoletinController extends Controller
         $boletin=Boletin::where('id_periodo',$id_periodo)->get();
         $boletin2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
 
+
+        $lapso1=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',1)->first();
+        $lapso2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',2)->first();
+        $lapso3=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',3)->first();
+
+        
         if (count($boletin2) == 0) {
             flash('EL ESTUDIANTE TODAVÍA NO TIENE NOTAS CARGADAS','warning');
                 return redirect()->back();
         }
 
-        
-        $k=0;
-        $i=0; 
-        $m=0;
-        $cont_lap1=0;
-        $cont_lap2=0;
-        $cont_lap3=0;
-        foreach ($asignaturas as $key) {
-        $p=0;
-        $i=$k;
-        
-            if(count($mensualidades)<3){
-                flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+
+
+
+        if(count($lapso1) > 0 AND count($mensualidades)<3){//Si ya está cargado el primer lapso y no tiene 3 meses de mensualidad cancelada...
+            flash('EL ESTUDIANTE DEBE TENER 3 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 1ER LAPSO','warning');
+            return redirect()->back();
+        }else{
+            if (count($lapso2) > 0 AND count($mensualidades)<6) {
+                flash('EL ESTUDIANTE DEBE TENER 6 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 2DO LAPSO','warning');
                 return redirect()->back();
             }else{
-              foreach ($key->boletin->groupBy('lapso') as $key2) {
-                  
-                  if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+                if (count($lapso3) > 0 AND count($mensualidades)<12) {
+                    flash('EL ESTUDIANTE DEBE ESTAR SOLVENTE EN TODOS LOS MESES EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 3ER LAPSO','warning');
+                    return redirect()->back();
+                }else{
+
+
+
+                    $k=0;
+                    $i=0; 
+                    $m=0;
+                    $cont_lap1=0;
+                    $cont_lap2=0;
+                    $cont_lap3=0;
+                    foreach ($asignaturas as $key) {
+                    $p=0;
+                    $i=$k;
                     
-                  $lap[$i]=$key2[0]->lapso;
-                    if($key2[0]->lapso==1){
-                      $cont_lap1++;
-                    }
-                    if($key2[0]->lapso==2){
-                      $cont_lap2++;
-                    }
-                    if($key2[0]->lapso==3){
-                      $cont_lap3++;
-                    }
-                  $i++; 
-                  $p++;   
-                  }
-                  
-                }
+                        if(count($mensualidades)<3){
+                            flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                            return redirect()->back();
+                        }else{
+                          foreach ($key->boletin->groupBy('lapso') as $key2) {
+                              
+                              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+                                
+                              $lap[$i]=$key2[0]->lapso;
+                                if($key2[0]->lapso==1){
+                                  $cont_lap1++;
+                                }
+                                if($key2[0]->lapso==2){
+                                  $cont_lap2++;
+                                }
+                                if($key2[0]->lapso==3){
+                                  $cont_lap3++;
+                                }
+                              $i++; 
+                              $p++;   
+                              }
+                              
+                            }
 
-                $k=$i;
-                
-                if($i>0 and $p>0){
-                  $j=$i-1;
-                  $lapsos[$m]=$lap[$j]; 
-                  $m++;             
-                }
-       
-            }
-            //verificando si esta listo el lapso 1 para imprimir boletin
-           if ($cont_lap1==count($asignaturas)) {
-             $lapso1=1;
-           }else{
-             $lapso1=0;
-           }
-           //verificando si esta listo el lapso 2 para imprimir boletin
-           if ($cont_lap2==count($asignaturas)) {
-             $lapso2=1;
-           }else{
-             $lapso2=0;
-           }
-           //verificando si esta listo el lapso 3 para imprimir boletin
-           if ($cont_lap3==count($asignaturas)) {
-             $lapso3=1;
-           }else{
-             $lapso3=0;
-           }
-        }
-       $num=0;
-        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+                            $k=$i;
+                            
+                            if($i>0 and $p>0){
+                              $j=$i-1;
+                              $lapsos[$m]=$lap[$j]; 
+                              $m++;             
+                            }
+                   
+                        }
+                        //verificando si esta listo el lapso 1 para imprimir boletin
+                       if ($cont_lap1==count($asignaturas)) {
+                         $lapso1=1;
+                       }else{
+                         $lapso1=0;
+                       }
+                       //verificando si esta listo el lapso 2 para imprimir boletin
+                       if ($cont_lap2==count($asignaturas)) {
+                         $lapso2=1;
+                       }else{
+                         $lapso2=0;
+                       }
+                       //verificando si esta listo el lapso 3 para imprimir boletin
+                       if ($cont_lap3==count($asignaturas)) {
+                         $lapso3=1;
+                       }else{
+                         $lapso3=0;
+                       }
+                    }
+                   $num=0;
+                    $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
-        return $dompdf->stream();
+                    return $dompdf->stream();
+
+
+
+                }//fin de la busqueda del tercer lapso y solvencia de 12 mensualidades
+            }//fin de la busqueda del segundo lapso y solvencia de 6 mensualidades
+        }//fin de la busqueda del primer lapso y solvencia de 3 mensualidades   
     }
     public function mostrar($id_seccion, $id_periodo)
     {
