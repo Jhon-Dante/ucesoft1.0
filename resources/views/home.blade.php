@@ -225,7 +225,8 @@
                       <th>Nombres</th>
                       <th>Apellidos</th>
                       <th>Cédula</th>
-                      <th style="width: 40px"></th>
+                      <th>Curso</th>
+                      <th>Sección</th>
                     </tr>
                     
                       @foreach($inscripcion as $p)
@@ -234,6 +235,8 @@
                         <td>{{$p->datosBasicos->nombres}}</td>
                         <td>{{$p->datosBasicos->apellidos}}</td>
                         <td>{{$p->datosBasicos->nacionalidad}} - {{$p->datosBasicos->cedula}}</td>
+                        <td>{{$p->seccion->curso->curso}}</td>
+                        <td>{{$p->seccion->seccion}}</td>
 
                       </tr>
                       @endforeach

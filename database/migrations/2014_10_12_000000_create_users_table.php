@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('pregunta');
             $table->string('respuesta');
-            $table->enum('tipo_user',['Administrador(a)','Docente Media General','Docente Basica','Docente Preescolar','Representante']);
+            $table->enum('tipo_user',['Administrador(a)','Secretario(a)','Docente Media General','Docente Básica','Docente Preescolar','Representante']);
             $table->string('foto');
             $table->rememberToken();
             $table->timestamps();
