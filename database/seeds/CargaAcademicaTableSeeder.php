@@ -17,7 +17,7 @@ class CargaAcademicaTableSeeder extends Seeder
                 'id_personal' => 4,
                 'id_asignatura' => $i,
                 'id_seccion' => 2,
-                'id_periodo' => 2
+                'id_periodo' => 3
             ]);
         }
 
@@ -27,7 +27,7 @@ class CargaAcademicaTableSeeder extends Seeder
                 'id_personal' => 3,
                 'id_asignatura' => $i,
                 'id_seccion' => 14,
-                'id_periodo' => 2
+                'id_periodo' => 3
             ]);
         }         
         
@@ -37,7 +37,7 @@ class CargaAcademicaTableSeeder extends Seeder
                 'id_personal' => 6,
                 'id_asignatura' => $i,
                 'id_seccion' => 14,
-                'id_periodo' => 2
+                'id_periodo' => 3
             ]);
         }
             
@@ -48,7 +48,7 @@ class CargaAcademicaTableSeeder extends Seeder
                 'id_personal' => 7,
                 'id_asignatura' => $i,
                 'id_seccion' => 14,
-                'id_periodo' => 2
+                'id_periodo' => 3
             ]); 
         }
 
