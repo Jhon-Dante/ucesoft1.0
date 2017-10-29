@@ -17,11 +17,11 @@ class PeriodoSeeder extends Seeder
         	));
         \DB::table('periodos')->insert(array(
         		'periodo' => '2017 - 2018',
-        		'status' => 'Inactivo'
+        		'status' => 'Activo'
         	));
         \DB::table('periodos')->insert(array(
         		'periodo' => '2018 - 2019',
-        		'status' => 'Activo'
+        		'status' => 'Inactivo'
         	));
         \DB::table('periodos')->insert(array(
         		'periodo' => '2019 - 2020',

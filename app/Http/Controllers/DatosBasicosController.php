@@ -160,13 +160,8 @@ class DatosBasicosController extends Controller
                 }//Fin del else de repite
             }//Fin del else de mensualidades
                     
-                    $secciones=Seccion::all();
-                    $datosBasicos=DatosBasicos::all();
-                    $periodos=Periodos::where('status','Activo')->get()->first();
-                    $datosBasicos2=DatosBasicos::find($request->id_estudiante);
-                    $id_estudiante=$request->id_estudiante;
-                    $asignaturas=Asignaturas::all();
-        return View('admin.datosBasicos.reinscribir', compact('secciones','datosBasicos','periodos','id_estudiante','datosBasicos2','asignaturas','inscripciones','id_curso_next','curso_s'));
+                    
+        return redirect()->route('admin.datosBasicos.reinscribir');
     }//Fin de la función buscarEstudiante
 
     public function reinscribir(Request $request)

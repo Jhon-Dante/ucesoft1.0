@@ -34,7 +34,7 @@ class DatosBasicosSeeder extends Seeder
             'id_datosBasicos' => 1,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 3,
+            'id_periodo' => 2,
             'id_seccion' => 2
         ]);
         for ($i=9; $i <=12 ; $i++) {  
@@ -178,7 +178,7 @@ class DatosBasicosSeeder extends Seeder
             'id_datosBasicos' => 5,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 3,
+            'id_periodo' => 2,
             'id_seccion' => 14
         ]);
         
@@ -226,7 +226,7 @@ class DatosBasicosSeeder extends Seeder
             'id_datosBasicos' => 6,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 3,
+            'id_periodo' => 2,
             'id_seccion' => 14
         ]);
         for ($i=9; $i <=12 ; $i++) {  
@@ -273,7 +273,7 @@ class DatosBasicosSeeder extends Seeder
             'id_datosBasicos' => 7,
             'repite' => 'No',
             'pendiente' => 'No',
-            'id_periodo' => 3,
+            'id_periodo' => 2,
             'id_seccion' => 1
         ]);
         for ($i=9; $i <=12 ; $i++) {  

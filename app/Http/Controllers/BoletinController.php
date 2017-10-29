@@ -19,7 +19,7 @@ use App\Personal;
 use App\User;
 use App\Mensualidades;
 use App\Representantes;
-
+use Session;
 class BoletinController extends Controller
 {
     /**
@@ -29,10 +29,10 @@ class BoletinController extends Controller
      */
     public function index()
     {
-        $periodo=Periodos::where('status','Activo')->first();
+        $periodo=Session::get('periodo');
         $usuario=\Auth::user()->email;
         $personal=Personal::where('correo',$usuario)->first();
-        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+        $inscripcion=Inscripcion::where('id_periodo',$periodo)->get();
         
         $boletin=Boletin::all();
         $num=0;
@@ -143,7 +143,7 @@ class BoletinController extends Controller
 
 
 
-        $lapso=Boletin::where('id_periodo',$periodo->id)->where('id_datosBasicos',$inscri->id)->get();
+        $lapso=Boletin::where('id_periodo',$periodo)->where('id_datosBasicos',$inscri->id)->get();
       
         $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
 
@@ -153,9 +153,9 @@ class BoletinController extends Controller
         
 
         for ($i=0; $i < count($request->id_datosBasicos) ; $i++) { 
-            $calif=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',1)->first();
-            $calif2=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',2)->first();
-            $calif3=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->where('lapso',3)->first();
+            $calif=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo)->where('lapso',1)->first();
+            $calif2=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo)->where('lapso',2)->first();
+            $calif3=Boletin::where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo)->where('lapso',3)->first();
         }
 
         if (count($calif)==0) 
@@ -170,7 +170,7 @@ class BoletinController extends Controller
                         'inasistencias' => $request->inasistencia[$j],
                         'calificacion' => $request->calificacion[$j],
                         'id_datosBasicos' => $request->id_datosBasicos[$i],                            
-                        'id_periodo' => $periodo->id
+                        'id_periodo' => $periodo
                     ]);
                 }
             }
@@ -191,7 +191,7 @@ class BoletinController extends Controller
                             'inasistencias' => $request->inasistencia[$j],
                             'calificacion' => $request->calificacion[$j],
                             'id_datosBasicos' => $request->id_datosBasicos[$i],                            
-                            'id_periodo' => $periodo->id
+                            'id_periodo' => $periodo
                         ]);
                     }
 
@@ -213,7 +213,7 @@ class BoletinController extends Controller
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
                             'lapso' => 3,
                             
-                            'id_periodo' => $periodo->id,
+                            'id_periodo' => $periodo,
                             'id_asignatura' => $request->id_asignatura[$j],
                             'inasistencias' => $request->inasistencia[$j],
                             'calificacion' => $request->calificacion[$j] 

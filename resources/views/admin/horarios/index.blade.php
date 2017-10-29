@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista de Horarios registrados en el período: <strong>{{$periodos->periodo}}</strong>
+            <div class="panel-heading">Lista de Horarios registrados en el período: <strong>{{Session::get('periodoNombre')}}</strong>
               
           </div>
         
@@ -50,7 +50,7 @@
                         <td>{{$num=$num+1}}</td>
                         <td>{{$seccion->curso->curso}}</td>
                         <td>{{$seccion->seccion}}</td>
-                        <td>{{$periodos->periodo}}</td>
+                        <td>{{Session::get('periodoNombre')}}</td>
                         <td>
 
                           
