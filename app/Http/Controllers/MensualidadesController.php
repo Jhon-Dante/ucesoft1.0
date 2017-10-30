@@ -15,6 +15,7 @@ use App\Representantes;
 use App\DatosBasicos;
 use App\User;
 use Session;
+use Mail;
 class MensualidadesController extends Controller
 {
     /**
@@ -145,22 +146,44 @@ class MensualidadesController extends Controller
     }
     public function store(Request $request)
     {
-        //buscando la mensualidad previamente registrada
-        $buscar_mens=Mensualidades::find($request->id);
-        //buscando el ultimo monto registrado para ese mes
-        $pagos=Pagos::where('id_mes',$request->id_mes)->get()->last();
+        // //buscando la mensualidad previamente registrada
+        // $buscar_mens=Mensualidades::find($request->id);
+        // //buscando el ultimo monto registrado para ese mes
+        // $pagos=Pagos::where('id_mes',$request->id_mes)->get()->last();
 
-        if ($pagos->id==$buscar_mens->id_pago) {
-            # quiere decir que no se ha modificado el monto de esta mes
-            $buscar_mens->estado="Cancelado";
-            $buscar_mens->save();
+        // if ($pagos->id==$buscar_mens->id_pago) {
+        //     # quiere decir que no se ha modificado el monto de esta mes
+        //     $buscar_mens->estado="Cancelado";
+        //     $buscar_mens->save();
 
+        // } else {
+        //     # quiere decir que hay que actualizar el id de pago
+        //     $buscar_mens->id_pago=$pagos->id;
+        //     $buscar_mens->estado="Cancelado";
+        //     $buscar_mens->save();
+
+        // }
+        //---enviando correo
+
+
+
+
+        $pathFile="";
+        $containFile=false;
+        $destinatario="jcesarchg9@gmail.com";
+        $asunto="prueba";
+        $contenido="Probando envio de correo";
+        $data=array("contenido"=> $contenido);
+
+        $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
+            //$message->from('colegiourdanetacampoelias@gmail.com');
+        
+            $message->to($destinatario)->subject($asunto);
+        });
+        if ($r) {
+            dd("lo hizo");
         } else {
-            # quiere decir que hay que actualizar el id de pago
-            $buscar_mens->id_pago=$pagos->id;
-            $buscar_mens->estado="Cancelado";
-            $buscar_mens->save();
-
+            dd("no lo hizo");
         }
         
         flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
