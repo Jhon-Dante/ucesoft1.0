@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Cursos
+	Editar Momento
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,11 +9,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Cursos')
+        @yield('contentheader_title', 'Editar juicios y sugerencias')
         <small>Actualización</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Cursos</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Editar juicios y sugerencias</a></li>
         <li class="active">Actualizar</li>
     </ol>
 </section>
@@ -26,17 +26,17 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Actualización del Curso
+							<div class="panel-heading">Actualización de juicios y sugerencias del estudiante
  				
 							</div>
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.cursos.update',$curso->id], 'method' => 'put']) !!}
+								{!! Form::open(['route' => ['admin.editamomento'], 'method' => 'put']) !!}
                 
-					                 @include('admin.cursos.partials.edit-fields')
+					                 @include('admin.preescolar.partials.edit-fields')
 					                <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
 					            {!! Form::close() !!} 
           							<!-- /.form-group -->

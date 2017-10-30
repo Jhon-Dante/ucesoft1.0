@@ -18,6 +18,7 @@ use App\Seccion;
 use App\Personal;
 use App\Representantes;
 use App\Mensualidades;
+use App\User;
 
 class MediaGeneralController extends Controller
 {
@@ -83,54 +84,86 @@ class MediaGeneralController extends Controller
         dd('asdasdsdas');
     }
 
-    public function crear($id_seccion, $id_periodo)
+    public function crear(Request $request)
     {
-        
-        $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
-        $inscripcion2=Inscripcion::where('id_seccion',$id_seccion)->get()->first();
-        $seccion=Seccion::find($id_seccion);
-           
-        $num=0;
-        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+        $c=\Auth::user()->email;
+        $representante=Representantes::where('email',$c)->first();
 
-        $periodos=Periodos::find($id_periodo);
-        $boletin=Boletin::all();
-         $correo=\Auth::user()->email;
-        $personal=Personal::where('correo',$correo)->first();
-        
-        //dd($personal);
-        //buscando lapso a registrar
-        $contar=0;
-        $cantidad=0;
-        foreach ($personal->asignacion_a as $key) {
-            //dd($key->pivot->id_asignatura);
-            $boletin=Boletin::where('id_asignatura',$key->pivot->id_asignatura)->where('id_periodo',$id_periodo)->groupBy('lapso')->get();
-            $contar+=count($boletin);
-            if($key->pivot->id_periodo==$id_periodo){
-                $cantidad++;
-            }
-        }
-        //dd($contar);
+        if (count($representante) > 1) {
+            flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
+            return redirect()->back();
+        }else{
 
-        if ($contar==0) {
-            $lapso=1;
-        } else {
-            if ($contar==$cantidad) {
-                $lapso=2;
-            } else {
-                
-                if ($contar==(2*$cantidad)) {
-                    $lapso=3;
-                } else {
-                    $lapso=0;
-                }
-            }
+            $clave=$request->password;
             
-        }
+            $personal=Personal::all();
 
-        $ins=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
-        //  dd($lapso);
-        return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso','ins'));
+
+            foreach ($personal as $key) {
+              foreach ($key->asignacion_s as $key2) {
+                if ($key2->pivot->id_seccion == $request->id_seccion AND $key2->pivot->id_periodo == $request->id_periodo) {
+                  $personal=Personal::find($key2->pivot->id_personal);
+                  $usuario=User::where('email',$personal->correo)->first();
+                  $validator=$usuario->password;
+                }
+              }
+            }
+
+            
+
+
+            if (password_verify($clave, $validator)) {
+
+              $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
+              $inscripcion2=Inscripcion::where('id_seccion',$request->id_seccion)->get()->first();
+              $seccion=Seccion::find($request->id_seccion);
+                 
+              $num=0;
+              $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+
+              $periodos=Periodos::find($request->id_periodo);
+              $boletin=Boletin::all();
+               $correo=\Auth::user()->email;
+              $personal=Personal::where('correo',$correo)->first();
+              
+              //dd($personal);
+              //buscando lapso a registrar
+              $contar=0;
+              $cantidad=0;
+              foreach ($personal->asignacion_a as $key) {
+                  //dd($key->pivot->id_asignatura);
+                  $boletin=Boletin::where('id_asignatura',$key->pivot->id_asignatura)->where('id_periodo',$request->id_periodo)->groupBy('lapso')->get();
+                  $contar+=count($boletin);
+                  if($key->pivot->id_periodo==$request->id_periodo){
+                      $cantidad++;
+                  }
+              }
+              //dd($contar);
+
+              if ($contar==0) {
+                  $lapso=1;
+              } else {
+                  if ($contar==$cantidad) {
+                      $lapso=2;
+                  } else {
+                      
+                      if ($contar==(2*$cantidad)) {
+                          $lapso=3;
+                      } else {
+                          $lapso=0;
+                      }
+                  }
+                  
+              }
+              $ins=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+              //  dd($lapso);
+              return View('admin.educacion_media.create', compact('boleta','datobasico','periodos','boletin','cali','cali2','asignaturas','inscripcion','inscripcion2','num','seccion','personal','lapso','ins'));
+
+            }else{
+                flash('¡CONTRASEÑA INCORRECTA!','danger');
+                return redirect()->back();
+            }
+        }//fin del else de comprobacion de usuario representante
         
 
     }
@@ -197,7 +230,7 @@ class MediaGeneralController extends Controller
                 {
                     for ($j=$k; $j < count($request->id_asignatura) ; $j++)
                     {
-                        dd(count($request->id_asignatura));
+                        //dd(count($request->id_asignatura));
                         $crear=Boletin::create([
                             'id_asignatura' => $request->id_asignatura[$j],
                             'lapso' => 2,

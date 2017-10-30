@@ -40,6 +40,7 @@
 					                
 					                {!! Form::hidden('lapso',$lapso)  !!}
 			                		{!! Form::hidden('id_curso',$seccion->id_curso)  !!}
+			                		{!! Form::hidden('id_seccion',$seccion->id)!!}
 					            	<div class="box-footer">
 									@if(count($ins) > 0)
 					                	<button type="submit" class="btn btn-primary">Enviar</button>

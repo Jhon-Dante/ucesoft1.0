@@ -46,10 +46,13 @@
 
 							<td>
 								
-										
+								<button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$inscri->id_datosBasicos}}','{{$inscri->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
+
 								<a href="{{route ('admin.calificaciones.pdf2',['id_datosBasicos' => $inscri->datosBasicos->id,'id_seccion' => $inscri->id_seccion, 'id_periodo' => $key->id_periodo])}}">
 				                <button class="btn btn-info btn-flat"><i class="fa fa-file-pdf-o"></i></button>
 				                </a>
+
+
 
 							</td>
 						</tr>

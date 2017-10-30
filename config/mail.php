@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'colegioucelavictoria@gmail.com', 'name' => 'Colegio'],
+    'from' => ['address' => 'colegiourdanetacampoelias@gmail.com', 'name' => 'Colegio'],
 
     /*
     |--------------------------------------------------------------------------

@@ -53,6 +53,42 @@
 
 
 
-		
+		<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Ingrese la contraseña</h4>
+        </div>
+        <div class="modal-body">
+          <p>Ingrese la contraseña del profesor asignado a la sección</p>
+        
+        {!! Form::open(['route' => ['admin.editarmomento'], 'method' => 'POST']) !!}
+          <div class="form-group has-feedback">
+            <input type="password" required="required" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+            <input type="hidden" name="id_datosBasicos" id="id_datosBasicos">
+            <input type="hidden" name="id_seccion" id="id_seccion">
+            <input type="hidden" name="id_periodo" id="id_periodo">
+          {!! Form::close() !!}
+        </div>
+         </div>
+       </div>
+     </div>
+   </div>
 </div><!-- /.content-wrapper -->
 @endsection
+<script type="text/javascript">
+
+        function contraseña(id_datosBasicos,id_seccion,id_periodo){
+
+            $('#id_datosBasicos').val(id_datosBasicos);
+            $('#id_seccion').val(id_seccion);
+            $('#id_periodo').val(id_periodo);
+        }
+      </script>

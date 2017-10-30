@@ -109,9 +109,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'HorariosController@crear',
             'as' => 'admin.crearhorario']);
 
-        Route::get('/crearmomento/{reporte}/{id_inscripcion}/{id_periodo}',[
+        Route::post('/crearmomento',[
             'uses' => 'PreescolarController@crear',
             'as' => 'admin.crearmomento']);
+
+        Route::post('/editarmomento',[
+            'uses' => 'PreescolarController@editar',
+            'as' => 'admin.editarmomento']);
+
+        Route::post('/editamomento',[
+            'uses' => 'PreescolarController@update',
+            'as' => 'admin.editamomento']);
 
         Route::resource('/cargos','CargosController');
         Route::get('/cargos/{id}/destroy' ,[
@@ -122,6 +130,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/mostrarmomento/{reporte}/{id_seccion}/{id_periodo}',[
             'uses' => 'PreescolarController@mostrarmomento',
             'as' => 'admin.mostrarmomento']);
+
+        Route::get('/preescolar/update',[
+            'uses' => 'PreescolarController@update',
+            'as' => 'admin.preescolar.update']);
       
         Route::get('/mostrarlapso_basica/{id_seccion}/{id_periodo}',[
             'uses' => 'boletinController@mostrar',
@@ -197,7 +209,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/educacion_basica','BoletinController');
         
         Route::resource('/educacion_media','MediaGeneralController');
-        Route::get('/crearlapso_media/{id_inscripcion}/{id_periodo}',[
+        Route::post('/crearlapso_media',[
             'uses' => 'MediaGeneralController@crear',
             'as' => 'admin.crearlapso_media']);
 
@@ -229,7 +241,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'MediaGeneralController@boletinMediaEstudiante',
             'as' => 'admin.media_general.pdf2']);
 
-         Route::get('/crearlapso_basica/{id_seccion}/{id_periodo}',[
+         Route::post('/crearlapso_basica',[
             'uses' => 'BoletinController@crear',
             'as' => 'admin.crearlapso_basica']);
 
@@ -241,6 +253,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
          Route::get('/notas',[
             'uses' => 'MediaGeneralController@notas',
             'as' => 'admin.notas']);
+
+         Route::resource('/remediales','RemedialesController');
 });
         
         

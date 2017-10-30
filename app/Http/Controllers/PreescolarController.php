@@ -16,6 +16,8 @@ use App\Personal;
 use App\PersonalPSecciones;
 use App\Seccion;
 use App\Mensualidades;
+use App\Representantes;
+use App\User;
 
 class PreescolarController extends Controller
 {
@@ -73,20 +75,39 @@ class PreescolarController extends Controller
         dd('asdasdsdas');
     }
 
-    public function crear($reporte,$id_seccion, $id_periodo)
+    public function crear(Request $request)
     {
-        
-        $num=0;
-        $seccion=Seccion::find($id_seccion);
+        $c=\Auth::user()->email;
+        $representante=Representantes::where('email',$c)->first();
 
-        $periodo=Periodos::find($id_periodo);
-        $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
-        $ins=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
-        
+        if (count($representante) > 1) {
+            flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
+            return redirect()->back();
+        }else{
+            $clave=$request->password;
+            $busca=PersonalPSecciones::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+            $personal=Personal::find($busca->id_personal);
+            $email=$personal->correo;
+            $usuario=User::where('email',$email)->first();
+            $validator=$usuario->password;
 
-        // inscripcion::where('id_seccion')->get()->first();
-        
-       return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion','ins'));
+
+            if (password_verify($clave, $validator)) {
+
+                $num=0;
+                $seccion=Seccion::find($request->id_seccion);
+
+                $periodo=Periodos::find($request->id_periodo);
+                $inscritos=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
+                $ins=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+                $reporte=$request->reporte;
+
+               return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion','ins'));
+            }else{
+                flash('¡CONTRASEÑA INCORRECTA!','danger');
+                return redirect()->back();
+            }
+        }//fin del else de comprobacion de usuario representante
     }
 
     /**
@@ -412,6 +433,39 @@ class PreescolarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function editar(Request $request)
+    {
+        $c=\Auth::user()->email;
+        $representante=Representantes::where('email',$c)->first();
+
+        if (count($representante) > 1) {
+            flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
+            return redirect()->back();
+        }else{
+            //dd($request->all());
+            $clave=$request->password;
+            $busca=PersonalPSecciones::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+            $personal=Personal::find($busca->id_personal);
+            $email=$personal->correo;
+            $usuario=User::where('email',$email)->first();
+            $validator=$usuario->password;
+
+
+            if (password_verify($clave, $validator)) {
+
+                $periodo=Periodos::find($request->id_periodo);
+                $estudiante=DatosBasicos::find($request->id_datosBasicos);
+                $inscripcion=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->first();
+                $calificaciones=Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
+
+                return View('admin.preescolar.edit', compact('periodo','estudiante','inscripcion','Calificaciones'));
+            }else{
+                flash('¡CONTRASEÑA INCORRECTA!','danger');
+                return redirect()->back();
+            }
+        }//fin del else de comprobacion de usuario representante
+    }
+
     public function update(Request $request, $id)
     {
         //

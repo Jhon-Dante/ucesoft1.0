@@ -67,30 +67,24 @@
 
 
                   @if($reporte1==0)
-                    <a href="{{url('admin/crearmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
-                          <button data-toggle="modal" onclick="cursos({{ '{{$key->id_seccion}}','{{$key->id_periodo}}' }})" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
-                    </a>
-                  @endif
-                  @if($reporte1==1 and $reporte2==0)
-                    <a href="{{url('admin/crearmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
-                          <button data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
-                        </a>
+                    
+                          <button data-toggle="modal" data-target="#myModal" onclick="cursos(1,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
+
+                  @elseif($reporte1==1 and $reporte2==0)
+
+                          <button data-toggle="modal" data-target="#myModal" onclick="cursos(2,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+
 
                       <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
                       </a>
-                  @endif
-                  @if($reporte2==1 and $reporte3==0)
-                    <a href="{{url('admin/crearmomento',['reporte' => 3,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
-                          <button class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></button>
-                        </a>
+                  @elseif($reporte2==1 and $reporte3==0)
+                          <button data-toggle="modal" data-target="#myModal" onclick="cursos(3,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
 
-                    <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                          <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
-                      </a>
-                  @endif
-
-                  @if($reporte3==1)
+                          </a>
+                  @else
                     <a href="#"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
 
 
@@ -115,14 +109,22 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Ingrese la contraseña</h4>
         </div>
-        {!! Form::open(['route' => ['admin.crearmomento']]) !!}
+        <div class="modal-body">
+          <p>Ingrese la contraseña del profesor asignado a la sección</p>
+        
+        {!! Form::open(['route' => ['admin.crearmomento'], 'method' => 'POST']) !!}
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
+            <input type="password" required="required" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
+        </div>
+        <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Aceptar</button>
+            <input type="hidden" name="reporte" id="reporte">
+            <input type="hidden" name="id_seccion" id="id_seccion">
+            <input type="hidden" name="id_periodo" id="id_periodo">
           {!! Form::close() !!}
-
+        </div>
          </div>
        </div>
      </div>
@@ -131,10 +133,14 @@
 
 
 
+
+@endsection
    <script type="text/javascript">
 
-        function cursos(curso){
+        function cursos(reporte,id_seccion,id_periodo){
 
-            $('#curso').val(curso);
+            $('#reporte').val(reporte);
+            $('#id_seccion').val(id_seccion);
+            $('#id_periodo').val(id_periodo);
         }
-@endsection
+      </script>

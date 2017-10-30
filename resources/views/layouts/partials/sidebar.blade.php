@@ -116,6 +116,7 @@
                     <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
                     <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
                     <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
+                    <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
 
                     
                     
@@ -145,7 +146,7 @@
             
             
 
-        @elseif(Auth::user()->tipo_user == 'Docente Basica')
+        @elseif(Auth::user()->tipo_user == 'Docente Básica')
 
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>

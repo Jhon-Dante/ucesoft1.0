@@ -146,34 +146,37 @@ class MensualidadesController extends Controller
     }
     public function store(Request $request)
     {
-        // //buscando la mensualidad previamente registrada
-        // $buscar_mens=Mensualidades::find($request->id);
-        // //buscando el ultimo monto registrado para ese mes
-        // $pagos=Pagos::where('id_mes',$request->id_mes)->get()->last();
+        //buscando la mensualidad previamente registrada
+        $buscar_mens=Mensualidades::find($request->id);
+        $estudiante=$buscar_mens->inscripcion->datosbasicos->nombres." ".$buscar_mens->inscripcion->datosbasicos->apellidos;
+        $cedula=$buscar_mens->inscripcion->datosbasicos->nacionalidad.".- ".$buscar_mens->inscripcion->datosbasicos->cedula;
+        //buscando el ultimo monto registrado para ese mes
+        $pagos=Pagos::where('id_mes',$request->id_mes)->get()->last();
+        $mes=$pagos->meses->mes;
 
-        // if ($pagos->id==$buscar_mens->id_pago) {
-        //     # quiere decir que no se ha modificado el monto de esta mes
-        //     $buscar_mens->estado="Cancelado";
-        //     $buscar_mens->save();
+        if ($pagos->id==$buscar_mens->id_pago) {
+            # quiere decir que no se ha modificado el monto de esta mes
+            $buscar_mens->estado="Cancelado";
+            $buscar_mens->save();
 
-        // } else {
-        //     # quiere decir que hay que actualizar el id de pago
-        //     $buscar_mens->id_pago=$pagos->id;
-        //     $buscar_mens->estado="Cancelado";
-        //     $buscar_mens->save();
+        } else {
+            # quiere decir que hay que actualizar el id de pago
+            $buscar_mens->id_pago=$pagos->id;
+            $buscar_mens->estado="Cancelado";
+            $buscar_mens->save();
 
-        // }
+        }
         //---enviando correo
 
 
 
 
-        $pathFile="";
-        $containFile=false;
-        $destinatario="jcesarchg9@gmail.com";
-        $asunto="prueba";
-        $contenido="Probando envio de correo";
-        $data=array("contenido"=> $contenido);
+
+        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        //dd($destinatario);
+        $asunto="Confirmación de pago de mensualidad";
+        $contenido="PAGO DE MENSUALIDAD";
+        $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
         $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
             //$message->from('colegiourdanetacampoelias@gmail.com');
@@ -181,12 +184,12 @@ class MensualidadesController extends Controller
             $message->to($destinatario)->subject($asunto);
         });
         if ($r) {
-            dd("lo hizo");
+           flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
         } else {
-            dd("no lo hizo");
+           flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
         }
         
-        flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
+        
 
         return redirect()->route('admin.mensualidades.index');
 
@@ -262,5 +265,12 @@ class MensualidadesController extends Controller
         flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!','success');
 
         return redirect()->route('admin.mensualidades.index');
+
+
+
+
+
+
+        
     }
 }
