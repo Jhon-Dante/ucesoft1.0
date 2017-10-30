@@ -15,11 +15,13 @@
 				@foreach($asignaturas as $key)
 					<?php $i=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
-						@if($periodo->id==$key2[$i]->id_periodo)	
+						@foreach($personal->asignacion_a as $key4)
+						@if($periodo->id==$key2[$i]->id_periodo and $key4->pivot->id_asignatura==$key->id )	
 							<th colspan="{{$lapsos[$t2]*2}}" align="center" style="font-size: 10px;"><center>{{$key->codigo}}</center></th>
 							
 						<?php $i++;$t2++; ?>
 						@endif
+						@endforeach
 					@endforeach
 				@endforeach
 				<th colspan="3"><center>Descargar Boletín</center></th>
@@ -30,7 +32,8 @@
 					@foreach($asignaturas as $key)
 					<?php $k=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
-						@if($periodo->id==$key2[$k]->id_periodo and $key->id==$key2[$k]->id_asignatura)	
+					@foreach($personal->asignacion_a as $key4)
+						@if($periodo->id==$key2[$k]->id_periodo and $key->id==$key2[$k]->id_asignatura and $key4->pivot->id_asignatura==$key->id )	
 							@for($m=0;$m<$lapsos[$t];$m++)
 								<td>L{{$m+1}}</td>
 								<td>I</td>
@@ -38,6 +41,7 @@
 							
 						<?php $k++;$t++; ?>
 						@endif
+					@endforeach
 					@endforeach
 				@endforeach
 				<td>L1</td>
@@ -55,11 +59,13 @@
 					@foreach($asignaturas as $key3)
 						
 						@foreach($key3->boletin as $key2)
-							@if($key2->id_periodo==$periodo->id and $key2->id_datosBasicos==$key->id_datosBasicos)	
-								<th  style="font-size: 10px;">{{$key2->calificacion}}</th>
-								<th  style="font-size: 12px;">{{$key2->inasistencias}}</th>
-							
-							@endif
+							@foreach($personal->asignacion_a as $key4)
+								@if($key2->id_periodo==$periodo->id and $key2->id_datosBasicos==$key->id_datosBasicos and $key4->pivot->id_asignatura==$key3->id )	
+									<th  style="font-size: 10px;">{{$key2->calificacion}}</th>
+									<th  style="font-size: 12px;">{{$key2->inasistencias}}</th>
+								
+								@endif
+							@endforeach
 						@endforeach
 					@endforeach
 					<td>

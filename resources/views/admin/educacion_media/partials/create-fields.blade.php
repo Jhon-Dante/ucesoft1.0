@@ -15,7 +15,7 @@
 						<th style="font-size: 10px;">Apellido</th>
 						<th style="font-size: 10px;">Cédula</th>
 							@foreach($personal->asignacion_a as $key)
-							
+				 			
 								<th style="font-size: 10px;">{{$key->codigo}}</th>
 								<th style="font-size: 12px;">Inasis</th>
 								
