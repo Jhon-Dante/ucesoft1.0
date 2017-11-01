@@ -139,6 +139,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'boletinController@mostrar',
             'as' => 'admin.mostrarlapso_basica']);
 
+        Route::post('/editarlapso_basica',[
+            'uses' => 'boletinController@editar',
+            'as' => 'admin.editarlapso_basica']);
+
+        Route::post('/actualizarlapso_basica',[
+            'uses' => 'boletinController@actualizarlapso',
+            'as' => 'admin.actualizarlapso_basica']);
+
         Route::get('/mostrarlapso_media/{id_seccion}/{id_periodo}',[
             'uses' => 'MediaGeneralController@mostrar',
             'as' => 'admin.mostrarlapso_media']);
@@ -172,7 +180,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::resource('/calificaciones','CalificacionesController');
 
-    
+        Route::get('/auditoria',[
+            'uses' => 'HomeController@auditoria',
+            'as' => 'admin.personal.auditoria'
+        ]);
 
         // Route::get('/docente_basica/lapsos', function(){
         //     return View('admin.docente_basica.lapsos.index');

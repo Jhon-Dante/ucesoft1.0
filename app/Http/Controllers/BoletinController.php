@@ -477,11 +477,179 @@ class BoletinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function editar(Request $request)
+    {
+      $c=\Auth::user()->email;
+        $representante=Representantes::where('email',$c)->first();
+
+        if (count($representante) > 1) {
+            flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
+            return redirect()->back();
+        }else{
+            $clave=$request->password;
+            
+            $personal=Personal::all();
+
+            foreach ($personal as $key) {
+              foreach ($key->asignacion_s as $key2) {
+                if($key2->pivot->id_seccion == $request->id_seccion AND $key2->pivot->id_periodo == $request->id_periodo){
+                  $id_perso=$key2->pivot->id_personal;
+                }
+              }
+            }
+            $personal2=Personal::find($id_perso);
+            $email=$personal2->correo;
+            $usuario=User::where('email',$email)->first();
+            $validator=$usuario->password;
+
+
+            if (password_verify($clave, $validator)) {
+
+              $correo=\Auth::user()->email;
+              $personal=Personal::where('correo',$correo)->first();
+              $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
+              $seccion=Seccion::find($request->id_seccion);
+              $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+              $periodo=Periodos::find($request->id_periodo);
+
+
+              $boletin=Boletin::where('id_periodo',$request->id_periodo)->get();
+              
+              $k=0;
+              $i=0; 
+              $m=0;
+              $cont_lap1=0;
+              $cont_lap2=0;
+              $cont_lap3=0;
+              foreach ($asignaturas as $key) {
+              $p=0;
+              $i=$k;
+              
+                foreach ($key->boletin->groupBy('lapso') as $key2) {
+                    
+                    if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$request->id_periodo) {
+                      //dd(count($key2));
+                    $lap[$i]=$key2[0]->lapso;
+                      if($key2[0]->lapso==1){
+                        $cont_lap1++;
+                      }
+                      if($key2[0]->lapso==2){
+                        $cont_lap2++;
+                      }
+                      if($key2[0]->lapso==3){
+                        $cont_lap3++;
+                      }
+                    $i++; 
+                    $p++;   
+                    }
+                    
+                  }
+
+                  $k=$i;
+                  
+                  if($i>0 and $p>0){
+                    $j=$i-1;
+                    $lapsos[$m]=$lap[$j]; 
+                    $m++;             
+                  }
+         
+              }
+              //verificando si esta listo el lapso 1 para imprimir boletin
+             if ($cont_lap1==count($asignaturas)) {
+               $lapso1=1;
+             }else{
+               $lapso1=0;
+             }
+             //verificando si esta listo el lapso 2 para imprimir boletin
+             if ($cont_lap2==count($asignaturas)) {
+               $lapso2=1;
+             }else{
+               $lapso2=0;
+             }
+             //verificando si esta listo el lapso 3 para imprimir boletin
+             if ($cont_lap3==count($asignaturas)) {
+               $lapso3=1;
+             }else{
+               $lapso3=0;
+             }
+
+             $num=0;
+              return View('admin.educacion_basica.edit', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num','id_periodo'));
+
+
+
+            }else{
+                flash('¡CONTRASEÑA INCORRECTA!','danger');
+                return redirect()->back();
+            }
+        }//fin del else de comprobacion de usuario representante
+    }
     public function edit($id)
     {
         //
     }
 
+    public function actualizarlapso(Request $request)
+    {
+      //dd($request->all());
+      $boletin=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
+
+      $cuanto=count($request->id_asignatura);
+
+      if ($cuanto == 11) {
+        $lapso=1;
+        for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
+         $boletin->id_asignatura=$request->id_asignatura[$i];
+         $boletin->lapso=$lapso;
+         $boletin->inasistencias=$request->inasistencias[$i];
+         $boletin->calificacion=$request->calificacion[$i];
+         $boletin->id_datosBasicos=$request->id_datosBasicos;
+         $boletin->id_periodo=$request->id_periodo;
+         $boletin->save();
+
+
+
+        }
+
+        flash('ACTUALZIACIÓN DE NOTAS REALZIADA CON ÉXITO!','success');
+      }elseif($cuanto == 22){
+
+         $lapso=2;
+        for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
+         $boletin->id_asignatura=$request->id_asignatura[$i];
+         $boletin->lapso=$lapso;
+         $boletin->inasistencias=$request->inasistencias[$i];
+         $boletin->calificacion=$request->calificacion[$i];
+         $boletin->id_datosBasicos=$request->id_datosBasicos;
+         $boletin->id_periodo=$request->id_periodo;
+         $boletin->save();
+
+
+
+        }
+
+        flash('ACTUALZIACIÓN DE NOTAS REALZIADA CON ÉXITO!','success');
+      
+      }else{
+         $lapso=3;
+        for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
+         $boletin->id_asignatura=$request->id_asignatura[$i];
+         $boletin->lapso=$lapso;
+         $boletin->inasistencias=$request->inasistencias[$i];
+         $boletin->calificacion=$request->calificacion[$i];
+         $boletin->id_datosBasicos=$request->id_datosBasicos;
+         $boletin->id_periodo=$request->id_periodo;
+         $boletin->save();
+
+
+
+        }
+
+        flash('ACTUALZIACIÓN DE NOTAS REALZIADA CON ÉXITO!','success');
+
+      }
+      return redirect()->back();
+    }
     /**
      * Update the specified resource in storage.
      *

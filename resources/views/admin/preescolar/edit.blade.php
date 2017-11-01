@@ -26,14 +26,16 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Actualización de juicios y sugerencias del estudiante
+							<div class="panel-heading">Actualización de juicios y sugerencias del estudiante</strong>
  				
 							</div>
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.editamomento'], 'method' => 'put']) !!}
+								{!! Form::open(['route' => ['admin.editamomento'], 'method' => 'post']) !!}
                 
-					                 @include('admin.preescolar.partials.edit-fields')
+					                @include('admin.preescolar.partials.edit-fields')
+					                <input type="hidden" name="id_datosBasicos" value="{{$inscrito->datosBasicos->id}}">
+					                <input type="hidden" name="id_periodo" value="{{$periodo->id}}">
 					                <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
 					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/preescolar')}}"><i class="fa fa-times"></i> Cancelar</a>
@@ -46,5 +48,18 @@
 				</div>
 			
 		</section>
+
+
+		
 </div><!-- /.content-wrapper -->
+
 @endsection
+<script type="text/javascript">
+
+        function contraseña(id_datosBasicos,id_seccion,id_periodo){
+
+            $('#id_datosBasicos').val(id_datosBasicos);
+            $('#id_seccion').val(id_seccion);
+            $('#id_periodo').val(id_periodo);
+        }
+      </script>

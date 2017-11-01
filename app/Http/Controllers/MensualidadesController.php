@@ -254,6 +254,16 @@ class MensualidadesController extends Controller
      */
     public function destroy(Request $request)
     {
+
+
+        $buscar_mens=Mensualidades::find($request->id_mensualidad2);
+        $estudiante=$buscar_mens->inscripcion->datosbasicos->nombres." ".$buscar_mens->inscripcion->datosbasicos->apellidos;
+        $cedula=$buscar_mens->inscripcion->datosbasicos->nacionalidad.".- ".$buscar_mens->inscripcion->datosbasicos->cedula;
+        //buscando el ultimo monto registrado para ese mes
+        $pagos=$buscar_mens->pagos->meses->mes;
+        $mes=$pagos;
+
+
         $mensualidad=Mensualidades::find($request->id_mensualidad2);
 
         $mensualidad->estado="Sin Pagar";
@@ -262,15 +272,26 @@ class MensualidadesController extends Controller
 
         $mensualidad->save();
 
-        flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!','success');
+        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        //dd($destinatario);
+        $asunto="Confirmación de estado de mensualidad";
+        $contenido="PAGO DE MENSUALIDAD COLOCADA COMO SIN PAGAR!";
+        $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
+
+        $r=Mail::send('admin.mensualidades.sinpagar_correo', $data, function ($message) use ($asunto,$destinatario){
+            //$message->from('colegiourdanetacampoelias@gmail.com');
+        
+            $message->to($destinatario)->subject($asunto);
+        });
+        if ($r) {
+           flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
+        } else {
+           flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
+        }
+        
+        
 
         return redirect()->route('admin.mensualidades.index');
-
-
-
-
-
-
         
     }
 }

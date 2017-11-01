@@ -47,7 +47,7 @@ class PreescolarController extends Controller
                 //buscando si existen estudiantes inscritos en la seccion asignada al personal
                 if ($key2->id_seccion==$key->id_seccion and $key2->id_periodo==$key->id_periodo) {
                     //buscando si a esos estudiantes se les ha cargado calificacion
-                    foreach ($calificaciones->groupBy('nro_reporte') as $key3) {
+                    foreach ($calificaciones->groupBy('nro_reportes') as $key3) {
                         if ($key3[0]->nro_reportes==1) {
                             $reporte1=1;
                         }
@@ -453,12 +453,26 @@ class PreescolarController extends Controller
 
             if (password_verify($clave, $validator)) {
 
+                
+                $reportes2=Calificaciones::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$request->id_datosBasicos)->groupBy('nro_reportes')->get();
+
+                $momento1=Calificaciones::where('id_periodo',$request->id_periodo)->where('nro_reportes',1)->get();
+                $momento2=Calificaciones::where('id_periodo',$request->id_periodo)->where('nro_reportes',2)->get();
+                $momento3=Calificaciones::where('id_periodo',$request->id_periodo)->where('nro_reportes',3)->get();
+                
+                $reportes=Calificaciones::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$request->id_datosBasicos)->get();
+
+                //dd(count($momento1),count($momento2),count($reportes2));
+
+                $reportes2=Calificaciones::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$request->id_datosBasicos)->groupBy('nro_reportes')->get();
                 $periodo=Periodos::find($request->id_periodo);
                 $estudiante=DatosBasicos::find($request->id_datosBasicos);
-                $inscripcion=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->first();
+                $inscrito=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->first();
                 $calificaciones=Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
+                $n=0;
 
-                return View('admin.preescolar.edit', compact('periodo','estudiante','inscripcion','Calificaciones'));
+                //dd(count($inscrito));
+                return View('admin.preescolar.edit', compact('lapso','reportes','periodo','estudiante','inscrito','Calificaciones','reportes2','n','mensaje'));
             }else{
                 flash('¡CONTRASEÑA INCORRECTA!','danger');
                 return redirect()->back();
@@ -466,9 +480,9 @@ class PreescolarController extends Controller
         }//fin del else de comprobacion de usuario representante
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

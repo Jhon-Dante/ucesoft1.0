@@ -70,7 +70,7 @@
                     
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(1,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
 
-                  @elseif($reporte1==1 and $reporte2==0)
+                  @elseif($reporte1>0 and $reporte2==0)
 
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(2,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
 

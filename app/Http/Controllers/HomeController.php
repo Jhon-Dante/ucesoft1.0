@@ -15,6 +15,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Session;
 use App\Representantes;
+use App\Auditoria;
 
 /**
  * Class HomeController
@@ -81,5 +82,12 @@ class HomeController extends Controller
         
         
         return view('home', compact('mensualidades','datosBasicos','inscripcion','preinscripcion','num'));
+    }
+
+
+    public function auditoria()
+    {
+        $auditoria=Auditoria::all();
+        return View('admin.personal.auditoria', compact('auditoria'));
     }
 }

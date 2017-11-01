@@ -15,6 +15,11 @@ class User extends Authenticatable
         'name', 'email', 'password', 'pregunta', 'respuesta', 'roles_id','foto'
     ];
 
+        public function auditoria()
+        {
+            return $this->HasMany('App\Auditoria','id_user','id');
+        }
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -23,6 +23,8 @@ use App\Inscripcion;
 use App\Mensualidades;
 use App\AsignaturasPendientes;
 use App\User;
+use App\Calificaciones;
+use App\Boletin;
 use App\Pagos;
 use Session;
 
@@ -266,12 +268,162 @@ class DatosBasicosController extends Controller
                         if(count($eli_preinscripcion)>0)
                         {
                             $eli_preinscripcion->delete();
+
+
+                            $seccion=Seccion::find($request->id_seccion);
+
+                     if ($seccion->curso->id == 1) 
+                     {
+                       $buscaCalificaciones=Calificaciones::where('id_periodo',$request->id_periodo)->groupBy('nro_reportes')->get();
+                       //dd('1',count($buscaCalificaciones));
+                       if (count($buscaCalificaciones)==1){
+
+                            $calificaciones=Calificaciones::create([
+                                'nro_reportes' => 1,
+                                'juicios' => 'Vacío',
+                                'sugerencia' => 'Vacío',
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);
+                       }elseif(count($buscaCalificaciones)==2){
+
+                            $calificaciones=Calificaciones::create([
+                                'nro_reportes' => 1,
+                                'juicios' => 'Vacío',
+                                'sugerencia' => 'Vacío',
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);
+
+                            $calificaciones=Calificaciones::create([
+                                'nro_reportes' => 2,
+                                'juicios' => 'Vacío',
+                                'sugerencia' => 'Vacío',
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);
+                       }
+
+                     }elseif($seccion->curso->id >= 1 AND $seccion->curso->id <= 7){
+                        dd('basica');
+                        $inscripcion=Inscripcion::where('id_periodo',$request->id_periodo)->where('id_seccion',$request->id_seccion)->first();
+                        $estu=$inscripcion->datosBasicos->id;
+                        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+                        $buscaNotas=Boletin::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$estu)->groupBy('lapso')->get();
+
+                        if (count($buscaNotas)==1){
+
+                        for ($i=0; $i < count($asignaturas); $i++) { 
+                            
+                            $calificaciones=Boletin::create([
+                                'id_asignatura' => $asignaturas[$i]->id,
+                                'lapso' => 1,
+                                'inasistencias' => 0,
+                                'calificacion' => 'E',
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);  
+                        }
+                       }elseif(count($buscaNotas)==2){
+
+                            for ($i=0; $i < count($asignaturas); $i++) { 
+                            
+                                $calificaciones=Boletin::create([
+                                    'id_asignatura' => $asignaturas[$i]->id,
+                                    'lapso' => 1,
+                                    'inasistencias' => 0,
+                                    'calificacion' => 'E',
+                                    'id_datosBasicos' => $request->id_datosBasicos,
+                                    'id_periodo' => $request->id_periodo
+                                ]);
+                           
+                            }
+                            for ($i=0; $i < count($asignaturas); $i++) { 
+                            
+                            $calificaciones=Boletin::create([
+                                'id_asignatura' => $asignaturas[$i]->id,
+                                'lapso' => 2,
+                                'inasistencias' => 0,
+                                'calificacion' => 'E',
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);
+                           
+                            }
+
+                        }
+
+                     }elseif($seccion->curso->id > 7){
+                        //dd('media');
+                        $inscripcion=Inscripcion::where('id_periodo',$request->id_periodo)->where('id_seccion',$request->id_seccion)->first();
+                        $estu=$inscripcion->datosBasicos->id;
+                        $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+                        $buscaNotas=Boletin::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$estu)->groupBy('lapso')->get();
+
+                        if (count($buscaNotas)==1){
+
+                        for ($i=0; $i < count($asignaturas); $i++) { 
+                            
+                            $calificaciones=Boletin::create([
+                                'id_asignatura' => $asignaturas[$i]->id,
+                                'lapso' => 1,
+                                'inasistencias' => 0,
+                                'calificacion' => 1,
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);  
+                        }
+                       }elseif(count($buscaNotas)==2){
+
+                            for ($i=0; $i < count($asignaturas); $i++) { 
+                            
+                                $calificaciones=Boletin::create([
+                                    'id_asignatura' => $asignaturas[$i]->id,
+                                    'lapso' => 1,
+                                    'inasistencias' => 0,
+                                    'calificacion' => 1,
+                                    'id_datosBasicos' => $request->id_datosBasicos,
+                                    'id_periodo' => $request->id_periodo
+                                ]);
+                           
+                            }
+                            for ($i=0; $i < count($asignaturas); $i++) { 
+                            
+                            $calificaciones=Boletin::create([
+                                'id_asignatura' => $asignaturas[$i]->id,
+                                'lapso' => 2,
+                                'inasistencias' => 0,
+                                'calificacion' => 1,
+                                'id_datosBasicos' => $request->id_datosBasicos,
+                                'id_periodo' => $request->id_periodo
+                            ]);
+                           
+                            }
+
+
+
+                     }else{
+                            flash('ERROR EN EL PROCESO, INTÉNTELO DENUEVO!','danger');
+                            return redirect()->back();
+                        }
+
+
+
+                     }
+                 
+
+
+
+
+
                             flash('SE HA REGISTRADO LA REINSCRIPCCIÓN DEL ESTUDIANTE CON ÉXITO!','success');
                         }
                         else
                         {
                             flash('REINSCRIPCCIÓN NO EXITOSA!','danger');
                         }
+
+
                     }
                     
                 }
@@ -288,7 +440,7 @@ class DatosBasicosController extends Controller
      */
     public function store(DatosBasicosRequest $request)
     {
-        dd($request->all());
+        //dd($request->all());
         //primero verificar los checkbox de Academicos
         if ($request->pendiente=="Si" and count($request->id_asignatura)==0) {
             flash('HA SELECCIONADO QUE EL ESTUDIANTE TIENE ASIGNATURA(S) PENDIENTE(S) Y NO A SELECCIONADO LA(S) ASIGNATURA(S) QUE TIENE PENDIENTE!','warning');

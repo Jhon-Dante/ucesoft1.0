@@ -19,6 +19,7 @@ class PersonalController extends Controller
      */
     public function index()
     {
+
         $num=0;
         $personal=Personal::all();
         $cargo=Cargos::lists('id','cargo');
@@ -84,16 +85,34 @@ class PersonalController extends Controller
                 $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
                 $usuario=User::where('name',$request->nombres)->get()->first();
 
+                $contraseña=rand(100000000,1000000000);
+
                 if(count($usuario) == 0){
                     $crear=\DB::table('users')->insert(array(
                         'name'          => $request->nombres,
                         'email'         => $request->correo,
-                        'password'      => bcrypt('qwerty'),
+                        'password'      => bcrypt($contraseña),
                         'tipo_user'     => $cargo->cargo
                     ));
                 }
 
-            flash('Personal registrado con éxito','success');
+                $destinatario=$request->correo;
+                //dd($destinatario);
+                $asunto="Confirmación de personal en el sistema";
+                $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña.;
+                $data=array("contenido"=> $contenido,"personal" => $request->nombres);
+
+                $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
+                    //$message->from('colegiourdanetacampoelias@gmail.com');
+                
+                    $message->to($destinatario)->subject($asunto);
+                });
+                if ($r) {
+                   flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
+                } else {
+                   flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
+                }
+
 
             return redirect()->route('admin.personal.index');
         }

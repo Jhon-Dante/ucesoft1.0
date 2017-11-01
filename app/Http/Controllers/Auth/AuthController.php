@@ -11,6 +11,7 @@ use Redirect;
 use Session;
 use App\Periodos;
 use App\DatosBasicos;
+use App\Auditoria;
 
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,14 @@ class AuthController extends Controller
                 Session::flash('message', 'Bienvenido');
                 Session::put('periodoNombre', $nombrePeriodo->periodo);
                 Session::put('periodo', $request['periodos']);
+
+
+                $user=User::where('email',$request['email'])->first();
+                $auditoria=Auditoria::create([
+                    'id_user' => $user->id,
+                    'accion' => 'Ingresa al sistema',
+                ]);
+
                 return Redirect::to('/home');
             }
             else{
