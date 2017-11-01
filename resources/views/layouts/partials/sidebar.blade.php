@@ -12,7 +12,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->tipo_user }}</a>
+                     <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->tipo_user }}</a>
                      <!-- {{ trans('adminlte_lang::message.online') }} -->
                 </div>
             </div>

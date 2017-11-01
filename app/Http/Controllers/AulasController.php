@@ -10,7 +10,7 @@ use Session;
 use Auth;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Auditoria;
 class AulasController extends Controller
 {
     
@@ -21,6 +21,8 @@ class AulasController extends Controller
      */
     public function index()
     {
+        $accion ='Visualización de listado de Asignaturas registradas';
+        $this->auditoria($accion);
         $num=0;
         $aula = Aula::all();
         return view('admin.aulas.index', compact('num','aula'));
@@ -89,7 +91,8 @@ class AulasController extends Controller
         $aula = Aula::find($id);
         $aula->nombre = strtoupper($request['nombre']);
         $aula->save();
-
+        $accion ='Aula '.$aula->nombre.' actualizada';
+        $this->auditoria($accion);
         Session::flash('message', 'AULA EDITADA CORRECTAMENTE.');
         $num=0;
         $aula = Aula::all();
@@ -105,9 +108,10 @@ class AulasController extends Controller
     public function destroy(Request $request)
     {
         $aula = Aula::find($request->id);
-
+        $nombre=$aula->nombre;
         if($aula->asignacion_b()->exists()){
-
+            $accion ='No se pudo eliminar el aula '.$nombre.'';
+            $this->auditoria($accion);
             Session::flash('message-error', 'DISCULPE ESTA AULA YA SE ENCUENTRA ASIGNADA EN UN HORARIO.');
 
             return redirect()->back();
@@ -115,10 +119,19 @@ class AulasController extends Controller
         } else {
 
             $aula->delete();
-
+            $accion ='Eliminación del aula '.$nombre.'';
+            $this->auditoria($accion);
             Session::flash('message', 'SE HA ELIMINADO EL AULA '.$aula->nombre.' EXITOSAMENTE.');
 
             return redirect()->back();
         }
+    }
+
+     private function auditoria($accion)
+    {
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }

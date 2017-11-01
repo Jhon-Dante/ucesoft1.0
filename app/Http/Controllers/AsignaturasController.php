@@ -9,10 +9,11 @@ use App\Cursos;
 use Laracasts\Flash\flash;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\AsignaturasRequest;
-use Validator;
-
+use Validator;    
+use App\Auditoria;
 class AsignaturasController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +21,9 @@ class AsignaturasController extends Controller
      */
     public function index()
     {
+        
+        $accion ='Visualización de listado de Asignaturas registradas';
+        $this->auditoria($accion);
         $a=0;
         $num=0;
         $asignaturas=Asignaturas::all();
@@ -52,10 +56,17 @@ class AsignaturasController extends Controller
                 'asignatura' => $request->asignatura,
                 'id_curso' => $request->id_curso
                 ]);
+            //registrando en auditoria
+            $accion = 'Registro de la Asignatura '.$request->asignatura.' en el curso '.$request->curso.'';
+
             flash('ASIGNATURA '.$request->asignatura.' EN EL CURSO '.$request->curso.' HAN SIDO REGISTRADOS CON ÉXITO!', 'success');
         } else {
-            flash('DISCULPE, LA ASIGNATURA '.$request->asignatura.' EN EL CURSO '.$request->curso.' YA SE ENCUENTRA ACTUALMENTE REGISTRADOS!','warning');
+
+            //registrando en auditoria
+            $accion='Falla en el registro de la Asignatura '.$request->asignatura.' en el curso '.$request->curso.'';
+            flash('DISCULPE, LA ASIGNATURA '.$request->asignatura.' EN EL CURSO '.$request->curso.' YA SE ENCUENTRA ACTUALMENTE REGISTRADO!','warning');
         }
+        $this->auditoria($accion);
         $num=0;
         $asignaturas=Asignaturas::all();
         return redirect()->route('admin.asignaturas.index', compact('asignaturas','num'));
@@ -105,11 +116,15 @@ class AsignaturasController extends Controller
             $asignaturas->asignatura=$request->asignatura;
             $asignaturas->id_curso=$request->id_curso;
             $asignaturas->update();
-
-            flash('REGISTRO EDITADO CON ÉXITO','success');
+            //registrando en auditoria
+            $accion = 'Actualización de la Asignatura '.$request->asignatura.'';
+            flash('REGISTRO ACTUALIZADO CON ÉXITO','success');
         } else {
-            flash('REGISTRO NO EDITADO','warning');
+                       
+            $accion = 'Falla en la Actualización de la Asignatura '.$request->asignatura.'';
+            flash('REGISTRO NO ACTUALIZADO','warning');
         }
+        $this->auditoria($accion);
 
         return redirect()->route('admin.asignaturas.index');
 
@@ -127,17 +142,32 @@ class AsignaturasController extends Controller
         $asignaturas=Asignaturas::find($request->id);
 
         if ($asignaturas->cursos()->exists()) {
+             
+            $accion="Falla en la eliminación de la asignatura";
+           
             flash('EXISTEN CURSOS ASIGNADOS A ESTA MATERIA, NO SE PUEDE ELIMINAR! ELIMINE EL CURSO PRIMERO', 'warning');
         } else {
             $x=$asignaturas->asignatura;
             if($asignaturas->delete()){
+                 $accion="Eliminación de la asignatura ".$request->asignatura;
                 flash('REGISTRO DE ASIGNATURA '.$request->asignatura.' ELIMINADO CON ÉXITO!', 'success');
             }else{
+                $accion="No se pudo eliminar la asignatura ".$request->asignatura;
                 flash('REGISTRO NO ELIMINADO!','warning');
 
             }
         }
+        //registrando en auditoria
+         $this->auditoria($accion);
         return redirect()->route('admin.asignaturas.index');
         
+    }
+
+    private function auditoria($accion)
+    {
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }

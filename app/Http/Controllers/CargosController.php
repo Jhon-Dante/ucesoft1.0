@@ -10,7 +10,7 @@ use Auth;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CargosRequest;
-
+use App\Auditoria;
 class CargosController extends Controller
 {
   

@@ -57,6 +57,8 @@ class TruncateTables extends Seeder
     	DB::select('TRUNCATE tipo_empleado');
     	DB::select('TRUNCATE totales');
     	DB::select('TRUNCATE users');
+        DB::select('TRUNCATE remediales');
+        DB::select('TRUNCATE auditoria');
     	DB::select('SET FOREIGN_KEY_CHECKS=1');
     	 }
 }
