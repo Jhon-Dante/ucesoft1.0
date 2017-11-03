@@ -9,6 +9,8 @@ use App\Cargos;
 use Laracast\Flash\Flash;
 use App\Http\Requests\PersonalRequest;
 use App\User;
+use App\Session;
+use Mail;
 
 class PersonalController extends Controller
 {
@@ -24,6 +26,7 @@ class PersonalController extends Controller
         $personal=Personal::all();
         $cargo=Cargos::lists('id','cargo');
         return View('admin.personal.index', compact('personal','cargo','num'));
+        $contraseña=0;
     }
 
     /**
@@ -85,7 +88,7 @@ class PersonalController extends Controller
                 $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
                 $usuario=User::where('name',$request->nombres)->get()->first();
 
-                $contraseña=rand(100000000,1000000000);
+                 $contraseña=rand(100000000,1000000000);
 
                 if(count($usuario) == 0){
                     $crear=\DB::table('users')->insert(array(
@@ -96,25 +99,29 @@ class PersonalController extends Controller
                     ));
                 }
 
-                $destinatario=$request->correo;
-                //dd($destinatario);
-                $asunto="Confirmación de personal en el sistema";
-                $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña.;
-                $data=array("contenido"=> $contenido,"personal" => $request->nombres);
+                // $destinatario=$request->correo;
+                // //dd($destinatario);
+                // $asunto="Confirmación de personal en el sistema";
+                // $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+                // $data=array("contenido"=> $contenido,"personal" => $request->nombres);
 
-                $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
-                    //$message->from('colegiourdanetacampoelias@gmail.com');
+                // $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
+                //     //$message->from('colegiourdanetacampoelias@gmail.com');
                 
-                    $message->to($destinatario)->subject($asunto);
-                });
-                if ($r) {
-                   flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
-                } else {
-                   flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
-                }
+                //     $message->to($destinatario)->subject($asunto);
+                // });
+                // if ($r==true) {
+                //    flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
+                // } else {
+                //    flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
+                // }
+                flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
+                echo $contraseña;
 
-
-            return redirect()->route('admin.personal.index');
+        $num=0;
+        $personal=Personal::all();
+        $cargo=Cargos::lists('id','cargo');
+        return View('admin.personal.index', compact('personal','cargo','num','contraseña'));
         }
         
     }

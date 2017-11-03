@@ -1,113 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title></title>
-	<style type="text/css">
-		table{
-			border:1px solid #;
-		}
-		tr{
-			border:1px solid #;
-		}
-		td{
-			text-align: center;
-		}
+<table align="center">
+	<tr>
+		<td>
+			<img src="..\public\img\escudo.png">
+		</td>
+		<td>
+			<center>República Bolivariana de Venezuela</center>
+			<center>Ministerio del Poder Popular para la Educación</center>
+			<center>Unidad Educativa Colegio "Urdaneta y Campo Elías"</center>
+			<center>COD. DEA. PD09110505- COD. ADMIN.. 51660- RIF V-03376811-3</center>
+			<center>LA VICTORIA- ESTADO ARAGUA TELF. 02448080090-9712341</center>
+		</td>
+		<td>
+			<img src="..\public\img\escudo.png">
+		</td>
+	</tr>
+</table>
 
-	</style>
-</head>
-<body>
-	<div style="overflow: scroll;">
-	<div class="form-group">
-		<table>
-			<thead>
-				<tr>
-						<th>Nombre</th>
-						<th>Apellidos</th>
-						<th>Cédula</th>
-						<th>Curso</th>
-						<th>Sección</th>
-						<th>Periodo</th>
-				</tr>
-			</thead>
-			<br>
-			<tbody>
-				<tr align="center">
-					@foreach($inscritos as $inscri)
-						@if($inscri->datosBasicos->id == $id_datosBasicos)
-							<td>{{$inscri->datosBasicos->nombres}}</td>
-							<td>{{$inscri->datosBasicos->apellidos}}</td>
-							<td>{{$inscri->datosBasicos->nacionalidad}}.-{{$inscri->datosBasicos->cedula}}</td>
-							<td>{{$inscri->seccion->curso->curso}}</td>
-							<td>{{$inscri->seccion->seccion}}</td>
-							<td>{{$periodos->periodo}}</td>
-						@endif
+
+<section>
+	<table>
+						<tr>
+							<td>{{$inscripcion->datosBasicos->nombres}}</td>
+							<td>{{$inscripcion->datosBasicos->apellidos}}</td>
+							<td>{{$inscripcion->datosBasicos->nacionalidad}}.-</td>
+							<td>{{$inscripcion->datosBasicos->cedula}}</td>
+							<td><strong>{{$inscripcion->seccion->curso->curso}}</strong></td>
+							<td>{{$inscripcion->seccion->seccion}}</td>
+							<td>{{$inscripcion->periodo->periodo}}</td>
+						</tr>
+	</table>
+	 <br>
+<section>
+	<table width="100%" border="1">
+		<tr>
+			<td>
+				<h4>Primer Reporte Globalizado</h4>
+					@foreach($l1 as $key)
+						<p>{{$key->juicios}}</p>
 					@endforeach
-
-				</tr>
-			</tbody>
-		</table>
-
-		<div class="row">
-
-				<table id="example1" class="table table-bordered table-striped" align="center" width="100%">
-					<thead>
-						<tr>
-
-							@foreach($reportes2->groupBy('nro_reportes') as $key)
-
-								<td colspan="2" align="center"><strong>Momento {{$n=$n+1}} </strong></td>
-
-							@endforeach
-						</tr>
-						<tr>
-								@foreach($reportes2 as $key)
-											<th>Juicio</th>
-											<th>Sugerencias</th>
-								@endforeach
-							
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($inscritos as $inscri)
-							@if($inscri->datosBasicos->id == $id_datosBasicos)
-								<tr>
-									
-
-									@foreach($reportes as $c)
-										@if($c->id_periodo == $periodos->id and $c->id_datosBasicos == $inscri->datosBasicos->id)
-											<td align="center">{{$c->juicios}}</td>
-											<td align="center">{{$c->sugerencia}}</td>
-										@endif
-									@endforeach
-								</tr>
-							@endif
-						@endforeach
-					</tbody>
-				</table>
-
-		</div>
+			</td>
+			<td>
+				<h4>Segundo Reporte Globalizado</h4>
+					@foreach($l2 as $key2)
+						<p>{{$key2->juicios}}</p>
+					@endforeach
+			</td>
+			<td>
+				<h4>Tercer Reporte Globalizado</h4>
+					@foreach($l3 as $key3)
+						<p>{{$key3->juicios}}</p>
+					@endforeach
+			</td>
+		</tr>
 
 
-	</div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<footer>
-		<table align="center" width="100%">
-			<thead>
-				<tr>
-					<th>_________________________________</th>
-					<th>_________________________________</th>
-					<th>_________________________________</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Firma del profesor encargado</td>
-					<td>Sello de la institución</td>
-					<td>Firma del director</td>
-				</tr>
-			</tbody>
-		</table>
-</body>
-</html>
+
+
+	</table>
+		
+		<br>
+	<table width="100%" align="center" border="1">
+		<tr>
+			<td>
+				<b>Primer Lapso</b>
+				<p>Firma del representante:    Firma del Prof. Guía
+					<br>
+				__________________    _______________________
+				Cédula: <u>{{$representante->nacionalidad}}.-{{$representante->cedula}}</u> Fecha:_____________</p>
+			</td>
+			<td>
+				<b>Segundo Lapso</b>
+
+				<p>Firma del representante:    Firma del Prof. Guía
+					<br>
+				__________________    _______________________
+				Cédula: <u>{{$representante->nacionalidad}}.-{{$representante->cedula}}</u> Fecha:_____________</p>
+			</td>
+			<td>
+				<b>Tercer Lapso</b>
+				<p>Firma del representante:    Firma del Prof. Guía
+					<br>
+				__________________    _______________________
+				Cédula: <u>{{$representante->nacionalidad}}.-{{$representante->cedula}}</u> Fecha:_____________</p>
+			</td>
+		</tr>
+	</table>
+	</section>
+</section>

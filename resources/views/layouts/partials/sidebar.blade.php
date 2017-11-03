@@ -40,6 +40,7 @@
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
                     <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a>
+                    <li><a href=" {{ url('admin/constancia')          }}">Constancia de estudios</a></li>
                     </li>
                     
 
@@ -111,13 +112,14 @@
                 <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <!-- <li><a href=" {{ url('admin/cursos')        }} ">Cursos         </a></li> -->
-                    <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
-                    <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
                     <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
-                    <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
+                    <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      </a></li>
+                    <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
                     <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
                     <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
-                    <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      <a/></li>
+                    <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
+                    <!-- <li><a href=" {{ url('admin/respaldo')      }} ">Respaldar BD   </a></li> -->
+                    <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
 
                     
                     

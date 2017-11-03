@@ -731,6 +731,33 @@ class DatosBasicosController extends Controller
         //
     }
 
+    public function constancia(Request $request)
+    {
+        $periodo=Periodos::where('status','Activo')->first();
+        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+
+        return View('admin.datosBasicos.constancia', compact('inscripcion','periodo'));
+    }
+
+    public function mostrarConstancia(Request $request)
+    {
+        $inscripcion=Inscripcion::find($request->id_estudiante);
+        $año=date('Y');
+        $periodo=Periodos::where('status','Activo')->first();
+        $edu=0;
+        $mensualidades=Mensualidades::where('id_datosBasicos',$inscripcion->id_datosBasicos)->where('id_periodo',$periodo->id)->where('estado','Cancelado');
+
+        if ($inscripcion->seccion->curso->curso <= 7) {
+            $edu="Básica";
+        }else{
+            $edu="Media";
+        }
+        //dd($request->all());
+        $dompdf = \PDF::loadView('admin.pdfs.constancia.estudios', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'edu' => $edu, 'mensualidades' => $mensualidades]);
+
+                    return $dompdf->stream();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

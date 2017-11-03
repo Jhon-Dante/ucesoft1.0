@@ -56,7 +56,7 @@
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->nombres}}</a></td>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->apellidos}}</a></td>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$representante->nacionalidad}} - {{$representante->cedula}}</a></td>
-
+                  <td>
                   <div class="btn-group">
 
                       <a href="#"><button onclick="mostrardatos(

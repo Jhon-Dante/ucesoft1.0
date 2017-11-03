@@ -183,6 +183,18 @@
       </div>
     </div>
   </div>
+
+
+  <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <ul>
+            {{$mensajeError}}
+        </ul>
+    </div>
+
+
 </div>
 
    <script type="text/javascript">

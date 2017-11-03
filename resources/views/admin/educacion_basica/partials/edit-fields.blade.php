@@ -57,7 +57,7 @@
 								<th  style="font-size: 10px;">
 									<input type="hidden" name="id_asignatura[]" value="{{$key2->id_asignatura}}">
 									{{$key2->calificacion}}{!! Form::select('calificacion[]',['A', 'B', 'C', 'D', 'E'], $key2->calificacion,[]) !!}
-									
+									<input type="hidden" name="id[]" value="{{$key2->id}}">
 									<input type="hidden" name="id_periodo" value="{{$key2->id_periodo}}">
 									<input type="hidden" name="id_datosBasicos" value="{{$key2->id_datosBasicos}}">
 								</th>

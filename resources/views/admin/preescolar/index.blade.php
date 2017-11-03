@@ -70,7 +70,7 @@
                     
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(1,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
 
-                  @elseif($reporte1>0 and $reporte2==0)
+                  @elseif($reporte1==1 AND $reporte2==0 and $reporte3==0)
 
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(2,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
 
@@ -78,14 +78,16 @@
                       <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
                       </a>
-                  @elseif($reporte2==1 and $reporte3==0)
-                          <button data-toggle="modal" data-target="#myModal" onclick="cursos(3,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                  @elseif($reporte1==1 AND $reporte2==1 and $reporte3==0)
+                          <button data-toggle="modal" data-target="#myModal" onclick="cursos(3,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
 
                           <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>
                           </a>
                   @else
-                    <a href="#"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+                    <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                          <button class="btn btn-success btn-flat"><i class="fa fa-eye"></i></button>
+                          </a>
 
 
                   @endif

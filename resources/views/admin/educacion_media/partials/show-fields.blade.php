@@ -24,7 +24,7 @@
 						@endforeach
 					@endforeach
 				@endforeach
-				<th colspan="3"><center>Descargar Boletín</center></th>
+				<th colspan="3"><center>Opciones</center></th>
 				</tr>
 				<tr >
 					<td colspan="4" rowspan="2"></td>
@@ -70,7 +70,9 @@
 					@endforeach
 					<td>
 
-						<a href="{{ route('admin.media_general.pdf2', ['id_datosBasicos' => $key->id_datosBasicos, 'id_seccion' => $seccion->id, 'id_periodo' => $periodo->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+						@if($lapso1==1)
+						<button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->datosBasicos->id}}','{{$key->seccion->id}}','{{$key->periodo->id}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
+						@endif
 
 					</td>
 					<td>@if($lapso1==2) PDF @endif</td>

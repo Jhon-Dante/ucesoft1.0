@@ -279,10 +279,11 @@ class BoletinController extends Controller
     }
     public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
     {
-        
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
+
         $representante=Representantes::where('email',$correo)->first();
+
         $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->get();
         $inscripcion2=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
         $seccion=Seccion::find($id_seccion);
@@ -291,12 +292,12 @@ class BoletinController extends Controller
         $mensualidades=Mensualidades::where('id_inscripcion',$inscripcion2->id)->where('estado','Cancelado')->get();
         
         $boletin=Boletin::where('id_periodo',$id_periodo)->get();
-        $boletin2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
+        $boletin2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->orderBy('id_asignatura')->get();
 
 
-        $lapso1=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',1)->first();
-        $lapso2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',2)->first();
-        $lapso3=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',3)->first();
+        $lapso1=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',1)->get();
+        $lapso2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',2)->get();
+        $lapso3=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',3)->get();
 
         
         if (count($boletin2) == 0) {
@@ -384,8 +385,15 @@ class BoletinController extends Controller
                          $lapso3=0;
                        }
                     }
+
+                    $l1=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',1)->get();
+                    $l2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',2)->get();
+                    $l3=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',3)->get();
                    $num=0;
-                    $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+                   $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
+
+                   
+                    $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
                     return $dompdf->stream();
 
@@ -592,63 +600,18 @@ class BoletinController extends Controller
     public function actualizarlapso(Request $request)
     {
       //dd($request->all());
-      $boletin=Boletin::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
-
-      $cuanto=count($request->id_asignatura);
-
-      if ($cuanto == 11) {
-        $lapso=1;
-        for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
-         $boletin->id_asignatura=$request->id_asignatura[$i];
-         $boletin->lapso=$lapso;
-         $boletin->inasistencias=$request->inasistencias[$i];
-         $boletin->calificacion=$request->calificacion[$i];
-         $boletin->id_datosBasicos=$request->id_datosBasicos;
-         $boletin->id_periodo=$request->id_periodo;
-         $boletin->save();
 
 
-
-        }
-
-        flash('ACTUALZIACIÓN DE NOTAS REALZIADA CON ÉXITO!','success');
-      }elseif($cuanto == 22){
-
-         $lapso=2;
-        for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
-         $boletin->id_asignatura=$request->id_asignatura[$i];
-         $boletin->lapso=$lapso;
-         $boletin->inasistencias=$request->inasistencias[$i];
-         $boletin->calificacion=$request->calificacion[$i];
-         $boletin->id_datosBasicos=$request->id_datosBasicos;
-         $boletin->id_periodo=$request->id_periodo;
-         $boletin->save();
-
-
-
-        }
-
-        flash('ACTUALZIACIÓN DE NOTAS REALZIADA CON ÉXITO!','success');
+       $datoBasico=DatosBasicos::find($request->id_datosBasicos);
+            for ($i=0; $i < count($request->id_asignatura) ; $i++) {
+                $lapso=Boletin::find($request->id[$i]);
+                $lapso->inasistencias = $request->inasistencias[$i];
+                $lapso->calificacion = $request->calificacion[$i];
+                $lapso->save();
+            }
+        flash('NOTAS DEL ESTUDIANTE '.$datoBasico->nombres.' EDITADO CON ÉXITO!', 'success');
+        return redirect()->route('admin.educacion_basica.index');
       
-      }else{
-         $lapso=3;
-        for ($i=0; $i < count($request->id_asignatura) ; $i++) { 
-         $boletin->id_asignatura=$request->id_asignatura[$i];
-         $boletin->lapso=$lapso;
-         $boletin->inasistencias=$request->inasistencias[$i];
-         $boletin->calificacion=$request->calificacion[$i];
-         $boletin->id_datosBasicos=$request->id_datosBasicos;
-         $boletin->id_periodo=$request->id_periodo;
-         $boletin->save();
-
-
-
-        }
-
-        flash('ACTUALZIACIÓN DE NOTAS REALZIADA CON ÉXITO!','success');
-
-      }
-      return redirect()->back();
     }
     /**
      * Update the specified resource in storage.

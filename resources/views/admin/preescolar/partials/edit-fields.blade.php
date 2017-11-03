@@ -35,6 +35,7 @@
 
 										<td>{!! Form::textarea('juicios[]',$c->juicios,['class' => 'form-control']) !!}</td>
 										<td>{!! Form::textarea('sugerencia[]',$c->sugerencia,['class' => 'form-control']) !!}</td>
+										<input type="hidden" name="id[]" value="{{$c->id}}">
 									
 								@endif
 							@endforeach

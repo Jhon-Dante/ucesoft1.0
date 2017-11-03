@@ -69,7 +69,6 @@ class HomeController extends Controller
                             if ($key3->id_inscripcion == $key2->id_datosBasicos) {
                                 $mensualidades=Mensualidades::where('estado','Sin Pagar')->where('id_inscripcion',$key2->id)->get();
                             }
-                        
                         }
                     }
                 }    

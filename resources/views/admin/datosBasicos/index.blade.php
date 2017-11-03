@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Estudiantes Preinscritos 
+  Constancia de estudios 
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,14 +9,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Estudiantes Preinscritos')
+        @yield('contentheader_title', 'Constancia de estudios')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes preinscritos</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes registrados en el período: <strong>{{$periodo->periodo}}</strong></a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -26,12 +26,6 @@
     <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading">Lista de Estudiantes registrados
-
-          <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-            <a href="{{ url('admin/DatosBasicos/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                              <i class="fa fa-pencil"></i> Inscribir   
-                              </a>
-          </div>
  
         </div>
 

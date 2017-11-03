@@ -366,10 +366,11 @@ class PreescolarController extends Controller
     public function boletinPreescolarEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
     {
         $num=0;
+        $inscripcion=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $inscripcion2=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
         $seccion=Seccion::find($id_seccion);
-        $periodos=Periodos::find($id_periodo);
+        $periodo=Periodos::find($id_periodo);
         $cali=Calificaciones::where('id_periodo',$id_periodo)->get();
         $reportes=Calificaciones::where('id_periodo',$id_periodo)->get();
         $reportes2=Calificaciones::where('id_periodo',$id_periodo)->groupBy('nro_reportes')->get();
@@ -398,7 +399,7 @@ class PreescolarController extends Controller
             }else{
                 foreach ($reportes2->groupBy('nro_reportes') as $key2) {
 
-                    if ($key2[0]->id_periodo==$periodos->id) {
+                    if ($key2[0]->id_periodo==$periodo->id) {
                         
                         $repor[$i]=$key2[0]->nro_reportes;
 
@@ -419,8 +420,14 @@ class PreescolarController extends Controller
             }
             $n=0;
 
+                    $l1=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',1)->get();
+                    $l2=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',2)->get();
+                    $l3=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',3)->get();
+                   $num=0;
+                   $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
 
-            $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscritos' => $inscritos, 'periodos' => $periodos, 'cali' => $cali, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'reportes' => $reportes, 'reportes2' => $reportes2, 'n' => $n, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+
+            $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
             return $dompdf->stream();
         }
@@ -482,7 +489,18 @@ class PreescolarController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $datoBasico=DatosBasicos::find($request->id_datosBasicos);
+            for ($i=0; $i < count($request->juicios) ; $i++) {
+                $momento=Calificaciones::find($request->id[$i]);
+
+                $momento->juicios = $request->juicios[$i];
+                $momento->sugerencia = $request->sugerencia[$i];
+                $momento->save();
+            }
+
+        flash('NOTAS DEL ESTUDIANTE '.$datoBasico->nombres.' EDITADO CON ÉXITO!', 'success');
+        return redirect()->route('admin.preescolar.index');
     }
 
     /**

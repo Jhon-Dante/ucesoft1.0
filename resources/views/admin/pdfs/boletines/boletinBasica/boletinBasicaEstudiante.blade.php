@@ -1,134 +1,177 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Boleta de Calificaciones de {{$inscripcion[0]->datosBasicos->nombres}} en el perído: {{$inscripcion[0]->periodo->periodo}}</title>
 
-	<style type="text/css">
-		table{
-			border:1px solid #;
-		}
-		tr{
-			border:1px solid #;
-		}
-		td{
-			text-align: center;
-		}
-	</style>
-</head>
-<body>
-	<div class="box">
-	    <div class="box-header">
-	        <h3 class="box-title"></h3>
-	    </div>
-	            <!-- /.box-header -->
-	    <div class="box-body no-padding" style="overflow: scroll;">
+<table align="center">
+	<tr>
+		<td>
+			<img src="..\public\img\escudo.png">
+		</td>
+		<td>
+			<center>República Bolivariana de Venezuela</center>
+			<center>Ministerio del Poder Popular para la Educación</center>
+			<center>Unidad Educativa Colegio "Urdaneta y Campo Elías"</center>
+			<center>COD. DEA. PD09110505- COD. ADMIN.. 51660- RIF V-03376811-3</center>
+			<center>LA VICTORIA- ESTADO ARAGUA TELF. 02448080090-9712341</center>
+		</td>
+		<td>
+			<img src="..\public\img\escudo.png">
+		</td>
+	</tr>
+</table>
 
-
-	    	<table>
-	    		<thead>
-	    			<tr>
-						<th style="font-size: 10px;">Nombre</th>
-						<th style="font-size: 10px;">Apellido</th>
-						<th style="font-size: 10px;">Cédula</th>
-						<th style="font-size: 10px;">Curso</th>
-						<th style="font-size: 10px;">Sección</th>
-						<th style="font-size: 10px;">Período</th>
-					</tr>
-	    		</thead>
-	    		<tbody>
-	    			@foreach($inscripcion as $key)
+<section>
+<br>
+<table>
+@foreach($inscripcion as $key)
 						<tr>
 							<td>{{$key->datosBasicos->nombres}}</td>
 							<td>{{$key->datosBasicos->apellidos}}</td>
+							<td>{{$key->datosBasicos->nacionalidad}}.-</td>
 							<td>{{$key->datosBasicos->cedula}}</td>
-							<td>{{$key->seccion->curso->curso}}</td>
+							<td><strong>{{$key->seccion->curso->curso}}</strong></td>
 							<td>{{$key->seccion->seccion}}</td>
 							<td>{{$key->periodo->periodo}}</td>
 						</tr>
 	              	@endforeach
-	    		</tbody>
-	    	</table>
-	    	<br><br>	
-	        <table id="example1" class="table table-bordered table-striped">
-	            <thead>
-	            	<tr>
+	 
+<section>
+	<table
+		<table align="center" width="100%" border="1">
+			<tr>
+				<th>Áreas de Formación</th>
+				<th>1er Lapso</th>
+				<th>2do Lapso</th>
+				<th>3er Lapso</th>
+				<th>Promedio</th>
+				<th colspan="3">Inasistencias</th>
+			</tr>
+			<tr>
+				<td colspan="5"></td>
+				<th align="center">lapso1</th>
+				<th align="center">lapso2</th>
+				<th align="center">lapso3</th>
+			</tr>
+			<?php $t2=0; ?>	
+						@foreach($asignaturas as $asig)
+							@if(count($l1)>0 AND count($l2)==0 AND count($l3) == 0)
+								<tr>
+									<td align="left">{{$asig->asignatura}}</td>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->calificacion}}</td>
+											@endif
+										@endforeach
+									<td></td>
+									<td></td>
+									<td></td>
 
-					<?php $t2=0; ?>	
-					@foreach($asignaturas as $key)
-						<?php $i=0; ?>
-						@foreach($key->boletin->groupBy($key->id) as $key2)
-							@if($periodo->id==$key2[$i]->id_periodo)	
-								<th colspan="{{$lapsos[$t2]*2}}" align="center" style="font-size: 10px;"><center>{{$key->codigo}}</center></th>
-								
-							<?php $i++;$t2++; ?>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->inasistencias}}</td>
+											@endif
+										@endforeach
+										<td></td>
+										<td></td>
+								</tr>
+							@elseif(count($l1)>0 AND count($l2)>0 AND count($l3) == 0)
+								<tr>
+									<td align="left">{{$asig->asignatura}}</td>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->calificacion}}</td>
+											@endif
+										@endforeach
+										@foreach($l2 as $key2)
+											@if($key2->id_asignatura == $asig->id)
+											<td align="center">{{$key2->calificacion}}</td>
+											@endif
+										@endforeach
+										<td></td>
+										<td></td>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->inasistencias}}</td>
+											@endif
+										@endforeach
+										@foreach($l2 as $key2)
+											@if($key2->id_asignatura == $asig->id)
+											<td align="center">{{$key2->inasistencias}}</td>
+											@endif
+										@endforeach
+										<td></td>
+								</tr>
+							@else
+								<tr>
+									<td align="left">{{$asig->asignatura}}</td>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->calificacion}}</td>
+											@endif
+										@endforeach
+										@foreach($l2 as $key2)
+											@if($key2->id_asignatura == $asig->id)
+											<td align="center">{{$key2->calificacion}}</td>
+											@endif
+										@endforeach
+										@foreach($l3 as $key3)
+											@if($key3->id_asignatura == $asig->id)
+											<td align="center">{{$key3->calificacion}}</td>
+											@endif
+										@endforeach
+										<td></td>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->inasistencias}}</td>
+											@endif
+										@endforeach
+										@foreach($l2 as $key2)
+											@if($key2->id_asignatura == $asig->id)
+											<td align="center">{{$key2->inasistencias}}</td>
+											@endif
+										@endforeach
+										@foreach($l3 as $key3)
+											@if($key3->id_asignatura == $asig->id)
+											<td align="center">{{$key3->inasistencias}}</td>
+											@endif
+										@endforeach
+								</tr>
 							@endif
-						@endforeach
-					@endforeach
 
-					</tr>
-					<tr >
-					<?php $t=0; ?>
-					@foreach($asignaturas as $key)
-						<?php $k=0; ?>
-						@foreach($key->boletin->groupBy($key->id) as $key2)
-							@if($periodo->id==$key2[$k]->id_periodo and $key->id==$key2[$k]->id_asignatura)	
-								@for($m=0;$m<$lapsos[$t];$m++)
-									<td>L{{$m+1}}</td>
-									<td>I</td>
-								@endfor
-								
-							<?php $k++;$t++; ?>
-							@endif
-						@endforeach
-					@endforeach
-					</tr>
-				</thead>
-	            <tbody>
-	              	@foreach($inscripcion as $key)
-						<tr>
 
-						@foreach($asignaturas as $key3)
+
+
+						@endforeach
+
+
 							
-							@foreach($key3->boletin as $key2)
-								@if($periodo->id==$key2->id_periodo and $key2->id_datosBasicos==$key->id_datosBasicos)	
-									<th  style="font-size: 10px;">{{$key2->calificacion}}</th>
-									<th  style="font-size: 12px;">{{$key2->inasistencias}}</th>
 								
-								@endif
-							@endforeach
-						@endforeach
-						
-						</tr>
-	              	@endforeach
-						
-	            </tbody>
-	        </table>
-	    </div>
-	            <!-- /.box-body -->
-	</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<footer>
-		<table align="center" width="100%">
-			<thead>
-				<tr>
-					<th>_________________________________</th>
-					<th>_________________________________</th>
-					<th>_________________________________</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Firma del profesor encargado</td>
-					<td>Sello de la institución</td>
-					<td>Firma del director</td>
-				</tr>
-			</tbody>
+								
+
+			<tr>
+				
+			</tr>
 		</table>
-	</footer>
-</body>
-</html>
+	<br>
+	<table width="100%" align="center" border="1">
+		<tr>
+			<td>
+				<h4>Primer Lapso</h4>
+				<p>Firma del representante:    Firma del Prof. Guía</p>
+				<p>__________________    _______________________</p>
+				<p>Cédula: <u>{{$representante->nacionalidad}}.-{{$representante->cedula}}</u> Fecha:_____________</p>
+			</td>
+			<td>
+				<h4>Segundo Lapso</h4>
 
-
-
-
-
+				<p>Firma del representante:    Firma del Prof. Guía</p>
+				<p>__________________    _______________________</p>
+				<p>Cédula: <u>{{$representante->nacionalidad}}.-{{$representante->cedula}}</u> Fecha:_____________</p>
+			</td>
+			<td>
+				<h4>Tercer Lapso</h4>
+				<p>Firma del representante:    Firma del Prof. Guía</p>
+				<p>__________________    _______________________</p>
+				<p>Cédula: <u>{{$representante->nacionalidad}}.-{{$representante->cedula}}</u> Fecha:_____________</p>
+			</td>
+		</tr>
+	</table>
+</section>
+</section>

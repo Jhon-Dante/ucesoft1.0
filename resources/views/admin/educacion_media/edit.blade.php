@@ -26,17 +26,17 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Actualización del Curso
+							<div class="panel-heading">Actualización del Curso del estudiante {{$inscripcion->datosBasicos->nombres}} {{$inscripcion->datosBasicos->apellidos}}
  				
 							</div>
 
 							<div class="panel-body">
-								{!! Form::open(['route' => ['admin.cursos.update',$curso->id], 'method' => 'put']) !!}
+								{!! Form::open(['route' => ['admin.actualizarlapso_media'], 'method' => 'post' ]) !!}
                 
-					                 @include('admin.cursos.partials.edit-fields')
+					                 @include('admin.educacion_media.partials.edit-fields')
 					                <div class="box-footer">
 					                <button type="submit" class="btn btn-primary">Enviar</button>
-					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+					                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/educacion_media')}}"><i class="fa fa-times"></i> Cancelar</a>
 					              </div>
 					            {!! Form::close() !!} 
           							<!-- /.form-group -->

@@ -377,98 +377,124 @@ class MediaGeneralController extends Controller
         $lapso1=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',1)->first();
         $lapso2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',2)->first();
         $lapso3=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',3)->first();
+        $l1=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',1)->get();
+        $l2=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',2)->get();
+        $l3=Boletin::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('lapso',3)->get();
 
+        
         //dd(count($boletin2));
         //Si no hay notas...
         if (count($boletin2) == 0) {
             flash('EL ESTUDIANTE TODAVÍA NO TIENE NOTAS CARGADAS','warning');
                 return redirect()->back();
-        }
-
-        if(count($lapso1) > 0 AND count($mensualidades)<3){//Si ya está cargado el primer lapso y no tiene 3 meses de mensualidad cancelada...
-            flash('EL ESTUDIANTE DEBE TENER 3 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 1ER LAPSO','warning');
-            return redirect()->back();
         }else{
-            if (count($lapso2) > 0 AND count($mensualidades)<6) {
-                flash('EL ESTUDIANTE DEBE TENER 6 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 2DO LAPSO','warning');
-                return redirect()->back();
+          if (count($l1) <> count($asignaturas)) {
+            flash('DISCULPE, TODAVÍA FALTAN CALIFICACIONES POR CARGAR EN EL LAPSO 1','warning');
+            return redirect()->back();
+          }else{
+            if (count($l2) <> count($asignaturas)) {
+              flash('DISCULPE, TODAVÍA FALTAN CALIFICACIONES POR CARGAR EN EL LAPSO 2','warning');
+              return redirect()->back();
             }else{
-                if (count($lapso3) > 0 AND count($mensualidades)<12) {
-                    flash('EL ESTUDIANTE DEBE ESTAR SOLVENTE EN TODOS LOS MESES EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 3ER LAPSO','warning');
+              if (count($l3) <> count($asignaturas)) {
+              flash('DISCULPE, TODAVÍA FALTAN CALIFICACIONES POR CARGAR EN EL LAPSO 3','warning');
+              return redirect()->back();
+              }else{
+                
+                if(count($lapso1) > 0 AND count($mensualidades)<3){//Si ya está cargado el primer lapso y no tiene 3 meses de mensualidad cancelada...
+                    flash('EL ESTUDIANTE DEBE TENER 3 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 1ER LAPSO','warning');
                     return redirect()->back();
                 }else{
-
-
-                    $k=0;
-                    $i=0; 
-                    $m=0;
-                    $cont_lap1=0;
-                    $cont_lap2=0;
-                    $cont_lap3=0;
-                    foreach ($asignaturas as $key) {
-                    $p=0;
-                    $i=$k;
-                    
-                        if(count($mensualidades)<3){
-                            flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                    if (count($lapso2) > 0 AND count($mensualidades)<6) {
+                        flash('EL ESTUDIANTE DEBE TENER 6 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 2DO LAPSO','warning');
+                        return redirect()->back();
+                    }else{
+                        if (count($lapso3) > 0 AND count($mensualidades)<12) {
+                            flash('EL ESTUDIANTE DEBE ESTAR SOLVENTE EN TODOS LOS MESES EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 3ER LAPSO','warning');
                             return redirect()->back();
                         }else{
-                          foreach ($key->boletin->groupBy('lapso') as $key2) {
-                              
-                              if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
-                                
-                              $lap[$i]=$key2[0]->lapso;
-                                if($key2[0]->lapso==1){
-                                  $cont_lap1++;
-                                }
-                                if($key2[0]->lapso==2){
-                                  $cont_lap2++;
-                                }
-                                if($key2[0]->lapso==3){
-                                  $cont_lap3++;
-                                }
-                              $i++; 
-                              $p++;   
-                              }
-                              
-                            }
 
-                            $k=$i;
+
+                            $k=0;
+                            $i=0; 
+                            $m=0;
+                            $cont_lap1=0;
+                            $cont_lap2=0;
+                            $cont_lap3=0;
+                            foreach ($asignaturas as $key) {
+                            $p=0;
+                            $i=$k;
                             
-                            if($i>0 and $p>0){
-                              $j=$i-1;
-                              $lapsos[$m]=$lap[$j]; 
-                              $m++;             
+                                if(count($mensualidades)<3){
+                                    flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                                    return redirect()->back();
+                                }else{
+                                  foreach ($key->boletin->groupBy('lapso') as $key2) {
+                                      
+                                      if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$id_periodo) {
+                                        
+                                      $lap[$i]=$key2[0]->lapso;
+                                        if($key2[0]->lapso==1){
+                                          $cont_lap1++;
+                                        }
+                                        if($key2[0]->lapso==2){
+                                          $cont_lap2++;
+                                        }
+                                        if($key2[0]->lapso==3){
+                                          $cont_lap3++;
+                                        }
+                                      $i++; 
+                                      $p++;   
+                                      }
+                                      
+                                    }
+
+                                    $k=$i;
+                                    
+                                    if($i>0 and $p>0){
+                                      $j=$i-1;
+                                      $lapsos[$m]=$lap[$j]; 
+                                      $m++;             
+                                    }
+                           
+                                }
+                                //verificando si esta listo el lapso 1 para imprimir boletin
+                               if ($cont_lap1==count($asignaturas)) {
+                                 $lapso1=1;
+                               }else{
+                                 $lapso1=0;
+                               }
+                               //verificando si esta listo el lapso 2 para imprimir boletin
+                               if ($cont_lap2==count($asignaturas)) {
+                                 $lapso2=1;
+                               }else{
+                                 $lapso2=0;
+                               }
+                               //verificando si esta listo el lapso 3 para imprimir boletin
+                               if ($cont_lap3==count($asignaturas)) {
+                                 $lapso3=1;
+                               }else{
+                                 $lapso3=0;
+                               }
                             }
-                   
-                        }
-                        //verificando si esta listo el lapso 1 para imprimir boletin
-                       if ($cont_lap1==count($asignaturas)) {
-                         $lapso1=1;
-                       }else{
-                         $lapso1=0;
-                       }
-                       //verificando si esta listo el lapso 2 para imprimir boletin
-                       if ($cont_lap2==count($asignaturas)) {
-                         $lapso2=1;
-                       }else{
-                         $lapso2=0;
-                       }
-                       //verificando si esta listo el lapso 3 para imprimir boletin
-                       if ($cont_lap3==count($asignaturas)) {
-                         $lapso3=1;
-                       }else{
-                         $lapso3=0;
-                       }
-                    }
-                   $num=0;
-                    $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinMedia.boletinMediaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos,'personal' => $personal])->setPaper('a4', 'landscape');
+                           
+                          
+                           $num=0;
+                           $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
+                            $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinMedia.boletinMediaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
-                    return $dompdf->stream();
+                            return $dompdf->stream();
 
-                }//fin de la busqueda del tercer lapso y solvencia de 12 mensualidades
-            }//fin de la busqueda del segundo lapso y solvencia de 6 mensualidades
-        }//fin de la busqueda del primer lapso y solvencia de 3 mensualidades
+                        }//fin de la busqueda del tercer lapso y solvencia de 12 mensualidades
+                    }//fin de la busqueda del segundo lapso y solvencia de 6 mensualidades
+                }//fin de la busqueda del primer lapso y solvencia de 3 mensualidades
+
+              }//faltan asignaturas del 1 lapso
+            }//faltan asignaturas del 2 lapso
+          }//faltan asignaturas del 3 lapso
+
+        }
+
     }
 
     /**
@@ -484,6 +510,114 @@ class MediaGeneralController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function editar(Request $request)
+    {
+      $c=\Auth::user()->email;
+        $representante=Representantes::where('email',$c)->first();
+
+        if (count($representante) > 1) {
+            flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
+            return redirect()->back();
+        }else{
+            $clave=$request->password;
+            
+            $personal=Personal::all();
+
+            foreach ($personal as $key) {
+              foreach ($key->asignacion_s as $key2) {
+                if($key2->pivot->id_seccion == $request->id_seccion AND $key2->pivot->id_periodo == $request->id_periodo){
+                  $id_perso=$key2->pivot->id_personal;
+                }
+              }
+            }
+            $personal2=Personal::find($id_perso);
+            $email=$personal2->correo;
+            $usuario=User::where('email',$email)->first();
+            $validator=$usuario->password;
+
+
+            if (password_verify($clave, $validator)) {
+
+              $correo=\Auth::user()->email;
+              $personal=Personal::where('correo',$correo)->first();
+              $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->first();
+              $seccion=Seccion::find($request->id_seccion);
+              $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
+              $periodo=Periodos::find($request->id_periodo);
+
+
+              $boletin=Boletin::where('id_periodo',$request->id_periodo)->get();
+              
+              $k=0;
+              $i=0; 
+              $m=0;
+              $cont_lap1=0;
+              $cont_lap2=0;
+              $cont_lap3=0;
+              foreach ($asignaturas as $key) {
+              $p=0;
+              $i=$k;
+              
+                foreach ($key->boletin->groupBy('lapso') as $key2) {
+                    
+                    if ($key2[0]->id_asignatura==$key->id and $key2[0]->id_periodo==$request->id_periodo) {
+                      //dd(count($key2));
+                    $lap[$i]=$key2[0]->lapso;
+                      if($key2[0]->lapso==1){
+                        $cont_lap1++;
+                      }
+                      if($key2[0]->lapso==2){
+                        $cont_lap2++;
+                      }
+                      if($key2[0]->lapso==3){
+                        $cont_lap3++;
+                      }
+                    $i++; 
+                    $p++;   
+                    }
+                    
+                  }
+
+                  $k=$i;
+                  
+                  if($i>0 and $p>0){
+                    $j=$i-1;
+                    $lapsos[$m]=$lap[$j]; 
+                    $m++;             
+                  }
+         
+              }
+              //verificando si esta listo el lapso 1 para imprimir boletin
+             if ($cont_lap1==count($asignaturas)) {
+               $lapso1=1;
+             }else{
+               $lapso1=0;
+             }
+             //verificando si esta listo el lapso 2 para imprimir boletin
+             if ($cont_lap2==count($asignaturas)) {
+               $lapso2=1;
+             }else{
+               $lapso2=0;
+             }
+             //verificando si esta listo el lapso 3 para imprimir boletin
+             if ($cont_lap3==count($asignaturas)) {
+               $lapso3=1;
+             }else{
+               $lapso3=0;
+             }
+
+             $num=0;
+              return View('admin.educacion_media.edit', compact('num','personal','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num','id_periodo'));
+
+
+
+            }else{
+                flash('¡CONTRASEÑA INCORRECTA!','danger');
+                return redirect()->back();
+            }
+        }//fin del else de comprobacion de usuario representante
     }
 
     public function notas()
@@ -518,11 +652,24 @@ class MediaGeneralController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+       //
     }
 
+    public function actualizarlapso(Request $request)
+    {
+
+       $datoBasico=DatosBasicos::find($request->id_datosBasicos);
+            for ($i=0; $i < count($request->id_asignatura) ; $i++) {
+                $lapso=Boletin::find($request->id[$i]);
+                $lapso->inasistencias = $request->inasistencias[$i];
+                $lapso->calificacion = $request->calificacion[$i];
+                $lapso->save();
+            }
+        flash('NOTAS DEL ESTUDIANTE '.$datoBasico->nombres.' EDITADO CON ÉXITO!', 'success');
+        return redirect()->route('admin.educacion_media.index');
+    }
     /**
      * Remove the specified resource from storage.
      *

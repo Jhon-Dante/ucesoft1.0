@@ -143,9 +143,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'boletinController@editar',
             'as' => 'admin.editarlapso_basica']);
 
+        Route::post('/editarlapso_media',[
+            'uses' => 'MediaGeneralController@editar',
+            'as' => 'admin.editarlapso_media']);
+
         Route::post('/actualizarlapso_basica',[
             'uses' => 'boletinController@actualizarlapso',
             'as' => 'admin.actualizarlapso_basica']);
+
+        Route::post('/actualizarlapso_media',[
+            'uses' => 'MediaGeneralController@actualizarlapso',
+            'as' => 'admin.actualizarlapso_media']);
 
         Route::get('/mostrarlapso_media/{id_seccion}/{id_periodo}',[
             'uses' => 'MediaGeneralController@mostrar',
@@ -264,6 +272,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
          Route::get('/notas',[
             'uses' => 'MediaGeneralController@notas',
             'as' => 'admin.notas']);
+
+         Route::get('/respaldo' ,[
+            'uses' => 'BackupController@create',
+            'as' => 'admin.respaldo']
+            );
+
+         Route::get('/constancia',[
+            'uses' => 'DatosBasicosController@constancia',
+            'as' => 'admin.constancia'
+         ]);
+
+         Route::post('/mostrarConstancia',[
+            'uses' => 'DatosBasicosController@mostrarConstancia',
+            'as' => 'admin.mostrarConstancia'
+         ]);
 
          Route::resource('/remediales','RemedialesController');
 });
