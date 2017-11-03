@@ -10,7 +10,7 @@ use Auth;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CargosRequest;
-
+use App\Auditoria;
 class CargosController extends Controller
 {
   
@@ -23,7 +23,8 @@ class CargosController extends Controller
     {
         $cargos = Cargos::all();
         $num = 0;
-        
+        $accion='Vista de la lista de cargos registrados' ;
+        $this->auditoria($accion);
         return view('admin.cargos.index', compact('cargos', 'num'));
     }
 
@@ -48,12 +49,17 @@ class CargosController extends Controller
 
                 $cargo->save();
 
+                $accion='Registro del cargo '.$request->cargo;
+                
                 flash('CARGO REGISTRADO CORRECTAMENTE','success');
             }else{
+
+            $accion='No se pudo registrar el cargo '.$request->cargo;
+            
                 flash('EL CARGO YA SE ENCUENTRA REGISTRADO A ESTE PERSONAL','warning');
             }    
        
-         
+         $this->auditoria($accion);
         $num=0;
         $cargos = Cargos::all();
         return view('admin.cargos.index', compact('cargos','num'));
@@ -101,14 +107,18 @@ class CargosController extends Controller
     	$cuantos=count($buscar);
 	    	if($cuantos==0){
 		        $cargo = Cargos::find($id);
+                $cargo_anterior=$cargo->cargo;
 		        $cargo->cargo = strtoupper($request->cargo);
-		        $cargo->save();
 
+		        $cargo->save();
+                $accion='Actualización del cargo '.$cargo_anterior.' por '.$request->cargo;
 		        flash('CARGO EDITADO CORRECTAMENTE','success');
 	    	}else{
+                $accion='no se pudo actualizar el cargo';
 	    		flash('ESTE CARGO YA EXISTE','warning');
 	    	}
-            $num=0;
+        $this->auditoria($accion);
+        $num=0;
         $cargos = Cargos::all();
         return view('admin.cargos.index', compact('cargos','num'));
     }
@@ -141,5 +151,13 @@ class CargosController extends Controller
         return view('admin.cargos.index', compact('cargos','num'));
 
         }
+    }
+
+    private function auditoria($accion)
+    {
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }
