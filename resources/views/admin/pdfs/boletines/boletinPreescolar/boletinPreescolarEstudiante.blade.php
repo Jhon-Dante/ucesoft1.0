@@ -59,7 +59,7 @@
 	</table>
 		
 		<br>
-	<table width="100%" align="center" border="1">
+	<table width="100%" align="center">
 		<tr>
 			<td>
 				<b>Primer Lapso</b>

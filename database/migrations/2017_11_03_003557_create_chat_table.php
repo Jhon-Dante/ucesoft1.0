@@ -12,10 +12,11 @@ class CreateChatTable extends Migration
      */
     public function up()
     {
-        Schema::create('chat', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
+        // Schema::create('chat', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->integer('id_usuario')->unsigned();
+        //     $table->timestamps();
+        // });
     }
 
     /**

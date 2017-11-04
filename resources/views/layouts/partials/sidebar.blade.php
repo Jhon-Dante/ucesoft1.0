@@ -78,17 +78,13 @@
                 
             </li> -->
 
-            <!-- <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href=" {{ url('admin/horarios')        }} ">Horario Mañana         </a></li>
-                            <li><a href=" {{ url('admin/horario_tarde')        }} ">Horario Tarde          </a></li>
-                        </ul>
-            </li> -->
+            <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
+                        
+           
            
 
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Personal</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class="fa fa-link"></i><span>Personal</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href=" {{ url('admin/personal')            }} ">Listado de Personal</a></li>
                     <li><a href=" {{ url('admin/personal_asignatura/create') }} ">Asignar Carga Académica</a></li>
