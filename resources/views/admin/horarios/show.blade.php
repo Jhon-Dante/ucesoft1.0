@@ -107,26 +107,9 @@
                 </table>
               {!! Form::close() !!} 
               </div>
-              <div class="panel-heading">
-                <table class="table">
-                  <tr>
-                    <td>Asignaturas:</td>
-                    <td>Horas académicas por agregar al horario</td>
-                    <td>Horas agregadas</td>
-                  </tr>
-                  @foreach($asignaturas as $asig)
-                    @if ($asig->id_curso==$secciones->id)
-                      <tr>
-                        <td>{{$asig->asignatura}}</td>
-                        <td>{{$horas}}</td>
-                        <td></td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </table>
-          </div>
+              
 
-</section>
+
 
 <section class="content spark-screen ">
       <div class="row">
@@ -135,33 +118,48 @@
               <div class="panel-heading">
                 <table class="table table-striped">
                 <thead>
-                <tr>
+                <tr align="center">
                   <th>Hora</th>
                   @foreach($dias as $dia)
                   <th>{{$dia->dia}}</th>
                   @endforeach
                 </tr>
-                 @foreach($horarios as $horario) 
-                  <tr align="center">
-                 
-                  	<td>{{$horario->bloque->bloque}}</td> 
+                 @foreach($horarios as $horario)
 
-                    @foreach($horarios as $h)
-                      @if($horario->bloque->id_dia=1)
-                        @if($h->id_asignatura>0)
-                          <td style="background-color:#61FF69; border-radius: 30px">{{$h->asignatura->asignatura}} - {{$h->aula->nombre}}</td>
+                    <tr align="center">
+                   
+                    	<td>{{$horario->bloque->bloque}}</td> 
+
+                        @if($horario->bloque->dia->id == 1)
+                          @if($horario->id_asignatura>0)
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                          @endif
                         @endif
+
+                        @if($horario->bloque->dia->id == 2)
+                          @if($horario->id_asignatura>0)
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                          @endif
+                        @endif
+
+                        @if($horario->bloque->dia->id == 3)
+                          @if($horario->id_asignatura>0)
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                          @endif
+                        @endif
+
+                        @if($horario->bloque->dia->id == 4)
+                          @if($horario->id_asignatura>0)
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                          @endif
+                        @endif
+
+                        @if($horario->bloque->dia->id == 5)
+                          @if($horario->id_asignatura>0)
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                          @endif
                       @endif
-
-                    @endforeach
-                    
-
-                  </tr>
-
-                
-
-
-                
+                    </tr> 
                 @endforeach
                 </thead>
                 <tbody>
@@ -177,5 +175,6 @@
         </div>
       
     </section>
+  </section>
 </div><!-- /.content-wrapper -->
 @endsection

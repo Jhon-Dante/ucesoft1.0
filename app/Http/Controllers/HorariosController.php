@@ -55,12 +55,12 @@ class HorariosController extends Controller
 
         if ($secciones->id_curso <=4)
         {
-            $horarios=Horarios2::where('id_periodo',$id_periodo)->groupBy('id_bloque')->get();
-            $bloques3=Bloques2::all();
+            $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+            $bloques3=Bloques::all();
         }
         else
         {
-            $horarios=Horarios::where('id_periodo',$id_periodo)->groupBy('id_bloque')->get();
+            $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
 
             $bloques3=Bloques::all();
         }
@@ -78,17 +78,8 @@ class HorariosController extends Controller
     {
         //buscando curso
         $curso=Seccion::find($request->id_seccion);
-
         $bloCompa=Bloques::where('id',$request->id_bloque)->get();
-
-        // if ($request->id_bloque<=40) {
-        //     dd('Mañana');
-        // } else {
-        //     dd('Tarde');
-        // }
-        
         $horarioMa=Bloques::whereBetween('id', array(1,40))->get();
-
         $horarioTa=Bloques::whereBetween('id',array(40,9999))->get();
 
         //dd($request->id_bloque);
@@ -176,7 +167,7 @@ class HorariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('234324324');
     }
      public function mostrar()
     {

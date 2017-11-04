@@ -37,7 +37,8 @@ class BoletinController extends Controller
         
         $boletin=Boletin::all();
         $num=0;
-
+        $lapso=Boletin::where('id_periodo',$periodo)->groupBy('lapso')->get();
+        dd($lapso);
 
         $lapso1=0;
         $lapso2=0;

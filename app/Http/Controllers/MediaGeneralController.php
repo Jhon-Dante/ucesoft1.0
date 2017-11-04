@@ -19,6 +19,7 @@ use App\Personal;
 use App\Representantes;
 use App\Mensualidades;
 use App\User;
+use Session;
 
 class MediaGeneralController extends Controller
 {
@@ -622,26 +623,44 @@ class MediaGeneralController extends Controller
 
     public function notas()
     {
+        $periodo=Session::get('periodo');
         $email=\Auth::user()->email;
 
         $representante=Representantes::where('email',$email)->first();
         $datosBasicos=DatosBasicos::where('id_representante',$representante->id)->get();
         $inscripcion=Inscripcion::all();
         $boletin=Boletin::all();
-        //dd(count($datosBasicos));
+        
+        $lapso1=Boletin::where('lapso',1)->groupBy('lapso')->get();
+        $lapso2=Boletin::where('lapso',2)->groupBy('lapso')->get();
+        $lapso3=Boletin::where('lapso',3)->groupBy('lapso')->get();
+
+        $lapso=Boletin::where('id_periodo',$periodo)->groupBy('lapso')->get();
+        //dd(count($lapso));
         $cont=0;
-        // foreach ($datosBasicos as $key) {
-        //     foreach ($inscripcion as $key2) {
-        //         if ($key2->id_datosBasicos == $key->id) {
-        //             $inscripcion=Inscripcion::where('id_datosBasicos',$key->id)->get();
-                    
-        //         }
+
+          
+        
+
+       
+
+        //   foreach ($lapso2 as $key3) {
+        //     if ($key3->datosBasicos->id == $key->id AND $key3->id_periodo == $periodo) {
+              
         //     }
-        //     $cont++;
+        //   }
+
+        //   foreach ($lapso3 as $key4) {
+        //     if ($key4->datosBasicos->id == $key->id AND $key4->id_periodo == $periodo) {
+              
+        //     }
+        //   }
+
+        // }
         // }
         //dd($cont);
         $num=0;
-        return View('admin.calificaciones.notas.index', compact('num','boletin','inscripcion','datosBasicos'));
+        return View('admin.calificaciones.notas.index', compact('num','boletin','inscripcion','datosBasicos','lapso1','lapso2','lapso3'));
 
     }
 

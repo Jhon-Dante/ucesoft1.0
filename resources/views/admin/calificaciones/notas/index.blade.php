@@ -25,25 +25,24 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista de Notas de los estudiantes
+            <div class="panel-heading"><div>Lista de Notas de los estudiantes - <strong>Preescolar y Básica</strong>, Notas generalizadas(<button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button>). <strong>Notas de Media General:</strong> Especificadas por lapso:
 
-              <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-success" >Lapso 3</p>
-              </div>
 
-              <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-primary" >Lapso 2</p>
-              </div>
-
-              <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
+              <div class="btn-group">
                 <p style="padding: 4px 10px;" class="btn btn-warning" >Lapso 1</p>
               </div>
 
+              <div class="btn-group">
+                <p style="padding: 4px 10px;" class="btn btn-primary" >Lapso 2</p>
+              </div>
+
+              <div class="btn-group">
+                <p style="padding: 4px 10px;" class="btn btn-success" >Lapso 3</p>
+              </div>
               
 
-              
-              
-
+              </div>
+          
           </div>
 
           <div class="col-xs-12">
@@ -79,15 +78,59 @@
   							<td>{{$key2->seccion->seccion}}</td>
   							<td>{{$key2->periodo->periodo}}</td>
   							<td>
-  								@if($key2->seccion->curso->id == 1)
-  									<a href="{{route ('admin.calificaciones.pdf2',['id_datosBasicos' => $key2->datosBasicos->id,'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo])}}">
-  				                <button class="btn btn-danger btn-flat"><i class="fa fa-file-pdf-o"></i></button>
-  								@elseif($key2->seccion->curso->id <= 7)
-  									<a href="{{ route('admin.boletin.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo]) }}"><button class="btn btn-success btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
-  								@else
-  									<a href="{{ route('admin.media_general.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->periodo->id]) }}"><button class="btn btn-info btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
-  								@endif
-  		                    </td>
+                    
+
+                    @if($key2->seccion->curso->id == 1)
+
+                          <a href="{{ route('admin.calificaciones.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->periodo->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+
+                    @elseif($key2->seccion->curso->id > 1 AND $key2->seccion->curso->id <=  7)
+
+                              @foreach($lapso1 as $l1)
+                                @if($l1->id_datosBasicos == $key2->datosBasicos->id)
+                                  <a href="{{ route('admin.boletin.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo,'lapso' => 1]) }}"><button class="btn btn-warning btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+          
+                                @endif
+                              @endforeach
+                              @foreach($lapso2 as $l2)
+                                @if($l2->id_datosBasicos == $key2->datosBasicos->id)
+                                  <a href="{{ route('admin.boletin.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo,'lapso' => 2]) }}"><button class="btn btn-primary btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+
+                                @endif
+                              @endforeach
+                              @foreach($lapso3 as $l3)
+                                @if($l3->id_datosBasicos == $key2->datosBasicos->id)
+                                  <a href="{{ route('admin.boletin.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->id_periodo,'lapso' => 3]) }}"><button class="btn btn-success btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+                                @endif
+                              @endforeach
+                      
+                    @else
+
+                              @foreach($lapso1 as $l1)
+                                @if($l1->id_datosBasicos == $key2->datosBasicos->id)
+                                  <a href="{{ route('admin.media_general.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->periodo->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+                                            
+          
+                                @endif
+                              @endforeach
+                              @foreach($lapso2 as $l2)
+                                @if($l2->id_datosBasicos == $key2->datosBasicos->id)
+                                  <a href="{{ route('admin.media_general.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->periodo->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+                                            
+
+                                @endif
+                              @endforeach
+                              @foreach($lapso3 as $l3)
+                                @if($l3->id_datosBasicos == $key2->datosBasicos->id)
+                                  <a href="{{ route('admin.media_general.pdf2', ['id_datosBasicos' => $key2->datosBasicos->id, 'id_seccion' => $key2->seccion->id, 'id_periodo' => $key2->periodo->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-file-pdf-o"></i></button></a>
+                                            
+                                @endif
+                              @endforeach
+                          
+                    @endif
+
+                      
+                          </td>
                    		
                    	</tr>
                     @endif
