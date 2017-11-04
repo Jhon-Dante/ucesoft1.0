@@ -167,7 +167,11 @@ class HorariosController extends Controller
      */
     public function destroy($id)
     {
-        dd('234324324');
+        $horario=Horarios::find($id);
+        $horario->delete();
+
+        flash('BLOQUE ELIMINADO OCN ÉXITO!','success');
+        return redirect()->back();
     }
      public function mostrar()
     {

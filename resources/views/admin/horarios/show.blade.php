@@ -132,31 +132,31 @@
 
                         @if($horario->bloque->dia->id == 1)
                           @if($horario->id_asignatura>0)
-                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.horarios.destroy', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
                           @endif
                         @endif
 
                         @if($horario->bloque->dia->id == 2)
                           @if($horario->id_asignatura>0)
-                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.horarios.destroy', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
                           @endif
                         @endif
 
                         @if($horario->bloque->dia->id == 3)
                           @if($horario->id_asignatura>0)
-                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.horarios.destroy', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
                           @endif
                         @endif
 
                         @if($horario->bloque->dia->id == 4)
                           @if($horario->id_asignatura>0)
-                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.horarios.destroy', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
                           @endif
                         @endif
 
                         @if($horario->bloque->dia->id == 5)
                           @if($horario->id_asignatura>0)
-                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.periodos.edit', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
+                            <td style="background-color:#61FF69; border-radius: 30px">{{$horario->asignatura->asignatura}} - {{$horario->aula->nombre}}<a href="{{ route('admin.horarios.destroy', [$horario->id]) }}"><button class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></td>
                           @endif
                       @endif
                     </tr> 
