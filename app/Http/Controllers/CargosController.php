@@ -129,15 +129,18 @@ class CargosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Reeliminaruest)
     {
         //dd($request->all());
         $cargo = Cargos::find($request->id);
         //$cargo->personal()->exists()
+        $c=$cargo->cargo;
         $x=false;
         if($x){
 
             flash('EL CARGO NO SE PUEDE ELIMINAR PORQUE POSEE PERSONAL EN ALGÚN PERIODO','warning');
+            $accion='no se pudo eliminar el cargo';
+            $this->auditoria($accion);
             $num=0;
  	        $cargos = Cargos::all();
         	return view('admin.cargos.index', compact('cargos','num'));
@@ -146,6 +149,8 @@ class CargosController extends Controller
             $cargo->delete();
 
             flash(' SE HA ELIMINADO EL CARGO '.$cargo->cargo.' CORRECTAMENTE.','success');
+            $accion='se eliminó el cargo '.$c;
+            $this->auditoria($accion);
             $num=O;
             $cargos = Cargos::all();
         return view('admin.cargos.index', compact('cargos','num'));

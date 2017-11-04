@@ -8,7 +8,7 @@ use App\Cursos;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\CursosRequest;
 use Redirect;
-
+use App\Auditoria;
 class CursosController extends Controller
 {
     /**
@@ -18,6 +18,8 @@ class CursosController extends Controller
      */
     public function index()
     {
+        $accion='Se Mostraron la lista de cursos registrados'; 
+        $this->auditoria($accion);
         $num=0;
         $cursos=Cursos::all();
         return View('admin.cursos.index',compact('cursos','num'));
@@ -49,11 +51,15 @@ class CursosController extends Controller
             if (count($cursos)==0) {
                 $cursos=Cursos::create(['curso' => $request->curso]);
                 if($cursos){
+                     $accion='Se registro el curso '.$request->curso; 
                     flash("SE HA REGISTRADO DE FORMA EXITOSA!", 'success');
                 }else{
+                     $accion='No se pudo registrar el curso '.$request->curso;
                     flash("DISCULPE, NO SE PUDO REALIZAR EL REGISTRO", 'error');
                 }
             }
+
+        $this->auditoria($accion);
         return redirect()->route('admin.cursos.index');
         
         
@@ -98,7 +104,8 @@ class CursosController extends Controller
                 $cursos=Cursos::find($id);
                 $cursos->curso=$request->curso;
                 $cursos->save();
-                
+                $accion='Se actualizó el curso '.$request->curso;
+                    $this->auditoria($accion);
                     flash("SE HA ACTUALIZADO DE FORMA EXITOSA!", 'success');
             }
            return redirect()->route('admin.cursos.index');   
@@ -114,18 +121,31 @@ class CursosController extends Controller
     {
         
         $curso=Cursos::find($request->id);
-         
+         $c=$curso->curso;
         if($curso->seccion()->exists()){
+            $accion='No se pudo eliminar el curso '.$c;
+            
             flash('EXISTEN SECCIONES CREADAS PARA ESTE CURSO, NO SE PUEDE ELIMINAR.','warning');
         }else{
             $c=$curso->curso;
             if($curso->delete()){
+                 $accion='Se eliminó el curso '.$c;
             flash('CURSO '.$c.' ELIMINADO CON ÉXITO.','success');
             }else{
+                 $accion='No se pudo eliminar el curso '.$c;
             flash('CURSO '.$c.' NO ELIMINADO.','warning');
             }
         }
+            $this->auditoria($accion);
             return redirect()->route('admin.cursos.index');       
 
+    }
+
+    private function auditoria($accion)
+    {
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }

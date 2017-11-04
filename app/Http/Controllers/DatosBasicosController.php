@@ -27,7 +27,7 @@ use App\Calificaciones;
 use App\Boletin;
 use App\Pagos;
 use Session;
-
+use App\Auditoria;
 class DatosBasicosController extends Controller
 {
     /**
@@ -43,7 +43,10 @@ class DatosBasicosController extends Controller
         $padres=Padres::all();
         $preinscripcion=Preinscripcion::all();
         $datosbasicos=DatosBasicos::all();
-        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos'));
+        $periodo=Periodos::where('status','Activo')->first();
+        $accion='Mostrando los datos de los estudiantes registrados';
+        $this->auditoria($accion);
+        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos','periodo'));
     }
 
     /**
@@ -305,7 +308,7 @@ class DatosBasicosController extends Controller
                        }
 
                      }elseif($seccion->curso->id >= 1 AND $seccion->curso->id <= 7){
-                        dd('basica');
+                        //dd('basica');
                         $inscripcion=Inscripcion::where('id_periodo',$request->id_periodo)->where('id_seccion',$request->id_seccion)->first();
                         $estu=$inscripcion->datosBasicos->id;
                         $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
@@ -403,6 +406,8 @@ class DatosBasicosController extends Controller
 
 
                      }else{
+                        $accion='Error en el proceso de inscripcion';
+                        $this->auditoria($accion);
                             flash('ERROR EN EL PROCESO, INTÉNTELO DENUEVO!','danger');
                             return redirect()->back();
                         }
@@ -837,5 +842,13 @@ class DatosBasicosController extends Controller
             $estudiante->delete();
             flash('REGISTRO DEL ESTUDIANTE ELIMINADO CON ÉXITO!','success');
             return redirect()->route('admin.DatosBasicos.index');
+    }
+
+    private function auditoria($accion)
+    {
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }
