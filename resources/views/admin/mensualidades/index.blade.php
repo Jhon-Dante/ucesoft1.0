@@ -21,7 +21,7 @@
     </ol>
 </section>
 <!-- Main content -->
-
+@if(Auth::user()->tipo_user == 'Administrador(a)')
 <section class="content">
     <div class="row">
           <div class="col-lg-4 col-xs-6">
@@ -247,7 +247,78 @@
               </div>
             </div>
           </div>
+@elseif(Auth::user()->tipo_user == 'Representante')
 
+<section class="content spark-screen">
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            
+            <div class="panel-heading">Lista de Mensualidades registrados <img src="../img/iconos/mal.png" style="border-radius: 50px; width: 26px; height: 26px"> Sin Pagar <img src="../img/iconos/bien.png" style="border-radius: 50px; width: 26px; height: 26px"> Mensualidad Cancelada
+            </div>
+
+            
+            <div class="panel-body">
+              <div class="box-body">
+                <div style="overflow: scroll;">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+
+                      <th>Nro</th>
+                      <th>Estudiante</th>
+                      @foreach($meses as $mes)
+                        @if($mes->id>=9 and $mes->id<=12)
+                          <th>{{str_limit($mes->mes,3)}}</th>
+                        @endif
+                      @endforeach
+                      @foreach($meses as $mes)
+                        @if($mes->id>=1 and $mes->id<=8)
+                          <th>{{str_limit($mes->mes,3)}}</th>
+                        @endif
+                      @endforeach
+                      
+                      <th>Período</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($inscripcion as $key)
+                      @foreach($datosBasicos as $db)
+                      
+                        @if($db->id == $key->id_datosBasicos)
+                          <tr>
+
+                            <td>{{ $num=$num+1 }}</td>
+                            <td>{{$key->datosbasicos->nombres}}</td>
+
+                            @foreach($mensualidades as $key2)
+                              @if($key2->id_inscripcion==$key->id and $key->id_periodo==$id_periodo )
+                                @if($key2->estado=="Cancelado")
+                                  <td align="center">  
+                                  <img title="Mes Cancelado" src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px">
+                                  </td>
+                                @else
+                                <td align="center">
+                                  <img title="Mes no cancelado" src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px">
+                                </td>
+                                @endif
+                              @endif
+                            @endforeach
+                            <td>{{$key->periodo->periodo}}</td>
+                         </tr>
+                        @endif
+                      @endforeach
+                    @endforeach
+              </tbody> 
+            </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+@endif
 </div><!-- /.content-wrapper -->
 
 @endsection

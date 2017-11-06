@@ -363,9 +363,9 @@ class PreescolarController extends Controller
         return $dompdf->stream();
     }
 
-    public function boletinPreescolarEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
+    public function boletinPreescolarEstudiante($id_datosBasicos, $id_seccion, $id_periodo, $reporte)
     {
-        $num=0;
+        //dd($reporte);
         $inscripcion=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
         $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $inscripcion2=Inscripcion::where('id_datosBasicos',$id_datosBasicos)->where('id_periodo',$id_periodo)->first();
@@ -375,62 +375,87 @@ class PreescolarController extends Controller
         $reportes=Calificaciones::where('id_periodo',$id_periodo)->get();
         $reportes2=Calificaciones::where('id_periodo',$id_periodo)->groupBy('nro_reportes')->get();
         // dd(count($reportes2));
-
         $mensualidades=Mensualidades::where('id_inscripcion',$inscripcion2->id)->where('estado','Cancelado')->get();
-
+        //dd($reporte);
         $boletin2=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->get();
-
         if (count($boletin2) == 0) {
             flash('EL ESTUDIANTE TODAVÍA NO TIENE NOTAS CARGADAS','warning');
                 return redirect()->back();
-        }
-
-        $k=0;
-        $i=0;
-        $m=0;
-        foreach ($reportes2 as $key) {
-            $p=0;
-            $i=$k;
-            
-
-            if(count($mensualidades)<3){
-                flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                
+        }else{
+            if ($count($mensualidades)<3 AND $reporte==1) {
+                flash('EL ESTUDIANTE DEBE TENER 3 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 1ER LAPSO','warning');
                 return redirect()->back();
             }else{
-                foreach ($reportes2->groupBy('nro_reportes') as $key2) {
+                if (count($mensualidades)<6 AND $reporte==2) {
+                    flash('EL ESTUDIANTE DEBE TENER 6 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 2DO LAPSO','warning');
+                return redirect()->back();
+                }else{
+                    if (count($mensualidades)<9 AND $reporte==3) {
+                        flash('EL ESTUDIANTE DEBE TENER 9 MESES DE SOLVENCIA EN LAS MENSUALIDADES PARA PODER DESCARGAR SUS NOTAS DEL 3ER LAPSO','warning');
+                        return redirect()->back();
+                }else{
 
-                    if ($key2[0]->id_periodo==$periodo->id) {
+                    $k=0;
+                    $i=0;
+                    $m=0;
+                    foreach ($reportes2 as $key) {
+                        $p=0;
+                        $i=$k;
                         
-                        $repor[$i]=$key2[0]->nro_reportes;
 
-                        $i++;
-                        $p++;
+                        if(count($mensualidades)<3){
+                            flash('EL ESTUDIANTE TODAVÍA TIENE MENSUALIDADES QUE DEBE CANCELAR PARA VER LAS CALIFICACIONES CARGADAS','danger');
+                            return redirect()->back();
+                        }else{
+                            foreach ($reportes2->groupBy('nro_reportes') as $key2) {
+
+                                if ($key2[0]->id_periodo==$periodo->id) {
+                                    
+                                    $repor[$i]=$key2[0]->nro_reportes;
+
+                                    $i++;
+                                    $p++;
 
 
+                                    }
+                                }
+
+                            }
+                            $k=$i;
+
+                            if ($i>0 and $p>0) {
+                                $j=$i-1;
+                                $lapsos[$m]=$repor[$j];
+                                $m++;
                         }
+                        $n=0;
+                        $report=0;
+                        if ($reporte==1) {
+                            $report=1;
+                        }elseif ($reporte==2) {
+                            $report=2;
+                        }else{
+                            $report=3;
+                        }
+                        //dd($report);
+
+                                $l1=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',1)->get();
+                                $l2=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',2)->get();
+                                $l3=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',3)->get();
+                               $num=0;
+                               $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
+
+
+                        $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'representante' => $representante,'report' => $report,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+
+                        return $dompdf->stream();
                     }
-
                 }
-                $k=$i;
-
-                if ($i>0 and $p>0) {
-                    $j=$i-1;
-                    $lapsos[$m]=$repor[$j];
-                    $m++;
             }
-            $n=0;
-
-                    $l1=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',1)->get();
-                    $l2=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',2)->get();
-                    $l3=Calificaciones::where('id_periodo',$id_periodo)->where('id_datosBasicos',$id_datosBasicos)->where('nro_reportes',3)->get();
-                   $num=0;
-                   $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
-
-
-            $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinPreescolar.boletinPreescolarEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
-
-            return $dompdf->stream();
+            }
         }
+
     }
 
     /**

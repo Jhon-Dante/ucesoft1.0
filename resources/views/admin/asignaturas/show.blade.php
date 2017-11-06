@@ -21,6 +21,10 @@
                 {!! Form::label('curso','Curso') !!}
                 {{$asignatura->id_curso}}
               </div>
+              <div class="form-group">
+                {!! Form::label('color','Color') !!}
+                {{$asignatura->color}}
+              </div>
             @endif
            @endforeach
         <!-- <div class="modal-body"> 

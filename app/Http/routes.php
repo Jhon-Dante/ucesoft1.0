@@ -21,7 +21,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 //auth donde estan los mensajes de error
-
+        Route::resource('/profile','UserController');
     	Route::resource('/cursos','CursosController');
         Route::resource('/secciones','SeccionesController');
         Route::resource('/asignaturas','AsignaturasController');
@@ -32,6 +32,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/DatosBasicos/reinscribir',[
                 'uses' => 'DatosBasicosController@reinscribir',
                 'as' => 'admin.DatosBasicos.reinscribir'
+            ]);
+        Route::post('/DatosBasicos/actualiza/',[
+                'uses' => 'DatosBasicosController@actualiza',
+                'as' => 'admin.DatosBasicos.actualiza'
             ]);
 
         Route::get('/cursos/{id}/busca',[
@@ -240,7 +244,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.calificaciones.pdf']);
         
 
-         Route::get('preescolar/calificaciones2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
+         Route::get('preescolar/calificaciones2/{id_datosBasicos}/{id_seccion}/{id_periodo}/{reporte}', [
             'uses' => 'PreescolarController@boletinPreescolarEstudiante',
             'as' => 'admin.calificaciones.pdf2']);
 
@@ -248,7 +252,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'BoletinController@pdf',
             'as' => 'admin.boletin.pdf']);
 
-         Route::get('basica/boletin2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
+         Route::get('basica/boletin2/{id_datosBasicos}/{id_seccion}/{id_periodo}/{lapso}', [
             'uses' => 'BoletinController@boletinBasicaEstudiante',
             'as' => 'admin.boletin.pdf2']);
 
@@ -256,7 +260,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'MediaGeneralController@pdf',
             'as' => 'admin.media_general.pdf']);
 
-         Route::get('media/boletin2/{id_datosBasicos}/{id_seccion}/{id_periodo}', [
+         Route::get('media/boletin2/{id_datosBasicos}/{id_seccion}/{id_periodo}/{lapso}', [
             'uses' => 'MediaGeneralController@boletinMediaEstudiante',
             'as' => 'admin.media_general.pdf2']);
 

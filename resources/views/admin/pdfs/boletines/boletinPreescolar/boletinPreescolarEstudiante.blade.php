@@ -33,24 +33,49 @@
 <section>
 	<table width="100%" border="1">
 		<tr>
-			<td>
-				<h4>Primer Reporte Globalizado</h4>
-					@foreach($l1 as $key)
-						<p>{{$key->juicios}}</p>
-					@endforeach
-			</td>
-			<td>
-				<h4>Segundo Reporte Globalizado</h4>
-					@foreach($l2 as $key2)
-						<p>{{$key2->juicios}}</p>
-					@endforeach
-			</td>
-			<td>
-				<h4>Tercer Reporte Globalizado</h4>
-					@foreach($l3 as $key3)
-						<p>{{$key3->juicios}}</p>
-					@endforeach
-			</td>
+			@if($report == 1)
+				<td>
+					<h4>Primer Reporte Globalizado</h4>
+						@foreach($l1 as $key)
+							<p>{{$key->juicios}}</p>
+						@endforeach
+				</td>
+				<td><h4>Segundo Reporte Globalizado</h4></td>
+				<td><h4>Tercer Reporte Globalizado</h4></td>
+			@elseif($report == 2)
+				<td>
+					<h4>Primer Reporte Globalizado</h4>
+						@foreach($l1 as $key)
+							<p>{{$key->juicios}}</p>
+						@endforeach
+				</td>
+				<td>
+					<h4>Segundo Reporte Globalizado</h4>
+						@foreach($l2 as $key2)
+							<p>{{$key2->juicios}}</p>
+						@endforeach
+				</td>
+				<td><h4>Tercer Reporte Globalizado</h4></td>
+			@else
+				<td>
+					<h4>Primer Reporte Globalizado</h4>
+						@foreach($l1 as $key)
+							<p>{{$key->juicios}}</p>
+						@endforeach
+				</td>
+				<td>
+					<h4>Segundo Reporte Globalizado</h4>
+						@foreach($l2 as $key2)
+							<p>{{$key2->juicios}}</p>
+						@endforeach
+				</td>
+				<td>
+					<h4>Tercer Reporte Globalizado</h4>
+						@foreach($l3 as $key3)
+							<p>{{$key3->juicios}}</p>
+						@endforeach
+				</td>
+			@endif
 		</tr>
 
 

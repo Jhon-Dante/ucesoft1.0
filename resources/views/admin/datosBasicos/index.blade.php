@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-  Constancia de estudios 
+  Estudiantes 
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -9,7 +9,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Constancia de estudios')
+        @yield('contentheader_title', 'Estudiantes')
         <small></small>
     </h1>
     <div class="col-md-12">

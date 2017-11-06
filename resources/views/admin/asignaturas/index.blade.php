@@ -46,6 +46,7 @@
                 <th>Nro</th>
                 <th>asignatura</th>
                 <th>Curso</th>
+                <th>Color</th>
                 <th>Opciones</th>
               </tr>
             </thead>
@@ -57,6 +58,7 @@
               <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->asignatura}}</a></td>
 
               <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->cursos->curso}}</a></td>
+              <td style="background-color: {{$asignatura->color}}" ></td>
               <td>                   
                     <div class="btn-group">
 

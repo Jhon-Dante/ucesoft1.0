@@ -83,25 +83,30 @@ class MensualidadesController extends Controller
             $periodo=Periodos::where('id',$id_periodo)->first();
             $meses=Meses::all();
             $mensualidades=Mensualidades::all();
-            $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+            $inscripcion=Inscripcion::all();
             $pagos=Pagos::all();
             $monto=0;
            
-           foreach ($representante->datos_basicos as $key) {
-                foreach ($inscripcion as $key2 ) {
-                    foreach ($mensualidades as $key3) {
-                        if ($key2->id_datosBasicos == $key->id) {
-                            if ($key3->id_inscripcion == $key2->id) {
-                                $mensualidades=Mensualidades::where('id_inscripcion',$key2->id)->get();
-                                //dd(count($key3));
-                                $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->where('id',$key2->id)->get();
-                                $mensualidades2=Mensualidades::where('id_inscripcion',$key2->id)->where('estado','Sin Pagar')->get();
-                            }
-                        }
-                    }
-                }    
-            }
-            
+           // foreach ($representante->datos_basicos as $key) {
+           //      foreach ($inscripcion as $key2 ) {
+           //          foreach ($mensualidades as $key3) {
+           //              if ($key2->id_datosBasicos == $key->id) {
+           //                  if ($key3->id_inscripcion == $key2->id) {
+           //                      $mensualidades=Mensualidades::where('id_inscripcion',$key2->id)->get();
+           //                      //dd(count($key3));
+           //                      $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->where('id',$key2->id)->get();
+           //                      $mensualidades2=Mensualidades::where('id_inscripcion',$key2->id)->where('estado','Sin Pagar')->get();
+           //                  }
+           //              }
+           //          }
+           //      }    
+           //  }
+
+
+            $o=0;
+        
+                
+            //dd(count($datosBasicos));
                    // foreach ($mensualidades as $key) {
                    //      foreach ($inscripcion as $key2) {
                    //          if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
@@ -120,7 +125,7 @@ class MensualidadesController extends Controller
 
             //dd(count($mensualidades2));
             $num=0;
-            return View('admin.mensualidades.index',compact('num','mensualidades','mensualidades2','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto','inscripcion'));
+            return View('admin.mensualidades.index',compact('num','mensualidades','mensualidades2','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto','inscripcion','datosBasicos'));
     }
 
     /**

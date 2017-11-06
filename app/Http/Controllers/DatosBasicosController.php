@@ -41,7 +41,7 @@ class DatosBasicosController extends Controller
         $num=0;
         //$datosBasicos=DatosBasicos::all();
         $padres=Padres::all();
-        $preinscripcion=Preinscripcion::all();
+        $preinscripcion=Inscripcion::all();
         $datosbasicos=DatosBasicos::all();
         $periodo=Periodos::where('status','Activo')->first();
         $accion='Mostrando los datos de los estudiantes registrados';
@@ -223,7 +223,14 @@ class DatosBasicosController extends Controller
                                                 'id_seccion' => $request->id_seccion,
                                                 'id_periodo' => $id_periodo
                         ]);
-                    
+
+
+                        $es=DatosBasicos::find($request->id_datosBasicos);
+                        $s=Seccion::find($request->id_seccion);
+                        $accion='Ha inscrito al estudiante '.$es->nombres.', '.$es->apellidos.' en la sección '.$s->seccion;
+                        $this->auditoria($accion);
+
+
                     for($i=0;$i<count($request->repite);$i++){
                         $mensualidad=\DB::table('asignaturas_inscripcion')->insert(array(
                             'id_asignatura' => $request->repite[$i],
@@ -695,6 +702,10 @@ class DatosBasicosController extends Controller
                                                                                     'repite' => $repite,
                                                                                     'pendiente' => $pendiente,
                                                                                     'id_periodo' => $request->id_periodo]);
+
+                                            $es=DatosBasicos::find($datoBasico->id);
+                                            $accion='Ha preinscrito al estudiante '.$es->nombres.', '.$es->apellidos;
+                                            $this->auditoria($accion);
                                             if($repite=="Si"){
 
                                                 //registrando asignaturas en caso de que repita
@@ -741,6 +752,7 @@ class DatosBasicosController extends Controller
         $periodo=Periodos::where('status','Activo')->first();
         $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
 
+
         return View('admin.datosBasicos.constancia', compact('inscripcion','periodo'));
     }
 
@@ -751,6 +763,11 @@ class DatosBasicosController extends Controller
         $periodo=Periodos::where('status','Activo')->first();
         $edu=0;
         $mensualidades=Mensualidades::where('id_datosBasicos',$inscripcion->id_datosBasicos)->where('id_periodo',$periodo->id)->where('estado','Cancelado');
+
+        $es=DatosBasicos::find($inscripcion->id_datosBasicos);
+        $accion='Ha generado una constancia de estudios al estudiante '.$es->nombres.', '.$es->apellidos;
+        $this->auditoria($accion);
+
 
         if ($inscripcion->seccion->curso->curso <= 7) {
             $edu="Básica";
@@ -771,8 +788,10 @@ class DatosBasicosController extends Controller
      */
     public function edit($id)
     {
+        $datosBasicos=DatosBasicos::find($id);
+        $recaudos=Recaudos::where('id_datosBasicos',$datosBasicos->id)->get();
         $representantes=Representantes::all();
-        return View('admin.datosBasicos.edit', compact('representantes'));
+        return View('admin.datosBasicos.edit', compact('representantes','datosBasicos','recaudos'));
     }
 
     /**
@@ -801,6 +820,35 @@ class DatosBasicosController extends Controller
         return View('admin.DatosBasicos.index', compact('datosBasicos','num'));
             
         
+    }
+    public function actualiza(Request $request)
+    {
+
+        $buscar=DatosBasicos::where('cedula',$request->cedula)->where('id','<>',$id)->where('id_representante',$request->id_representante)->get();
+        $cuantos=count($buscar);
+        if ($cuantos==0) {
+            $datosBasicos=DatosBasicos::find($id);
+            $datosBasicos->update($request->all());
+
+        flash('ESTUDIANTE EDITADO CON ÉXITO!', 'success');
+
+        } else {
+        flash('ESTE ESTUDIANTE YA EXISTE!', 'warning');
+
+        }
+        $datosBasicos=DatosBasicos::find($id);
+        $datosBasicos->update($request->all());
+
+        flash('ESTUDIANTE EDITADO CON ÉXITO!', 'success');
+        $num=0;
+        //$datosBasicos=DatosBasicos::all();
+        $padres=Padres::all();
+        $preinscripcion=Inscripcion::all();
+        $datosbasicos=DatosBasicos::all();
+        $periodo=Periodos::where('status','Activo')->first();
+        $accion='Actualiza datos del estudiante '.$buscar->nombres.', '.$buscar->apellidos;
+        $this->auditoria($accion);
+        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos','periodo'));
     }
     protected function validarPadre(Request $request){
 

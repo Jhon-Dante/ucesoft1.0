@@ -25,7 +25,8 @@ class AsignaturasRequest extends Request
     {
         return [
             'asignatura' => 'required',
-            'id_curso' => 'required'
+            'id_curso' => 'required',
+            'color' => 'required'
         ];
     }
     

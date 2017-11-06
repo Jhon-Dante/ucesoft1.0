@@ -38,7 +38,6 @@ class BoletinController extends Controller
         $boletin=Boletin::all();
         $num=0;
         $lapso=Boletin::where('id_periodo',$periodo)->groupBy('lapso')->get();
-        dd($lapso);
 
         $lapso1=0;
         $lapso2=0;
@@ -278,7 +277,7 @@ class BoletinController extends Controller
     {
         dd('pdf');
     }
-    public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo)
+    public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo,$lapso)
     {
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
@@ -323,7 +322,15 @@ class BoletinController extends Controller
                 }else{
 
 
-
+                    $lap_m=0;
+                    if ($lapso==1) {
+                      $lap_m=1;
+                    }elseif ($lapso==2) {
+                      $lap_m=2;
+                    }else{
+                      $lap_m=3;
+                    }
+                    //dd($lap);
                     $k=0;
                     $i=0; 
                     $m=0;
@@ -394,7 +401,7 @@ class BoletinController extends Controller
                    $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
 
                    
-                    $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
+                    $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinBasica.boletinBasicaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'lapso1' => $lapso1,'lap_m' => $lap_m, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
 
                     return $dompdf->stream();
 

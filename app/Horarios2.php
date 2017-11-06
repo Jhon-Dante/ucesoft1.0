@@ -9,7 +9,7 @@ class Horarios2 extends Model
     protected $table='horarios2';
     protected $fillable=['id','id_bloque','id_aula','id_asignatura','id_seccion','id_periodo'];
 
-    public function bloque2()
+    public function bloque()
     {
     	return $this->belongsTo('App\Bloques2','id_bloque','id');
     }

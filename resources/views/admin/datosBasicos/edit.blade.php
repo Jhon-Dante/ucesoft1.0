@@ -10,68 +10,34 @@
 <section class="content-header">
     <h1>
         @yield('contentheader_title', 'Estudiantes')
-        <small>Registro</small>
+        <small>Edición de datos</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes </a></li>
-        <li class="active">Registro</li>
+        <li class="active">Edición de datos</li>
     </ol>
 </section>
 
-!! Form::open(['route' => ['admin.DatosBasicos.store'], 'method' => 'post', 'id' => 'inscripcion', 'role' => 'form']) !!}
+{!! Form::open(['route' => ['admin.DatosBasicos.actualiza'], 'method' => 'post']) !!}
 
 <div id="inscribir" style="display: block">
-	<section class="content spark-screen">
-		<div class="row"> 
-			<div class="col-md-12">
-		         @include('flash::message')
-		    </div>
-		    		<div class="col-xs-8">
-						<div class="form-group">
-								<button type="button" id="regular2" style="display: block; width: 200px;" class="btn btn-block btn-info" >Reinscribir estudiante</button>
-								
-						</div>
-					</div>
-				<div class="col-xs-12">
-					
-					<div class="panel panel-default">
-						<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
-							<div class="panel-body">
-	            				@include('admin.datosBasicos.partials.create-fields-representante')
-				         	</div>
-					</div>
-				</div>
-		</div>
-	</section>
+	
 
 	<section class="content spark-screen">
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Registro del Estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
+					<div class="panel-heading">Edición de datos del Estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
 						<div class="panel-body">
-			                 @include('admin.datosBasicos.partials.create-fields')
+							<input type="hidden" name="id_datosBasicos" value="{{$datosBasicos->id}}">
+			                 @include('admin.datosBasicos.partials.edit-fields')
 						</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="content spark-screen">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Datos académicos del estudiante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios, (SI ES UN NUEVO ESTUDIANTE).</div>
-						<div class="panel-body">
-							<div class="form-group">
-								{!! Form::label('regular','¿Estudiante regular?') !!}
-								<input type="checkbox" name="regular" id="regular" checked>	
-							</div>
-						    @include('admin.datosBasicos.partials.create-fields-academicos')
-				    	</div>
-				</div>
-			</div>
-		</div>
+	
 	</section>
 
 	<section class="content spark-screen">
@@ -81,10 +47,10 @@
 					<div class="panel-heading">Recaudos del estudiante</div>
 						<div class="panel-body">
 							
-			               	@include('admin.datosBasicos.partials.create-fields-recaudos')
+			               	@include('admin.datosBasicos.partials.edit-fields-recaudos')
 			                <div class="box-footer">
 				                <button type="submit" class="btn btn-primary">Enviar</button>
-				                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/cursos')}}"><i class="fa fa-times"></i> Cancelar</a>
+				                <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/DatosBasicos')}}"><i class="fa fa-times"></i> Cancelar</a>
 			              	</div>
 						</div>
 				</div>
@@ -96,31 +62,6 @@
 		{!! Form::close() !!} 
 </div><!-- fin del div para mostrar el nuevo -->
 
-
-<div id="reinscribir" style="display: none">
-	<section class="content spark-screen">
-			<div class="row"> 
-				<div class="col-md-12">
-			         @include('flash::message')
-			    </div>
-			    		<div class="col-xs-8">
-							<div class="form-group">
-								<button type="button" id="nuevo2" style="display: none; width: 200px;" class="btn btn-block btn-success" >Nuevo Ingreso</button>
-									
-							</div>
-						</div>
-					<div class="col-xs-12">
-						
-						<div class="panel panel-default">
-							<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>
-								<div class="panel-body">
-		            				@include('admin.datosBasicos.partials.create-fields-regular')
-					         	</div>
-						</div>
-					</div>
-			</div>
-	</section>
-</div>
 
 </div><!-- /.content-wrapper --> 
 

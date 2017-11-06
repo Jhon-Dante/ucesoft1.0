@@ -54,7 +54,8 @@ class AsignaturasController extends Controller
         if (count($buscar)==0) {
             $asignatura=Asignaturas::create([
                 'asignatura' => $request->asignatura,
-                'id_curso' => $request->id_curso
+                'id_curso' => $request->id_curso,
+                'color' => $request->color
                 ]);
             //registrando en auditoria
             $accion = 'Registro de la Asignatura '.$request->asignatura.' en el curso '.$request->curso.'';
@@ -81,7 +82,7 @@ class AsignaturasController extends Controller
      */
     public function show(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $a=$request->id;
         $asignaturas=Asignaturas::all();
         return View('admin.asignaturas.show', compact('asignaturas','num','a'));
@@ -115,6 +116,7 @@ class AsignaturasController extends Controller
             $asignaturas=Asignaturas::find($id);
             $asignaturas->asignatura=$request->asignatura;
             $asignaturas->id_curso=$request->id_curso;
+            $asignaturas->color=$request->color;
             $asignaturas->update();
             //registrando en auditoria
             $accion = 'Actualización de la Asignatura '.$request->asignatura.'';

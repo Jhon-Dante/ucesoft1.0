@@ -51,7 +51,7 @@
 			</tr>
 			<?php $t2=0; ?>	
 						@foreach($asignaturas as $asig)
-							@if(count($l1)>0 AND count($l2)==0 AND count($l3) == 0)
+							@if($lap_compa==1)
 								<tr>
 									<td align="left">{{$asig->asignatura}}</td>
 										@foreach($l1 as $key)
@@ -70,8 +70,9 @@
 										@endforeach
 										<td></td>
 										<td></td>
+
 								</tr>
-							@elseif(count($l1)>0 AND count($l2)>0 AND count($l3) == 0)
+							@elseif($lap_compa==2)
 								<tr>
 									<td align="left">{{$asig->asignatura}}</td>
 										@foreach($l1 as $key)

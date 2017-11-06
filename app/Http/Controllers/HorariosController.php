@@ -52,21 +52,157 @@ class HorariosController extends Controller
         $periodos=Periodos::find($id_periodo);
         $dias=Dias::all();
         $asignaturas=Asignaturas::all();
+        switch ($secciones->id_curso) {
+            case ($secciones->id_curso <= 4):
 
-        if ($secciones->id_curso <=4)
-        {
-            $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
-            $bloques3=Bloques::all();
-        }
-        else
-        {
-            $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+                    $bloquesx=array();
+                    $colores=array();
+                        $k=1;
+                    for ($h=0; $h < 7; $h++) { 
+                        $b=Bloques2::find($k);  
+                        $bloquesx[$h][0]=$b->bloque;
+                        $colores[$h][0]="#FFFFFF";
+                        $k++;
+                    }
+                    for ($i=0; $i < 7; $i++) { 
+                        for ($j=1; $j < 6; $j++) { 
+                             $bloquesx[$i][$j]="LIBRE";
+                             $colores[$i][$j]="#FFFFFF";
+                        }
+                                
+                    }
+                $horarios=Horarios2::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+                $bloques3=Bloques2::all();
 
-            $bloques3=Bloques::all();
+                $bloque=1;
+                $y=1;
+                $x=0;
+                $k=0;
+                for ($i=0; $i < 7 ; $i++) {
+
+                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+
+                    for ($j=1; $j < 6;$j++) { 
+                        $horario=Horarios2::where('id_bloque',$bloque)->where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
+                        if (count($horario)==1) {
+                        $bloquesx[$i][$j]=$horario->asignatura->codigo;
+                        $colores[$i][$j]=$horario->asignatura->color;
+                        }            
+                        $bloque+=7;
+                    }
+                    $y++;
+                    $x=$y+34;
+                }
+               
+                for ($i=0; $i < 7; $i++) { 
+                    for ($j=0; $j < 6; $j++) { 
+                        //echo $bloquesx[$i][$j]."-";
+                    }
+                    //echo "<br>";
+                }
+                //dd("Hasta aqui");
+                break;
+            
+            case ($secciones->id_curso >=5 AND $secciones->id_curso <= 7):
+
+                $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+                $bloques3=Bloques::all();
+                $bloquesx=array();
+                $colores=array();
+                        $k=1;
+                    for ($h=0; $h < 7; $h++) { 
+                        $b=Bloques::find($k);  
+                        $bloquesx[$h][0]=$b->bloque;
+                        $colores[$h][0]="#FFFFFF";
+                        $k++;
+                    }
+                    for ($i=0; $i < 7; $i++) { 
+                        for ($j=1; $j < 6; $j++) { 
+                             $bloquesx[$i][$j]="LIBRE";
+                             $colores[$i][$j]="#FFFFFF";
+                        }
+                                
+                    }
+                    $bloque=1;
+                $y=1;
+                $x=0;
+                
+                for ($i=0; $i < 7 ; $i++) {
+
+                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+
+                    for ($j=1; $j < 6;$j++) { 
+                        $horario=Horarios::where('id_bloque',$bloque)->where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
+                        if (count($horario)==1) {
+                        $bloquesx[$i][$j]=$horario->asignatura->codigo;
+                        $colores[$i][$j]=$horario->asignatura->color;
+                        }            
+                        $bloque+=16;
+                    }
+                    $y++;
+                    $x=$y+79;
+                }
+               
+                for ($i=0; $i < 7; $i++) { 
+                    for ($j=0; $j < 6; $j++) { 
+                        //echo $bloquesx[$i][$j]."-";
+                    }
+                    //echo "<br>";
+                }
+                //dd("Hasta aqui");
+                break;
+            case ($secciones->id_curso >= 8):
+                $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+                $bloques3=Bloques::all();
+                $bloquesx=array();
+                $colores=array();
+                        $k=8;
+                    for ($h=0; $h < 9; $h++) { 
+                        $b=Bloques::find($k);  
+                        $bloquesx[$h][0]=$b->bloque;
+                        $colores[$h][0]="#FFFFFF";
+                        $k++;
+                    }
+                    for ($i=0; $i < 9; $i++) { 
+                        for ($j=1; $j < 6; $j++) { 
+                             $bloquesx[$i][$j]="LIBRE";
+                             $colores[$i][$j]="#FFFFFF";
+                        }
+                                
+                    }
+                    $bloque=8;
+                $y=8;
+                $x=0;
+                
+                for ($i=0; $i < 9 ; $i++) {
+
+                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+
+                    for ($j=1; $j < 6;$j++) { 
+                        $horario=Horarios::where('id_bloque',$bloque)->where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
+                        if (count($horario)==1) {
+                        $bloquesx[$i][$j]=$horario->asignatura->codigo;
+                        $colores[$i][$j]=$horario->asignatura->color;
+                        }            
+                        $bloque+=9;
+                    }
+                    $y++;
+                    $x=$y+72;
+                }
+               
+                for ($i=0; $i < 9; $i++) { 
+                    for ($j=0; $j < 6; $j++) { 
+                        //echo $bloquesx[$i][$j]."-";
+                    }
+                    //echo "<br>";
+                }
+                //dd("Hasta aqui");
+                break;
         }
+        
 
         $horas=8;
-        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3'));
+        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores'));
     }
     /**
      * Store a newly created resource in storage.
@@ -93,18 +229,28 @@ class HorariosController extends Controller
             return redirect()->route('admin.crearhorario',['id_seccion' => $request->id_seccion,'id_periodo' => $request->id_periodo])->withInput();
         } else {
 
-            
-               
 
-            for ($i=0; $i < $request->bloque ; $i++) { 
-                 $crear=Horarios::create([
-                    'id_bloque' => $request->id_bloque+$i,
-                    'id_aula' => $request->id_aula,
-                    'id_asignatura' => $request->id_asignatura,
-                    'id_seccion' => $request->id_seccion,
-                    'id_periodo' => $request->id_periodo
-                ]);
-             }
+            if ($curso->id<=4) {
+                for ($i=0; $i < $request->bloque ; $i++) { 
+                     $crear=Horarios2::create([
+                        'id_bloque' => $request->id_bloque+$i,
+                        'id_aula' => $request->id_aula,
+                        'id_asignatura' => $request->id_asignatura,
+                        'id_seccion' => $request->id_seccion,
+                        'id_periodo' => $request->id_periodo
+                    ]);
+                }
+            }else{
+                for ($i=0; $i < $request->bloque ; $i++) { 
+                     $crear=Horarios::create([
+                        'id_bloque' => $request->id_bloque+$i,
+                        'id_aula' => $request->id_aula,
+                        'id_asignatura' => $request->id_asignatura,
+                        'id_seccion' => $request->id_seccion,
+                        'id_periodo' => $request->id_periodo
+                    ]);
+                }
+            }
 
 
         $aulas=Aula::all();
@@ -118,7 +264,160 @@ class HorariosController extends Controller
         $horarios=Horarios::where('id_periodo',$request->id_periodo)->get();
         $horas=8;
 
-        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3'));
+        switch ($secciones->id_curso) {
+            case ($secciones->id_curso <= 4):
+
+                $bloquesx=array();
+                $colores=array();
+                    $k=1;
+                for ($h=0; $h < 7; $h++) { 
+                    $b=Bloques2::find($k);  
+                    $bloquesx[$h][0]=$b->bloque;
+                    $colores[$h][0]="#FFFFFF";
+                    $k++;
+                }
+                for ($i=0; $i < 7; $i++) { 
+                    for ($j=1; $j < 6; $j++) { 
+                         $bloquesx[$i][$j]="LIBRE";
+                         $colores[$i][$j]="#FFFFFF";
+                    }
+                            
+                }
+                $horarios=Horarios2::where('id_periodo',$request->id_periodo)->where('id_seccion',$request->id_seccion)->groupBy('id_bloque')->get();
+                $bloques3=Bloques2::all();
+
+        $bloque=1;
+        $y=1;
+        $x=0;
+
+                for ($i=0; $i < 7 ; $i++) {
+
+                    if ($bloque == $x) {
+                        $bloque=$bloque-($x-$y);
+                    
+                    }
+                    //echo $bloque;
+                    for ($j=1; $j < 6;$j++) { 
+                        //echo $bloque."-";
+                        
+                        $horario=Horarios2::where('id_bloque',$bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+
+                        if (count($horario)==1) {
+                        $bloquesx[$i][$j]=$horario->asignatura->codigo;
+                        $colores[$i][$j]=$horario->asignatura->color;
+                        }            
+                        $bloque+=7;
+                    }
+                    //echo "<br>";
+                    $y++;
+                    $x=$y+34;
+                }
+                //dd(count($bloquesx));
+                for ($i=0; $i < 7; $i++) { 
+                    for ($j=0; $j < 6; $j++) { 
+                        //echo $bloquesx[$i][$j]."-";
+                    }
+                    //echo "<br>";
+                }
+                //dd("Hasta aqui");
+                break;
+            
+            case ($secciones->id_curso >=5 AND $secciones->id_curso <= 7):
+                $horarios=Horarios::where('id_periodo',$request->id_periodo)->where('id_seccion',$request->id_seccion)->groupBy('id_bloque')->get();
+                $bloques3=Bloques::all();
+                $bloquesx=array();
+                $colores=array();
+                        $k=1;
+                    for ($h=0; $h < 7; $h++) { 
+                        $b=Bloques::find($k);  
+                        $bloquesx[$h][0]=$b->bloque;
+                        $colores[$h][0]="#FFFFFF";
+                        $k++;
+                    }
+                    for ($i=0; $i < 7; $i++) { 
+                        for ($j=1; $j < 6; $j++) { 
+                             $bloquesx[$i][$j]="LIBRE";
+                             $colores[$i][$j]="#FFFFFF";
+                        }
+                                
+                    }
+                    $bloque=1;
+                $y=1;
+                $x=0;
+                
+                for ($i=0; $i < 7 ; $i++) {
+
+                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+
+                    for ($j=1; $j < 6;$j++) { 
+                        $horario=Horarios::where('id_bloque',$bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+                        if (count($horario)==1) {
+                        $bloquesx[$i][$j]=$horario->asignatura->codigo;
+                        $colores[$i][$j]=$horario->asignatura->color;
+                        }            
+                        $bloque+=16;
+                    }
+                    $y++;
+                    $x=$y+79;
+                }
+               
+                for ($i=0; $i < 7; $i++) { 
+                    for ($j=0; $j < 6; $j++) { 
+                        //echo $bloquesx[$i][$j]."-";
+                    }
+                    //echo "<br>";
+                }
+                //dd("Hasta aqui");
+                break;
+            case ($secciones->id_curso >= 8):
+                $horarios=Horarios::where('id_periodo',$request->id_periodo)->where('id_seccion',$request->id_seccion)->groupBy('id_bloque')->get();
+                $bloques3=Bloques::all();
+                $bloquesx=array();
+                $colores=array();
+                        $k=8;
+                    for ($h=0; $h < 9; $h++) { 
+                        $b=Bloques::find($k);  
+                        $bloquesx[$h][0]=$b->bloque;
+                        $colores[$h][0]="#FFFFFF";
+                        $k++;
+                    }
+                    for ($i=0; $i < 9; $i++) { 
+                        for ($j=1; $j < 6; $j++) { 
+                             $bloquesx[$i][$j]="LIBRE";
+                             $colores[$i][$j]="#FFFFFF";
+                        }
+                                
+                    }
+                    $bloque=8;
+                $y=8;
+                $x=0;
+                
+                for ($i=0; $i < 9 ; $i++) {
+
+                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+
+                    for ($j=1; $j < 6;$j++) { 
+                        $horario=Horarios::where('id_bloque',$bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+                        if (count($horario)==1) {
+                        $bloquesx[$i][$j]=$horario->asignatura->codigo;
+                        $colores[$i][$j]=$horario->asignatura->color;
+                        }            
+                        $bloque+=9;
+                    }
+                    $y++;
+                    $x=$y+72;
+                }
+               
+                for ($i=0; $i < 9; $i++) { 
+                    for ($j=0; $j < 6; $j++) { 
+                        //echo $bloquesx[$i][$j]."-";
+                    }
+                    //echo "<br>";
+                }
+                //dd("Hasta aqui");
+                break;
+        }
+        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3','bloquesx','colores'));
 
 
             

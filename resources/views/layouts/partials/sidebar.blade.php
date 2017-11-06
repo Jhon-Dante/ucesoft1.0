@@ -189,12 +189,8 @@
         @elseif(Auth::user()->tipo_user == 'Representante')
 
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
-                    
-                    
-                </ul>
+                <a href="{{ url('admin/mensualidades') }}"><i class="fa fa-link"></i> <span>Mensualidades</span></a>
+                
                 
             </li>
 
