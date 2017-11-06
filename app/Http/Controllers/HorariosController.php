@@ -47,7 +47,7 @@ class HorariosController extends Controller
     {
 
         
-        $aulas=Aula::all();
+       
         $secciones=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);
         $dias=Dias::all();
@@ -57,17 +57,23 @@ class HorariosController extends Controller
 
                     $bloquesx=array();
                     $colores=array();
+                    $aula=array();
+                    $id_horarios=array();
                         $k=1;
                     for ($h=0; $h < 7; $h++) { 
                         $b=Bloques2::find($k);  
                         $bloquesx[$h][0]=$b->bloque;
                         $colores[$h][0]="#FFFFFF";
+                        $aula[$h][0]="";
+                        $id_horarios[$h][0]="";
                         $k++;
                     }
                     for ($i=0; $i < 7; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
+                             $aula[$i][$j]="";
+                             $id_horarios[$i][$j]="";
                         }
                                 
                     }
@@ -87,6 +93,8 @@ class HorariosController extends Controller
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
+                        $aula[$i][$j]=$horario->aula->nombre;
+                        $id_horarios[$i][$j]=$horario->id;
                         }            
                         $bloque+=7;
                     }
@@ -109,17 +117,23 @@ class HorariosController extends Controller
                 $bloques3=Bloques::all();
                 $bloquesx=array();
                 $colores=array();
+                $aulas=array();
+                $id_horarios=array();
                         $k=1;
                     for ($h=0; $h < 7; $h++) { 
                         $b=Bloques::find($k);  
                         $bloquesx[$h][0]=$b->bloque;
                         $colores[$h][0]="#FFFFFF";
+                        $aula[$h][0]="";
+                        $id_horarios[$h][0]="";
                         $k++;
                     }
                     for ($i=0; $i < 7; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
+                             $aula[$i][$j]="";
+                             $id_horarios[$i][$j]="";
                         }
                                 
                     }
@@ -136,6 +150,8 @@ class HorariosController extends Controller
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
+                        $aula[$i][$j]=$horario->aula->nombre;
+                        $id_horarios[$i][$j]=$horario->id;
                         }            
                         $bloque+=16;
                     }
@@ -156,17 +172,23 @@ class HorariosController extends Controller
                 $bloques3=Bloques::all();
                 $bloquesx=array();
                 $colores=array();
+                $aulas=array();
+                $id_horarios=array();
                         $k=8;
                     for ($h=0; $h < 9; $h++) { 
                         $b=Bloques::find($k);  
                         $bloquesx[$h][0]=$b->bloque;
                         $colores[$h][0]="#FFFFFF";
+                        $aula[$h][0]="";
+                        $id_horarios[$h][0]="";
                         $k++;
                     }
                     for ($i=0; $i < 9; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
+                             $aula[$i][$j]="";
+                             $id_horarios[$i][$j]="";
                         }
                                 
                     }
@@ -183,6 +205,8 @@ class HorariosController extends Controller
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
+                        $aula[$i][$j]=$horario->aula->nombre;
+                        $id_horarios[$i][$j]=$horario->id;
                         }            
                         $bloque+=9;
                     }
@@ -202,7 +226,9 @@ class HorariosController extends Controller
         
 
         $horas=8;
-        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores'));
+         $aulas=Aula::all();
+        
+        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
     }
     /**
      * Store a newly created resource in storage.
@@ -253,7 +279,7 @@ class HorariosController extends Controller
             }
 
 
-        $aulas=Aula::all();
+       
         $secciones=Seccion::where('id',$request->id_seccion)->get()->first();
         $periodos=Periodos::where('id',$request->id_periodo)->get()->first();
         $bloques=Bloques::lists('bloque','id');
@@ -269,17 +295,23 @@ class HorariosController extends Controller
 
                 $bloquesx=array();
                 $colores=array();
+                $aula=array();
+                $id_horarios=array();
                     $k=1;
                 for ($h=0; $h < 7; $h++) { 
                     $b=Bloques2::find($k);  
                     $bloquesx[$h][0]=$b->bloque;
                     $colores[$h][0]="#FFFFFF";
+                    $aula[$h][0]="";
+                    $id_horarios[$h][0]="";
                     $k++;
                 }
                 for ($i=0; $i < 7; $i++) { 
                     for ($j=1; $j < 6; $j++) { 
                          $bloquesx[$i][$j]="LIBRE";
                          $colores[$i][$j]="#FFFFFF";
+                         $aula[$i][$j]="";
+                         $id_horarios[$i][$j]="";
                     }
                             
                 }
@@ -305,6 +337,8 @@ class HorariosController extends Controller
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
+                        $aula[$i][$j]=$horario->aula->nombre;
+                        $id_horarios[$i][$j]=$horario->id;
                         }            
                         $bloque+=7;
                     }
@@ -327,17 +361,23 @@ class HorariosController extends Controller
                 $bloques3=Bloques::all();
                 $bloquesx=array();
                 $colores=array();
+                $aula=array();
+                $id_horarios=array();
                         $k=1;
                     for ($h=0; $h < 7; $h++) { 
                         $b=Bloques::find($k);  
                         $bloquesx[$h][0]=$b->bloque;
                         $colores[$h][0]="#FFFFFF";
+                        $aula[$h][0]="";
+                        $id_horarios[$h][0]="";
                         $k++;
                     }
                     for ($i=0; $i < 7; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
+                             $aula[$i][$j]="";
+                             $id_horarios[$i][$j]="";
                         }
                                 
                     }
@@ -354,6 +394,8 @@ class HorariosController extends Controller
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
+                        $aula[$i][$j]=$horario->aula->nombre;
+                        $id_horarios[$i][$j]=$horario->id;
                         }            
                         $bloque+=16;
                     }
@@ -374,17 +416,23 @@ class HorariosController extends Controller
                 $bloques3=Bloques::all();
                 $bloquesx=array();
                 $colores=array();
+                $aula=array();
+                $id_horarios=array();
                         $k=8;
                     for ($h=0; $h < 9; $h++) { 
                         $b=Bloques::find($k);  
                         $bloquesx[$h][0]=$b->bloque;
                         $colores[$h][0]="#FFFFFF";
+                        $aula[$h][0]="";
+                        $id_horarios[$h][0]="";
                         $k++;
                     }
                     for ($i=0; $i < 9; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
+                             $aula[$i][$j]="";
+                             $id_horarios[$i][$j]="";
                         }
                                 
                     }
@@ -401,6 +449,8 @@ class HorariosController extends Controller
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
+                        $aula[$i][$j]=$horario->aula->nombre;
+                        $id_horarios[$i][$j]=$horario->id;
                         }            
                         $bloque+=9;
                     }
@@ -417,7 +467,8 @@ class HorariosController extends Controller
                 //dd("Hasta aqui");
                 break;
         }
-        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3','bloquesx','colores'));
+         $aulas=Aula::all();
+        return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
 
 
             
@@ -469,7 +520,7 @@ class HorariosController extends Controller
         $horario=Horarios::find($id);
         $horario->delete();
 
-        flash('BLOQUE ELIMINADO OCN ÉXITO!','success');
+        flash('BLOQUE ELIMINADO CON ÉXITO!','success');
         return redirect()->back();
     }
      public function mostrar()

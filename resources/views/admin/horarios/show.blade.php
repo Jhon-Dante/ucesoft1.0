@@ -97,8 +97,8 @@
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
-                        @foreach($aulas as $aula)
-                          <option value="{{$aula->id}}">{{$aula->nombre}}</option>
+                        @foreach($aulas as $key)
+                          <option value="{{$key->id}}">{{$key->nombre}}</option>
                         @endforeach
                       </select>
                     </td>
@@ -124,10 +124,26 @@
                   <th>{{$dia->dia}}</th>
                   @endforeach
                 </tr>
-                 @for ($i=0; $i < 7; $i++) 
+                @if($secciones->curso->id<=7)
+                  <?php $fin=7; ?>
+                @else
+                  <?php $fin=9; ?>
+                @endif
+                 @for ($i=0; $i < $fin; $i++) 
                  <tr>
                     @for ($j=0; $j < 6; $j++)  
-                        <td align="center" style="background-color: {{$colores[$i][$j]}}"><strong>{{$bloquesx[$i][$j]}}</strong></td>
+                      @if($j==0)
+                        <td align="center" style="border-radius: 8px; background-color: {{$colores[$i][$j]}}"><strong>{{$bloquesx[$i][$j]}}</strong></td>
+                      @else
+                        <td align="center" style="border-radius: 8px; background-color: {{$colores[$i][$j]}}">
+                        <strong>
+                      @if($bloquesx[$i][$j]!="LIBRE")
+                        {{$bloquesx[$i][$j]}}-A:{{$aula[$i][$j]}}
+                        <a href="{{ route('admin.horarios.destroy', [$id_horarios[$i][$j]]) }}"><button style="width: 2em;height: 2em;" class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a>
+                      @else
+                        {{$bloquesx[$i][$j]}}
+                      @endif</strong></td>
+                      @endif
                     @endfor
                   </tr> 
                 @endfor
