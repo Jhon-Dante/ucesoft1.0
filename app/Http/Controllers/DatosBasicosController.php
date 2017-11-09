@@ -42,11 +42,12 @@ class DatosBasicosController extends Controller
         //$datosBasicos=DatosBasicos::all();
         $padres=Padres::all();
         $preinscripcion=Inscripcion::all();
+        $pre=Preinscripcion::all();
         $datosbasicos=DatosBasicos::all();
         $periodo=Periodos::where('status','Activo')->first();
         $accion='Mostrando los datos de los estudiantes registrados';
         $this->auditoria($accion);
-        return View('admin.DatosBasicos.index', compact('preinscripcion','num','datosbasicos','periodo'));
+        return View('admin.DatosBasicos.index', compact('preinscripcion','pre','num','datosbasicos','periodo'));
     }
 
     /**

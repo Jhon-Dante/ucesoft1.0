@@ -12,6 +12,8 @@ use App\User;
 use Redirect;
 use App\Session;
 use Mail;
+use App\Auditoria;
+use App\DatosBasicos;
 
 class RepresentantesController extends Controller
 {
@@ -22,9 +24,13 @@ class RepresentantesController extends Controller
      */
     public function index()
     {
+
+        $accion='Visualiza datos de los representantes registrados';
+        $this->auditoria($accion);
         $num=0;
         $representantes=Representantes::all();
-        return View('admin.representantes.index', compact('representantes','num'));
+        $datosBasicos=DatosBasicos::all();
+        return View('admin.representantes.index', compact('representantes','num','datosBasicos'));
     }
 
     /**
@@ -96,6 +102,7 @@ class RepresentantesController extends Controller
                     'password' => bcrypt('qwerty'),
                     'tipo_user' => 'Representante'
                 ]);
+
             
             // flash('Representante registrado con éxito','success');
             // if ($request->desde==1) {
@@ -105,7 +112,10 @@ class RepresentantesController extends Controller
             //     }
             // }
                 flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
-                    echo $contraseña;
+                    echo "Contraseña: ".$contraseña;
+
+                    $accion='Registra nuevo representante: '.$request->nombres;
+                    $this->auditoria($accion);
 
             $num=0;
             $representantes=Representantes::all();
@@ -161,6 +171,8 @@ class RepresentantesController extends Controller
         } else {
             flash('ESTE REPRESENTANTE YA ESTÁ REGISTRADO!','warning');
         }
+        $accion='Actualiza datos del representante'.$representantes->nombres;
+        $this->auditoria($accion);
 
         return redirect()->route('admin.representantes.index');
         
@@ -178,5 +190,14 @@ class RepresentantesController extends Controller
         $representantes->delete();
         flash(' SE HA ELIMINADO EL REPRESENTANTE     CORRECTAMENTE.','success');
         return redirect()->route('admin.representantes.index');
+    }
+
+    private function auditoria($accion)
+    {
+        
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }

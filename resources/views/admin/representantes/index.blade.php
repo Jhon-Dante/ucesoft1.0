@@ -47,6 +47,8 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
+                    <th>Representados</th>
+                    <th>Opciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -56,6 +58,13 @@
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->nombres}}</a></td>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}"> {{$representante->apellidos}}</a></td>
                   <td><a href="{{ route('admin.representantes.edit', [$representante->id] ) }}">{{$representante->nacionalidad}} - {{$representante->cedula}}</a></td>
+                  <td>
+                    @foreach($datosBasicos as $db)
+                      @if($db->id_representante == $representante->id)
+                        <a href="{{ url('admin/DatosBasicos') }}">{{$db->apellidos}},{{$db->nombres}}</a><br>
+                      @endif
+                    @endforeach
+                  </td>
                   <td>
                   <div class="btn-group">
 

@@ -110,7 +110,6 @@
                     
                     @foreach($inscripcion as $key)
                       <tr>
-
                         <td>{{ $num=$num+1 }}</td>
                         <td>{{$key->datosbasicos->nombres}}</td>
 

@@ -43,8 +43,71 @@
                 </thead>
 
                 <tbody>
-        
+                  @if($a==1)
+                  @foreach($datosBasicos as $key)
+                  @foreach($inscripcion as $key2)
                    @foreach($secciones as $seccion)
+                    @if($key2->id_datosBasicos == $key->id)
+                      @if($key2->id_seccion == $seccion->id)
+                       <tr>
+                        <td>{{$num=$num+1}}</td>
+                        <td>{{$seccion->curso->curso}}</td>
+                        <td>{{$seccion->seccion}}</td>
+                        <td>{{Session::get('periodoNombre')}}</td>
+                        <td>
+
+                          
+                            
+                            @if($seccion->curso->id <= 4)
+                            <?php $cont=0; ?>
+                              @foreach($horarios2 as $h2)
+                                @if($h2->id_seccion == $seccion->id)
+                                  <?php $cont++; ?>
+
+                                @endif
+                              @endforeach
+
+                              @if($cont>0)
+                                  <div class="btn-group">
+                                    <a href="{{ url('admin/mostrarhorario',['id_seccion' => $seccion->id,'id_periodo' => $id_periodo]) }}">
+                                      <button type="submit" class="btn btn-danger btn-flat" >
+                                      <i class="fa fa-file-pdf-o"></i> PDF   
+                                      </button>
+                                    </a>
+                                  </div>
+                                  
+                              @endif
+                            @else
+                              <?php $cont=0; ?>
+                              @foreach($horarios as $h)
+                                @if($h->id_seccion == $seccion->id)
+                                  <?php $cont++; ?>
+                                  
+                                @endif
+                              @endforeach
+
+                              @if($cont>0)
+                              <div class="btn-group">
+                                    <a href="{{ url('admin/mostrarhorario',['id_seccion' => $seccion->id,'id_periodo' => $id_periodo]) }}">
+                                      <button type="submit" class="btn btn-danger btn-flat" >
+                                      <i class="fa fa-file-pdf-o"></i> PDF   
+                                      </button>
+                                    </a>
+                                  </div>
+                              @endif
+                            @endif
+                          
+
+                         </td>
+                       </tr>
+                    @endif
+                    @endif
+                    @endforeach
+                    @endforeach
+                    @endforeach
+
+                   @else
+                      @foreach($secciones as $seccion)
                     
                        <tr>
                         <td>{{$num=$num+1}}</td>
@@ -54,20 +117,50 @@
                         <td>
 
                           
-                            <a href="{{ url('admin/crearhorario',['id_seccion' => $seccion->id,'id_periodo' => $periodos->id]) }}"><button  class="btn btn-primary btn-flat" ><i class="fa fa-pencil"></i> Crear</button></a>
-                            
-                            <div class="btn-group">
-                              <button type="submit" class="btn btn-danger btn-flat" >
-                              <i class="fa fa-file-pdf-o"></i> PDF   
-                              </button> 
-                            </div>
+                            <a href="{{ url('admin/crearhorario',['id_seccion' => $seccion->id,'id_periodo' => $id_periodo]) }}"><button  class="btn btn-primary btn-flat" ><i class="fa fa-pencil"></i> Crear</button></a>
+                            @if($seccion->curso->id <= 4)
+                            <?php $cont=0; ?>
+                              @foreach($horarios2 as $h2)
+                                @if($h2->id_seccion == $seccion->id)
+                                  <?php $cont++; ?>
+
+                                @endif
+                              @endforeach
+
+                              @if($cont>0)
+                                  <div class="btn-group">
+                                    <a href="{{ url('admin/mostrarhorario',['id_seccion' => $seccion->id,'id_periodo' => $id_periodo]) }}">
+                                      <button type="submit" class="btn btn-danger btn-flat" >
+                                      <i class="fa fa-file-pdf-o"></i> PDF   
+                                      </button>
+                                    </a>
+                                  </div>
+                                  
+                              @endif
+                            @else
+                              <?php $cont=0; ?>
+                              @foreach($horarios as $h)
+                                @if($h->id_seccion == $seccion->id)
+                                  <?php $cont++; ?>
+                                  
+                                @endif
+                              @endforeach
+
+                              @if($cont>0)
+                              <div class="btn-group">
+                                <button type="submit" class="btn btn-danger btn-flat" >
+                                <i class="fa fa-file-pdf-o"></i> PDF   
+                                </button> 
+                              </div>
+                              @endif
+                            @endif
                           
 
                          </td>
                        </tr>
                     
-                   @endforeach
-                   
+                    @endforeach
+                   @endif
 
               </tbody>
             </table>

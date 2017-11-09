@@ -663,6 +663,21 @@ class MediaGeneralController extends Controller
 
     }
 
+    public function notas2()
+    {
+        $periodo=Session::get('periodo');
+        $email=\Auth::user()->email;
+        $secciones=Seccion::all();
+        $inscripciones=Inscripcion::where('id_periodo',$periodo)->groupBy('id_seccion')->get();
+        
+        //dd(count($lapso));
+        $cont=0;
+
+        $num=0;
+        return View('admin.calificaciones.notas2.index', compact('num','secciones','inscripciones'));
+
+    }
+
     /**
      * Update the specified resource in storage.
      *

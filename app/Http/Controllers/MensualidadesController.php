@@ -151,11 +151,11 @@ class MensualidadesController extends Controller
     }
     public function store(Request $request)
     {
-        //buscando la mensualidad previamente registrada
+        // //buscando la mensualidad previamente registrada
         $buscar_mens=Mensualidades::find($request->id);
         $estudiante=$buscar_mens->inscripcion->datosbasicos->nombres." ".$buscar_mens->inscripcion->datosbasicos->apellidos;
         $cedula=$buscar_mens->inscripcion->datosbasicos->nacionalidad.".- ".$buscar_mens->inscripcion->datosbasicos->cedula;
-        //buscando el ultimo monto registrado para ese mes
+        // //buscando el ultimo monto registrado para ese mes
         $pagos=Pagos::where('id_mes',$request->id_mes)->get()->last();
         $mes=$pagos->meses->mes;
 
@@ -171,29 +171,29 @@ class MensualidadesController extends Controller
             $buscar_mens->save();
 
         }
-        //---enviando correo
+        // ---enviando correo
 
 
 
 
 
-        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
-        //dd($destinatario);
-        $asunto="Confirmación de pago de mensualidad";
-        $contenido="PAGO DE MENSUALIDAD";
-        $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
+        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        // //dd($destinatario);
+        // $asunto="Confirmación de pago de mensualidad";
+        // $contenido="PAGO DE MENSUALIDAD";
+        // $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
-        $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
-            //$message->from('colegiourdanetacampoelias@gmail.com');
-        
-            $message->to($destinatario)->subject($asunto);
-        });
-        if ($r) {
-           flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
-        } else {
-           flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
-        }
-        
+        //     $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
+        //         $message->from('colegiourdanetacampoelias@gmail.com');
+        //         $message->to($destinatario)->subject($asunto);
+        //     });
+
+        // if ($r) {
+        //    flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
+        // } else {
+        //    flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
+        // }
+        flash('MENSUALIDAD CANCELADA CON ÉXITO! PERO NO SE HA PODIDO ENVIAR LA FACTURA AL CORREO DEBIDO A UN ERROR: [host smtp.gmail.com [php_network_getaddresses: getaddrinfo failed: Host desconocido]');
         
 
         return redirect()->route('admin.mensualidades.index');

@@ -256,6 +256,52 @@ class PreescolarController extends Controller
         return View('admin.preescolar.show', compact('num','inscritos','periodos','cali','seccion','id_periodo','lapsos','reportes','reportes2','n'));
     }
 
+    public function mostrarmomento2($id_seccion, $id_periodo)
+    {
+
+        $num=0;
+        $inscritos=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        $seccion=Seccion::find($id_seccion);
+        $periodos=Periodos::find($id_periodo);
+        $cali=Calificaciones::where('id_periodo',$id_periodo)->get();
+        $reportes=Calificaciones::where('id_periodo',$id_periodo)->get();
+        $reportes2=Calificaciones::where('id_periodo',$id_periodo)->groupBy('nro_reportes')->get();
+        // dd(count($reportes2));
+
+        $k=0;
+        $i=0;
+        $m=0;
+        foreach ($reportes2 as $key) {
+            $p=0;
+            $i=$k;
+            
+
+
+            foreach ($reportes2->groupBy('nro_reportes') as $key2) 
+            {
+
+                if ($key2[0]->id_periodo==$periodos->id) 
+                {
+                    
+                    $repor[$i]=$key2[0]->nro_reportes;
+
+                    $i++;
+                    $p++;
+                 }
+            }
+        }
+        $k=$i;
+
+        if ($i>0 and $p>0) 
+        {
+            $j=$i-1;
+            $lapsos[$m]=$repor[$j];
+            $m++;
+        }
+        $n=0;
+        return View('admin.preescolar.show', compact('num','inscritos','periodos','cali','seccion','id_periodo','lapsos','reportes','reportes2','n'));
+    }
+
     public function calificaciones($id_seccion, $id_periodo)
     {
         $num=0;

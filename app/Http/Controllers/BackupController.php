@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
-use Carbon\Carbon;
-use Storage;
-use Session;
+use Alert;
 use Artisan;
+use Log;
+use Storage;
+use Response;
+use Session;
+use File;
+use Carbon\Carbon;
+use BackupManager\Filesystems\Destination;
 
 class BackupController extends Controller
 {
+    public function index(){
 
-    public function index(Request $request)
-    {
         $files = Storage::disk('backup')->allFiles();
         $storage = Storage::disk('backup');
         $backups = [];
 
         foreach ($files as $k => $f) {
             if (substr($f, -3) == '.gz' && $storage->exists($f)) {
+
                 $e = explode('/', $f);
                 
                 $backups[] = [
@@ -32,12 +38,11 @@ class BackupController extends Controller
         }
 
         $backups = array_reverse($backups);
-
-        return view('backup.index', compact('backups'));
+        return view('admin.respaldos.index', compact('backups'));
     }
 
-    public function create()
-    {
+    public function create(){
+
         $date = Carbon::now()->toW3cString();
         $environment = env('APP_ENV');
 
@@ -46,7 +51,7 @@ class BackupController extends Controller
             Artisan::call("db:backup", [
                 "--database"        => "mysql",
                 "--destination"     => "local",
-                "--destinationPath" => "/{$environment}/sefardi_{$environment}_{$date}",
+                "--destinationPath" => "/{$environment}/urdanetace_{$environment}_{$date}",
                 "--compression"     => "gzip"
  
             ]);
@@ -55,57 +60,32 @@ class BackupController extends Controller
 
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n" . $output);
 
-            Session::flash('message', 'SE HA REGISTRADO LA SOLICITUD EXITOSAMENTE.');
+            Session::flash('message', 'SE A CREADO UN NUEVO RESPALDO CORRECTAMENTE.');
 
             return redirect()->back();
 
         } catch (Exception $e) {
 
-            Session::flash('message-warning', 'SE HA PRODUCIDO UN ERROR AL INTENTAR PROCESAR LA SOLICITUD, NO SE PUDO COMPLETAR EL RESPALDO.');
+            Session::flash('message-error', 'ERROR AL PROCESAR LA SOLICITUD '. $e .' VUELVA A INTENTARLO.');
 
             return redirect()->back();
         }
+
     }
-    
+
     public function download($file_name){
-     
+
         if ($disk =  Storage::disk('backup')->exists($file_name)) {
+
             $fs = "../storage/local/" . $file_name;
     
             return response()->download($fs);
 
         } else {
 
-            Session::flash('message-warning', 'DISCULPE SE HA PRODUCIDO UN ERROR CON EL RESPALDO, EL ARCHIVO NO EXISTE O ESTA CORRUPTO.');
-
-            return redirect()->back();
-
-            //abort(404, "DISCULPE SE HA PRODUCIDO UN ERROR CON EL RESPALDO, EL ARCHIVO NO EXISTE O ESTA CORRUPTO.");
+            abort(404, "The backup file doesn't exist.");
         }
-    }
 
-    public function restore($file_name)
-    {
-        if($disk = Storage::disk('backup')->exists($file_name))
-        {
-            Artisan::call("db:restore", [
-                "--source"      => "s3",
-                "--sourcePath"  => $file_name,
-                "--database"    => "mysql",
-                "--compression" => "gzip"
-            ]);
-
-            Session::flash('message', 'SE HA RESTAURADO LA BASE DE DATOS EXITOSAMENTE.');
-
-            return redirect()->back();
-
-        } else {
-
-            Session::flash('message-warning', 'DISCULPE HA OCURRIDO UN ERROR AL RESTAURAR LA BASE DE DATOS, ARCHIVO CORRUPTO INTENTELO NUEVAMENTE.');
-
-            return redirect()->back();
-        }
-        
     }
 
     public function destroy(Request $request)
@@ -114,25 +94,65 @@ class BackupController extends Controller
         {
             $delete = Storage::disk('backup')->delete($request->file_name);
 
-            if($delete)
-            {
-                Session::flash('message', 'SE HA ELIMINADO EL RESPALDO CORRECTAMENTE.');
+            if($delete){
+
+                Session::flash('message', 'SE A ELIMINADO EL RESPALDO CORRECTAMENTE.');
 
                 return redirect()->back();  
 
             } else {
 
-                Session::flash('message-warning', 'ERROR AL ELIMINAR EL RESPALDO EL ARCHIVO NO PUDO SER ELIMINADO.');
+                Session::flash('message-error', 'ERROR AL ELIMINAR RESPALDO A OCURRIDO UN ERROR, EL ARCHIVO A ELIMINAR NO SE ENCUENTRA VUELVA A INTENTARLO.');
 
                 return redirect()->back();
                 
             }
+
         } else {
 
-            Session::flash('message-warning', 'ERROR AL ELIMINAR EL RESPALDO EL ARCHIVO NO PUDO SER ELIMINADO PORQUE NO EXISTE.');
+            Session::flash('message', 'ERROR AL ELIMINAR RESPALDO A OCURRIDO UN ERROR, EL ARCHIVO A ELIMINAR NO SE ENCUENTRA VUELVA A INTENTARLO.');
 
             return redirect()->back();
             
         }
     }
+
+    public function subir() { 
+
+        return view('respaldos.subir_restore'); 
+    }
+    
+    public function subirRestore(Request $request) { 
+        
+        $file = $request->file('file');
+        $name = $file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+
+        Storage::disk('backup')->put('hola.'.$extension, $file);
+    }
+
+    public function restore($file_name){
+
+        if($disk = Storage::disk('backup')->exists($file_name)){
+
+            Artisan::call("db:restore", [
+                "--source"      => "s3",
+                "--sourcePath"  => $file_name,
+                "--database"    => "mysql",
+                "--compression" => "gzip"
+            ]);
+
+            Session::flash('message', 'SE HA REALIZADO LA RESTAURACION DE LA BASE DE DATOS EXITOSAMENTE.');
+
+            return redirect()->back();
+
+        } else {
+
+             Session::flash('message-error', 'DISCULPE A OCURRIDO UN ERROR EN LA RESTAURACION DE LA BASE DE DATOS (ARCHIVO CORRUPTO).');
+
+            return redirect()->back();
+        }
+        
+    }
+        
 }

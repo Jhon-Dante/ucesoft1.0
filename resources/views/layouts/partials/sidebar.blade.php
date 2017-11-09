@@ -65,18 +65,19 @@
                 </ul>
                 
             </li>
-            <!-- <li class="treeview">
+            <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                   
-                    <li><a href="{{ url('admin/preescolar') }}">Educación Preescolar</a></li>
-                    <li><a href="{{ url('admin/educacion_basica') }}">Educación Básica</a></li>
-                    <li><a href="{{ url('admin/educacion_media') }}">Educación Media General</a></li>
+                
+                    <li><a href="{{ url('admin/notas2') }}">Notas</a></li>
+                    <li><a href="{{ url('admin/calificacionesadmin/1') }}">Educación Preescolar</a></li>
+                    <li><a href="{{ url('admin/calificacionesadmin/2') }}">Educación Básica</a></li>
+                    <li><a href="{{ url('admin/calificacionesadmin/3') }}">Educación Media General</a></li>
                     <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li>
                     
                 </ul>
                 
-            </li> -->
+            </li>
 
             <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
                         
@@ -114,7 +115,7 @@
                     <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
                     <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
                     <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
-                    <!-- <li><a href=" {{ url('admin/respaldo')      }} ">Respaldar BD   </a></li> -->
+                    <li><a href=" {{ url('admin/respaldos')      }} ">Respaldar BD   </a></li>
                     <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
 
                     
@@ -199,6 +200,7 @@
                 
                 
             </li>
+            <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
 
         @endif
         

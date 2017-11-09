@@ -20,6 +20,8 @@ use App\User;
 use App\Mensualidades;
 use App\Representantes;
 use Session;
+use App\Auditoria;
+
 class BoletinController extends Controller
 {
     /**
@@ -279,6 +281,9 @@ class BoletinController extends Controller
     }
     public function boletinBasicaEstudiante($id_datosBasicos, $id_seccion, $id_periodo,$lapso)
     {
+        $s=Seccion::find($id_seccion);
+        $accion='Visualiza la carga de notas de: '.$s->curso->curso. ' en la sección: '.$s->seccion;
+        $this->auditoria($accion);
         $correo=\Auth::user()->email;
         $personal=Personal::where('correo',$correo)->first();
 
@@ -500,6 +505,9 @@ class BoletinController extends Controller
 
         if (count($representante) > 1) {
             flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
+            $s=Seccion::find($request->id_seccion);
+            $accion='Intentó ingresar a la carga de notas del curso '.$s->curso->curso.' en la sección '.$s->seccion;
+            $this->auditoria($accion);
             return redirect()->back();
         }else{
             $clave=$request->password;
@@ -619,6 +627,9 @@ class BoletinController extends Controller
             }
         flash('NOTAS DEL ESTUDIANTE '.$datoBasico->nombres.' EDITADO CON ÉXITO!', 'success');
         return redirect()->route('admin.educacion_basica.index');
+
+        $accion='Actualiza datos del estudiante '.$datosBasicos->nombres;
+        $this->auditoria($accion);
       
     }
     /**
@@ -642,5 +653,16 @@ class BoletinController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function auditoria($accion)
+    {
+        //use App\Auditoria;
+        //$accion='Mostrando los datos de los estudiantes registrados';
+        //$this->auditoria($accion);
+        $auditoria=Auditoria::create([
+                    'id_user' => \Auth::user()->id,
+                    'accion' => $accion
+                ]);
     }
 }

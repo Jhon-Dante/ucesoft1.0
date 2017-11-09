@@ -110,13 +110,13 @@ class PersonalController extends Controller
                 
                 //     $message->to($destinatario)->subject($asunto);
                 // });
-                // if ($r==true) {
+                // if ($r) {
                 //    flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
                 // } else {
                 //    flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
                 // }
                 flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
-                echo $contraseña;
+                echo "Contraseña: ".$contraseña;
 
         $num=0;
         $personal=Personal::all();
@@ -193,6 +193,26 @@ class PersonalController extends Controller
         }
         
         return redirect()->route('admin.personal.index');
+        
+    }
+
+    public function buscartipodocente($tipo)
+    {
+        switch ($tipo) {
+            case 1:
+                $docentes=Personal::where('id_cargo',5)->first();
+                //dd($docentes->asignacion_s);
+                return view('admin.calificaciones.show', compact('docentes'));
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
+    public function buscarseccion($id_personal)
+    {
         
     }
 }

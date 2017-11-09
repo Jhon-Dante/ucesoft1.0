@@ -138,8 +138,9 @@
                         <td align="center" style="border-radius: 8px; background-color: {{$colores[$i][$j]}}">
                         <strong>
                       @if($bloquesx[$i][$j]!="LIBRE")
-                        {{$bloquesx[$i][$j]}}-A:{{$aula[$i][$j]}}
-                        <a href="{{ route('admin.horarios.destroy', [$id_horarios[$i][$j]]) }}"><button style="width: 2em;height: 2em;" class="btn btn-danger btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a>
+                        <div style="width: 100%; height: 5px; padding-left: 0px; padding-top: 0px;">{{$bloquesx[$i][$j]}}-A:{{$aula[$i][$j]}}</div>
+                        <div style="padding-right: 0px; padding-left: 150px; padding-top: 0px;">
+                        <a href="#"><button style="width: 5em important!;height: 5em important!; border-radius: 6px; size: 5px;" data-toggle="modal" data-target="#myModal" onclick="destruir('{{$id_horarios[$i][$j]}}','{{$secciones->id}}')" class="close" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></div>
                       @else
                         {{$bloquesx[$i][$j]}}
                       @endif</strong></td>
@@ -162,5 +163,39 @@
       
     </section>
   </section>
+
+
+
+  <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar Bloque</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea eliminar este bloque en especifico?...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                    {!! Form::open(['route' => ['admin.horarios.destruir'], 'method' => 'POST']) !!}
+                        <input type="hidden" id="id_horario" name="id_horario">
+                        <input type="hidden" id="id_seccion" name="id_seccion">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div><!-- /.content-wrapper -->
 @endsection
+<script type="text/javascript">
+  function destruir(id_horario, id_seccion) {
+    $('#id_horario').val(id_horario);
+    $('#id_seccion').val(id_seccion);
+  }
+</script>

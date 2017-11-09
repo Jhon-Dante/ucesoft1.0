@@ -105,13 +105,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::resource('/aulas','AulasController');
 
         Route::resource('/horarios','HorariosController');
-        Route::get('/horarios/{id}/destroy' ,[
-            'uses' => 'HorariosController@destroy',
-            'as' => 'admin.horarios.destroy']
+        Route::post('/horarios/destruir' ,[
+            'uses' => 'HorariosController@destruir',
+            'as' => 'admin.horarios.destruir']
             );
         Route::get('/crearhorario/{id_seccion}/{id_periodo}',[
             'uses' => 'HorariosController@crear',
             'as' => 'admin.crearhorario']);
+
+        Route::get('/mostrarhorario/{id_seccion}/{id_periodo}',[
+            'uses' => 'HorariosController@mostrarhorario',
+            'as' => 'admin.mostrarhorario']);
 
         Route::post('/crearmomento',[
             'uses' => 'PreescolarController@crear',
@@ -134,6 +138,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/mostrarmomento/{reporte}/{id_seccion}/{id_periodo}',[
             'uses' => 'PreescolarController@mostrarmomento',
             'as' => 'admin.mostrarmomento']);
+
+        Route::get('/mostrarmomento2/{id_seccion}/{id_periodo}',[
+            'uses' => 'PreescolarController@mostrarmomento2',
+            'as' => 'admin.mostrarmomento2']);
 
         Route::get('/preescolar/update',[
             'uses' => 'PreescolarController@update',
@@ -277,11 +285,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'MediaGeneralController@notas',
             'as' => 'admin.notas']);
 
-         Route::get('/respaldo' ,[
-            'uses' => 'BackupController@create',
-            'as' => 'admin.respaldo']
-            );
+         Route::get('/notas2',[
+            'uses' => 'MediaGeneralController@notas2',
+            'as' => 'admin.notas2']);
 
+        //-------- RESPALDOS Y RESTAURACION --------//
+
+        Route::resource('respaldos', 'BackupController');
+        Route::get('respaldos/download/{file_name}', ['uses' => 'BackupController@download', 'as' => 'admin.respaldos.download']);
+        Route::get('respaldos/restore/{file_name}', ['uses' => 'BackupController@restore', 'as' => 'admin.respaldos.restore']);
+        Route::get('respaldos/subir', ['uses' => 'BackupController@subir', 'as' => 'admin.respaldos.subir']);
+        Route::post('respaldos/subirRestore', ['uses' => 'BackupController@subirRestore', 'as' => 'admin.respaldos.subirRestore']);
+        Route::get('respaldos/restore/{file_name}', ['uses' => 'BackupController@restore', 'as' => 'admin.respaldos.restore']);
+
+         // -----------------Actas------------------//
          Route::get('/constancia',[
             'uses' => 'DatosBasicosController@constancia',
             'as' => 'admin.constancia'
@@ -293,6 +310,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
          ]);
 
          Route::resource('/remediales','RemedialesController');
+
+         //ruta para seleccionar el docente a subir carga
+         Route::get('/calificacionesadmin/{tipo}',[
+            'uses' => 'PersonalController@buscartipodocente',
+            'as' => 'admin.personal.buscartipodocente'
+         ]);
+         
 });
         
         

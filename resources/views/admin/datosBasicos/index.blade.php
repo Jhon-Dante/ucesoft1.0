@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Lista de Estudiantes registrados
+        <div class="panel-heading">Lista de Estudiantes Registrados
  
         </div>
 
@@ -41,6 +41,8 @@
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>Cédula</th>
+                  <th>Representante</th>
+                  <th>Curso</th>
                   <th>¿Repite?</th>
                   <th>¿Materias pendientes?</th>
                   <th>Opciones</th>
@@ -49,12 +51,14 @@
               <tbody>
               @foreach($preinscripcion as $preinscri)
                 <tr>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->datosbasicos->nombres}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->datosbasicos->apellidos}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->datosbasicos->cedula}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->repite}}</a></td>
-                  <td><a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"> {{$preinscri->pendiente}}</a></td>
+                  <td> {{$num=$num+1}}</td>
+                  <td> {{$preinscri->datosbasicos->nombres}}</td>
+                  <td> {{$preinscri->datosbasicos->apellidos}}</td>
+                  <td> {{$preinscri->datosbasicos->cedula}}</td>
+                  <td> {{$preinscri->datosbasicos->representantes->nombres}}</td>
+                  <td> {{$preinscri->seccion->curso->curso}} - {{$preinscri->seccion->seccion}}</td>
+                  <td> {{$preinscri->repite}}</td>
+                  <td> {{$preinscri->pendiente}}</td>
                   <td>
                  
                   <div class="btn-group">
@@ -85,6 +89,88 @@
                       <a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
                       <a href="#"><button onclick="eliminar({{$preinscri->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                  </div>
+                      
+                  </td>
+                  
+                </tr>
+              @endforeach
+              
+              </tbody>    
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content spark-screen">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Lista de Estudiantes Pre-registrados
+ 
+        </div>
+
+        <div class="col-xs-12">
+          @include('flash::message')     
+        </div>
+        <div class="panel-body">
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Nro</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Cédula</th>
+                  <th>Representante</th>
+                  <th>¿Repite?</th>
+                  <th>¿Materias pendientes?</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              @foreach($pre as $p)
+                <tr>
+                  <td> {{$num=$num+1}}</td>
+                  <td> {{$p->datosbasicos->nombres}}</td>
+                  <td> {{$p->datosbasicos->apellidos}}</td>
+                  <td> {{$p->datosbasicos->cedula}}</td>
+                  <td> {{$p->datosbasicos->representantes->nombres}}</td>
+                  <td> {{$p->repite}}</td>
+                  <td> {{$p->pendiente}}</td>
+                  <td>
+                 
+                  <div class="btn-group">
+
+                      <a href="#"><button onclick="mostrardatos(
+                        '{{$p->datosbasicos->nombres}}',
+                        '{{$p->datosbasicos->apellidos}}',
+                        '{{$p->datosbasicos->nacionalidad}}-{{$p->datosbasicos->cedula}}',
+                        '{{$p->datosbasicos->lugar_nac}}',
+                        '{{$p->datosbasicos->estado}}',
+                        '{{$p->datosbasicos->fecha_nac}}',
+                        '{{$p->datosbasicos->edad}}',
+                        '{{$p->datosbasicos->sexo}}',
+                        '{{$p->datosbasicos->peso}}',
+                        '{{$p->datosbasicos->talla}}',
+                        '{{$p->datosbasicos->salud}}',
+                        '{{$p->datosbasicos->direccion}}',
+                        '{{$p->datosbasicos->nombre_p}}',
+                        '{{$p->datosbasicos->cedula_p}}',
+                        '{{$p->datosbasicos->vive_p}}',
+                        '{{$p->datosbasicos->nombre_m}}',
+                        '{{$p->datosbasicos->cedula_m}}',
+                        '{{$p->datosbasicos->vive_m}}')" 
+
+                        class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+  
+
+                      <a href="{{ route('admin.DatosBasicos.edit', [$p->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+
+                      <a href="#"><button onclick="eliminar({{$p->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                   </div>
                       
                   </td>
