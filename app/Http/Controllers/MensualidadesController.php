@@ -177,23 +177,23 @@ class MensualidadesController extends Controller
 
 
 
-        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
-        // //dd($destinatario);
-        // $asunto="Confirmación de pago de mensualidad";
-        // $contenido="PAGO DE MENSUALIDAD";
-        // $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
+        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        //dd($destinatario);
+        $asunto="Confirmación de pago de mensualidad";
+        $contenido="PAGO DE MENSUALIDAD";
+        $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
-        //     $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
-        //         $message->from('colegiourdanetacampoelias@gmail.com');
-        //         $message->to($destinatario)->subject($asunto);
-        //     });
+            $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
+                $message->from('colegiourdanetacampoelias@gmail.com');
+                $message->to($destinatario)->subject($asunto);
+            });
 
-        // if ($r) {
-        //    flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
-        // } else {
-        //    flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
-        // }
-        flash('MENSUALIDAD CANCELADA CON ÉXITO! PERO NO SE HA PODIDO ENVIAR LA FACTURA AL CORREO DEBIDO A UN ERROR: [host smtp.gmail.com [php_network_getaddresses: getaddrinfo failed: Host desconocido]');
+        if ($r) {
+           flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
+        } else {
+           flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
+        }
+        // flash('MENSUALIDAD CANCELADA CON ÉXITO! PERO NO SE HA PODIDO ENVIAR LA FACTURA AL CORREO DEBIDO A UN ERROR: [host smtp.gmail.com [php_network_getaddresses: getaddrinfo failed: Host desconocido]');
         
 
         return redirect()->route('admin.mensualidades.index');

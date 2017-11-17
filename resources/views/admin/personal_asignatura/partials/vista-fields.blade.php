@@ -11,7 +11,7 @@
 					<th style="font-size: 10px;">Nombre</th>
 					<th style="font-size: 10px;">Apellido</th>
 					<th style="font-size: 10px;">Cédula</th>
-				<?php $t2=0; ?>	
+				<?php $t2=0; ?>
 				@foreach($asignaturas as $key)
 					<?php $i=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
@@ -58,7 +58,6 @@
 							@if($id_periodo==$key2->id_periodo and $key2->id_datosBasicos==$key->id_datosBasicos)	
 								<th  style="font-size: 10px;">{{$key2->calificacion}}</th>
 								<th  style="font-size: 12px;">{{$key2->inasistencias}}</th>
-							
 							@endif
 						@endforeach
 					@endforeach

@@ -200,6 +200,7 @@ class HorariosController extends Controller
                 break;
             case ($secciones->id_curso >= 8):
                 $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+                //dd($horarios);
                 $bloques3=Bloques::all();
                 $bloquesx=array();
                 $colores=array();
@@ -229,20 +230,25 @@ class HorariosController extends Controller
                 
                 for ($i=0; $i < 9 ; $i++) {
 
-                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+                    if ($bloque == $x) {  
+                        //echo $x."-";
+                        $bloque=$bloque-($x-$y); 
+                    }
 
                     for ($j=1; $j < 6;$j++) { 
                         $horario=Horarios::where('id_bloque',$bloque)->where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
+                        //echo $bloque."-";
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
                         $aula[$i][$j]=$horario->aula->nombre;
                         $id_horarios[$i][$j]=$horario->id;
                         }            
-                        $bloque+=9;
+                        $bloque+=16;
                     }
                     $y++;
-                    $x=$y+72;
+                    $x=$y+79;
+                    //echo $bloque."-".$x."*";
                 }
                
                 for ($i=0; $i < 9; $i++) { 
@@ -254,7 +260,7 @@ class HorariosController extends Controller
                 //dd("Hasta aqui");
                 break;
         }
-        
+       // dd($bloquesx);
 
         $horas=8;
          $aulas=Aula::all();
@@ -633,6 +639,7 @@ class HorariosController extends Controller
                 break;
             case ($secciones->id_curso >= 8):
                 $horarios=Horarios::where('id_periodo',$id_periodo)->where('id_seccion',$id_seccion)->groupBy('id_bloque')->get();
+                //dd($horarios);
                 $bloques3=Bloques::all();
                 $bloquesx=array();
                 $colores=array();
@@ -662,20 +669,25 @@ class HorariosController extends Controller
                 
                 for ($i=0; $i < 9 ; $i++) {
 
-                    if ($bloque == $x) {  $bloque=$bloque-($x-$y); }
+                    if ($bloque == $x) {  
+                        //echo $x."-";
+                        $bloque=$bloque-($x-$y); 
+                    }
 
                     for ($j=1; $j < 6;$j++) { 
                         $horario=Horarios::where('id_bloque',$bloque)->where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->first();
+                        //echo $bloque."-";
                         if (count($horario)==1) {
                         $bloquesx[$i][$j]=$horario->asignatura->codigo;
                         $colores[$i][$j]=$horario->asignatura->color;
                         $aula[$i][$j]=$horario->aula->nombre;
                         $id_horarios[$i][$j]=$horario->id;
                         }            
-                        $bloque+=9;
+                        $bloque+=16;
                     }
                     $y++;
-                    $x=$y+72;
+                    $x=$y+79;
+                    //echo $bloque."-".$x."*";
                 }
                
                 for ($i=0; $i < 9; $i++) { 
@@ -687,7 +699,7 @@ class HorariosController extends Controller
                 //dd("Hasta aqui");
                 break;
         }
-        
+       // dd($bloquesx);
 
         $horas=8;
          $aulas=Aula::all();

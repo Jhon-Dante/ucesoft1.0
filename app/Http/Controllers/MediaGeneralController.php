@@ -472,7 +472,7 @@ class MediaGeneralController extends Controller
                                }
                             }
                            
-                          //dd(count($l1));
+                          
                            $num=0;
                            $representante=Representantes::find($inscripcion2->datosBasicos->id_representante);
                             $dompdf = \PDF::loadView('admin.pdfs.boletines.boletinMedia.boletinMediaEstudiante', ['num' => $num, 'inscripcion' => $inscripcion, 'periodo' => $periodo, 'boletin' => $boletin, 'boletin2' => $boletin2, 'seccion' => $seccion, 'id_periodo' => $id_periodo,'lap_compa' => $lap_compa, 'lapsos' => $lapsos, 'asignaturas' => $asignaturas, 'representante' => $representante,'l1' => $l1, 'l2' => $l2, 'l3' => $l3, 'lapso1' => $lapso1, 'cont_lap1' => $cont_lap1, '$cont_lap2' => $cont_lap2, 'id_datosBasicos' => $id_datosBasicos])->setPaper('a4', 'landscape');
@@ -500,7 +500,7 @@ class MediaGeneralController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function pdf($i,$id_datosBasicos,$id_periodo){
-        dd($id_datosBasicos);
+        
 
     }
     public function edit($id)

@@ -348,7 +348,7 @@ class PersonalAsignaturaController extends Controller
      */
     public function show($id)
     {
-        
+        //dd($id);
         $guia=Guias::find($id);
         $inscripcion=Inscripcion::where('id_seccion',$guia->id_seccion)->where('id_periodo',$guia->id_periodo)->get();
         $seccion=Seccion::find($guia->id_seccion);
@@ -413,6 +413,7 @@ class PersonalAsignaturaController extends Controller
        }else{
          $lapso3=0;
        }
+       $num=0;
 
             return view('admin.personal_asignatura.vista_notas_cargadas', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3'));
         

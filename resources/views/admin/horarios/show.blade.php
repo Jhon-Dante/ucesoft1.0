@@ -41,7 +41,7 @@
                     <input type="hidden" name="id_seccion" value="{{$secciones->id}}">
                     <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
                     </td>
-                    <td><strong>Número de bloques: </strong>
+                    <td><strong>Nro. </strong>
                     {!! Form::select('bloque',['1' => '1','2' =>'2','3' => '3','4' => '4'],null,['class' => 'form-control']) !!}</td>
                     <td><strong>Bloque: </strong>
                     <?php 

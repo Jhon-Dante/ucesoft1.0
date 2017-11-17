@@ -148,10 +148,12 @@
 
                               @if($cont>0)
                               <div class="btn-group">
-                                <button type="submit" class="btn btn-danger btn-flat" >
-                                <i class="fa fa-file-pdf-o"></i> PDF   
-                                </button> 
-                              </div>
+                                    <a href="{{ url('admin/mostrarhorario',['id_seccion' => $seccion->id,'id_periodo' => $id_periodo]) }}">
+                                      <button type="submit" class="btn btn-danger btn-flat" >
+                                      <i class="fa fa-file-pdf-o"></i> PDF   
+                                      </button>
+                                    </a>
+                                  </div>
                               @endif
                             @endif
                           
