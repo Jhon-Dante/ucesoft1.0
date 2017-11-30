@@ -18,6 +18,9 @@
       </ol>
     </section>
 <!-- Main content -->
+<div class="col-xs-12">
+          @include('flash::message')
+          </div>
     @if(Auth::user()->tipo_user == 'Representante')
 
     

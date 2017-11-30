@@ -60,7 +60,8 @@
                 <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
-                    <li><a href="{{ url('admin/pagos_monto') }}">Crear montos</a></li>
+                    <li><a href="{{ url('admin/pagos_monto/create') }}">Crear montos</a></li>
+                    <li><a href="{{ url('admin/pagos_monto') }}">Montos Matrícula</a></li>
                     
                 </ul>
                 

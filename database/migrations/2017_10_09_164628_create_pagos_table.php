@@ -15,7 +15,7 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_mes')->unsigned();
-            $table->float('monto');
+            $table->double('monto');
             $table->integer('id_periodo')->unsigned();
 
             $table->foreign('id_mes')->references('id')->on('meses')->onDelete('cascade');

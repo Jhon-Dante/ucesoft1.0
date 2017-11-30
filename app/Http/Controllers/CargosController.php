@@ -129,7 +129,7 @@ class CargosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reeliminaruest)
+    public function destroy(Request $request)
     {
         //dd($request->all());
         $cargo = Cargos::find($request->id);
