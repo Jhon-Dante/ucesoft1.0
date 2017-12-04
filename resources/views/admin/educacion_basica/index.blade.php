@@ -25,7 +25,9 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista del estudiante de Básica registrados
+            <div class="panel-heading">Lista del estudiante de Básica registrados @if(Auth::user()->tipo_user=="Administrador(a)" || Auth::user()->tipo_user=="Secretario(a)")
+            para el Docente <strong>{{$personal->apellidos}},{{$personal->nombres}} C.I.: {{$personal->nacionalidad}}-{{$personal->cedula}}</strong>
+            @endif
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <p style="padding: 4px 10px;" class="btn btn-success" >Lapso 3</p>

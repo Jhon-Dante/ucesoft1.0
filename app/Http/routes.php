@@ -246,7 +246,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
         Route::get('/educacion_media/{i}/{id_datosBasicos}/{id_periodo}', ['uses' => 'MediaGeneralController@pdf', 'as' => 'admin.educacion_media.pdf']);
 
-
+        Route::post('calificaciones/buscarruta',[
+            'uses' => 'PersonalController@buscarruta',
+            'as' => 'admin.calificaciones.buscarruta']);
+        
          Route::get('preescolar/calificaciones/{id_seccion}/{id_periodo}', [
             'uses' => 'PreescolarController@pdf',
             'as' => 'admin.calificaciones.pdf']);

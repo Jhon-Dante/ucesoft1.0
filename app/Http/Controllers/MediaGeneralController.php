@@ -37,7 +37,13 @@ class MediaGeneralController extends Controller
        
         $num=0;
         $cali=Boletin::all();
-        $correo=\Auth::user()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->get();
         //dd($personal);
         $contar=0;
@@ -71,7 +77,7 @@ class MediaGeneralController extends Controller
             }
             
         }
-        //dd($lapso);
+        //dd($personal);
         return View('admin.educacion_media.index', compact('num','inscripcion','boletin','secciones','periodo','personal','lapso'));
     }
 
@@ -87,6 +93,12 @@ class MediaGeneralController extends Controller
 
     public function crear(Request $request)
     {
+      // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $c=Session::get('correo_docente');
+        } else {
+             $c=\Auth::user()->email;  //Busco el Email del personal
+        }
         $c=\Auth::user()->email;
         $representante=Representantes::where('email',$c)->first();
 
@@ -124,7 +136,13 @@ class MediaGeneralController extends Controller
 
               $periodos=Periodos::find($request->id_periodo);
               $boletin=Boletin::all();
-               $correo=\Auth::user()->email;
+              // en el caso de que sea administrador o secretaria
+                if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+                    $correo=Session::get('correo_docente');
+                } else {
+                     $correo=\Auth::user()->email;  //Busco el Email del personal
+                }
+               
               $personal=Personal::where('correo',$correo)->first();
               
               //dd($personal);
@@ -181,7 +199,13 @@ class MediaGeneralController extends Controller
         //dd($request->all());
         $periodo=Periodos::where('status','Activo')->get()->first();
         $inscri=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos[0])->get()->first();
-        $correo=\Auth::User()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->get();       
         $datobasico=DatosBasicos::find($request->id_datosBasicos);
         $asig=Asignaturas::where('id_curso',$request->id_curso)->get();
@@ -260,7 +284,13 @@ class MediaGeneralController extends Controller
 }
     public function mostrar($id_seccion, $id_periodo)
     {
-        $correo=\Auth::user()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->first();
         $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $seccion=Seccion::find($id_seccion);
@@ -345,8 +375,13 @@ class MediaGeneralController extends Controller
 
     public function boletinMediaEstudiante($id_datosBasicos, $id_seccion,$id_periodo, $lapso)
     {
-
-        $correo=\Auth::user()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->first();
         $representante=Representantes::where('email',$correo)->first();
 
@@ -510,7 +545,13 @@ class MediaGeneralController extends Controller
 
     public function editar(Request $request)
     {
-      $c=\Auth::user()->email;
+      // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $c=Session::get('correo_docente');
+        } else {
+             $c=\Auth::user()->email;  //Busco el Email del personal
+        }
+      
         $representante=Representantes::where('email',$c)->first();
 
         if (count($representante) > 1) {
@@ -535,8 +576,13 @@ class MediaGeneralController extends Controller
 
 
             if (password_verify($clave, $validator)) {
-
-              $correo=\Auth::user()->email;
+                // en el caso de que sea administrador o secretaria
+                if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+                    $correo=Session::get('correo_docente');
+                } else {
+                     $correo=\Auth::user()->email;  //Busco el Email del personal
+                }
+              
               $personal=Personal::where('correo',$correo)->first();
               $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->first();
               $seccion=Seccion::find($request->id_seccion);

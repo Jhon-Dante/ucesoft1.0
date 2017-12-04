@@ -198,30 +198,47 @@ class PersonalController extends Controller
 
     public function buscartipodocente($tipo)
     {
+        switch ($tipo) {
+            case 1:
+                $id_cargo=5;
+                $cargo="Preescolar";
+                break;
+            case 2:
+                $id_cargo=4;
+                $cargo="Educación Básica";
+                break;
+            case 3:
+                $cargo="Docente de Media General";
+                $id_cargo=3;
+                break;
+        }
         $tipo_usuario=Session::get('tipo');
         switch ($tipo_usuario) {
             case (1 or 2):
-            $docentes=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
-                return view('admin.calificaciones.elegirdocente',compact('docentes') );
+            $docentes=Personal::where('id_cargo',$id_cargo)->get();
+                return view('admin.calificaciones.elegirdocente',compact('docentes','cargo') );
                 break;
-            case 5:
-                $docentes=Personal::where('id_cargo',5)->first();
-                //dd($docentes->asignacion_s);
-                return view('admin.calificaciones.show', compact('docentes'));
+            
+        }
+    }
+    public function buscarruta(Request $request)
+    {
+        //dd($request->all());
+
+        Session::put('correo_docente', $request->correo);
+        switch ($request->cargo) {
+            case 'Preescolar':
+                return redirect()->route('admin.preescolar.index');
                 break;
-            case 3:
-                $docentes=Personal::where('id_cargo',3)->first();
-                //dd($docentes->asignacion_s);
-                return view('admin.calificaciones.show', compact('docentes'));
+            
+            case 'Educación Básica':
+                return redirect()->route('admin.educacion_basica.index');     
                 break;
-            case 4:
-                $docentes=Personal::where('id_cargo',4)->first();
-                //dd($docentes->asignacion_s);
-                return view('admin.calificaciones.show', compact('docentes'));
+            case 'Docente de Media General':
+                return redirect()->route('admin.educacion_media.index');     
                 break;
         }
     }
-
     public function buscarseccion($id_personal)
     {
         

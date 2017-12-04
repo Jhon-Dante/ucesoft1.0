@@ -18,7 +18,7 @@ use App\Seccion;
 use App\Mensualidades;
 use App\Representantes;
 use App\User;
-
+use Session;
 class PreescolarController extends Controller
 {
     /**
@@ -30,7 +30,13 @@ class PreescolarController extends Controller
     {
         $periodo=Periodos::where('status','Activo')->first();
         // en el caso de que sea administrador o secretaria
-        $usuario=\Auth::user()->email;  //Bueso el Email del personal
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $usuario=Session::get('correo_docente');
+        } else {
+             $usuario=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
+       
         $personal=Personal::where('correo',$usuario)->first(); //Comparo ese email con el registro del personal registrado
         $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
         
@@ -77,7 +83,13 @@ class PreescolarController extends Controller
 
     public function crear(Request $request)
     {
-        $c=\Auth::user()->email;
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $c=Session::get('correo_docente');
+        } else {
+             $c=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
+        
         $representante=Representantes::where('email',$c)->first();
 
         if (count($representante) > 1) {
@@ -513,7 +525,12 @@ class PreescolarController extends Controller
      */
     public function editar(Request $request)
     {
-        $c=\Auth::user()->email;
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $c=Session::get('correo_docente');
+        } else {
+             $c=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $representante=Representantes::where('email',$c)->first();
 
         if (count($representante) > 1) {

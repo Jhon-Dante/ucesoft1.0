@@ -33,11 +33,17 @@ class BoletinController extends Controller
     {
         $periodos=Session::get('periodo');
         $periodo=Periodos::find($periodos);
-        $usuario=\Auth::user()->email;
-        dd($usuario);
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $usuario=Session::get('correo_docente');
+        } else {
+             $usuario=\Auth::user()->email;  //Busco el Email del personal
+        }
+       
+        //dd($usuario);
         $personal=Personal::where('correo',$usuario)->first();
         $inscripcion=Inscripcion::all();
-        dd($personal);
+        //dd($personal);
         $boletin=Boletin::all();
         $num=0;
         $lapso=Boletin::where('id_periodo',$periodo)->groupBy('lapso')->get();
@@ -45,7 +51,7 @@ class BoletinController extends Controller
         $lapso1=0;
         $lapso2=0;
         $lapso3=0;
-        dd(count($personal->asignacion_s));
+        //dd(count($personal->asignacion_s));
         foreach ($personal->asignacion_s as $key) {
 
             foreach ($inscripcion as $key2) {
@@ -85,8 +91,13 @@ class BoletinController extends Controller
 
     public function crear(Request $request)
     {
-    	
-        $c=\Auth::user()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $c=Session::get('correo_docente');
+        } else {
+             $c=\Auth::user()->email;  //Busco el Email del personal
+        }	
+        
         $representante=Representantes::where('email',$c)->first();
 
         if (count($representante) > 1) {
@@ -123,8 +134,13 @@ class BoletinController extends Controller
               $asignaturas=Asignaturas::where('id_curso',$seccion->curso->id)->get();
 
               $periodos=Periodos::find($request->id_periodo);
-
-              $usuario=\Auth::user()->email;
+              // en el caso de que sea administrador o secretaria
+              if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+                  $usuario=Session::get('correo_docente');
+              } else {
+                   $usuario=\Auth::user()->email;  //Busco el Email del personal
+              }
+              
               $personal=Personal::where('correo',$usuario)->first();
           	
              	$contar=0;
@@ -174,7 +190,13 @@ class BoletinController extends Controller
         
        $periodo=Periodos::where('status','Activo')->get()->first();
         $inscri=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos[0])->get()->first();
-        $correo=\Auth::User()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->get()->first();       
 
         $datobasico=DatosBasicos::find($request->id_datosBasicos);
@@ -285,7 +307,13 @@ class BoletinController extends Controller
         $s=Seccion::find($id_seccion);
         $accion='Visualiza la carga de notas de: '.$s->curso->curso. ' en la sección: '.$s->seccion;
         $this->auditoria($accion);
-        $correo=\Auth::user()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->first();
 
         $representante=Representantes::where('email',$correo)->first();
@@ -419,8 +447,13 @@ class BoletinController extends Controller
     }
     public function mostrar($id_seccion, $id_periodo)
     {
-
-        $correo=\Auth::user()->email;
+        // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $correo=Session::get('correo_docente');
+        } else {
+             $correo=\Auth::user()->email;  //Busco el Email del personal
+        }
+        
         $personal=Personal::where('correo',$correo)->first();
         $inscripcion=Inscripcion::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
         $seccion=Seccion::find($id_seccion);
@@ -501,7 +534,13 @@ class BoletinController extends Controller
      */
     public function editar(Request $request)
     {
-      $c=\Auth::user()->email;
+      // en el caso de que sea administrador o secretaria
+        if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+            $c=Session::get('correo_docente');
+        } else {
+             $c=\Auth::user()->email;  //Busco el Email del personal
+        }
+      
         $representante=Representantes::where('email',$c)->first();
 
         if (count($representante) > 1) {
@@ -529,8 +568,13 @@ class BoletinController extends Controller
 
 
             if (password_verify($clave, $validator)) {
-
-              $correo=\Auth::user()->email;
+              // en el caso de que sea administrador o secretaria
+              if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
+                  $correo=Session::get('correo_docente');
+              } else {
+                   $correo=\Auth::user()->email;  //Busco el Email del personal
+              }
+               
               $personal=Personal::where('correo',$correo)->first();
               $inscripcion=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
               $seccion=Seccion::find($request->id_seccion);
