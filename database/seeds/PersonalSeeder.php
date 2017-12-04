@@ -217,7 +217,7 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'juan@gmail.com',
-            'id_cargo' => '3'
+            'id_cargo' => '4'
         ]);        
 
 
@@ -274,7 +274,7 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'ricardo@gmail.com',
-            'id_cargo' => '3'
+            'id_cargo' => '5'
         ]);
 
         DB::table('users')->insert([
