@@ -201,5 +201,90 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General'
         ]);
+
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'Juan',
+            'apellidos' => 'Sánchez',
+            'nacionalidad' => 'V',
+            'cedula' => '96838411',
+            'fecha_nacimiento' => '1984-11-07',
+            'edad' => '33',
+            'edo_civil' => 'Soltero(a)',
+            'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
+            'genero' => '1',
+            'codigo_hab' => '1',
+            'telf_hab' => '8080090',
+            'codigo_cel' => '2',
+            'celular' => '4343321',
+            'correo' => 'juan@gmail.com',
+            'id_cargo' => '3'
+        ]);        
+
+
+        DB::table('users')->insert([
+
+            'name' => 'Juan',
+            'email' => 'juan@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Basica'
+        ]);
+
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'Pedro',
+            'apellidos' => 'Fernández',
+            'nacionalidad' => 'V',
+            'cedula' => '15332432',
+            'fecha_nacimiento' => '1984-09-12',
+            'edad' => '33',
+            'edo_civil' => 'Soltero(a)',
+            'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
+            'genero' => '1',
+            'codigo_hab' => '1',
+            'telf_hab' => '8080090',
+            'codigo_cel' => '2',
+            'celular' => '4343321',
+            'correo' => 'pedro@gmail.com',
+            'id_cargo' => '3'
+        ]);
+
+        DB::table('users')->insert([
+
+            'name' => 'Pedro',
+            'email' => 'pedro@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Media General'
+        ]);
+
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'Ricardo',
+            'apellidos' => 'Corsario',
+            'nacionalidad' => 'V',
+            'cedula' => '15332432',
+            'fecha_nacimiento' => '1991-01-01',
+            'edad' => '30',
+            'edo_civil' => 'Soltero(a)',
+            'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
+            'genero' => '1',
+            'codigo_hab' => '1',
+            'telf_hab' => '8080090',
+            'codigo_cel' => '2',
+            'celular' => '4343321',
+            'correo' => 'ricardo@gmail.com',
+            'id_cargo' => '3'
+        ]);
+
+        DB::table('users')->insert([
+
+            'name' => 'Ricardo',
+            'email' => 'ricardo@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'pregunta' => 'mascota',
+            'respuesta' => 'scooby',
+            'tipo_user' => 'Docente Preescolar'
+        ]);
     }
 }
