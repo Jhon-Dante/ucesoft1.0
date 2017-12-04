@@ -89,7 +89,23 @@ class AuthController extends Controller
                 Session::flash('message', 'Bienvenido');
                 Session::put('periodoNombre', $nombrePeriodo->periodo);
                 Session::put('periodo', $request['periodos']);
-
+                switch (Auth::user()->tipo_user) {
+                    case 'Administrador(a)':
+                        Session::put('tipo', 1);
+                        break;
+                    case 'Secretario(a)':
+                        Session::put('tipo', 2);
+                        break;
+                    case 'Docente Preescolar':
+                        Session::put('tipo', 5);
+                        break;
+                    case 'Docente Básica':
+                        Session::put('tipo', 4);
+                        break;
+                    case 'Docente Media General':
+                        Session::put('tipo', 3);
+                        break;
+                }
 
                 $user=User::where('email',$request['email'])->first();
                 $auditoria=Auditoria::create([

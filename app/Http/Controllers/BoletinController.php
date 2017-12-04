@@ -34,9 +34,10 @@ class BoletinController extends Controller
         $periodos=Session::get('periodo');
         $periodo=Periodos::find($periodos);
         $usuario=\Auth::user()->email;
+        dd($usuario);
         $personal=Personal::where('correo',$usuario)->first();
         $inscripcion=Inscripcion::all();
-        
+        dd($personal);
         $boletin=Boletin::all();
         $num=0;
         $lapso=Boletin::where('id_periodo',$periodo)->groupBy('lapso')->get();
@@ -44,7 +45,7 @@ class BoletinController extends Controller
         $lapso1=0;
         $lapso2=0;
         $lapso3=0;
-       // dd($personal->asignaciones_s);
+        dd(count($personal->asignacion_s));
         foreach ($personal->asignacion_s as $key) {
 
             foreach ($inscripcion as $key2) {

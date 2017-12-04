@@ -9,7 +9,7 @@ use App\Cargos;
 use Laracast\Flash\Flash;
 use App\Http\Requests\PersonalRequest;
 use App\User;
-use App\Session;
+use Session;
 use Mail;
 
 class PersonalController extends Controller
@@ -198,15 +198,26 @@ class PersonalController extends Controller
 
     public function buscartipodocente($tipo)
     {
-        switch ($tipo) {
-            case 1:
+        $tipo_usuario=Session::get('tipo');
+        switch ($tipo_usuario) {
+            case (1 or 2):
+            $docentes=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
+                return view('admin.calificaciones.elegirdocente',compact('docentes') );
+                break;
+            case 5:
                 $docentes=Personal::where('id_cargo',5)->first();
                 //dd($docentes->asignacion_s);
                 return view('admin.calificaciones.show', compact('docentes'));
                 break;
-            
-            default:
-                # code...
+            case 3:
+                $docentes=Personal::where('id_cargo',3)->first();
+                //dd($docentes->asignacion_s);
+                return view('admin.calificaciones.show', compact('docentes'));
+                break;
+            case 4:
+                $docentes=Personal::where('id_cargo',4)->first();
+                //dd($docentes->asignacion_s);
+                return view('admin.calificaciones.show', compact('docentes'));
                 break;
         }
     }
