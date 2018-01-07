@@ -243,4 +243,8 @@ class PersonalController extends Controller
     {
         
     }
+    public function editarStatus(Request $request)
+    {
+        dd('asdsadasdd');
+    }
 }

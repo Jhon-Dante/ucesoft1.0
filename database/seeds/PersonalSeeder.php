@@ -27,7 +27,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '3',
             'celular' => '4333233',
             'correo' => 'carlosagc90@live.com',
-            'id_cargo' => '2'
+            'id_cargo' => '2',
+            'status' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Carlos García',
@@ -54,7 +55,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '4',
             'celular' => '4333233',
             'correo' => 'mjosefap@live.com',
-            'id_cargo' => '1'
+            'id_cargo' => '1',
+            'status' => '1'
         ]);
 
         DB::table('users')->insert([
@@ -81,7 +83,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '3',
             'celular' => '9999898',
             'correo' => 'jamesmOficial@live.com',
-            'id_cargo' => '3'
+            'id_cargo' => '3',
+            'status' => '1'
         ]);
 
          DB::table('users')->insert([
@@ -108,7 +111,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'marioelpistache@live.com',
-            'id_cargo' => '4'
+            'id_cargo' => '4',
+            'status' => '1'
         ]);
 
          DB::table('users')->insert([
@@ -135,7 +139,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'alex@live.com',
-            'id_cargo' => '5'
+            'id_cargo' => '5',
+            'status' => '1'
         ]);
 
         DB::table('users')->insert([
@@ -162,7 +167,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'joseramirez@live.com',
-            'id_cargo' => '3'
+            'id_cargo' => '3',
+            'status' => '1'
         ]);
 
         DB::table('users')->insert([
@@ -190,7 +196,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'carmenprime@live.com',
-            'id_cargo' => '3'
+            'id_cargo' => '3',
+            'status' => '1'
         ]);
 
         DB::table('users')->insert([
@@ -217,7 +224,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'juan@gmail.com',
-            'id_cargo' => '4'
+            'id_cargo' => '4',
+            'status' => '1'
         ]);        
 
 
@@ -246,7 +254,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'pedro@gmail.com',
-            'id_cargo' => '3'
+            'id_cargo' => '3',
+            'status' => '1'
         ]);
 
         DB::table('users')->insert([
@@ -274,7 +283,8 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '2',
             'celular' => '4343321',
             'correo' => 'ricardo@gmail.com',
-            'id_cargo' => '5'
+            'id_cargo' => '5',
+            'status' => '1'
         ]);
 
         DB::table('users')->insert([

@@ -65,9 +65,9 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         
-        $anio = date('Y');
+        $anio = '2017';
         $periodos2= Periodos::where('status','Activo')->first();
-        $periodos = Periodos::where('periodo', '<=', $anio." - ".$anio+1)->get();
+        $periodos = Periodos::where('id', '<=', $periodos2->id)->get();
         //dd($periodos2);
         
         return view('auth.login', ['periodos' => $periodos,'periodos2' => $periodos2]);

@@ -58,6 +58,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalAsignaturaController@buscarpersonal',
             'as' => 'admin.personales.buscar'
             ]);
+
+        Route::get('/personal/status',[
+            'uses' => 'PersonalController@editarStatus',
+            'as' => 'admin.personal.status'
+        ]);
+        
         Route::get('/cursos/{id}/buscar',[
             'uses' => 'PersonalAsignaturaController@buscarsecciones',
             'as' => 'admin.cursos.buscarsecciones'

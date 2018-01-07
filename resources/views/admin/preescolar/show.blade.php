@@ -27,12 +27,12 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Juicios y sugerencias del estudiante Registrados
 
- 								<div class="btn-group">
+ 								<!-- <div class="btn-group">
 						            <a href="{{ route('admin.calificaciones.pdf',['id_seccion' => $seccion->id, 'id_periodo' => $periodos->id]) }}" class="btn btn-warning btn-flat" style="padding: 4px 10px;">
 						                <i class="fa fa-pencil"></i> Descargar PDF 
 						            </a>
           						</div>
-							</div>
+							</div> -->
 
 							<div class="panel-body">
 								

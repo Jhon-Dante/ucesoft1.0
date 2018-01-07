@@ -49,6 +49,7 @@
                 <th>Cédula</th>
                 <th>Cargo</th>
                 <th>Telf. Cel</th>
+                <th>Status</th>
                 <th>Opciones</th>
               </tr>
             </thead>
@@ -62,6 +63,17 @@
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}</a>
                 </td>
+                <td><a href="#">
+                    @if($perso->status == 1)
+                        <a href="{{ url('admin/personal/status') }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
+                        </a>
+                    @else
+                        <a href="{{ url('admin/personal/status') }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                        </a>
+                        <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
+                    @endif
+                </a></td>
 
                <td>
                 <div class="btn-group">
@@ -185,14 +197,7 @@
   </div>
 
 
-  <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <ul>
-            {{$mensajeError}}
-        </ul>
-    </div>
+ 
 
 
 </div>

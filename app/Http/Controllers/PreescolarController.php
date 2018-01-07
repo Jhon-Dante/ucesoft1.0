@@ -96,17 +96,9 @@ class PreescolarController extends Controller
             flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
             return redirect()->back();
         }else{
-            $clave=$request->password;
-            $busca=PersonalPSecciones::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
-            $personal=Personal::find($busca->id_personal);
-            $email=$personal->correo;
-            $usuario=User::where('email',$email)->first();
-            $validator=$usuario->password;
-
-
-            if (password_verify($clave, $validator)) {
-
+            if (\Auth::user()->tipo_user=="Administrador(a)") {
                 $num=0;
+                //dd($request->id_periodo);
                 $seccion=Seccion::find($request->id_seccion);
 
                 $periodo=Periodos::find($request->id_periodo);
@@ -116,8 +108,30 @@ class PreescolarController extends Controller
 
                return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion','ins'));
             }else{
-                flash('¡CONTRASEÑA INCORRECTA!','danger');
-                return redirect()->back();
+            $clave=$request->password;
+            $busca=PersonalPSecciones::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+            $personal=Personal::find($busca->id_personal);
+            $email=$personal->correo;
+            $usuario=User::where('email',$email)->first();
+            $validator=$usuario->password;
+
+
+                if (password_verify($clave, $validator)) {
+
+                    $num=0;
+                    $seccion=Seccion::find($request->id_seccion);
+
+                    $periodo=Periodos::find($request->id_periodo);
+                    $inscritos=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
+                    $ins=Inscripcion::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
+                    $reporte=$request->reporte;
+
+                   return View('admin.preescolar.create', compact('num','inscritos','periodo','reporte','seccion','ins'));
+                }else{
+                    flash('¡CONTRASEÑA INCORRECTA!','danger');
+                    return redirect()->back();
+                }
+
             }
         }//fin del else de comprobacion de usuario representante
     }
@@ -537,6 +551,28 @@ class PreescolarController extends Controller
             flash('¡¡¡ACCESO DENEGADO!!! - INCIDENTE REPORTADO','warning');
             return redirect()->back();
         }else{
+            if (\Auth::user()->tipo_user=="Administrador(a)") {
+                $reportes2=Calificaciones::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$request->id_datosBasicos)->groupBy('nro_reportes')->get();
+
+                $momento1=Calificaciones::where('id_periodo',$request->id_periodo)->where('nro_reportes',1)->get();
+                $momento2=Calificaciones::where('id_periodo',$request->id_periodo)->where('nro_reportes',2)->get();
+                $momento3=Calificaciones::where('id_periodo',$request->id_periodo)->where('nro_reportes',3)->get();
+                
+                $reportes=Calificaciones::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$request->id_datosBasicos)->get();
+
+                //dd(count($momento1),count($momento2),count($reportes2));
+
+                $reportes2=Calificaciones::where('id_periodo',$request->id_periodo)->where('id_datosBasicos',$request->id_datosBasicos)->groupBy('nro_reportes')->get();
+                $periodo=Periodos::find($request->id_periodo);
+                $estudiante=DatosBasicos::find($request->id_datosBasicos);
+                $inscrito=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->first();
+                $calificaciones=Calificaciones::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$request->id_periodo)->get();
+                $n=0;
+
+                //dd(count($inscrito));
+                return View('admin.preescolar.edit', compact('lapso','reportes','periodo','estudiante','inscrito','Calificaciones','reportes2','n','mensaje'));
+            }else{
+                
             //dd($request->all());
             $clave=$request->password;
             $busca=PersonalPSecciones::where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->first();
@@ -571,6 +607,7 @@ class PreescolarController extends Controller
             }else{
                 flash('¡CONTRASEÑA INCORRECTA!','danger');
                 return redirect()->back();
+            }
             }
         }//fin del else de comprobacion de usuario representante
     }

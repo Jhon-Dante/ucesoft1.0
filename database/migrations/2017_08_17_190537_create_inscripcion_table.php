@@ -19,11 +19,12 @@ class CreateInscripcionTable extends Migration
             $table->string('pendiente');
             $table->integer('id_periodo')->unsigned();
             $table->integer('id_seccion')->unsigned();
-            $table->timestamps();
+
 
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
             $table->foreign('id_seccion')->references('id')->on('secciones')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

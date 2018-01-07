@@ -75,12 +75,30 @@
 
                   @elseif($reporte1==1 AND $reporte2==0 and $reporte3==0)
 
+                    @if(Auth::user()->tipo_user == 'Administrador(a)')
+
+                      {!! Form::open(['route' => ['admin.crearmomento'], 'method' => 'POST']) !!}
+
+                          <input type="hidden" name="id_seccion" value="{{$key->id_seccion}}">
+                          <input type="hidden" name="id_periodo" value="{{$key->id_periodo}}">
+
+
+                          <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                          </a>
+
+                      {!! Form::close() !!}
+                          <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+
+                          <button type="submit" class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
+                          </a>
+                    
+                      @else
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(2,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
 
-
-                      <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
+                          <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
-                      </a>
+                          </a>
+                      @endif
                   @elseif($reporte1==1 AND $reporte2==1 and $reporte3==0)
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(3,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
 

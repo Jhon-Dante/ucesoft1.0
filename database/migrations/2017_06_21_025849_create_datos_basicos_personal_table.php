@@ -29,6 +29,7 @@ class CreateDatosBasicosPersonalTable extends Migration
             $table->string('codigo_cel');
             $table->string('celular');
             $table->string('correo');
+            $table->string('status');
             $table->integer('id_cargo')->unsigned();
 
             $table->foreign('id_cargo')->references('id')->on('cargos')->onDelete('cascade');
