@@ -3,7 +3,9 @@
 
 		<select id="id_personal" name="id_personal" class="form-control select2" required="required" title="Seleccione el docente" title="Identifique el docente a asignar la materia">
 			@foreach($personal as $key)
-				<option value="{{$key->id}}">{{$key->apellidos}}, {{$key->nombres}} - {{$key->cargo->cargo}}</option>
+				@if($key->status == 1)
+					<option value="{{$key->id}}">{{$key->apellidos}}, {{$key->nombres}} - {{$key->cargo->cargo}}</option>
+				@endif
 			@endforeach
 		</select>
         

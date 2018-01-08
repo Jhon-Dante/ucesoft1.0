@@ -80,7 +80,7 @@ class DatosBasicosSeeder extends Seeder
             'repite' => 'No',
             'pendiente' => 'No',
             'id_periodo' => 1,
-            'id_seccion' => null
+            'id_curso' => 0
         ]);
 
         DB::table('datos_basicos')->insert([
@@ -107,7 +107,7 @@ class DatosBasicosSeeder extends Seeder
             'repite' => 'No',
             'pendiente' => 'No',
             'id_periodo' => 1,
-            'id_seccion' => 2
+            'id_curso' => 2
         ]);
 
         DB::table('datos_basicos')->insert([

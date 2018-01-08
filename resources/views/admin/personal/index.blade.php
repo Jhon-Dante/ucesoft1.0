@@ -65,11 +65,11 @@
                 </td>
                 <td><a href="#">
                     @if($perso->status == 1)
-                        <a href="{{ url('admin/personal/status') }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <a href="{{ route('admin.personal.status', [$perso->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
                         <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
                         </a>
                     @else
-                        <a href="{{ url('admin/personal/status') }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <a href="{{ route('admin.personal.status', [$perso->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
                         </a>
                         <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
                     @endif

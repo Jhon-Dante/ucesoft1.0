@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.personales.buscar'
             ]);
 
-        Route::get('/personal/status',[
+        Route::get('/personal/{id}/status',[
             'uses' => 'PersonalController@editarStatus',
             'as' => 'admin.personal.status'
         ]);

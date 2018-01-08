@@ -18,11 +18,11 @@ class CreatePreinscripcionTable extends Migration
             $table->string('repite',2);
             $table->string('pendiente',2);
             $table->integer('id_periodo')->unsigned();
-            $table->integer('id_seccion')->unsigned()->nullable();
+            $table->integer('id_curso')->unsigned();
 
             $table->foreign('id_datosBasicos')->references('id')->on('datos_basicos')->onDelete('cascade');
             $table->foreign('id_periodo')->references('id')->on('periodos')->onDelete('cascade');
-            $table->foreign('id_seccion')->references('id')->on('secciones')->onDelete('cascade');
+            $table->foreign('id_curso')->references('id')->on('cursos')->onDelete('cascade');
             $table->timestamps();
         });
     }

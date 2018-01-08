@@ -67,7 +67,7 @@ class DatosBasicosController extends Controller
         $parentesco=Parentesco::lists('parentesco','id');//para formulario de representante
         $asignaturas=Asignaturas::all();
         $estados=['Amazonas','Anzoátegui','Apure','Aragua','Barinas','Bolívar','Carabobo','Cojedes','Delta Amacuro','Distrito Capital','Falcón','Guárico','Lara','Mérida','Miranda','Monagas','Nueva Esparta','Portuguesa','Sucre','Táchira','Trujillo','Vargas','Yaracuy','Zulia'];
-        $cursos=Cursos::lists('curso','id');
+        $cursos=Cursos::all();
         $asignaturas2=Asignaturas::lists('asignatura','id');
                 
         return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','parentesco','asignaturas','estados','periodos','cursos','asignaturas'));
@@ -176,6 +176,7 @@ class DatosBasicosController extends Controller
 
     public function reinscribir(Request $request)
     {
+        //dd('asasdas');
 
         $id_periodo=Session::get('periodo');
         $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->last();
@@ -453,6 +454,7 @@ class DatosBasicosController extends Controller
      */
     public function store(DatosBasicosRequest $request)
     {
+        //dd($request->id_curso);
         //dd($request->all());
         //primero verificar los checkbox de Academicos
         if ($request->pendiente=="Si" and count($request->id_asignatura)==0) {
@@ -702,7 +704,8 @@ class DatosBasicosController extends Controller
                                             $preinscripcion=Preinscripcion::create(['id_datosBasicos' => $datoBasico->id,
                                                                                     'repite' => $repite,
                                                                                     'pendiente' => $pendiente,
-                                                                                    'id_periodo' => $request->id_periodo]);
+                                                                                    'id_periodo' => $request->id_periodo,
+                                                                                    'id_curso' =>  $request->id_curso]);
 
                                             $es=DatosBasicos::find($datoBasico->id);
                                             $accion='Ha preinscrito al estudiante '.$es->nombres.', '.$es->apellidos;

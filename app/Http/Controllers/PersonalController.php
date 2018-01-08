@@ -243,8 +243,22 @@ class PersonalController extends Controller
     {
         
     }
-    public function editarStatus(Request $request)
+    public function editarStatus($id)
     {
-        dd('asdsadasdd');
+        $perso=Personal::find($id);
+        //dd($perso->status);
+
+        if ($perso->status==1) {
+            $perso->status=2;
+            $perso->save();
+
+            flash('El status del personal '.$perso->nombres.' ha sido cambiado a inactivo','warning');
+        }else{
+            $perso->status=1;
+            $perso->save();
+
+            flash('El status del personal '.$perso->nombres.' ha sido cambiado a Activo','success');
+        }
+        return redirect()->back();
     }
 }

@@ -6,7 +6,13 @@
 
 <div class="form-group">
 	{!! Form::label('id_curso','Curso:') !!}
-	{!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'id' => 'id_curso']) !!}
+	
+	<select name="id_curso" class="form-control" id="id_curso">
+		<option value='0'>Selecciona curso</option>
+			@foreach($cursos as $c)
+				<option value="{{$c->id}}">{{$c->curso}}</option>
+			@endforeach
+	</select>
 </div>
 <div class="form-group">
 	{!! Form::label('regular','¿Lleva Materia Pendiente?') !!}

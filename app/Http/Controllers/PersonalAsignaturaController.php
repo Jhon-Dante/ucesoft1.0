@@ -38,7 +38,7 @@ class PersonalAsignaturaController extends Controller
         //dd('asasa');
         $num=0;
         $periodo=Periodos::where('status','Activo')->first();
-        $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->get();
+        $personal=Personal::where('id_cargo','<>',1)->where('id_cargo','<>',2)->where('status','<>',2)->get();
         
         //dd($personal);
         return View('admin.personal_asignatura.listado', compact('personal','num','periodo'));   
