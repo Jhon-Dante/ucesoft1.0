@@ -82,6 +82,9 @@ class DatosBasicosController extends Controller
     {
         //dd('asdasdasd');
             $inscripciones=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->first();
+            $preinscripcion=Preinscripcion::where('id_datosBasicos',$request->id_estudiante)->first();
+            //dd(count($inscripciones), count($preinscripcion));
+            // dd($preinscripcion->cursos->curso);
             $datosBasicos2=DatosBasicos::find($request->id_estudiante);
             $asignaturas=Asignaturas::all();
             $secciones=Seccion::all();
@@ -90,14 +93,14 @@ class DatosBasicosController extends Controller
                 $inscripciones2=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->where('id_periodo',$inscripciones->id_periodo-1)->get()->first();
             }
             
-            //dd($inscripciones2);
-            if (count($inscripciones)==0) {
-                $buscamensu=0;
-            } else {
-                //dd($inscripciones2->id);
-               //$buscamensu=Mensualidades::where('id_inscripcion',$inscripciones2->id)->where('estado','Sin pagar')->get();
-                $buscamensu=0;
-            }
+            // //dd($inscripciones2);
+            // if (count($inscripciones)==0) {
+            //     $buscamensu=0;
+            // } else {
+            //     //dd($inscripciones2->id);
+            //    //$buscamensu=Mensualidades::where('id_inscripcion',$inscripciones2->id)->where('estado','Sin pagar')->get();
+            //     $buscamensu=0;
+            // }
             
             
             
@@ -115,11 +118,9 @@ class DatosBasicosController extends Controller
             $buscaRepite=   Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
             $buscaPendiente=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
 
-            if (count($inscripciones)==0) {
+            
                 $encuentra=0;
-            } else {
-               $encuentra=0;
-            }
+
             
             
 
@@ -129,6 +130,7 @@ class DatosBasicosController extends Controller
             if ($encuentra > 0) {
                 flash('DISCULPE, EL ESTUDIANTE AÚN DEBE '.$encuentra.' MES(ES) DEL AÑO PASADO, DEBE ESTAR SOLVENTE PARA REGISTRAR EL ESTUDIANTE A UN NUEVO PERÍODO','danger');
                 return redirect()->route('admin.DatosBasicos.create');
+
             }
             else
                     {
@@ -148,10 +150,8 @@ class DatosBasicosController extends Controller
                             return redirect()->route('admin.DatosBasicos.create');
                             }
                             else
-                            {                    
-                                
-                                 
-                                    if (count($inscripciones)>0)
+                            {
+                                    if (count($inscripciones)>0 AND count($preinscripcion)==0)
                                     {
                                            $id_curso_next=$inscripciones->seccion->curso->id;
                                            $curso_s=Seccion::where('id_curso', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
@@ -159,24 +159,27 @@ class DatosBasicosController extends Controller
                                     }
                                     else
                                     {
-                                            $id_curso_next=0;
-                                            $curso_s=0;
-                                            $id_curso=0;
-                                            $inscripciones=0;
+                                
+
+                                            $id_curso_next=$preinscripcion->cursos->id;
+                                            $curso_s=Cursos::find('id','>',$preinscripcion->cursos->id);
+                                            // $id_curso=0;
+                                            // $inscripciones=0;
                                             
-                                }//Fin del else de        
+                                }//Fin del else de 
                             }//Fin del else de inscripciones
                         }//Fin del else de materias 
                 }//Fin del else de repite
             }//Fin del else de mensualidades
                     
                     //dd($inscripciones);
-        return View('admin.DatosBasicos.reinscribir', compact('inscripciones','inscripciones2','datosBasicos2','curso_s','secciones','asignaturas','periodos'));
+        dd($curso_s);
+        return View('admin.DatosBasicos.reinscribir', compact('inscripciones','inscripciones2','datosBasicos2','curso_s','secciones','asignaturas','periodos','preinscripcion'));
     }//Fin de la función buscarEstudiante
 
     public function reinscribir(Request $request)
     {
-        //dd('asasdas');
+        dd('asasdas');
 
         $id_periodo=Session::get('periodo');
         $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->last();
@@ -700,12 +703,19 @@ class DatosBasicosController extends Controller
                                             } else {
                                                 $pendiente="No";
                                             }
+
+                                            if($request->id>0){
+                                                $curso=$request->id_curso;
+                                            }else{
+                                                $curso=null;
+                                            }
                                             //registrando preinscripcion
                                             $preinscripcion=Preinscripcion::create(['id_datosBasicos' => $datoBasico->id,
                                                                                     'repite' => $repite,
                                                                                     'pendiente' => $pendiente,
                                                                                     'id_periodo' => $request->id_periodo,
-                                                                                    'id_curso' =>  $request->id_curso]);
+                                                                                    'id_curso' =>  $curso
+                                                                                ]);
 
                                             $es=DatosBasicos::find($datoBasico->id);
                                             $accion='Ha preinscrito al estudiante '.$es->nombres.', '.$es->apellidos;

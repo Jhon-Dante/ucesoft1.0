@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Preinscripcion extends Model
 {
     protected $table='preinscripcion';
-    protected $fillable=['id','id_datosBasicos','repite','pendiente','id_periodo','estado'];
+    protected $fillable=['id','id_datosBasicos','repite','pendiente','id_periodo','id_curso'];
 
     public function datosbasicos()
     {
@@ -17,6 +17,10 @@ class Preinscripcion extends Model
     public function periodos()
     {
     	return $this->belongsTo('App\Periodos','id_periodo');
+    }
+    public function cursos()
+    {
+        return $this->belongsTo('App\Cursos','id_curso');
     }
 
 }

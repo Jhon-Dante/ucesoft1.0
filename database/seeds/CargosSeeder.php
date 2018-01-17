@@ -15,9 +15,9 @@ class CargosSeeder extends Seeder
 
             'cargo' => 'Administrador(a)'
         ]);
-        DB::table('cargos')->insert([
-            'cargo' => 'Secretaria(o)'
-        ]);
+        // DB::table('cargos')->insert([
+        //     'cargo' => 'Secretaria(o)'
+        // ]);
         DB::table('cargos')->insert([
             'cargo' => 'Docente Media General'
         ]);

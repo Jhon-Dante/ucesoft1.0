@@ -11,13 +11,16 @@
 </div>	
 @if(count($inscripciones)==0)
 <div class="form-group">
-	{!! Form::label('seccion','Curso y sección')!!}
-	<select name="id_seccion" class="form-control select2">
-		@foreach($secciones as $seccion)
-		<option value="{{$seccion->id}}">Curso: {{$seccion->curso->curso}}, Sección: {{$seccion->seccion}}</option>
-		@endforeach
-	</select>
+			{!! Form::label('seccion','Curso anterior:')!!}
+
+				{{$preinscripcion->cursos->curso}}
+
 </div>
+<div class="form-group">
+			{!! Form::label('seccion','Curso siguiente:')!!}
+			{!! Form::hidden('id_seccion',$curso_s->id) !!}
+			{{$curso_s->curso}}
+		</div>
 
 <div class="form-group">
 	{!! Form::label('materiap','Materia a repetir') !!}

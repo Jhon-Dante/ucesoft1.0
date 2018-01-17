@@ -18,4 +18,9 @@ class Cursos extends Model
     {
         return $this->hasMany('App\Seccion', 'id_curso', 'id');
     }
+
+    public function preinscripcion()
+    {
+    	return $this->hasMany('App\Preinscripcion', 'id_curso', 'id');
+    }
 }

@@ -27,7 +27,7 @@ class PersonalSeeder extends Seeder
             'codigo_cel' => '3',
             'celular' => '4333233',
             'correo' => 'carlosagc90@live.com',
-            'id_cargo' => '2',
+            'id_cargo' => '1',
             'status' => '1'
         ]);
         DB::table('users')->insert([
