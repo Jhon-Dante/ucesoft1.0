@@ -61,7 +61,11 @@
 										@endforeach
 									<td></td>
 									<td></td>
-									<td></td>
+										@foreach($l1 as $key)
+											@if($key->id_asignatura == $asig->id)
+											<td align="center">{{$key->calificacion}}</td>
+											@endif
+										@endforeach
 
 										@foreach($l1 as $key)
 											@if($key->id_asignatura == $asig->id)
