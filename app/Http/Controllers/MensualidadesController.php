@@ -284,7 +284,7 @@ class MensualidadesController extends Controller
         $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
         $r=Mail::send('admin.mensualidades.sinpagar_correo', $data, function ($message) use ($asunto,$destinatario){
-            //$message->from('colegiourdanetacampoelias@gmail.com');
+        $message->from('colegiourdanetacampoelias@gmail.com');
         
             $message->to($destinatario)->subject($asunto);
         });
