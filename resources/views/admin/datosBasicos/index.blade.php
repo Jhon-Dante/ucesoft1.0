@@ -54,7 +54,7 @@
                   <td> {{$num=$num+1}}</td>
                   <td> {{$preinscri->datosbasicos->nombres}}</td>
                   <td> {{$preinscri->datosbasicos->apellidos}}</td>
-                  <td> {{$preinscri->datosbasicos->cedula}}</td>
+                  <td> {{$preinscri->datosbasicos->nacionalidad}}-{{$preinscri->datosbasicos->cedula}}</td>
                   <td> {{$preinscri->datosbasicos->representantes->nombres}}</td>
                   <td> {{$preinscri->seccion->curso->curso}} - {{$preinscri->seccion->seccion}}</td>
                   <td> {{$preinscri->repite}}</td>
@@ -137,7 +137,7 @@
                   <td> {{$num=$num+1}}</td>
                   <td> {{$p->datosbasicos->nombres}}</td>
                   <td> {{$p->datosbasicos->apellidos}}</td>
-                  <td> {{$p->datosbasicos->cedula}}</td>
+                  <td> {{$p->datosbasicos->nacionalidad}}-{{$p->datosbasicos->cedula}}</td>
                   <td> {{$p->datosbasicos->representantes->nombres}}</td>
                   <td> {{$p->repite}}</td>
                   <td> {{$p->pendiente}}</td>

@@ -23,21 +23,15 @@
 		</div>
 
 <div class="form-group">
-	{!! Form::label('materiap','Materia a repetir') !!}
-	<select class="form-control select2" multiple="multiple" name="repite[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) ">
-		@foreach($asignaturas as $asig)
-			<option value="{{$asig->id}}">{{$asig->asignatura}} - Curso: {{$asig->cursos->curso}}</option>
-		@endforeach
-	</select>
-</div>
-<div class="form-group">
-	{!! Form::label('materiap','Materia Pendiente') !!}
-	<select class="form-control select2" multiple="multiple" name="pendiente[]" id="id_asignatura" title="Seleccione la(s) asignatura(s) pendiente(s) ">
-		@foreach($asignaturas as $asig)
-			<option value="{{$asig->id}}">{{$asig->asignatura}} - Curso: {{$asig->cursos->curso}}</option>
-		@endforeach
-	</select>
-</div>
+			{!! Form::label('seccion','Sección:')!!}
+			<select name="id_seccion" class="form-group">
+				@foreach($secciones as $seccion)
+					@if($curso_s->id==$seccion->curso->id)
+						<option value="{{$seccion->id}}">{{$seccion->seccion}}</option>
+					@endif
+				@endforeach
+			</select>
+		</div>
 
 <div class="form-group">
 	{!! Form::label('periodo','Período')!!}
@@ -60,6 +54,7 @@
 			{!! Form::hidden('id_seccion',$curso_s->id) !!}
 			{{$curso_s->curso->curso}} 
 		</div>
+
 		<div class="form-group">
 			{!! Form::label('seccion','Sección:')!!}
 			<select name="id_seccion" class="form-group">

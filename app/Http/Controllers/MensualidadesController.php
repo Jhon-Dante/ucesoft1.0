@@ -176,8 +176,8 @@ class MensualidadesController extends Controller
 
 
 
-
-        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        $destinatario='imagine.breacker@gmail.com';
+        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
         //dd($destinatario);
         $asunto="Confirmación de pago de mensualidad";
         $contenido="PAGO DE MENSUALIDAD";
@@ -277,7 +277,8 @@ class MensualidadesController extends Controller
 
         $mensualidad->save();
 
-        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        $destinatario='imagine.breacker@gmail.com';
+        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
         //dd($destinatario);
         $asunto="Confirmación de estado de mensualidad";
         $contenido="PAGO DE MENSUALIDAD COLOCADA COMO SIN PAGAR!";

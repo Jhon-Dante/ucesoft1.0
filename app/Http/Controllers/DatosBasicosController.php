@@ -115,9 +115,8 @@ class DatosBasicosController extends Controller
                 $buscaPendiente == 0;
                 
             }
-            $buscaRepite=   Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
-            $buscaPendiente=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get()->first();
-
+            $buscaRepite=   Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get();
+            $buscaPendiente=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->get();
             
                 $encuentra=0;
 
@@ -134,52 +133,34 @@ class DatosBasicosController extends Controller
             }
             else
                     {
+                            
+                                if (count($inscripciones)>0 AND count($preinscripcion)==0)
+                                {
+                                       $id_curso_next=$inscripciones->seccion->curso->id;
+                                       $curso_s=Seccion::where('id_curso', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
+                                    
+                                }
+                                else
+                                {
+                            
 
-                    if (count($buscaRepite) == 0) {
-                        $buscaRepite == 0;
-                    }else{
+                                        $id_curso_next=$preinscripcion->cursos->id;
 
-                        if ($buscaRepite->repite == 'Si') {
-                            flash('DISCULPE, EL ESTUDIANTE AÚN DEBE REPETIR MATERIAS DEL PERÍODO ANTERIOR, DEBE REMEDIAR LAS MATERIAS FALTANTES PARA PODER REINSCRIBIRSE EN UN NUEVO PERÍODO','danger');
-                            return redirect()->route('admin.DatosBasicos.create');
-                        }
-                        else
-                        {
-                            if ($buscaPendiente->pendiente == 'Si') {
-                                flash('DISCULPE, EL ESTUDIANTE AÚN DEBE MATERIAS PENDIENTES DEL PERÍODO ANTERIOR, DEBE REMEDIAR LAS MATERIAS FALTANTES PARA PODER REINSCRIBIRSE EN UN NUEVO PERÍODO','warning');
-                            return redirect()->route('admin.DatosBasicos.create');
-                            }
-                            else
-                            {
-                                    if (count($inscripciones)>0 AND count($preinscripcion)==0)
-                                    {
-                                           $id_curso_next=$inscripciones->seccion->curso->id;
-                                           $curso_s=Seccion::where('id_curso', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
-                                        
-                                    }
-                                    else
-                                    {
-                                
 
-                                            $id_curso_next=$preinscripcion->cursos->id;
-                                            $curso_s=Cursos::find('id','>',$preinscripcion->cursos->id);
-                                            // $id_curso=0;
-                                            // $inscripciones=0;
+                                        $curso_s=Cursos::where('id','>',$preinscripcion->cursos->id)->orderBy('id','asc')->get()->first();
+                                        $id_curso=0;
+                                        //  $inscripciones=0;
                                             
-                                }//Fin del else de 
+
                             }//Fin del else de inscripciones
-                        }//Fin del else de materias 
-                }//Fin del else de repite
             }//Fin del else de mensualidades
                     
                     //dd($inscripciones);
-        dd($curso_s);
         return View('admin.DatosBasicos.reinscribir', compact('inscripciones','inscripciones2','datosBasicos2','curso_s','secciones','asignaturas','periodos','preinscripcion'));
     }//Fin de la función buscarEstudiante
 
     public function reinscribir(Request $request)
     {
-        dd('asasdas');
 
         $id_periodo=Session::get('periodo');
         $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->last();

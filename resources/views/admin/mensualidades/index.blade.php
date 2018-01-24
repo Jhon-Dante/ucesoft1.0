@@ -135,7 +135,9 @@
 
                               @else
 
-                                <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px"> 
+                                <!-- <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px"> --> 
+                                
+                                <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
 
                               @endif
                             <!-- evaluando los meses del año anterior -->
