@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+    // add the MySqlDump command here
+        \App\Console\Commands\MySqlDump::class,
     ];
 
     /**
