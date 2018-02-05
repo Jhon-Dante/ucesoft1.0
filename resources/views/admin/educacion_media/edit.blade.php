@@ -26,7 +26,7 @@
 	    </div>
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Actualización del Curso del estudiante {{$inscripcion->datosBasicos->nombres}} {{$inscripcion->datosBasicos->apellidos}}
+							<div class="panel-heading">Actualización de notas del estudiante <strong>{{$inscripcion->datosBasicos->nombres}} {{$inscripcion->datosBasicos->apellidos}}</strong>
  				
 							</div>
 

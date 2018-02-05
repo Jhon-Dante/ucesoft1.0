@@ -10,12 +10,17 @@
 		{{$datosBasicos2->nacionalidad}}-{{$datosBasicos2->cedula}}
 </div>	
 @if(count($inscripciones)==0)
-<div class="form-group">
-			{!! Form::label('seccion','Curso anterior:')!!}
 
-				{{$preinscripcion->cursos->curso}}
+				@if($a == 0)
 
-</div>
+					<div class="form-group">
+						{!! Form::label('seccion','Curso anterior:')!!}
+					 	{{$preinscripcion->cursos->curso}}
+					</div>
+				@else
+				@endif
+
+
 <div class="form-group">
 			{!! Form::label('seccion','Curso siguiente:')!!}
 			{!! Form::hidden('id_seccion',$curso_s->id) !!}

@@ -126,6 +126,7 @@
                   <th>Apellidos</th>
                   <th>Cédula</th>
                   <th>Representante</th>
+                  <th>Curso Anterior</th>
                   <th>¿Repite?</th>
                   <th>¿Materias pendientes?</th>
                   <th>Opciones</th>
@@ -139,6 +140,7 @@
                   <td> {{$p->datosbasicos->apellidos}}</td>
                   <td> {{$p->datosbasicos->nacionalidad}}-{{$p->datosbasicos->cedula}}</td>
                   <td> {{$p->datosbasicos->representantes->nombres}}</td>
+                  <td> {{$p->cursos->curso}}</td>
                   <td> {{$p->repite}}</td>
                   <td> {{$p->pendiente}}</td>
                   <td>

@@ -59,12 +59,12 @@
 						@foreach($key3->boletin as $key2)
 							@foreach($personal->asignacion_a as $key4)
 								@if($key2->id_periodo==$periodo->id and $key2->id_datosBasicos==$inscripcion->id_datosBasicos and $key4->pivot->id_asignatura==$key3->id )	
-									<td  style="font-size: 10px;">{!! Form::number('calificacion[]',$key2->calificacion,['class' => 'form-control','max' => '20']) !!}</td>
+									<td  style="font-size: 10px;">{!! Form::number('calificacion[]',$key2->calificacion) !!}</td>
 									<input type="hidden" name="id[]" value="{{$key2->id}}">
 									<input type="hidden" name="id_asignatura[]" value="{{$key2->id_asignatura}}">
 									<input type="hidden" name="id_datosBasicos" value="{{$key2->id_datosBasicos}}">
 
-									<td  style="font-size: 12px;">{!! Form::number('inasistencias[]',$key2->inasistencias,['class' => 'form-control']) !!}</td>
+									<td  style="font-size: 12px;">{!! Form::number('inasistencias[]',$key2->inasistencias) !!}</td>
 								
 								@endif
 							@endforeach

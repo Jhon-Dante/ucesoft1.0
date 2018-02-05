@@ -15,13 +15,17 @@
 				@foreach($asignaturas as $key)
 					<?php $i=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
+					
 						@foreach($personal->asignacion_a as $key4)
-						@if($periodo->id==$key2[$i]->id_periodo and $key4->pivot->id_asignatura==$key->id )	
-							<th colspan="{{$lapsos[$t2]*2}}" align="center" style="font-size: 10px;"><center>{{$key->codigo}}</center></th>
-							
-						<?php $i++;$t2++; ?>
-						@endif
+
+							@if($periodo->id==$key2[$i]->id_periodo and $key4->pivot->id_asignatura==$key->id )	
+								<th colspan="{{$lapsos[$t2]*2}}" align="center" style="font-size: 10px;"><center>{{$key->codigo}}</center></th>
+								
+								<?php $i++;$t2++; ?>
+							@endif
+
 						@endforeach
+						
 					@endforeach
 				@endforeach
 				<th colspan="3"><center>Opciones</center></th>
@@ -33,6 +37,7 @@
 					<?php $k=0; ?>
 					@foreach($key->boletin->groupBy($key->id) as $key2)
 					@foreach($personal->asignacion_a as $key4)
+
 						@if($periodo->id==$key2[$k]->id_periodo and $key->id==$key2[$k]->id_asignatura and $key4->pivot->id_asignatura==$key->id )	
 							@for($m=0;$m<$lapsos[$t];$m++)
 								<td>L{{$m+1}}</td>
@@ -44,9 +49,7 @@
 					@endforeach
 					@endforeach
 				@endforeach
-				<td>L1</td>
-				<td>L2</td>
-				<td>L3</td>
+					<td colspan="3" align="center"><strong>Editar</strong></td>
 				</tr>
 			</thead>
             <tbody>
@@ -68,15 +71,10 @@
 							@endforeach
 						@endforeach
 					@endforeach
-					<td>
-
-						@if($lapso1==1)
+					<td colspan="3">
 						<button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->datosBasicos->id}}','{{$key->seccion->id}}','{{$key->periodo->id}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
-						@endif
-
 					</td>
-					<td>@if($lapso1==2) PDF @endif</td>
-					<td>@if($lapso1==3) PDF @endif</td>
+					
 					</tr>
               	@endforeach
 					

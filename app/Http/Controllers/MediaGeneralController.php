@@ -357,7 +357,6 @@ class MediaGeneralController extends Controller
        }else{
          $lapso3=0;
        }
-
        $num=0;
         return View('admin.educacion_media.show', compact('num','guia','boletin','asignaturas','seccion','inscripcion','id_periodo','lapsos','lapso1','lapso2','lapso3','periodo','num','id_periodo','personal'));
     }

@@ -57,7 +57,6 @@ class DatosBasicosController extends Controller
      */
     public function create()
     {
-        
         $representantes=Representantes::all();
         $padres=Padres::all();
         $datosBasicos=DatosBasicos::all();
@@ -89,6 +88,9 @@ class DatosBasicosController extends Controller
             $asignaturas=Asignaturas::all();
             $secciones=Seccion::all();
             $periodos=Periodos::where('status','Activo')->first();
+
+
+
             if (count($inscripciones)!=0) {
                 $inscripciones2=Inscripcion::where('id_datosBasicos',$request->id_estudiante)->where('id_periodo',$inscripciones->id_periodo-1)->get()->first();
             }
@@ -142,26 +144,29 @@ class DatosBasicosController extends Controller
                                 }
                                 else
                                 {
-                            
+                                    if ($preinscripcion->id_curso==0) {
+                                        $curso_s=Cursos::find(1);
+                                        $a=1;
+                                    }else{
 
-                                        $id_curso_next=$preinscripcion->cursos->id;
-
-
+                                        $id_curso_next=$preinscripcion->id_curso;
                                         $curso_s=Cursos::where('id','>',$preinscripcion->cursos->id)->orderBy('id','asc')->get()->first();
-                                        $id_curso=0;
+                                        $a=0;
                                         //  $inscripciones=0;
+                                    }
+                                    $id_curso=0;
                                             
 
                             }//Fin del else de inscripciones
             }//Fin del else de mensualidades
                     
                     //dd($inscripciones);
-        return View('admin.DatosBasicos.reinscribir', compact('inscripciones','inscripciones2','datosBasicos2','curso_s','secciones','asignaturas','periodos','preinscripcion'));
+        return View('admin.DatosBasicos.reinscribir', compact('inscripciones','a','inscripciones2','datosBasicos2','curso_s','secciones','asignaturas','periodos','preinscripcion'));
     }//Fin de la función buscarEstudiante
 
     public function reinscribir(Request $request)
     {
-
+        
         $id_periodo=Session::get('periodo');
         $p=Inscripcion::where('id_datosBasicos',$request->id_datosBasicos)->where('id_periodo',$id_periodo)->get()->last();
         if(count($p)>0)

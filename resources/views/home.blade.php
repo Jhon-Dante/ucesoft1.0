@@ -200,6 +200,7 @@
                       <th>Nombres</th>
                       <th>Apellidos</th>
                       <th>Cédula</th>
+                      <th>Curso Anterior</th>
                       <th style="width: 40px"></th>
                     </tr>
                     
@@ -209,6 +210,7 @@
                         <td>{{$p->datosBasicos->nombres}}</td>
                         <td>{{$p->datosBasicos->apellidos}}</td>
                         <td>{{$p->datosBasicos->nacionalidad}} - {{$p->datosBasicos->cedula}}</td>
+                        <td>{{$p->cursos->curso}}</td>
 
                       </tr>
                       @endforeach
@@ -229,7 +231,6 @@
                       <th>Apellidos</th>
                       <th>Cédula</th>
                       <th>Curso</th>
-                      <th>Sección</th>
                     </tr>
                     
                       @foreach($inscripcion as $p)
@@ -238,8 +239,8 @@
                         <td>{{$p->datosBasicos->nombres}}</td>
                         <td>{{$p->datosBasicos->apellidos}}</td>
                         <td>{{$p->datosBasicos->nacionalidad}} - {{$p->datosBasicos->cedula}}</td>
-                        <td>{{$p->seccion->curso->curso}}</td>
-                        <td>{{$p->seccion->seccion}}</td>
+                        <td>{{$p->seccion->curso->curso}} {{$p->seccion->seccion}}</td>
+
 
                       </tr>
                       @endforeach
