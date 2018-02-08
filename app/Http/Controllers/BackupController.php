@@ -45,21 +45,21 @@ class BackupController extends Controller
     public function create(){
 
         $date = Carbon::now()->toW3cString();
-        //$environment = env('APP_ENV');
-        $environment='local';
+        $environment = env('APP_ENV');
+        //$environment='local';
         //dd($environment);
 
 
         try {
-        $host = '127.0.0.1';
+        /*$host = '127.0.0.1';
         $username = 'root';
         $password = '';
-        $database = 'ucesoft';
+        $database = 'ucesoft';*/
         //dd($database);
-             $ds = DIRECTORY_SEPARATOR;
-            MySqlDump::handle($date,$host,$username,$password,$database);
+             //$ds = DIRECTORY_SEPARATOR;
+            //MySqlDump::handle($date,$host,$username,$password,$database);
         //dd($ds."{$environment}".$ds."urdanetace_{$environment}_{$date}");
-            /*Artisan::call("db:backup", [
+            Artisan::call("db:backup", [
                 "--database"        => "mysql",
                 "--destination"     => "local",
                 "--destinationPath" => $ds."{$environment}".$ds."urdanetace_{$environment}_{$date}",
@@ -70,7 +70,7 @@ class BackupController extends Controller
             $output = Artisan::output();
 
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n" . $output);
-*/
+
 
 
             Session::flash('message', 'SE A CREADO UN NUEVO RESPALDO CORRECTAMENTE.');
