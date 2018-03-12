@@ -2,7 +2,7 @@
 <!--
 Landing page based on Pratt: http://blacktie.co/demo/pratt/
 -->
-<html lang="en">
+<html lang="es">
 <head>
     <style type="text/css">
         body {

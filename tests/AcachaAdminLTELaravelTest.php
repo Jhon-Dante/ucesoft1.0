@@ -200,8 +200,8 @@ class AcachaAdminLTELaravelTest extends TestCase
 
         $this->visit('password/reset')
             ->type($user->email, 'email')
-            ->press('Send Password Reset Link')
-            ->see('We have e-mailed your password reset link!');
+            ->press('Enviar link para cambiar contraseña')
+            ->see('Se le ha enviado el link para restaurar su contraseña!');
     }
 
     /**

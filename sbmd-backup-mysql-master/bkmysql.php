@@ -86,7 +86,7 @@ $lang_js = '{
 header('Content-type: text/html; charset=utf-8');
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Simple Backup MySQL Database</title>
