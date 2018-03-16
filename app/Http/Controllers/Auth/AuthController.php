@@ -77,7 +77,8 @@ class AuthController extends Controller
         
             if(Auth::check())
             {
-                Session::flash('message-error', 'Usuario ya conectado.');
+                Session::flash('message-error'
+                    , 'Usuario ya conectado.');
                 return Redirect::to('/home');
                 $datosBasicos=DatosBasicos::all();
             }

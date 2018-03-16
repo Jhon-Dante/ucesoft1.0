@@ -52,6 +52,7 @@ class RepresentantesController extends Controller
      */
     public function store(RepresentantesRequest $request)
     {
+
         //dd($request->all());
         $buscar=Representantes::where('cedula',$request->cedula)->get();
 
@@ -68,59 +69,67 @@ class RepresentantesController extends Controller
                 }
                 
             } else {
-                $representante=Representantes::create([
-                    'nacionalidad'      =>$request->nacionalidad,
-                    'cedula'            =>$request->cedula,
-                    'nombres'           =>$request->nombres,
-                    'apellidos'         =>$request->apellidos,
-                    'profesion'         =>$request->profesion,
-                    'vive_estu'         =>$request->vive_estu,
-                    'ingreso_apx'       =>$request->ingreso_apx,
-                    'n_familia'         =>$request->n_familia,
-                    'direccion'         =>$request->direccion,
-                    'email'             =>$request->email,
-                    'codigo_hab'        =>$request->codigo_hab,
-                    'telf_hab'          =>$request->telf_hab,
-                    'lugar_tra'         =>$request->lugar_tra,
-                    'codigo_tra'        =>$request->codigo_tra,
-                    'telf_tra'          =>$request->telf_tra,
-                    'responsable_m'     =>$request->responsable_m,
-                    'codigo_responsable'=>$request->codigo_responsable,
-                    'telf_responsable'  =>$request->telf_responsable,
-                    'codigo_opcional'   =>$request->codigo_opcional,
-                    'telf_opcional'     =>$request->telf_opcional,
-                    'nombre_opcional'   =>$request->nombre_opcional,
-                    'codigo_emergencia' =>$request->codigo_emergencia,
-                    'telf_emergencia'   =>$request->telf_emergencia
-                ]);
+                // $representante=Representantes::create([
+                //     'nacionalidad'      =>$request->nacionalidad,
+                //     'cedula'            =>$request->cedula,
+                //     'nombres'           =>$request->nombres,
+                //     'apellidos'         =>$request->apellidos,
+                //     'profesion'         =>$request->profesion,
+                //     'vive_estu'         =>$request->vive_estu,
+                //     'ingreso_apx'       =>$request->ingreso_apx,
+                //     'n_familia'         =>$request->n_familia,
+                //     'direccion'         =>$request->direccion,
+                //     'email'             =>$request->email,
+                //     'codigo_hab'        =>$request->codigo_hab,
+                //     'telf_hab'          =>$request->telf_hab,
+                //     'lugar_tra'         =>$request->lugar_tra,
+                //     'codigo_tra'        =>$request->codigo_tra,
+                //     'telf_tra'          =>$request->telf_tra,
+                //     'responsable_m'     =>$request->responsable_m,
+                //     'codigo_responsable'=>$request->codigo_responsable,
+                //     'telf_responsable'  =>$request->telf_responsable,
+                //     'codigo_opcional'   =>$request->codigo_opcional,
+                //     'telf_opcional'     =>$request->telf_opcional,
+                //     'nombre_opcional'   =>$request->nombre_opcional,
+                //     'codigo_emergencia' =>$request->codigo_emergencia,
+                //     'telf_emergencia'   =>$request->telf_emergencia
+                // ]);
 
                 $contraseña=rand(100000000,1000000000);
+                $name= ''.$request->nombres.', '.$request->apellidos;
 
-                $repre=\DB::table('users')->insert([
-                    'name' => $request->nombres,
-                    'email' => $contraseña,
-                    'password' => bcrypt('qwerty'),
-                    'tipo_user' => 'Representante'
-                ]);
+                // $repre=\DB::table('users')->insert([
+                //     'name' => $name,
+                //     'email' => $request->email,
+                //     'password' => $contraseña,
+                //     'tipo_user' => 'Representante'
+                // ]);
+
+                $destinatario=$request->email;
+                $asunto="Confirmación de representante en el sistema";
+                $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+                $data=array("contenido"=> $contenido,"personal" => $request->nombres);
+
+                $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
+                    //$message->from('colegiourdanetacampoelias@gmail.com');
+                
+                    $message->to($destinatario)->subject($asunto);
+                });
 
             
-            // flash('Representante registrado con éxito','success');
-            // if ($request->desde==1) {
-            //         return redirect()->back();    
-            //     } else {
-            //         return redirect()->route('admin.representantes.index');
-            //     }
-            // }
-                flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
-                    echo "Contraseña: ".$contraseña;
+            flash('Representante registrado con éxito','success');
+            if ($request->desde==1) {
+                    return redirect()->back();    
+                } else {
+                    return redirect()->route('admin.representantes.index');
+                }
+            }
+                // flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
+                //     echo "Contraseña: ".$contraseña;
 
                     $accion='Registra nuevo representante: '.$request->nombres;
                     $this->auditoria($accion);
-
-            $num=0;
-            $representantes=Representantes::all();
-            return View('admin.representantes.index', compact('representantes','num'));
-            }
+            
         }else{
             flash('YA EXISTE ESTE CORREO ELECTRÓNICO EN EL SISTEMA!', 'danger');
             return redirect()->back();
