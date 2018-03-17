@@ -51,6 +51,7 @@ class PersonalController extends Controller
 
         //dd($request->all());
         $buscar=Personal::where('cedula', $request->cedula)->get();
+        $buscar2 =Personal::where('correo', $request->correo)->get();
 
         //$personal2=Personal::find($request->)
         $usuario=User::all();
@@ -59,74 +60,79 @@ class PersonalController extends Controller
 
         $cuantos=count($buscar);
 
-        if ($cuantos>0) {
-            flash('Este personal ya se encuentra registrado','warning');
+        if (count($buscar2)>0) {
+            flash('LA CONTRASEÑA YA SE ENCUENTRA REGISTRADA EN EL SISTEMA, INTRODUZCA OTRA CONTRASEÑA!','danger');
+            $num=0;
+            return redirect()->back()->withInput();
+        }
+            if ($cuantos>0) {
+                flash('Este personal ya se encuentra registrado','warning');
+                $num=0;
+                $personal=Personal::all();
+            return View('admin.personal.index', compact('personal','num'));
+
+            } else {
+
+                $perso=Personal::create([
+                    'nombres'          =>$request->nombres,
+                    'apellidos'        =>$request->apellidos,
+                    'nacio'            =>$request->nacionalidad,
+                    'cedula'           =>$request->cedula,
+                    'fecha_nacimiento' =>$request->fecha_nacimiento,
+                    'edad'             =>$request->edad,
+                    'edo_civil'        =>$request->edo_civil,
+                    'direccion'        =>$request->direccion,
+                    'genero'           =>$request->genero,
+                    'codigo_hab'       =>$request->codigo_hab,
+                    'telf_hab'         =>$request->telf_hab,
+                    'codigo_cel'       =>$request->codigo_cel,
+                    'celular'          =>$request->celular,
+                    'correo'           =>$request->correo,
+                    'id_cargo'         =>$request->id_cargo
+                    ]);
+
+                    $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
+                    $usuario=User::where('name',$request->nombres)->get()->first();
+
+                     $contraseña=rand(100000000,1000000000);
+
+                    if(count($usuario) == 0){
+                        $crear=\DB::table('users')->insert(array(
+                            'name'          => $request->nombres,
+                            'email'         => 'javierguevarawork96@gmail.com',
+                            'password'      => bcrypt($contraseña),
+                            'tipo_user'     => $cargo->cargo
+                        ));
+                    }
+
+
+                    $destinatario='javierguevarawork96@gmail.com';
+                    //dd($destinatario);
+
+                    $destinatario=$request->correo;
+
+                    $asunto="Confirmación de personal en el sistema";
+                    $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+                    $data=array("contenido"=> $contenido,"personal" => $request->nombres);
+
+                    $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
+                        //$message->from('colegiourdanetacampoelias@gmail.com');
+                    
+                        $message->to($destinatario)->subject($asunto);
+                    });
+                    if ($r) {
+                       flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
+                    } else {
+                       flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
+                    }
+                    // flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
+                    // echo "Contraseña: ".$contraseña;
+
             $num=0;
             $personal=Personal::all();
-        return View('admin.personal.index', compact('personal','num'));
-
-        } else {
-
-            $perso=Personal::create([
-                'nombres'          =>$request->nombres,
-                'apellidos'        =>$request->apellidos,
-                'nacio'            =>$request->nacionalidad,
-                'cedula'           =>$request->cedula,
-                'fecha_nacimiento' =>$request->fecha_nacimiento,
-                'edad'             =>$request->edad,
-                'edo_civil'        =>$request->edo_civil,
-                'direccion'        =>$request->direccion,
-                'genero'           =>$request->genero,
-                'codigo_hab'       =>$request->codigo_hab,
-                'telf_hab'         =>$request->telf_hab,
-                'codigo_cel'       =>$request->codigo_cel,
-                'celular'          =>$request->celular,
-                'correo'           =>$request->correo,
-                'id_cargo'         =>$request->id_cargo
-                ]);
-
-                $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
-                $usuario=User::where('name',$request->nombres)->get()->first();
-
-                 $contraseña=rand(100000000,1000000000);
-
-                if(count($usuario) == 0){
-                    $crear=\DB::table('users')->insert(array(
-                        'name'          => $request->nombres,
-                        'email'         => 'javierguevarawork96@gmail.com',
-                        'password'      => bcrypt($contraseña),
-                        'tipo_user'     => $cargo->cargo
-                    ));
-                }
-
-
-                $destinatario='javierguevarawork96@gmail.com';
-                //dd($destinatario);
-
-                $destinatario=$request->correo;
-
-                $asunto="Confirmación de personal en el sistema";
-                $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
-                $data=array("contenido"=> $contenido,"personal" => $request->nombres);
-
-                $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
-                    //$message->from('colegiourdanetacampoelias@gmail.com');
-                
-                    $message->to($destinatario)->subject($asunto);
-                });
-                if ($r) {
-                   flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
-                } else {
-                   flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
-                }
-                // flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
-                // echo "Contraseña: ".$contraseña;
-
-        $num=0;
-        $personal=Personal::all();
-        $cargo=Cargos::lists('id','cargo');
-        return View('admin.personal.index', compact('personal','cargo','num','contraseña'));
-        }
+            $cargo=Cargos::lists('id','cargo');
+            return View('admin.personal.index', compact('personal','cargo','num','contraseña'));
+            }
         
     }
 
