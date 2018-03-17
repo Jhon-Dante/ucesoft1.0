@@ -2,7 +2,11 @@
 <div class="form-group{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('nacionalidad','Nacionalidad') !!}
-	{!! Form::select('nacionalidad',['V','E'],['class' => 'form_control']) !!}
+	<!-- {!! Form::select('nacionalidad',['V','E'],['class' => 'form_control']) !!} -->
+	<select name="nacionalidad" class="form_control">
+		<option value="V">V</option>
+		<option value="E">E</option>
+	</select>
 </div>
 <div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)

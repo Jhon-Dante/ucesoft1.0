@@ -99,8 +99,12 @@ class PersonalController extends Controller
                     ));
                 }
 
+<<<<<<< HEAD
                 $destinatario='javierguevarawork96@gmail.com';
                 //dd($destinatario);
+=======
+                $destinatario=$request->correo;
+>>>>>>> cc0241590bf2dbb42f765e904b770c26257a3c8e
                 $asunto="Confirmación de personal en el sistema";
                 $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
                 $data=array("contenido"=> $contenido,"personal" => $request->nombres);
