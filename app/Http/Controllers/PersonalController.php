@@ -106,7 +106,7 @@ class PersonalController extends Controller
                     }
 
 
-                    $destinatario='javierguevarawork96@gmail.com';
+                    //$destinatario='javierguevarawork96@gmail.com';
                     //dd($destinatario);
 
                     $destinatario=$request->correo;
