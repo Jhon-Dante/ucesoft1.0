@@ -69,41 +69,41 @@ class RepresentantesController extends Controller
                 }
                 
             } else {
-                // $representante=Representantes::create([
-                //     'nacionalidad'      =>$request->nacionalidad,
-                //     'cedula'            =>$request->cedula,
-                //     'nombres'           =>$request->nombres,
-                //     'apellidos'         =>$request->apellidos,
-                //     'profesion'         =>$request->profesion,
-                //     'vive_estu'         =>$request->vive_estu,
-                //     'ingreso_apx'       =>$request->ingreso_apx,
-                //     'n_familia'         =>$request->n_familia,
-                //     'direccion'         =>$request->direccion,
-                //     'email'             =>$request->email,
-                //     'codigo_hab'        =>$request->codigo_hab,
-                //     'telf_hab'          =>$request->telf_hab,
-                //     'lugar_tra'         =>$request->lugar_tra,
-                //     'codigo_tra'        =>$request->codigo_tra,
-                //     'telf_tra'          =>$request->telf_tra,
-                //     'responsable_m'     =>$request->responsable_m,
-                //     'codigo_responsable'=>$request->codigo_responsable,
-                //     'telf_responsable'  =>$request->telf_responsable,
-                //     'codigo_opcional'   =>$request->codigo_opcional,
-                //     'telf_opcional'     =>$request->telf_opcional,
-                //     'nombre_opcional'   =>$request->nombre_opcional,
-                //     'codigo_emergencia' =>$request->codigo_emergencia,
-                //     'telf_emergencia'   =>$request->telf_emergencia
-                // ]);
+                $representante=Representantes::create([
+                    'nacionalidad'      =>$request->nacionalidad,
+                    'cedula'            =>$request->cedula,
+                    'nombres'           =>$request->nombres,
+                    'apellidos'         =>$request->apellidos,
+                    'profesion'         =>$request->profesion,
+                    'vive_estu'         =>$request->vive_estu,
+                    'ingreso_apx'       =>$request->ingreso_apx,
+                    'n_familia'         =>$request->n_familia,
+                    'direccion'         =>$request->direccion,
+                    'email'             =>$request->email,
+                    'codigo_hab'        =>$request->codigo_hab,
+                    'telf_hab'          =>$request->telf_hab,
+                    'lugar_tra'         =>$request->lugar_tra,
+                    'codigo_tra'        =>$request->codigo_tra,
+                    'telf_tra'          =>$request->telf_tra,
+                    'responsable_m'     =>$request->responsable_m,
+                    'codigo_responsable'=>$request->codigo_responsable,
+                    'telf_responsable'  =>$request->telf_responsable,
+                    'codigo_opcional'   =>$request->codigo_opcional,
+                    'telf_opcional'     =>$request->telf_opcional,
+                    'nombre_opcional'   =>$request->nombre_opcional,
+                    'codigo_emergencia' =>$request->codigo_emergencia,
+                    'telf_emergencia'   =>$request->telf_emergencia
+                ]);
 
                 $contraseña=rand(100000000,1000000000);
                 $name= ''.$request->nombres.', '.$request->apellidos;
 
-                // $repre=\DB::table('users')->insert([
-                //     'name' => $name,
-                //     'email' => $request->email,
-                //     'password' => $contraseña,
-                //     'tipo_user' => 'Representante'
-                // ]);
+                $repre=\DB::table('users')->insert([
+                    'name' => $name,
+                    'email' => $request->email,
+                    'password' => bcrypt($contraseña),
+                    'tipo_user' => 'Representante'
+                ]);
 
                 $destinatario=$request->email;
                 $asunto="Confirmación de representante en el sistema";

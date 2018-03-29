@@ -779,7 +779,43 @@ class DatosBasicosController extends Controller
 
                     return $dompdf->stream();
     }
+    public function constanciaC(Request $request)
+    {
+        $periodo=Periodos::where('status','Activo')->first();
+        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+        return View('admin.datosBasicos.constanciaC', compact('inscripcion','periodo'));
+    }
+    public function mostrarConstanciaC(Request $request)
+    {
+        $estudiante=Inscripcion::find($request->id_estudiante);
+        $periodo=Periodos::where('status','Activo')->first();
+        $boletin=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->get();
+        $inscripcion=Inscripcion::find($request->id_estudiante);
+        $cursos=Cursos::where('id','>',7)->get();
+        $año=date('Y');
+        $periodo=Periodos::where('status','Activo')->first();
+        $edu=0;
+        $notas=Boletin::where('id_datosBasicos', $inscripcion->id)->where('id_periodo',$periodo->id)->get();
+        $mensualidades=Mensualidades::where('id_datosBasicos',$inscripcion->id_datosBasicos)->where('id_periodo',$periodo->id)->where('estado','Cancelado');
+        $asignaturas=Asignaturas::where('id_curso','>', 5)->get();
 
+        $es=DatosBasicos::find($inscripcion->id_datosBasicos);
+        $accion='Ha generado un certificado de Calificaciones al estudiante '.$es->nombres.', '.$es->apellidos;
+        $this->auditoria($accion);
+
+
+        if ($inscripcion->seccion->curso->curso <= 7) {
+            $edu="Básica";
+        }else{
+            $edu="Media";
+        }
+        $q=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',1)->get();
+        $w=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',2)->get();
+        $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->get();
+        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletin' => $boletin, 'edu' => $edu, 'asignaturas' => $asignaturas,'q' => $q, 'w' => $w, 'e' => $e, 'mensualidades' => $mensualidades])->setPaper('legal');
+
+                    return $dompdf->stream();
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -821,6 +857,7 @@ class DatosBasicosController extends Controller
             
         
     }
+    
     public function actualiza(Request $request)
     {
 
