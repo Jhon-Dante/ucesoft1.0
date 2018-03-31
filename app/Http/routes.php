@@ -328,6 +328,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.mostrarConstanciaC'
          ]);
 
+         Route::get('/tituloB',[
+            'uses' => 'DatosBasicosController@tituloB',
+            'as' => 'admin.tituloB'
+         ]);
+         
+         Route::post('/mostrarTituloB',[
+            'uses' => 'DatosBasicosController@mostrarTituloB',
+            'as' => 'admin.mostrarTituloB'
+         ]);
+
          Route::resource('/remediales','RemedialesController');
 
          //ruta para seleccionar el docente a subir carga

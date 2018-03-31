@@ -42,6 +42,7 @@
                     <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a></li>
                     <li><a href=" {{ url('admin/constancia')          }} ">Constancia de estudios</a></li>
                     <li><a href=" {{ url('admin/constanciaC')         }} ">Certificado de calificaciones</a></li>
+                    <li><a href=" {{ url('admin/tituloB')             }} ">Generar Título de Bachiller</a></li>
                 </ul>
             </li>
 

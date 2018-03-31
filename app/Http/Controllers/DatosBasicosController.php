@@ -816,6 +816,21 @@ class DatosBasicosController extends Controller
 
                     return $dompdf->stream();
     }
+    public function tituloB(Request $request)
+    {
+        $periodo=Periodos::where('status','Activo')->first();
+        $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+        
+        return View('admin.datosBasicos.tituloB', compact('inscripcion','periodo'));
+    }
+    public function mostrarTituloB(Request $request)
+    {
+        $inscripcion=Inscripcion::find($request->id_estudiante);
+        $periodo=Periodos::where('status','Activo')->first();
+
+        $dompdf = \PDF::loadView('admin.pdfs.titulos.tituloB',['inscripcion' => $inscripcion, 'periodo' => $periodo])->setPaper('letter','landscape');
+        return $dompdf->stream();
+    }
     /**
      * Show the form for editing the specified resource.
      *
