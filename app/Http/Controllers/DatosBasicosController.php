@@ -810,9 +810,12 @@ class DatosBasicosController extends Controller
             $edu="Media";
         }
         $q=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',1)->get();
+        //$q=[];
         $w=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',2)->get();
         $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->get();
-        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletin' => $boletin, 'edu' => $edu, 'asignaturas' => $asignaturas,'q' => $q, 'w' => $w, 'e' => $e, 'mensualidades' => $mensualidades])->setPaper('legal');
+        // dd(count($q),count($w),count($e));
+        $i=0;
+        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletin' => $boletin, 'i' => $i, 'edu' => $edu, 'asignaturas' => $asignaturas,'q' => $q, 'w' => $w, 'e' => $e, 'mensualidades' => $mensualidades])->setPaper('legal');
 
                     return $dompdf->stream();
     }

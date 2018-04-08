@@ -1,4 +1,4 @@
-<?php set_time_limit(10);?>
+<?php set_time_limit(1000);?>
 	<style type="text/css">
 		html {
 		margin: 20;
@@ -92,13 +92,16 @@
 				@if($asig->id_curso == $curso->id)
 					<tr>
 						<td>{{$asig->asignatura}}</td>
-							@foreach($q as $q1)
-								@foreach($w as $w1)
-									@foreach($e as $e1)
-										@if($q1->id_asignatura == $asig->id && $w1->id_asignatura == $asig->id && $e1->id_asignatura == $asig->id)
+
+						@if(count($q)>0 && count($w)>0 && count($e)>0)
+							@if($i<13)	
+								<td>{{$q[$i]->id_asignatura}}-{{$w[$i]->id_asignatura}}-{{$e[$i]->id_asignatura}}-{{$asig->id}}</td>
+										@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
+
 
 												
-													{{$resul=$q1->calificacion+$w1->calificacion+$e1->calificacion/3}}
+													<?php $resul=$q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion/3;
+													?>
 												
 												<td align="center">{{round($resul)}}</td>
 												<td align="center">
@@ -128,15 +131,17 @@
 												</td>
 												<td align="center">F</td>
 												<td align="center">Julio</td>
-												<td align="center">2018</td>
+												<td align="center">2018</td>	
 												<td align="center">1</td>
-										
 										@endif
-									@endforeach
-								@endforeach
-							@endforeach
+							@endif
+						@else
+							@for($o=0;$o<=5;$o++)
+								<td>***</td>
+							@endfor
+						@endif
 					</tr>
-				
+				<?php $i++; ?>
 				@endif
 			@endforeach
 		<?php $n++; ?>
