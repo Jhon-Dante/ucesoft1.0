@@ -809,10 +809,10 @@ class DatosBasicosController extends Controller
         }else{
             $edu="Media";
         }
-        $q=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',1)->get();
+        $q=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',1)->orderBy('id_asignatura')->get();
         //$q=[];
-        $w=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',2)->get();
-        $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->get();
+        $w=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',2)->orderBy('id_asignatura')->get();
+        $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->orderBy('id_asignatura')->get();
         // dd(count($q),count($w),count($e));
         $i=0;
         $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletin' => $boletin, 'i' => $i, 'edu' => $edu, 'asignaturas' => $asignaturas,'q' => $q, 'w' => $w, 'e' => $e, 'mensualidades' => $mensualidades])->setPaper('legal');

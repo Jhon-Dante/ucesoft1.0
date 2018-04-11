@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\AsignaturasRequest;
 use Validator;    
 use App\Auditoria;
+use App\Boletin;
 class AsignaturasController extends Controller
 {
 
@@ -110,14 +111,15 @@ class AsignaturasController extends Controller
      */
     public function update(AsignaturasRequest $request, $id)
     {
-        $asignaturas=Asignaturas::where('asignatura',$request->asignatura)->where('id','<>',$id)->get();
-
-        if (count($asignaturas)==0) {
-            $asignaturas=Asignaturas::find($id);
+        // $asignaturas=Asignaturas::where('asignatura',$request->asignatura)->where('id','<>',$id)->get();
+        $asignaturas=Asignaturas::find($id);
+        if (count($asignaturas)>0) {
+            
             $asignaturas->asignatura=$request->asignatura;
             $asignaturas->id_curso=$request->id_curso;
-            $asignaturas->color=$request->color;
+            $asignaturas->color=$request->color; 
             $asignaturas->update();
+
             //registrando en auditoria
             $accion = 'Actualización de la Asignatura '.$request->asignatura.'';
             flash('REGISTRO ACTUALIZADO CON ÉXITO','success');
@@ -142,11 +144,9 @@ class AsignaturasController extends Controller
     public function destroy(Request $request)
     {
         $asignaturas=Asignaturas::find($request->id);
-
-        if ($asignaturas->cursos()->exists()) {
-             
+        $comprueba=Boletin::where('id_asignatura',$request->id)->first();
+        if(count($comprueba)>0){
             $accion="Falla en la eliminación de la asignatura";
-           
             flash('EXISTEN CURSOS ASIGNADOS A ESTA MATERIA, NO SE PUEDE ELIMINAR! ELIMINE EL CURSO PRIMERO', 'warning');
         } else {
             $x=$asignaturas->asignatura;
@@ -156,7 +156,7 @@ class AsignaturasController extends Controller
             }else{
                 $accion="No se pudo eliminar la asignatura ".$request->asignatura;
                 flash('REGISTRO NO ELIMINADO!','warning');
-
+                    
             }
         }
         //registrando en auditoria

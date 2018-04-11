@@ -11,6 +11,8 @@ use Auth;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Auditoria;
+use App\Horarios;
+use App\Horarios2;
 class AulasController extends Controller
 {
     
@@ -107,13 +109,15 @@ class AulasController extends Controller
      */
     public function destroy(Request $request)
     {
-        $aula = Aula::find($request->id);
+        $horarios = Horarios::where('id_aula',$request->id)->get();
+        $horarios2 = Horarios2::where('id_aula',$request->id)->get();
+        $aula=Aula::find($request->id);
         $nombre=$aula->nombre;
-        if($aula->asignacion_b()->exists()){
+        if(count($horarios)>0 || count($horarios2)>0){
             $accion ='No se pudo eliminar el aula '.$nombre.'';
             $this->auditoria($accion);
             Session::flash('message-error', 'DISCULPE ESTA AULA YA SE ENCUENTRA ASIGNADA EN UN HORARIO.');
-
+            flash('AULA NO ELIMINADA CON ÉXITO!', 'warning');
             return redirect()->back();
 
         } else {
@@ -122,7 +126,7 @@ class AulasController extends Controller
             $accion ='Eliminación del aula '.$nombre.'';
             $this->auditoria($accion);
             Session::flash('message', 'SE HA ELIMINADO EL AULA '.$aula->nombre.' EXITOSAMENTE.');
-
+            flash('AULA ELIMINADA CON ÉXITO!', 'success');
             return redirect()->back();
         }
     }
