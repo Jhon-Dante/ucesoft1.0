@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
         $this->call(BloquesTableSeeder::class);
         $this->call(Bloques2TableSeeder::class);
         $this->call(SeccionesTableSeeder::class);
-        // $this->call(PersonalSeeder::class);
-        // $this->call(RepresentantesSeeder::class);
-        // $this->call(PagosTableSeeder::class);
-        // $this->call(DatosBasicosSeeder::class);
-        // $this->call(Padres::class);
-        // $this->call(RecaudosTableSeeder::class);
+        $this->call(PersonalSeeder::class);
+        $this->call(RepresentantesSeeder::class);
+        $this->call(PagosTableSeeder::class);
+        $this->call(DatosBasicosSeeder::class);
+        $this->call(Padres::class);
+        $this->call(RecaudosTableSeeder::class);
         $this->call(AulasTableSeeder::class);
-        // $this->call(CargaAcademicaTableSeeder::class);
-        //$this->call(BoletinSeeder::class);
+        $this->call(CargaAcademicaTableSeeder::class);
+        // $this->call(BoletinSeeder::class);
     }
 }

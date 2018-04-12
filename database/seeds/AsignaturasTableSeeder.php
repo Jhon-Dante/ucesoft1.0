@@ -18,7 +18,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LENG-1G',
             'id_curso' => '2',
             'color' => '#FF4848',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -26,7 +26,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-1G',
             'id_curso' => '2',
             'color' => '#FF9797',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -34,7 +34,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCSOC-1G',
             'id_curso' => '2',
             'color' => '#FF62B0',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -42,7 +42,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-1G',
             'id_curso' => '2',
             'color' => '#E469FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -50,7 +50,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-1G',
             'id_curso' => '2',
             'color' => '#9669FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -58,7 +58,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EST-1G',
             'id_curso' => '2',
             'color' => '#FFBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -66,7 +66,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVIAL-1G',
             'id_curso' => '2',
             'color' => '#9A03FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -74,7 +74,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCNATEC-1G',
             'id_curso' => '2',
             'color' => '#B5FFFC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -82,7 +82,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FORMP-1G',
             'id_curso' => '2',
             'color' => '#23819C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -90,7 +90,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVAL-1G',
             'id_curso' => '2',
             'color' => '#5757FF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -98,7 +98,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LECTORG-1G',
             'id_curso' => '2',
             'color' => '#01F33E',
-            'status' => 1;
+            'status' => 1
         ]);
         //---- ASIGNATURAS DE 2DO GRADO -------
         DB::table('asignaturas')->insert([
@@ -107,7 +107,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LENG-2G',
             'id_curso' => '3',
             'color' => '#FF4848',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -115,7 +115,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-2G',
             'id_curso' => '3',
             'color' => '#FF9797',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -123,7 +123,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCSOC-2G',
             'id_curso' => '3',
             'color' => '#FF62B0',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -131,7 +131,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-2G',
             'id_curso' => '3',
             'color' => '#E469FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -139,7 +139,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-2G',
             'id_curso' => '3',
             'color' => '#9669FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -147,7 +147,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EST-2G',
             'id_curso' => '3',
             'color' => '#FFBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -155,7 +155,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVIAL-2G',
             'id_curso' => '3',
             'color' => '#9A03FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -163,7 +163,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCNATEC-2G',
             'id_curso' => '3',
             'color' => '#B5FFFC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -171,7 +171,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FORMP-2G',
             'id_curso' => '3',
             'color' => '#23819C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -179,7 +179,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVAL-2G',
             'id_curso' => '3',
             'color' => '#5757FF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -187,7 +187,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LECTORG-2G',
             'id_curso' => '3',
             'color' => '#01F33E',
-            'status' => 1;
+            'status' => 1
         ]);
 
         //------ ASIGNATURAS DE 3 ER GRADO --------
@@ -197,7 +197,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LENG-3G',
             'id_curso' => '4',
             'color' => '#FF4848',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -205,7 +205,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-3G',
             'id_curso' => '4',
             'color' => '#FF9797',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -213,7 +213,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCSOC-3G',
             'id_curso' => '4',
             'color' => '#FF62B0',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -221,7 +221,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-3G',
             'id_curso' => '4',
             'color' => '#E469FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -229,7 +229,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-3G',
             'id_curso' => '4',
             'color' => '#9669FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -237,7 +237,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EST-3G',
             'id_curso' => '4',
             'color' => '#FFBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -245,7 +245,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVIAL-3G',
             'id_curso' => '4',
             'color' => '#9A03FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -253,7 +253,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCNATEC-3G',
             'id_curso' => '4',
             'color' => '#B5FFFC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -261,7 +261,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FORMP-3G',
             'id_curso' => '4',
             'color' => '#23819C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -269,7 +269,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVAL-3G',
             'id_curso' => '4',
             'color' => '#5757FF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -277,7 +277,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LECTORG-3G',
             'id_curso' => '4',
             'color' => '#01F33E',
-            'status' => 1;
+            'status' => 1
         ]);
 
         //----- ASIGNATURAS DEL 4TO GRADO----------
@@ -287,7 +287,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LENG-4G',
             'id_curso' => '5',
             'color' => '#FF4848',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -295,7 +295,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-4G',
             'id_curso' => '5',
             'color' => '#FF9797',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -303,7 +303,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCSOC-4G',
             'id_curso' => '5',
             'color' => '#FF62B0',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -311,7 +311,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-4G',
             'id_curso' => '5',
             'color' => '#E469FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -319,7 +319,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-4G',
             'id_curso' => '5',
             'color' => '#9669FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -327,7 +327,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EST-4G',
             'id_curso' => '5',
             'color' => '#FFBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -335,7 +335,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVIAL-4G',
             'id_curso' => '5',
             'color' => '#9A03FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -343,7 +343,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCNATEC-4G',
             'id_curso' => '5',
             'color' => '#B5FFFC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -351,7 +351,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FORMP-4G',
             'id_curso' => '5',
             'color' => '#23819C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -359,7 +359,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVAL-4G',
             'id_curso' => '5',
             'color' => '#5757FF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -367,7 +367,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LECTORG-4G',
             'id_curso' => '5',
             'color' => '#01F33E',
-            'status' => 1;
+            'status' => 1
         ]);
         //--------- ASIGNATURAS DEL 5TO GRADO -----------
         DB::table('asignaturas')->insert([
@@ -376,7 +376,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LENG-5G',
             'id_curso' => '6',
             'color' => '#FF4848',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -384,7 +384,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-5G',
             'id_curso' => '6',
             'color' => '#FF9797',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -392,7 +392,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCSOC-5G',
             'id_curso' => '6',
             'color' => '#FF62B0',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -400,7 +400,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-5G',
             'id_curso' => '6',
             'color' => '#E469FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -408,7 +408,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-5G',
             'id_curso' => '6',
             'color' => '#9669FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -416,7 +416,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EST-5G',
             'id_curso' => '6',
             'color' => '#FFBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -424,7 +424,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVIAL-5G',
             'id_curso' => '6',
             'color' => '#9A03FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -432,7 +432,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCNATEC-5G',
             'id_curso' => '6',
             'color' => '#B5FFFC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -440,7 +440,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FORMP-5G',
             'id_curso' => '6',
             'color' => '#23819C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -448,7 +448,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVAL-5G',
             'id_curso' => '6',
             'color' => '#5757FF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -456,7 +456,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LECTORG-5G',
             'id_curso' => '6',
             'color' => '#01F33E',
-            'status' => 1;
+            'status' => 1
         ]);
         //------ ASIGNATURAS DEL 6TO GRADO -------
         DB::table('asignaturas')->insert([
@@ -465,7 +465,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LENG-6G',
             'id_curso' => '7',
             'color' => '#FF4848',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -473,7 +473,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-6G',
             'id_curso' => '7',
             'color' => '#FF9797',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -481,7 +481,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCSOC-6G',
             'id_curso' => '7',
             'color' => '#FF62B0',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -489,7 +489,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-6G',
             'id_curso' => '7',
             'color' => '#E469FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -497,7 +497,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-6G',
             'id_curso' => '7',
             'color' => '#9669FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -505,7 +505,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EST-6G',
             'id_curso' => '7',
             'color' => '#FFBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -513,7 +513,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVIAL-6G',
             'id_curso' => '7',
             'color' => '#9A03FE',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -521,7 +521,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CSCNATEC-6G',
             'id_curso' => '7',
             'color' => '#B5FFFC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -529,7 +529,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FORMP-6G',
             'id_curso' => '7',
             'color' => '#23819C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -537,7 +537,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCVAL-6G',
             'id_curso' => '7',
             'color' => '#5757FF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -545,7 +545,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'LECTORG-6G',
             'id_curso' => '7',
             'color' => '#01F33E',
-            'status' => 1;
+            'status' => 1
         ]);
 
         //------ ASIGNATURAS DE 1ER AÑO----------
@@ -555,7 +555,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CAST-1A',
             'id_curso' => '8',
             'color' => '#1FCB4A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -563,7 +563,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-1A',
             'id_curso' => '8',
             'color' => '#89FC63',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -571,7 +571,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-1A',
             'id_curso' => '8',
             'color' => '#DFE32D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -579,7 +579,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'BIO-1A',
             'id_curso' => '8',
             'color' => '#E0E04E',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -587,7 +587,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GEO-1A',
             'id_curso' => '8',
             'color' => '#DFA800',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -595,7 +595,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'HVZLA-1A',
             'id_curso' => '8',
             'color' => '#FFB428',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -603,7 +603,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ART-1A',
             'id_curso' => '8',
             'color' => '#FF800D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -611,7 +611,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCFAM-1A',
             'id_curso' => '8',
             'color' => '#FFBD82',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -619,7 +619,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCTRAB-1A',
             'id_curso' => '8',
             'color' => '#D1D17A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -627,7 +627,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ARTPAT-1A',
             'id_curso' => '8',
             'color' => '#C27E3A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -635,7 +635,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-1A',
             'id_curso' => '8',
             'color' => '#25A0C5',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -643,7 +643,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MCT-1A',
             'id_curso' => '8',
             'color' => '#FF5353',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -651,7 +651,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GRUPEST-1A',
             'id_curso' => '8',
             'color' => '#B9264F',
-            'status' => 1;
+            'status' => 1
         ]);
         //-------- ASIGNATURAS DEL 2DO AÑO---------
         DB::table('asignaturas')->insert([
@@ -660,7 +660,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CAST-2A',
             'id_curso' => '9',
             'color' => '#1FCB4A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -668,7 +668,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-2A',
             'id_curso' => '9',
             'color' => '#89FC63',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -676,7 +676,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-2A',
             'id_curso' => '9',
             'color' => '#DFE32D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -684,7 +684,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'BIO-2A',
             'id_curso' => '9',
             'color' => '#E0E04E',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -692,7 +692,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCS-2A',
             'id_curso' => '9',
             'color' => '#990099',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -700,7 +700,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'HVZLA-2A',
             'id_curso' => '9',
             'color' => '#FFB428',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -708,7 +708,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'HUNIV-2A',
             'id_curso' => '9',
             'color' => '#74138C',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -716,7 +716,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ART-2A',
             'id_curso' => '9',
             'color' => '#FF800D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -724,7 +724,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCTRAB-2A',
             'id_curso' => '9',
             'color' => '#D1D17A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -732,7 +732,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ARTPAT-2A',
             'id_curso' => '9',
             'color' => '#C27E3A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -740,7 +740,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-2A',
             'id_curso' => '9',
             'color' => '#25A0C5',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -748,7 +748,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GRUPEST-2A',
             'id_curso' => '9',
             'color' => '#B9264F',
-            'status' => 1;
+            'status' => 1
         ]);
         //-------- ASIGNATURAS DEL 3ER AÑO---------
         DB::table('asignaturas')->insert([
@@ -757,7 +757,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CAST-3A',
             'id_curso' => '10',
             'color' => '#1FCB4A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -765,7 +765,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-3A',
             'id_curso' => '10',
             'color' => '#89FC63',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -773,7 +773,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-3A',
             'id_curso' => '10',
             'color' => '#DFE32D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -781,7 +781,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'BIO-3A',
             'id_curso' => '10',
             'color' => '#E0E04E',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -789,7 +789,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FIS-3A',
             'id_curso' => '10',
             'color' => '#1F88A7',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -797,7 +797,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'QUIM-3A',
             'id_curso' => '10',
             'color' => '#74BAAC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -805,7 +805,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'HVZLA-3A',
             'id_curso' => '10',
             'color' => '#FFB428',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -813,7 +813,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GEO-3A',
             'id_curso' => '10',
             'color' => '#DFA800',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -821,7 +821,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUCTRAB-3A',
             'id_curso' => '10',
             'color' => '#D1D17A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -829,7 +829,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-3A',
             'id_curso' => '10',
             'color' => '#25A0C5',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -837,7 +837,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GRUPEST-3A',
             'id_curso' => '10',
             'color' => '#B9264F',
-            'status' => 1;
+            'status' => 1
         ]);
         //-------- ASIGNATURAS DEL 4TO AÑO---------
         DB::table('asignaturas')->insert([
@@ -846,7 +846,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CAST-4A',
             'id_curso' => '11',
             'color' => '#1FCB4A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -854,7 +854,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-4A',
             'id_curso' => '11',
             'color' => '#89FC63',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -862,7 +862,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-4A',
             'id_curso' => '11',
             'color' => '#DFE32D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -870,7 +870,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'BIO-4A',
             'id_curso' => '11',
             'color' => '#E0E04E',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -878,7 +878,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FIS-4A',
             'id_curso' => '11',
             'color' => '#1F88A7',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -886,7 +886,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'QUIM-4A',
             'id_curso' => '11',
             'color' => '#74BAAC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -894,7 +894,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'HVZLA-4A',
             'id_curso' => '11',
             'color' => '#FFB428',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -902,7 +902,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FIL-4A',
             'id_curso' => '11',
             'color' => '#BBBBFF',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -910,7 +910,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'IPM-4A',
             'id_curso' => '11',
             'color' => '#36F200',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -918,7 +918,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-4A',
             'id_curso' => '11',
             'color' => '#25A0C5',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -926,7 +926,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GRUPEST-4A',
             'id_curso' => '11',
             'color' => '#B9264F',
-            'status' => 1;
+            'status' => 1
         ]);
         //-------- ASIGNATURAS DEL 5TO AÑO---------
         DB::table('asignaturas')->insert([
@@ -935,7 +935,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'CAST-5A',
             'id_curso' => '12',
             'color' => '#1FCB4A',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -943,7 +943,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'MAT-5A',
             'id_curso' => '12',
             'color' => '#89FC63',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -951,7 +951,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'ING-5A',
             'id_curso' => '12',
             'color' => '#DFE32D',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -959,7 +959,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'BIO-5A',
             'id_curso' => '12',
             'color' => '#E0E04E',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -967,7 +967,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'FIS-5A',
             'id_curso' => '12',
             'color' => '#1F88A7',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -975,7 +975,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'QUIM-5A',
             'id_curso' => '12',
             'color' => '#74BAAC',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -983,7 +983,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GEO-5A',
             'id_curso' => '12',
             'color' => '#DFA800',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -991,7 +991,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'IPM-5A',
             'id_curso' => '12',
             'color' => '#36F200',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -999,7 +999,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'EDUFIS-5A',
             'id_curso' => '12',
             'color' => '#25A0C5',
-            'status' => 1;
+            'status' => 1
         ]);
         DB::table('asignaturas')->insert([
 
@@ -1007,7 +1007,7 @@ class AsignaturasTableSeeder extends Seeder
             'codigo' => 'GRUPEST-5A',
             'id_curso' => '12',
             'color' => '#B9264F',
-            'status' => 1;
+            'status' => 1
         ]);
     }
 }

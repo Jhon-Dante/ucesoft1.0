@@ -22,15 +22,6 @@ class CargaAcademicaTableSeeder extends Seeder
         }
 
     	// carga academica de Media General a 1er año seccion U 2017-2018
-        for ($i=71; $i < 75; $i++) { 
-            DB::table('personal_has_asignatura')->insert([  
-                'id_personal' => 3,
-                'id_asignatura' => $i,
-                'id_seccion' => 14,
-                'id_periodo' => 2
-            ]);
-        }         
-        
         //-----siguiente
         for ($i=67; $i < 71; $i++) { 
             DB::table('personal_has_asignatura')->insert([  
@@ -40,10 +31,18 @@ class CargaAcademicaTableSeeder extends Seeder
                 'id_periodo' => 2
             ]);
         }
-            
+
+        for ($i=71; $i < 75; $i++) { 
+            DB::table('personal_has_asignatura')->insert([  
+                'id_personal' => 3,
+                'id_asignatura' => $i,
+                'id_seccion' => 14,
+                'id_periodo' => 2
+            ]);
+        }          
         
         //--- tercero
-        for ($i=76; $i < 80; $i++) { 
+        for ($i=75; $i < 80; $i++) { 
             DB::table('personal_has_asignatura')->insert([  
                 'id_personal' => 7,
                 'id_asignatura' => $i,
