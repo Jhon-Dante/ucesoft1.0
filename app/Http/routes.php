@@ -22,6 +22,19 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         //auth donde estan los mensajes de error
         Route::resource('/profile','UserController');
+
+        Route::post('/profile/editar',[
+            'uses' => 'UserController@actualizar',
+            'as' => 'admin.profile.editar'
+
+        ]);
+        Route::post('/profile/actualizar',[
+            'uses' => 'UserController@update',
+            'as' => 'admin.profile.update'
+
+        ]);
+
+
     	Route::resource('/cursos','CursosController');
         Route::resource('/secciones','SeccionesController');
         Route::resource('/asignaturas','AsignaturasController');

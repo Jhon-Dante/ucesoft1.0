@@ -296,5 +296,24 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Preescolar'
         ]);
+
+        DB::table('datos_basicos_personal')->insert([
+            'nombres' => 'Javier Adolfo',
+            'apellidos' => 'Guevara Buffone',
+            'nacionalidad' => 'V',
+            'cedula' => '25071215',
+            'fecha_nacimiento' => '1980-05-23',
+            'edad' => '40',
+            'edo_civil' => 'Soltero(a)',
+            'direccion' => 'Calle Santiago Mariño, casa nro. 34',
+            'genero' => '1',
+            'codigo_hab' => '0',
+            'telf_hab' => '8854854',
+            'codigo_cel' => '3',
+            'celular' => '4333233',
+            'correo' => 'javier@gmail.com',
+            'id_cargo' => '1',
+            'status' => '1'
+        ]);
     }
 }

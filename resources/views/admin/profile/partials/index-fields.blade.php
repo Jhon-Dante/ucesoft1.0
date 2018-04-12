@@ -72,10 +72,47 @@
                       </tbody>
                     </table>
                     
-                    <a href="#" class="btn btn-primary">My Sales Performance</a>
-                    <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                    <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$user}}')" class="btn btn-primary btn-flat">Editar perfil</button>
+                    
                   </div>
                 @else
 
                 @endif
-              </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Ingrese la contraseña</h4>
+        </div>
+        <div class="modal-body">
+          <p>Ingrese su contraseña de usuario</p>
+        
+        {!! Form::open(['route' => ['admin.profile.editar'], 'method' => 'POST']) !!}
+          <div class="form-group has-feedback">
+            <input type="password" required="required" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+          </div>
+        </div>
+                    <input type="hidden" name="user" id="user">
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          {!! Form::close() !!}
+        </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+</div><!-- /.content-wrapper -->
+
+<script type="text/javascript">
+
+        function contraseña(user){
+
+            $('#user').val(user);
+        }
+      </script>

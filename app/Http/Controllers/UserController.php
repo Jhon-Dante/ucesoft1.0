@@ -86,7 +86,37 @@ class UserController extends Controller
     {
         //
     }
+    public function actualizar(Request $request)
+    {
+        // dd($request->user);
+        $validator= \Auth::user()->password;
+        $clave=$request->password;
+        $user=$request->user;
+        // dd($user,$password);
+        if (password_verify($clave, $validator)) {
 
+            if ($request->user==2) {
+               $representante=0;
+               $personal=Personal::where('correo',Auth::user()->email)->first();
+            }else{
+                $representante=Representantes::where('correo',Auth::user()->email)->first();
+                $personal=0;
+            }
+            $usuario=User::find(Auth::user()->id);
+            // dd($usuario);
+
+
+
+
+            return View('admin.profile.edit',compact('personal','representante','usuario','user'));
+
+
+
+        }else{
+         flash('¡CONTRASEÑA INCORRECTA!','danger');
+         return redirect()->back();   
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,9 +135,51 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd('sdfasfad');
+
+        if ($request->foto != null) {
+            $this->validate($request,[
+                'foto' => 'required|image'
+            ]);
+            $user = Auth::user();
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            
+            $file_name = $user->id . '.' . $extension;
+            \Image::make($request->file('foto'))
+                ->resize(144, 144)
+                ->save('img/users' . $file_name);
+
+            $user->foto = $file_name;
+            $user->save();
+        }
+
+        if ($request->user == 2) {
+            $u=User::find($request->usuario);
+            $u->name=$request->nombres;
+            $u->save();
+            $personal=Personal::find($request->id);
+            $personal->update($request->all());
+
+            flash('DATOS ACTUALIZADOS!','success');
+        }else{
+            dd('repre');
+        }
+
+        $email=\Auth::user()->email;
+        $usuario=User::where('email',$email)->first();
+        $personal=Personal::where('correo',$email)->first();
+        $representante=representantes::where('email',$email)->first();
+
+        if(count($representante)>0 && count($personal)==0){
+            $user=1;
+        }else{
+            $user=2;
+        }
+
+
+        return View('admin.profile.index', compact('usuario','personal','representante','user'));
     }
 
     /**

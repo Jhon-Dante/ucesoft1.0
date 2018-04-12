@@ -47,7 +47,7 @@
 <div class="form-group{{ $errors->has('codigo_hab') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('codigo_hab','codigo de habitación') !!}
-	{!! Form::select('codigo_hab',['0244','0412','0414','0424','0416','0426'] ,['Propio', 'Alquilado'], ['class' => 'form-control', 'title' => 'Seleccione la nacionalidad del personal', 'maxlength','7']) !!}
+	{!! Form::select('codigo_hab',['0244','0424','0416','0426'] ,['Propio', 'Alquilado'], ['class' => 'form-control', 'title' => 'Seleccione la nacionalidad del personal', 'maxlength','7']) !!}
 </div>
 <div class="form-group{{ $errors->has('telf_hab') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
@@ -57,7 +57,7 @@
 <div class="form-group{{ $errors->has('codigo_cel') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('codigo_cel','Codigo de celular') !!}
-	{!! Form::select('codigo_cel',['0244','0412','0414','0424','0416','0426'] ,['Propio', 'Alquilado'], ['class' => 'form-control', 'title' => 'Seleccione la nacionalidad del personal', 'maxlength','7']) !!}
+	{!! Form::select('codigo_cel',['0412','0414','0424','0416','0426'] ,['Propio', 'Alquilado'], ['class' => 'form-control', 'title' => 'Seleccione la nacionalidad del personal', 'maxlength','7']) !!}
 </div>
 <div class="form-group{{ $errors->has('celular') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
