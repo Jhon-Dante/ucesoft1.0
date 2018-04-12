@@ -17,7 +17,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Administrador(a)'
+            'tipo_user' => 'Administrador(a)',
+            'status' => 1
         ]);
         
         DB::table('users')->insert([
@@ -26,7 +27,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Administrador(a)'
+            'tipo_user' => 'Administrador(a)',
+            'status' => 1
         ]);
     }
 }

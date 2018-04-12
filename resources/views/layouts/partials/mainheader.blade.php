@@ -63,7 +63,7 @@
                                     <a href="#" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
                                 </div> -->
                                 <div class="pull-left">
-                                    <a href="{{ url('/profile') }}" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{{ url('admin/profile') }}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Cerrar Sesión</a>

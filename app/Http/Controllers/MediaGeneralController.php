@@ -32,6 +32,8 @@ class MediaGeneralController extends Controller
     {
 
         $periodo=Periodos::where('status','Activo')->first();
+        $periodo2=Session::get('periodo');
+        // dd($periodo2);
         $secciones=Seccion::all();
         $inscripcion=Inscripcion::all();
        
@@ -78,7 +80,7 @@ class MediaGeneralController extends Controller
             
         }
         //dd($personal);
-        return View('admin.educacion_media.index', compact('num','inscripcion','boletin','secciones','periodo','personal','lapso'));
+        return View('admin.educacion_media.index', compact('num','inscripcion','boletin','secciones','periodo','periodo2','personal','lapso'));
     }
 
     /**

@@ -20,7 +20,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-//auth donde estan los mensajes de error
+        //auth donde estan los mensajes de error
         Route::resource('/profile','UserController');
     	Route::resource('/cursos','CursosController');
         Route::resource('/secciones','SeccionesController');

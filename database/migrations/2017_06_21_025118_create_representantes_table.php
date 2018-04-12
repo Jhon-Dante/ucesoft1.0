@@ -42,6 +42,8 @@ class CreateRepresentantesTable extends Migration
 
             $table->integer('codigo_emergencia');
             $table->string('telf_emergencia');
+
+            $table->string('status');
             
 
             $table->timestamps();

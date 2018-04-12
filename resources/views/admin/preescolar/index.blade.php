@@ -25,9 +25,16 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista de estudiantes de preescolar registrado
+            <div class="panel-heading">
+
+              @if($periodo2!=$p->id)
+                <strong>NOTA: ¡NO SE PUEDEN REGISTRAR MOMENTOS EN UN PERIODO INACTIVO!<BR></strong>
+              @endif
+
+              Lista de estudiantes de preescolar registrado
+
             @if(Auth::user()->tipo_user=="Administrador(a)" || Auth::user()->tipo_user=="Secretario(a)")
-            para el Docente <strong>{{$personal->apellidos}},{{$personal->nombres}} C.I.: {{$personal->nacionalidad}}-{{$personal->cedula}}</strong>
+              para el Docente <strong>{{$personal->apellidos}},{{$personal->nombres}} C.I.: {{$personal->nacionalidad}}-{{$personal->cedula}}</strong>
             @endif
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
@@ -70,8 +77,11 @@
 
 
                   @if($reporte1==0)
-                    
+                    @if($periodo2!=$p->id)
+
+                    @else
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(1,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal" class="btn btn-warning btn-flat" ><i class="fa fa-pencil"></i></button>
+                    @endif
 
                   @elseif($reporte1==1 AND $reporte2==0 and $reporte3==0)
 
@@ -93,14 +103,22 @@
                           </a>
                     
                       @else
+                        @if($periodo2!=$p->id)
+
+                        @else
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(2,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                        @endif
 
                           <a href="{{url('admin/mostrarmomento',['reporte' => 1,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
                           </a>
                       @endif
                   @elseif($reporte1==1 AND $reporte2==1 and $reporte3==0)
+                    @if($periodo2!=$p->id)
+
+                    @else
                           <button data-toggle="modal" data-target="#myModal" onclick="cursos(3,'{{$key->id_seccion}}','{{$key->id_periodo}}' )" data-target="#myModal"  class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
+                    @endif
 
                           <a href="{{url('admin/mostrarmomento',['reporte' => 2,'id_seccion' => $key->id_seccion, 'id_periodo' => $key->id_periodo])}}">
                           <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>

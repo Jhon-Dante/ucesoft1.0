@@ -18,6 +18,7 @@ class CreateTableAsignaturas extends Migration
             $table->string('codigo');
             $table->integer('id_curso')->unsigned();
             $table->string('color');
+            $table->string('status');
             
             $table->foreign('id_curso')->references('id')->on('cursos')->onDelete('cascade');
             $table->timestamps();

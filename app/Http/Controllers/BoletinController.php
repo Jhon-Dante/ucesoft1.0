@@ -33,6 +33,9 @@ class BoletinController extends Controller
     {
         $periodos=Session::get('periodo');
         $periodo=Periodos::find($periodos);
+        
+        $p=Periodos::where('status','Activo')->first();
+        $periodo2=Session::get('periodo');
         // en el caso de que sea administrador o secretaria
         if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
             $usuario=Session::get('correo_docente');
@@ -76,7 +79,7 @@ class BoletinController extends Controller
         
         //dd($lapso1);
 
-        return View('admin.educacion_basica.index', compact('num','inscripcion','boletin','secciones','periodo','personal','lapso1','lapso2','lapso3'));
+        return View('admin.educacion_basica.index', compact('num','p','inscripcion','periodo2','boletin','secciones','periodo','personal','lapso1','lapso2','lapso3'));
     }
 
     /**

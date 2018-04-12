@@ -13,27 +13,33 @@ class AulasTableSeeder extends Seeder
     {
         DB::table('aulas')->insert([
 
-            'nombre' => '01'
+            'nombre' => '01',
+            'status' => 1
         ]);
         DB::table('aulas')->insert([
 
-            'nombre' => '02'
+            'nombre' => '02',
+            'status' => 1
         ]);
         DB::table('aulas')->insert([
 
-            'nombre' => '03'
+            'nombre' => '03',
+            'status' => 1
         ]);
         DB::table('aulas')->insert([
 
-            'nombre' => 'Lab 01'
+            'nombre' => 'Lab 01',
+            'status' => 1
         ]);
         DB::table('aulas')->insert([
 
-            'nombre' => 'Lab 02'
+            'nombre' => 'Lab 02',
+            'status' => 1
         ]);
         DB::table('aulas')->insert([
 
-            'nombre' => 'Lab 03'
+            'nombre' => 'Lab 03',
+            'status' => 1
         ]);
     }
 }

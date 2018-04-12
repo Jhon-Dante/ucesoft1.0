@@ -25,28 +25,29 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista del estudiante de Básica registrados @if(Auth::user()->tipo_user=="Administrador(a)" || Auth::user()->tipo_user=="Secretario(a)")
-            para el Docente <strong>{{$personal->apellidos}},{{$personal->nombres}} C.I.: {{$personal->nacionalidad}}-{{$personal->cedula}}</strong>
-            @endif
+            <div class="panel-heading">
+              @if($periodo2!=$p->id)
+                <strong>NOTA: ¡NO SE PUEDEN REGISTRAR MATERIAS EN UN PERIODO INACTIVO!<BR></strong>
+              @endif
+
+              Lista del estudiante de Básica registrados 
+              
+              @if(Auth::user()->tipo_user=="Administrador(a)" || Auth::user()->tipo_user=="Secretario(a)")
+                para el Docente <strong>{{$personal->apellidos}},{{$personal->nombres}} C.I.: {{$personal->nacionalidad}}-{{$personal->cedula}}</strong>
+              @endif
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-success" >Lapso 3</p>
+                <p style="padding: 4px 10px;" class="btn btn-success" >Ver o cargar notas del lapso 3</p>
               </div>
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-primary" >Lapso 2</p>
+                <p style="padding: 4px 10px;" class="btn btn-primary" >Ver o cargar notas del lapso 2</p>
               </div>
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <p style="padding: 4px 10px;" class="btn btn-warning" >Lapso 1</p>
+                <p style="padding: 4px 10px;" class="btn btn-warning" >Ver o cargar notas del lapso 1</p>
               </div>
-
-              
-
-              
-              
-
-          </div>
+            </div>
 
           <div class="col-xs-12">
               @include('flash::message')
@@ -89,18 +90,27 @@
                             <td>
                               @if($lapso1==0)
 
-
+                                @if($periodo2==$p->id)
                                   <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
+                                @else
+                                  
+                                @endif
 
                               @elseif($lapso1==1 and $lapso2==0)
 
+                                @if($periodo2==$p->id)
                                   <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                                @else
+                                  
+                                @endif
 
                                   <a href="{{route ('admin.mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}"><button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button></a>
 
                               @elseif($lapso2==1 and $lapso3==0)
 
+                                @if($periodo2==$p->id)
                                   <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
+                                @endif
 
                                   <a href="{{route ('admin.mostrarlapso_basica',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}"><button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button></a>
 

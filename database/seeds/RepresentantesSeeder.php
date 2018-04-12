@@ -34,7 +34,8 @@ class RepresentantesSeeder extends Seeder
         	'telf_opcional' => '6786543',
         	'nombre_opcional' => 'Jennifer García',
         	'codigo_emergencia' => '0244',
-        	'telf_emergencia' => '3454321'
+        	'telf_emergencia' => '3454321',
+            'status' => 1
 
         ]);
 
@@ -70,7 +71,8 @@ class RepresentantesSeeder extends Seeder
         	'telf_opcional' => '6132122',
         	'nombre_opcional' => 'Carlos Vives',
         	'codigo_emergencia' => '0416',
-        	'telf_emergencia' => '3432342'
+        	'telf_emergencia' => '3432342',
+            'status' => 1
 
         ]);
 
@@ -106,7 +108,8 @@ class RepresentantesSeeder extends Seeder
         	'telf_opcional' => '6786543',
         	'nombre_opcional' => 'Jennifer García',
         	'codigo_emergencia' => '0244',
-        	'telf_emergencia' => '3454321'
+        	'telf_emergencia' => '3454321',
+            'status' => 1
 
         ]);
 
@@ -142,7 +145,8 @@ class RepresentantesSeeder extends Seeder
         	'telf_opcional' => '6786543',
         	'nombre_opcional' => 'Jennifer García',
         	'codigo_emergencia' => '0244',
-        	'telf_emergencia' => '3454321'
+        	'telf_emergencia' => '3454321',
+            'status' => 1
 
         ]);
 
@@ -179,7 +183,8 @@ class RepresentantesSeeder extends Seeder
         	'telf_opcional' => '6786543',
         	'nombre_opcional' => 'Jennifer García',
         	'codigo_emergencia' => '0244',
-        	'telf_emergencia' => '3454321'
+        	'telf_emergencia' => '3454321',
+            'status' => 1
 
         ]);
 

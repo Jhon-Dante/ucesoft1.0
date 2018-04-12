@@ -25,7 +25,10 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista del estudiante de Media General registrados 
+            <div class="panel-heading">Lista del estudiante de Media General registrados
+              @if($periodo2!=$periodo->id)
+                <BR><strong>NOTA: ¡NO SE PUEDEN REGISTRAR MATERIAS EN UN PERIODO INACTIVO!</strong>
+              @endif
             @if(Auth::user()->tipo_user=="Administrador(a)" || Auth::user()->tipo_user=="Secretario(a)")
             para el Docente <strong>{{$personal[0]->apellidos}},{{$personal[0]->nombres}} C.I.: {{$personal[0]->nacionalidad}}-{{$personal[0]->cedula}}</strong>
             @endif
@@ -92,11 +95,19 @@
 
                             @if($lapso==1)
 
-                              <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
+                               @if($periodo2!=$periodo->id)
+
+                               @else
+                                <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></button>
+                              @endif
 
                             @elseif($lapso==2)
 
-                              <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                                @if($periodo2!=$periodo->id)
+
+                                @else
+                                  <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></button>
+                                @endif
 
                             <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                     <button class="btn btn-warning btn-flat"><i class="fa fa-eye"></i></button>
@@ -104,7 +115,11 @@
 
                             @elseif($lapso==3)
 
-                              <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
+                                @if($periodo2!=$periodo->id)
+
+                                @else
+                                  <button data-toggle="modal" data-target="#myModal" onclick="contraseña('{{$key->pivot->id_seccion}}','{{$periodo->id}}' )" class="btn btn-success btn-flat"><i class="fa fa-pencil"></i></button>
+                                @endif
 
                               <a href="{{route ('admin.mostrarlapso_media',['id_seccion' => $key->pivot->id_seccion, 'id_periodo' => $periodo->id ])}}">
                                   <button class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></button>

@@ -15,6 +15,7 @@ class CreateAulasTable extends Migration
         Schema::create('aulas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('status');
             $table->timestamps();
         });
     }

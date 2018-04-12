@@ -28,6 +28,8 @@ class PreescolarController extends Controller
      */
     public function index()
     {
+        $p=Periodos::where('status','Activo')->first();
+        $periodo2=Session::get('periodo');
         $periodo=Periodos::where('status','Activo')->first();
         // en el caso de que sea administrador o secretaria
         if (\Auth::user()->tipo_user=="Administrador(a)" || \Auth::user()->tipo_user=="Secretario(a)") {
@@ -68,7 +70,7 @@ class PreescolarController extends Controller
             }
         }
         $num=0;
-        return view('admin.preescolar.index', compact('num','personal','calificaciones','reporte1','reporte2','reporte3'));
+        return view('admin.preescolar.index', compact('num','p','periodo2','personal','calificaciones','reporte1','reporte2','reporte3'));
     }
 
     /**
