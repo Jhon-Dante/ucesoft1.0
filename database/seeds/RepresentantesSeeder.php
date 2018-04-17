@@ -20,6 +20,7 @@ class RepresentantesSeeder extends Seeder
         	'vive_estu' => 'Si',
         	'ingreso_apx' => '150000',
         	'n_familia' => '3',
+            'fecha_nacimiento' => '1990-02-08',
         	'direccion' => 'Residencias El Recreo, apartamento 4, La Victoria',
             'email' => 'Roman@gmail.com',
         	'codigo_hab' => '0244',
@@ -45,7 +46,8 @@ class RepresentantesSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Representante'
+            'tipo_user' => 'Representante',
+            'status' => 1
         ]);
 
         DB::table('representantes')->insert([
@@ -57,6 +59,7 @@ class RepresentantesSeeder extends Seeder
         	'vive_estu' => 'No',
         	'ingreso_apx' => '450000',
         	'n_familia' => '1',
+            'fecha_nacimiento' => '1990-02-08',
         	'direccion' => 'Hotel Lincon Park, Penthouse, Seattle, United State',
             'email' => 'Enrique@gmail.com',
         	'codigo_hab' => '0414',
@@ -82,7 +85,8 @@ class RepresentantesSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Representante'
+            'tipo_user' => 'Representante',
+            'status' => 1
         ]);
 
         DB::table('representantes')->insert([
@@ -94,6 +98,7 @@ class RepresentantesSeeder extends Seeder
         	'vive_estu' => 'Si',
         	'ingreso_apx' => '150000',
         	'n_familia' => '3',
+            'fecha_nacimiento' => '1990-02-08',
         	'direccion' => 'Residencias El Recreo, apartamento 4, La Victoria',
             'email' => 'Sofia@gmail.com',
         	'codigo_hab' => '0244',
@@ -119,7 +124,8 @@ class RepresentantesSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Representante'
+            'tipo_user' => 'Representante',
+            'status' => 1
         ]);
 
         DB::table('representantes')->insert([
@@ -131,6 +137,7 @@ class RepresentantesSeeder extends Seeder
         	'vive_estu' => 'Si',
         	'ingreso_apx' => '150000',
         	'n_familia' => '3',
+            'fecha_nacimiento' => '1990-02-08',
         	'direccion' => 'Residencias El Recreo, apartamento 4, La Victoria',
             'email' => 'Carmen@gmail.com',
         	'codigo_hab' => '0244',
@@ -156,7 +163,8 @@ class RepresentantesSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Representante'
+            'tipo_user' => 'Representante',
+            'status' => 1
         ]);
 
 
@@ -169,6 +177,7 @@ class RepresentantesSeeder extends Seeder
         	'vive_estu' => 'Si',
         	'ingreso_apx' => '150000',
         	'n_familia' => '3',
+            'fecha_nacimiento' => '1990-02-08',
         	'direccion' => 'Residencias Neverland',
             'email' => 'Shakira@gmail.com',
         	'codigo_hab' => '0244',
@@ -194,7 +203,8 @@ class RepresentantesSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Representante'
+            'tipo_user' => 'Representante',
+            'status' => 1
         ]);
 
     }

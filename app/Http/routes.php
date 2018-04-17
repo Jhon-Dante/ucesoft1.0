@@ -23,6 +23,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         //auth donde estan los mensajes de error
         Route::resource('/profile','UserController');
 
+        Route::get('/usuarios',[
+            'uses' => 'UserController@inicio',
+            'as' => 'admin.usuarios'
+        ]);
         Route::post('/profile/editar',[
             'uses' => 'UserController@actualizar',
             'as' => 'admin.profile.editar'
@@ -75,6 +79,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/personal/{id}/status',[
             'uses' => 'PersonalController@editarStatus',
             'as' => 'admin.personal.status'
+        ]);
+        Route::get('/usuario/{id}/status',[
+            'uses' => 'UserController@editarStatus',
+            'as' => 'admin.usuario.status'
+        ]);
+        Route::get('/asignatura/{id}/status',[
+            'uses' => 'AsignaturasController@editarStatus',
+            'as' => 'admin.asignatura.status'
+        ]);
+        Route::get('/aula/{id}/status',[
+            'uses' => 'AulasController@editarStatus',
+            'as' => 'admin.aula.status'
+        ]);
+        Route::get('/representante/{id}/status',[
+            'uses' => 'RepresentantesController@editarStatus',
+            'as' => 'admin.representante.status'
+        ]);
+        Route::get('/seccion/{id}/status',[
+            'uses' => 'SeccionesController@editarStatus',
+            'as' => 'admin.seccion.status'
         ]);
         
         Route::get('/cursos/{id}/buscar',[

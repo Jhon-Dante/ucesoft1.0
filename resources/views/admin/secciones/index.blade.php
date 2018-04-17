@@ -46,6 +46,7 @@
                     <th>Nro</th>
                     <th>Sección</th>
                     <th>Curso</th>
+                    <th>Status</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
@@ -55,6 +56,17 @@
                   <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}">{{$num=$num+1}}</a></td>
                   <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}"> {{$seccion->seccion}}</a></td>
                   <td><a href="{{ route('admin.secciones.edit', [$seccion->id]) }}"> {{$seccion->curso->curso}}</a></td>
+                  <td align="center">
+                    @if($seccion->status == 1)
+                        <a href="{{ route('admin.seccion.status', [$seccion->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
+                        </a>
+                    @else
+                        <a href="{{ route('admin.seccion.status', [$seccion->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                        </a>
+                        <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
+                    @endif
+                  </td>
                   <td>
                  
                   <div class="btn-group">

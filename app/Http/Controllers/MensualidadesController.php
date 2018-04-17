@@ -47,6 +47,7 @@ class MensualidadesController extends Controller
             $meses=Meses::all();
             $mensualidades=Mensualidades::all();
             $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->get();
+            // dd(count($inscripcion));
             $pagos=Pagos::all();
             $monto=0;
            
@@ -63,7 +64,7 @@ class MensualidadesController extends Controller
                 }
                
            }
-           $mensualidades2=0;
+           $mensualidades2=Mensualidades::where('estado','Sin Pagar')->get();
 
             
         }elseif(count($representante)>0 AND count($personal) == 0){
@@ -87,43 +88,43 @@ class MensualidadesController extends Controller
             $pagos=Pagos::all();
             $monto=0;
            
-           // foreach ($representante->datos_basicos as $key) {
-           //      foreach ($inscripcion as $key2 ) {
-           //          foreach ($mensualidades as $key3) {
-           //              if ($key2->id_datosBasicos == $key->id) {
-           //                  if ($key3->id_inscripcion == $key2->id) {
-           //                      $mensualidades=Mensualidades::where('id_inscripcion',$key2->id)->get();
-           //                      //dd(count($key3));
-           //                      $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->where('id',$key2->id)->get();
-           //                      $mensualidades2=Mensualidades::where('id_inscripcion',$key2->id)->where('estado','Sin Pagar')->get();
-           //                  }
-           //              }
-           //          }
-           //      }    
-           //  }
+           foreach ($representante->datos_basicos as $key) {
+                foreach ($inscripcion as $key2 ) {
+                    foreach ($mensualidades as $key3) {
+                        if ($key2->id_datosBasicos == $key->id) {
+                            if ($key3->id_inscripcion == $key2->id) {
+                                $mensualidades=Mensualidades::where('id_inscripcion',$key2->id)->get();
+                                //dd(count($key3));
+                                $inscripcion=Inscripcion::where('id_periodo',$periodo->id)->where('id',$key2->id)->get();
+                                $mensualidades2=Mensualidades::where('id_inscripcion',$key2->id)->where('estado','Sin Pagar')->get();
+                            }
+                        }
+                    }
+                }    
+            }
 
 
             $o=0;
         
                 
-            //dd(count($datosBasicos));
-                   // foreach ($mensualidades as $key) {
-                   //      foreach ($inscripcion as $key2) {
-                   //          if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
+            // dd(count($datosBasicos));
+                   foreach ($mensualidades as $key) {
+                        foreach ($inscripcion as $key2) {
+                            if($key2->id==$key->id_inscripcion AND $key->estado == "Cancelado"){
 
-                   //              $monto+=$key->pagos->monto;
+                                $monto+=$key->pagos->monto;
 
                                 
-                   //          }
+                            }
 
-                   //      }
+                        }
                        
-                   // }
+                   }
 
         }
 
 
-            //dd(count($mensualidades2));
+            // dd(count($mensualidades2));
             $num=0;
             return View('admin.mensualidades.index',compact('num','mensualidades','mensualidades2','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto','inscripcion','datosBasicos'));
     }
@@ -176,26 +177,26 @@ class MensualidadesController extends Controller
 
 
 
-        $destinatario='imagine.breacker@gmail.com';
-        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
-        //dd($destinatario);
-        $asunto="Confirmación de pago de mensualidad";
-        $contenido="PAGO DE MENSUALIDAD";
-        $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
+        // $destinatario='imagine.breacker@gmail.com';
+        // // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        // //dd($destinatario);
+        // $asunto="Confirmación de pago de mensualidad";
+        // $contenido="PAGO DE MENSUALIDAD";
+        // $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
-            $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
-                $message->from('colegiourdanetacampoelias@gmail.com');
-                $message->to($destinatario)->subject($asunto);
-            });
+        //     $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
+        //         $message->from('colegiourdanetacampoelias@gmail.com');
+        //         $message->to($destinatario)->subject($asunto);
+        //     });
 
-        if ($r) {
-           flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
-        } else {
-           flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
-        }
+        // if ($r) {
+        //    flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
+        // } else {
+        //    flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
+        // }
         // flash('MENSUALIDAD CANCELADA CON ÉXITO! PERO NO SE HA PODIDO ENVIAR LA FACTURA AL CORREO DEBIDO A UN ERROR: [host smtp.gmail.com [php_network_getaddresses: getaddrinfo failed: Host desconocido]');
         
-
+        flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
         return redirect()->route('admin.mensualidades.index');
 
 
@@ -277,26 +278,26 @@ class MensualidadesController extends Controller
 
         $mensualidad->save();
 
-        $destinatario='imagine.breacker@gmail.com';
-        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
-        //dd($destinatario);
-        $asunto="Confirmación de estado de mensualidad";
-        $contenido="PAGO DE MENSUALIDAD COLOCADA COMO SIN PAGAR!";
-        $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
+        // $destinatario='imagine.breacker@gmail.com';
+        // // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        // //dd($destinatario);
+        // $asunto="Confirmación de estado de mensualidad";
+        // $contenido="PAGO DE MENSUALIDAD COLOCADA COMO SIN PAGAR!";
+        // $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
-        $r=Mail::send('admin.mensualidades.sinpagar_correo', $data, function ($message) use ($asunto,$destinatario){
-        $message->from('colegiourdanetacampoelias@gmail.com');
+        // $r=Mail::send('admin.mensualidades.sinpagar_correo', $data, function ($message) use ($asunto,$destinatario){
+        // $message->from('colegiourdanetacampoelias@gmail.com');
         
-            $message->to($destinatario)->subject($asunto);
-        });
-        if ($r) {
-           flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
-        } else {
-           flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
-        }
+        //     $message->to($destinatario)->subject($asunto);
+        // });
+        // if ($r) {
+        //    flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
+        // } else {
+        //    flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
+        // }
         
         
-
+        flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!!','success');
         return redirect()->route('admin.mensualidades.index');
         
     }

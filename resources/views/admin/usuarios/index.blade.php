@@ -4,7 +4,7 @@ use Carbon\Carbon;
   @extends('layouts.app')
 
 @section('htmlheader_title')
-  Personal
+  Usuarios
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
@@ -12,14 +12,14 @@ use Carbon\Carbon;
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Personal')
+        @yield('contentheader_title', 'Usuarios')
         <small></small>
     </h1>
     <div class="col-md-12">
             <!-- mensaje flash -->
     </div>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Personal</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Usuarios</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -28,10 +28,10 @@ use Carbon\Carbon;
     <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lista del Personal registrado
+            <div class="panel-heading">Lista de Usuarios registrados
 
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-                <a href="{{ url('admin/personal/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                <a href="{{ url('admin/Usuarios/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                 <i class="fa fa-pencil"></i> Nuevo   
                 </a>
               </div>
@@ -47,71 +47,43 @@ use Carbon\Carbon;
             <thead>
               <tr>
                 <th>Nro</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Cédula</th>
-                <th>Cargo</th>
-                <th>Telf. Cel</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Tipo de usuario</th>
+                <th>Foto</th>
                 <th>Status</th>
-                <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
-            @foreach($personal as $perso)
-            <?php
-                $edad= Carbon::parse($perso->fecha_nacimiento)->age 
-            ?>
-              <tr>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$num=$num+1}}                                </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nombres}}                   </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->apellidos}}                 </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacionalidad}}-{{$perso->cedula}}  </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}</a>
-                </td>
-                <td><a href="#">
-                    @if($perso->status == 1)
-                        <a href="{{ route('admin.personal.status', [$perso->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+
+            @foreach($usuarios as $usuario)
+                <tr>
+                    <td>{{$num=$num+1}}</td>
+                    <td>{{$usuario->name}}</td>
+                    <td>{{$usuario->email}}</td>
+                    <td>{{$usuario->tipo_user}}</td>
+                    <td>
+                        <div align="center"> <img alt="User Pic"
+                        @if($usuario->foto==null)
+                            src="{{asset('/img/escudo.png')}}" class="img-circle img-responsive">
+                        @else
+                            src="{{asset(Auth::user()->photo_route)}}" class="img-circle img-responsive">
+                        @endif
+                        </div>
+                    </td>
+                    <td align="center">
+                    @if($usuario->status == 1)
+                        <a href="{{ route('admin.usuario.status', [$usuario->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
                         <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
                         </a>
                     @else
-                        <a href="{{ route('admin.personal.status', [$perso->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <a href="{{ route('admin.usuario.status', [$usuario->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
                         </a>
                         <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
                     @endif
-                </a></td>
-
-               <td>
-                <div class="btn-group">
-
-                    <a href="#"><button onclick="mostrardatos(
-                    '{{$perso->nombres}}',
-                    '{{$perso->apellidos}}',
-                    '{{$perso->nacionalidad}}-{{$perso->cedula}}',
-                    '{{$perso->fecha_nacimiento}}',
-                    '{{$perso->fecha_ingreso}}',
-                    '{{$perso->edad}}',
-                    '{{$perso->edo_civil}}',
-                    '{{$perso->direccion}}',
-                    '{{$perso->genero}}',
-                    '{{$perso->codigo_hab}}-{{$perso->telf_hab}}',
-                    '{{$perso->codigo_cel}}-{{$perso->celular}}',
-                    '{{$perso->correo}}',
-                    '{{$perso->cargo->cargo}}',
-                    '{{$edad}}')" 
-
-                    class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
-
-
-
-                    <a href="{{ route('admin.personal.edit', [$perso->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
-
-                    <button onclick="eliminar({{ $perso->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button>
-                    <br><br>
-                    </div>
                   </td>
                 </tr>
-              @endforeach
+            @endforeach
               </tbody>
             </table>
           </div>
@@ -130,16 +102,16 @@ use Carbon\Carbon;
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar Personal</h4>
+                    <h4 class="modal-title">Eliminar Usuarios</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este personal en especifico?...
+                    ¿Esta seguro que desea eliminar este Usuarios en especifico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
-                    {!! Form::open(['route' => ['admin.personal.destroy',0133], 'method' => 'DELETE']) !!}
-                        <input type="hidden" id="personal" name="id">
+                    {!! Form::open([ 'method' => 'DELETE']) !!}
+                        <input type="hidden" id="Usuarios" name="id">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}
 
@@ -154,7 +126,7 @@ use Carbon\Carbon;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Datos del personal</h4>
+        <h4 class="modal-title">Datos del Usuarios</h4>
       </div>
       <div class="modal-body">               
         <strong>Nombres: </strong>
@@ -213,7 +185,7 @@ use Carbon\Carbon;
 
         function eliminar(id){
 
-            $('#personal').val(id);
+            $('#Usuarios').val(id);
         }
         function mostrardatos(nombres,apellidos,cedula,fecha_nacimiento,fecha_ingreso,edad,edo_civil,direccion,genero,telf_hab,celular,correo,cargo,edad) 
         {

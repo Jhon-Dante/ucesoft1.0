@@ -47,6 +47,7 @@
                 <th>asignatura</th>
                 <th>Curso</th>
                 <th>Color</th>
+                <th>Status</th>
                 <th>Opciones</th>
               </tr>
             </thead>
@@ -59,6 +60,17 @@
 
               <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->cursos->curso}}</a></td>
               <td style="background-color: {{$asignatura->color}}" ></td>
+              <td align="center">
+              @if($asignatura->status == 1)
+                        <a href="{{ route('admin.asignatura.status', [$asignatura->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
+                        </a>
+                    @else
+                        <a href="{{ route('admin.asignatura.status', [$asignatura->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                        </a>
+                        <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
+                    @endif
+              </td>
               <td>                   
                     <div class="btn-group">
 
@@ -71,7 +83,9 @@
                     </div>
                     
                   </td>
+                  
                 </tr>
+
               @endforeach
               </tbody>
             </table>

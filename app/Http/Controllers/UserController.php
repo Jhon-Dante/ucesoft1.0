@@ -21,6 +21,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function inicio()
+    {
+        $num=0;
+        $usuarios=User::all();
+        return View('admin.usuarios.index', compact('num','usuarios'));
+    }
     public function index()
     {
         $email=\Auth::user()->email;
@@ -29,7 +35,6 @@ class UserController extends Controller
         $personal=Personal::where('correo',$email)->first();
     // ]dd($personal);
         $representante=representantes::where('email',$email)->first();
-
         if(count($representante)>0 && count($personal)==0){
             $user=1;
         }else{
@@ -180,6 +185,25 @@ class UserController extends Controller
 
 
         return View('admin.profile.index', compact('usuario','personal','representante','user'));
+    }
+
+    public function editarStatus($id)
+    {
+        $usuario=User::find($id);
+        //dd($asigna->status);
+
+        if ($usuario->status==1) {
+            $usuario->status=2;
+            $usuario->save();
+
+            flash('El status del usuario '.$usuario->name.' ha sido cambiado a inactivo','warning');
+        }else{
+            $usuario->status=1;
+            $usuario->save();
+
+            flash('El status del usuario '.$usuario->name.' ha sido cambiado a Activo','success');
+        }
+        return redirect()->back();
     }
 
     /**

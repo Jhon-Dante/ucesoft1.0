@@ -70,7 +70,6 @@
                         '{{$preinscri->datosbasicos->lugar_nac}}',
                         '{{$preinscri->datosbasicos->estado}}',
                         '{{$preinscri->datosbasicos->fecha_nac}}',
-                        '{{$preinscri->datosbasicos->edad}}',
                         '{{$preinscri->datosbasicos->sexo}}',
                         '{{$preinscri->datosbasicos->peso}}',
                         '{{$preinscri->datosbasicos->talla}}',
@@ -126,7 +125,6 @@
                   <th>Apellidos</th>
                   <th>Cédula</th>
                   <th>Representante</th>
-                  <th>Curso Anterior</th>
                   <th>¿Repite?</th>
                   <th>¿Materias pendientes?</th>
                   <th>Opciones</th>
@@ -140,7 +138,6 @@
                   <td> {{$p->datosbasicos->apellidos}}</td>
                   <td> {{$p->datosbasicos->nacionalidad}}-{{$p->datosbasicos->cedula}}</td>
                   <td> {{$p->datosbasicos->representantes->nombres}}</td>
-                  <td> {{$p->cursos->curso}}</td>
                   <td> {{$p->repite}}</td>
                   <td> {{$p->pendiente}}</td>
                   <td>
@@ -154,7 +151,6 @@
                         '{{$p->datosbasicos->lugar_nac}}',
                         '{{$p->datosbasicos->estado}}',
                         '{{$p->datosbasicos->fecha_nac}}',
-                        '{{$p->datosbasicos->edad}}',
                         '{{$p->datosbasicos->sexo}}',
                         '{{$p->datosbasicos->peso}}',
                         '{{$p->datosbasicos->talla}}',
@@ -243,9 +239,6 @@
         <strong>Fecha de Nacimiento: </strong> 
         <p id="fecha_nac"><span></span></p>
         <br>
-        <strong>Edad: </strong> 
-        <p id="edad"><span></span></p>
-        <br>
         <strong>Sexo: </strong> 
         <p id="sexo"><span></span></p>
         <br>
@@ -277,7 +270,7 @@
     $("#id_datoBasico").val(id);
   }
 
-  function mostrardatos(nombres,apellidos,cedula,lugar_nac,estado,fecha_nac,edad,sexo,peso,talla,salud,direccion,nombre_p,cedula_p,vive_p,nombre_m,cedula_m,vive_m)
+  function mostrardatos(nombres,apellidos,cedula,lugar_nac,estado,fecha_nac,sexo,peso,talla,salud,direccion,nombre_p,cedula_p,vive_p,nombre_m,cedula_m,vive_m)
   {
     $('#nombres').text(nombres);
     $('#apellidos').text(apellidos);
@@ -285,7 +278,6 @@
     $('#lugar_nac').text(lugar_nac);
     $('#estado').text(estado);
     $('#fecha_nac').text(fecha_nac);
-    $('#edad').text(edad);
     $('#sexo').text(sexo);
     $('#peso').text(peso);
     $('#talla').text(talla);

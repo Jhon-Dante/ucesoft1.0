@@ -11,6 +11,7 @@ use App\Http\Requests\PersonalRequest;
 use App\User;
 use Session;
 use Mail;
+use Carbon\Carbon;
 
 class PersonalController extends Controller
 {
@@ -48,8 +49,7 @@ class PersonalController extends Controller
      */
     public function store(PersonalRequest $request)
     {
-
-        //dd($request->all());
+        // dd($request->all());
         $buscar=Personal::where('cedula', $request->cedula)->get();
         $buscar2 =Personal::where('correo', $request->correo)->get();
 
@@ -79,7 +79,6 @@ class PersonalController extends Controller
                     'nacio'            =>$request->nacionalidad,
                     'cedula'           =>$request->cedula,
                     'fecha_nacimiento' =>$request->fecha_nacimiento,
-                    'edad'             =>$request->edad,
                     'edo_civil'        =>$request->edo_civil,
                     'direccion'        =>$request->direccion,
                     'genero'           =>$request->genero,
@@ -109,24 +108,26 @@ class PersonalController extends Controller
                     //$destinatario='javierguevarawork96@gmail.com';
                     //dd($destinatario);
 
-                    $destinatario=$request->correo;
+                    // $destinatario=$request->correo;
 
-                    $asunto="Confirmación de personal en el sistema";
-                    $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
-                    $data=array("contenido"=> $contenido,"personal" => $request->nombres);
+                    // $asunto="Confirmación de personal en el sistema";
+                    // $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+                    // $data=array("contenido"=> $contenido,"personal" => $request->nombres);
 
-                    $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
-                        //$message->from('colegiourdanetacampoelias@gmail.com');
+                    // $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
+                    //     //$message->from('colegiourdanetacampoelias@gmail.com');
                     
-                        $message->to($destinatario)->subject($asunto);
-                    });
-                    if ($r) {
-                       flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
-                    } else {
-                       flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
-                    }
-                    // flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
-                    // echo "Contraseña: ".$contraseña;
+                    //     $message->to($destinatario)->subject($asunto);
+                    // });
+                    // if ($r) {
+                    //    flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
+                    // } else {
+                    //    flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
+                    // }
+                    // // flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
+                    // // echo "Contraseña: ".$contraseña;
+                    flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!, CONTRASEÑA: '.$contraseña.'','warning',10)->important();
+            
 
             $num=0;
             $personal=Personal::all();

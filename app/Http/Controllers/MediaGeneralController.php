@@ -34,7 +34,7 @@ class MediaGeneralController extends Controller
         $periodo=Periodos::where('status','Activo')->first();
         $periodo2=Session::get('periodo');
         // dd($periodo2);
-        $secciones=Seccion::all();
+        $secciones=Seccion::where('status',1)->get();
         $inscripcion=Inscripcion::all();
        
         $num=0;

@@ -46,6 +46,11 @@
 	{!! Form::label('n_familia','Número de miembros en el hogar') !!}
 	{!! Form::number('n_familia',null, ['class' => 'form-control','placeholder' => '3', 'title' => 'Cuantos familiares habitan en su grupo hogar?','min' => '1', 'maxlength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
 </div>
+<div class="form-group{{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
+(<span style="color: red;">*</span>)
+	{!! Form::label('fecha_nacimiento','Fecha de Nacimiento') !!}
+	{!! Form::date('fecha_nacimiento',null, ['class' => 'form-control','placeholder' => '3', 'title' => 'Fecha de Nacimiento']) !!}
+</div>
 <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('direccion','Dirección del representante') !!}

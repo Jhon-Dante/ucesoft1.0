@@ -48,6 +48,7 @@
                     <th>Apellidos</th>
                     <th>Cédula</th>
                     <th>Representados</th>
+                    <th>Status</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
@@ -67,34 +68,45 @@
                     @endforeach
                   @endif
                   </td>
+                  <td align="center">
+                    @if($representante->status == 1)
+                        <a href="{{ route('admin.representante.status', [$representante->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+                        <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
+                        </a>
+                    @else
+                        <a href="{{ route('admin.representante.status', [$representante->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                        </a>
+                        <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
+                    @endif
+                  </td>
                   <td>
-                  <div class="btn-group">
+                    <div class="btn-group">
 
-                      <a href="#"><button onclick="mostrardatos(
-                      '{{$representante->nacionalidad}}-{{$representante->cedula}}',
-                      '{{$representante->nombres}}',
-                      '{{$representante->apellidos}}',
-                      '{{$representante->profesion}}',
-                      '{{$representante->vive_estu}}',
-                      '{{$representante->ingreso_apx}} Bs.F.',
-                      '{{$representante->n_familia}}',
-                      '{{$representante->direccion}}',
-                      '{{$representante->codigo_hab}}-{{$representante->telf_hab}}',
-                      '{{$representante->lugar_tra}}',
-                      '{{$representante->codigo_tra}}-{{$representante->telf_tra}}',
-                      '{{$representante->responsable_m}}',
-                      '{{$representante->codigo_responsable}}-{{$representante->telf_responsable}}',
-                      '{{$representante->codigo_opcional}}-{{$representante->telf_opcional}}',
-                      '{{$representante->nombre_opcional}}',
-                      '{{$representante->codigo_emergencia}}-{{$representante->telf_emergencia}}')"
+                        <a href="#"><button onclick="mostrardatos(
+                        '{{$representante->nacionalidad}}-{{$representante->cedula}}',
+                        '{{$representante->nombres}}',
+                        '{{$representante->apellidos}}',
+                        '{{$representante->profesion}}',
+                        '{{$representante->vive_estu}}',
+                        '{{$representante->ingreso_apx}} Bs.F.',
+                        '{{$representante->n_familia}}',
+                        '{{$representante->direccion}}',
+                        '{{$representante->codigo_hab}}-{{$representante->telf_hab}}',
+                        '{{$representante->lugar_tra}}',
+                        '{{$representante->codigo_tra}}-{{$representante->telf_tra}}',
+                        '{{$representante->responsable_m}}',
+                        '{{$representante->codigo_responsable}}-{{$representante->telf_responsable}}',
+                        '{{$representante->codigo_opcional}}-{{$representante->telf_opcional}}',
+                        '{{$representante->nombre_opcional}}',
+                        '{{$representante->codigo_emergencia}}-{{$representante->telf_emergencia}}')"
 
 
-                       class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+                         class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
-                      <a href="{{ route('admin.representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                        <a href="{{ route('admin.representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('admin.representantes.destroy', [$representante->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
-                      <br><br>
+                        <a href="{{ route('admin.representantes.destroy', [$representante->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                        <br><br>
                     </div>
                   </td>
                 </tr>
@@ -221,5 +233,8 @@
     $('#telf_opcional').text(telf_opcional);
     $('#telf_emergencia').text(telf_emergencia);
   }
+</script>
+<script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
 @endsection

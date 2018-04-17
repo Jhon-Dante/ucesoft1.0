@@ -7,6 +7,7 @@ use App\Pagos;
 use App\Meses;
 use Session;
 use App\Http\Requests;
+use App\Periodos;
 
 class PagosController extends Controller
 {
@@ -55,15 +56,13 @@ class PagosController extends Controller
     {
         $id_periodo=Session::get('periodo');
         $pagos=Pagos::where('id_periodo',$id_periodo)->get();
+        $periodo=Periodos::find($id_periodo);
 
-        if (count($pagos)>0) {
-            flash("NO ES POSIBLE CREAR NUEVOS MONTOS PUES YA EXISTEN PARA ESTE PERIODO!", 'error'); 
-                return redirect()->back();
-        } else {
+        
             
-            return View('admin.pagos_monto.create',compact('anio'));
-        }
+            return View('admin.pagos_monto.create',compact('anio','periodo'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -81,6 +80,8 @@ class PagosController extends Controller
                         'id_periodo' => $id_periodo]);
 
         }
+        flash('MONTOS MODIFICADOS CON ÉXITO');
+        return redirect()->back();
 
 
     }

@@ -47,11 +47,11 @@
             <div class="inner">
               <h3>{{count($inscripcion)}}</h3>
 
-              <p>Lista de inscripcion inscritos en el período</p>
+              <p>Lista de estudiantes inscritos en el período</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
+                <i class="fa fa-link"></i>
+              </div>
             <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
@@ -65,8 +65,8 @@
               <p>Total ganado en Bolívares</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
+                <i class="fa fa-link"></i>
+              </div>
             <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>

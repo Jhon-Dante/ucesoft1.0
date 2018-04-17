@@ -23,6 +23,7 @@
     @endif
     <div>
             @include('alerts.errors')
+            @include('flash::message')
     </div>
     <div class="login-box-body">
     <p class="login-box-msg"> Ingrese sus datos para Iniciar Sesión </p>

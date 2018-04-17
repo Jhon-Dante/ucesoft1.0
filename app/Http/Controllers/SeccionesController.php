@@ -143,4 +143,22 @@ class SeccionesController extends Controller
         }
         return redirect()->route('admin.secciones.index');
     }
+    public function editarStatus($id)
+    {
+        $seccion=Seccion::find($id);
+        //dd($asigna->status);
+
+        if ($seccion->status==1) {
+            $seccion->status=2;
+            $seccion->save();
+
+            flash('El status de la sección '.$seccion->seccion.' ha sido cambiado a inactivo','warning');
+        }else{
+            $seccion->status=1;
+            $seccion->save();
+
+            flash('El status de la sección '.$seccion->seccion.' ha sido cambiado a Activo','success');
+        }
+        return redirect()->back();
+    }
 }

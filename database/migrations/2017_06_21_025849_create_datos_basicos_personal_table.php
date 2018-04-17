@@ -20,7 +20,6 @@ class CreateDatosBasicosPersonalTable extends Migration
             $table->integer('cedula')->uniqued();
             $table->date('fecha_nacimiento');
             $table->date('fecha_ingreso');
-            $table->integer('edad');
             $table->enum('edo_civil',['Soltero(a)','Casado(a)','Concuvino(a)','Viudo(a)']);
             $table->text('direccion');
             $table->string('genero');

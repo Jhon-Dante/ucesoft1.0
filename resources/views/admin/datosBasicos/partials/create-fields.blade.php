@@ -43,11 +43,6 @@
 </div>
 
 <div class="col-xs-6">
-<div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
-(<span style="color: red;">*</span>)
-	{!! Form::label('edad','Edad') !!}
-	{!! Form::text('edad',null,['class' => 'form-control','placeholder' => 'Ej: 8', 'title' => 'Ingrese la edad actual del estudiante']) !!}
-</div>
 <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}">
 (<span style="color: red;">*</span>)
 	{!! Form::label('sexo','Género:') !!}

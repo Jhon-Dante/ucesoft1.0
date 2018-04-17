@@ -73,7 +73,7 @@
                         <li><a href="{{ url('admin/calificacionesadmin/1') }}">Educación Preescolar</a></li>
                         <li><a href="{{ url('admin/calificacionesadmin/2') }}">Educación Básica</a></li>
                         <li><a href="{{ url('admin/calificacionesadmin/3') }}">Educación Media General</a></li>
-                        <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li>
+                        <!-- <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li> -->flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
                         
                     </ul>
                     
@@ -106,6 +106,7 @@
                     <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <!-- <li><a href=" {{ url('admin/cursos')        }} ">Cursos         </a></li> -->
+                        <li><a href=" {{ url('admin/usuarios')      }} ">Usuarios       </a></li>
                         <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
                         <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      </a></li>
                         <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>

@@ -82,7 +82,7 @@ class HorariosController extends Controller
         $secciones=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);
         $dias=Dias::all();
-        $asignaturas=Asignaturas::all();
+        $asignaturas=Asignaturas::where('status',1)->get();
         switch ($secciones->id_curso) {
             case ($secciones->id_curso <= 4):
 
@@ -263,7 +263,7 @@ class HorariosController extends Controller
        // dd($bloquesx);
 
         $horas=8;
-         $aulas=Aula::all();
+         $aulas=Aula::where('status',1)->get();
         
         return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
     }
@@ -324,7 +324,7 @@ class HorariosController extends Controller
         $bloques3=Bloques::all();
         $dias=Dias::all();
         $bloques2=Bloques::orderBy('id_dia')->groupBy('id_dia')->get();
-        $asignaturas=Asignaturas::all();
+        $asignaturas=Asignaturas::where('status',1)->get();
         $horarios=Horarios::where('id_periodo',$request->id_periodo)->get();
         $horas=8;
 
@@ -505,7 +505,7 @@ class HorariosController extends Controller
                 //dd("Hasta aqui");
                 break;
         }
-         $aulas=Aula::all();
+         $aulas=Aula::where('status',1)->get();
         // return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
          return redirect()->back();
 

@@ -165,6 +165,25 @@ class AsignaturasController extends Controller
         
     }
 
+    public function editarStatus($id)
+    {
+        $asigna=Asignaturas::find($id);
+        //dd($asigna->status);
+
+        if ($asigna->status==1) {
+            $asigna->status=2;
+            $asigna->save();
+
+            flash('El status de la asignatura '.$asigna->asignatura.' ha sido cambiado a inactivo','warning');
+        }else{
+            $asigna->status=1;
+            $asigna->save();
+
+            flash('El status de la asignatura '.$asigna->asignatura.' ha sido cambiado a Activo','success');
+        }
+        return redirect()->back();
+    }
+
     private function auditoria($accion)
     {
         $auditoria=Auditoria::create([

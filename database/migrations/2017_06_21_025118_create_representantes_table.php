@@ -22,6 +22,7 @@ class CreateRepresentantesTable extends Migration
             $table->string('vive_estu');
             $table->string('ingreso_apx');
             $table->string('n_familia');
+            $table->date('fecha_nacimiento');
             $table->text('direccion');
             $table->string('email');
             $table->integer('codigo_hab');

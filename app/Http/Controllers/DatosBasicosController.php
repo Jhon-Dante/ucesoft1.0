@@ -86,7 +86,7 @@ class DatosBasicosController extends Controller
             // dd($preinscripcion->cursos->curso);
             $datosBasicos2=DatosBasicos::find($request->id_estudiante);
             $asignaturas=Asignaturas::all();
-            $secciones=Seccion::all();
+            $secciones=Seccion::where('status',1)->get();
             $periodos=Periodos::where('status','Activo')->first();
 
 
@@ -139,7 +139,7 @@ class DatosBasicosController extends Controller
                                 if (count($inscripciones)>0 AND count($preinscripcion)==0)
                                 {
                                        $id_curso_next=$inscripciones->seccion->curso->id;
-                                       $curso_s=Seccion::where('id_curso', '>', $inscripciones->seccion->curso->id)->orderBy('id','asc')->get()->first();
+                                       $curso_s=Seccion::where('id_curso', '>', $inscripciones->seccion->curso->id)->where('status',1)->orderBy('id','asc')->get()->first();
                                     
                                 }
                                 else

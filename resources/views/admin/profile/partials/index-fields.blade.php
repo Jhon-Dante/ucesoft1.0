@@ -76,7 +76,55 @@
                     
                   </div>
                 @else
-
+                  <div class=" col-md-9 col-lg-9 "> 
+                    <table class="table table-user-information">
+                      <tbody>
+                        <tr>
+                          <td>Nombre y apellido:</td>
+                          <td>{{$representante->nombres}} {{$representante->apellidos}}</td>
+                        </tr>
+                        <tr>
+                          <td>Cédula</td>
+                          <td>{{$representante->nacionalidad}}.-{{$representante->cedula}}</td>
+                        </tr>
+                        <tr>
+                          <td>Fecha de nacimiento</td>
+                          <td>{{$representante->fecha_nacimiento}}</td>
+                        </tr>
+                     
+                           <tr>
+                        <tr>
+                          <td>Profesión:</td>
+                          <td>{{$representante->profesion}}</td>
+                        </tr>
+                        <tr>
+                          <td>Dirección</td>
+                          <td>{{$representante->direccion}}</td>
+                        </tr>
+                   <tr>
+                          <td>Email</td>
+                          <td><a href="mailto:info@support.com">{{$representante->email}}</a></td>
+                        </tr>
+                          <td>Números de Teléfono</td>
+                          <td>{{$representante->codigo_hab}}-{{$representante->telf_hab}}(Casa)<br><br>
+                              
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Lugar de Trabajo:</td>
+                          <td>{{$representante->lugar_tra}}: {{$representante->codigo_tra}}-{{$representante->telf_tra}}</td>
+                        </tr>
+                        <tr>
+                          <td>Responsable de pagar las mensualidades</td>
+                          <td>{{$representante->responsable_m}}:<br>{{$representante->codigo_responsable}}-{{$representante->telf_responsable}}</td>
+                        </tr>
+  <!--                       <tr>
+                          <td>Estado Civil:</td>
+                          <td>{{$representante->edo_civil}}</td>
+                        </tr> -->
+                       
+                      </tbody>
+                    </table>
                 @endif
 </div>
 <div id="myModal" class="modal fade" role="dialog">

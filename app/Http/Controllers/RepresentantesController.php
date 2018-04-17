@@ -78,6 +78,7 @@ class RepresentantesController extends Controller
                     'vive_estu'         =>$request->vive_estu,
                     'ingreso_apx'       =>$request->ingreso_apx,
                     'n_familia'         =>$request->n_familia,
+                    'fecha_nacimiento'  =>$request->fecha_nacimiento,
                     'direccion'         =>$request->direccion,
                     'email'             =>$request->email,
                     'codigo_hab'        =>$request->codigo_hab,
@@ -105,27 +106,26 @@ class RepresentantesController extends Controller
                     'tipo_user' => 'Representante'
                 ]);
 
-                $destinatario=$request->email;
-                $asunto="Confirmación de representante en el sistema";
-                $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
-                $data=array("contenido"=> $contenido,"personal" => $request->nombres);
+                // $destinatario=$request->email;
+                // $asunto="Confirmación de representante en el sistema";
+                // $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+                // $data=array("contenido"=> $contenido,"personal" => $request->nombres);
 
-                $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
-                    //$message->from('colegiourdanetacampoelias@gmail.com');
+                // $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
+                //     //$message->from('colegiourdanetacampoelias@gmail.com');
                 
-                    $message->to($destinatario)->subject($asunto);
-                });
-
+                //     $message->to($destinatario)->subject($asunto);
+                // });
+            flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!, CONTRASEÑA: '.$contraseña.'','warning',10)->important();
             
-            flash('Representante registrado con éxito','success');
+            // flash('Representante registrado con éxito','success');
             if ($request->desde==1) {
                     return redirect()->back();    
                 } else {
                     return redirect()->route('admin.representantes.index');
                 }
             }
-                // flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
-                //     echo "Contraseña: ".$contraseña;
+                
 
                     $accion='Registra nuevo representante: '.$request->nombres;
                     $this->auditoria($accion);
@@ -199,6 +199,25 @@ class RepresentantesController extends Controller
         $representantes->delete();
         flash(' SE HA ELIMINADO EL REPRESENTANTE     CORRECTAMENTE.','success');
         return redirect()->route('admin.representantes.index');
+    }
+
+    public function editarStatus($id)
+    {
+        $repre=Representantes::find($id);
+        //dd($asigna->status);
+
+        if ($repre->status==1) {
+            $repre->status=2;
+            $repre->save();
+
+            flash('El status del representante '.$repre->nombres.' ha sido cambiado a inactivo','warning');
+        }else{
+            $repre->status=1;
+            $repre->save();
+
+            flash('El status del representante '.$repre->nombres.' ha sido cambiado a Activo','success');
+        }
+        return redirect()->back();
     }
 
     private function auditoria($accion)

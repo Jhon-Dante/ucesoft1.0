@@ -18,7 +18,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '11999543',
             'fecha_nacimiento' => '1980-05-23',
-            'edad' => '40',
             'edo_civil' => 'Soltero(a)',
             'direccion' => 'Calle Santiago Mariño, casa nro. 34',
             'genero' => '1',
@@ -36,7 +35,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Secretario(a)'
+            'tipo_user' => 'Secretario(a)',
+            'status' => '1'
         ]);
 
         //2
@@ -46,7 +46,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'E',
             'cedula' => '43838459',
             'fecha_nacimiento' => '1990-05-09',
-            'edad' => '27',
             'edo_civil' => 'Casado(a)',
             'direccion' => 'Calle Antonio José de Sucre, apartamento los ruices, nro. 4, La Victoria.',
             'genero' => '0',
@@ -65,7 +64,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Administrador(a)'
+            'tipo_user' => 'Administrador(a)',
+            'status' => '1'
         ]);
         //3
          DB::table('datos_basicos_personal')->insert([
@@ -74,7 +74,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'E',
             'cedula' => '59683845',
             'fecha_nacimiento' => '1994-01-21',
-            'edad' => '27',
             'edo_civil' => 'Viudo(a)',
             'direccion' => 'Calle wutemberg, apartamento The Sky, Whashinton D.C.',
             'genero' => '1',
@@ -93,7 +92,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Media General'
+            'tipo_user' => 'Docente Media General',
+            'status' => '1'
         ]);
          //4
          DB::table('datos_basicos_personal')->insert([
@@ -102,7 +102,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'E',
             'cedula' => '396838459',
             'fecha_nacimiento' => '1985-11-07',
-            'edad' => '32',
             'edo_civil' => 'Concubino(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '0',
@@ -121,7 +120,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Basica'
+            'tipo_user' => 'Docente Basica',
+            'status' => '1'
         ]);
          //5
         DB::table('datos_basicos_personal')->insert([
@@ -130,7 +130,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '96838459',
             'fecha_nacimiento' => '1985-11-07',
-            'edad' => '32',
             'edo_civil' => 'Concubino(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '0',
@@ -149,7 +148,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Preescolar'
+            'tipo_user' => 'Docente Preescolar',
+            'status' => '1'
         ]);
         //6
         DB::table('datos_basicos_personal')->insert([
@@ -158,7 +158,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '96838451',
             'fecha_nacimiento' => '1985-11-07',
-            'edad' => '32',
             'edo_civil' => 'Concubino(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '0',
@@ -177,7 +176,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Media General'
+            'tipo_user' => 'Docente Media General',
+            'status' => '1'
         ]);
 
         //7
@@ -187,7 +187,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '96838400',
             'fecha_nacimiento' => '1985-11-07',
-            'edad' => '32',
             'edo_civil' => 'Concubino(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '1',
@@ -206,7 +205,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Media General'
+            'tipo_user' => 'Docente Media General',
+            'status' => '1'
         ]);
 
         DB::table('datos_basicos_personal')->insert([
@@ -215,7 +215,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '96838411',
             'fecha_nacimiento' => '1984-11-07',
-            'edad' => '33',
             'edo_civil' => 'Soltero(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '1',
@@ -236,7 +235,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Basica'
+            'tipo_user' => 'Docente Basica',
+            'status' => '1'
         ]);
 
         DB::table('datos_basicos_personal')->insert([
@@ -245,7 +245,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '15332432',
             'fecha_nacimiento' => '1984-09-12',
-            'edad' => '33',
             'edo_civil' => 'Soltero(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '1',
@@ -265,7 +264,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Media General'
+            'tipo_user' => 'Docente Media General',
+            'status' => '1'
         ]);
 
         DB::table('datos_basicos_personal')->insert([
@@ -274,7 +274,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '15332432',
             'fecha_nacimiento' => '1991-01-01',
-            'edad' => '30',
             'edo_civil' => 'Soltero(a)',
             'direccion' => 'Calle Soublette, nro. 4, La Victoria.',
             'genero' => '1',
@@ -294,7 +293,8 @@ class PersonalSeeder extends Seeder
             'password' => bcrypt('qwerty'),
             'pregunta' => 'mascota',
             'respuesta' => 'scooby',
-            'tipo_user' => 'Docente Preescolar'
+            'tipo_user' => 'Docente Preescolar',
+            'status' => '1'
         ]);
 
         DB::table('datos_basicos_personal')->insert([
@@ -303,7 +303,6 @@ class PersonalSeeder extends Seeder
             'nacionalidad' => 'V',
             'cedula' => '25071215',
             'fecha_nacimiento' => '1980-05-23',
-            'edad' => '40',
             'edo_civil' => 'Soltero(a)',
             'direccion' => 'Calle Santiago Mariño, casa nro. 34',
             'genero' => '1',

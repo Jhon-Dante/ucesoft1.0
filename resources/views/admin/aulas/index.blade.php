@@ -46,6 +46,7 @@
                                    <th>Aula</th>
                                    <th>Creada</th>
                                    <th>Actualizada</th>
+                                   <th>Status</th>
                                    <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,17 @@
                                     <td>{{$aula->nombre}}</td>
                                     <td>{{$aula->created_at}}</td>
                                     <td>{{$aula->updated_at }}</td>
+                                    <td align="center">
+                                        @if($aula->status == 1)
+                                            <a href="{{ route('admin.aula.status', [$aula->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
+                                            <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
+                                            </a>
+                                        @else
+                                            <a href="{{ route('admin.aula.status', [$aula->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
+                                            </a>
+                                            <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
+                                        @endif
+                                    </td>
                                     <td style="text-align: center; width: 150px;"><a href="{{ route('admin.aulas.edit', [$aula->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
                                     <a href="#" ><button onclick="codigo({{ $aula->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>

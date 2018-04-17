@@ -131,6 +131,25 @@ class AulasController extends Controller
         }
     }
 
+    public function editarStatus($id)
+    {
+        $aula=Aula::find($id);
+        //dd($asigna->status);
+
+        if ($aula->status==1) {
+            $aula->status=2;
+            $aula->save();
+
+            flash('El status del aula '.$aula->nombre.' ha sido cambiado a inactivo','warning');
+        }else{
+            $aula->status=1;
+            $aula->save();
+
+            flash('El status del aula '.$aula->nombre.' ha sido cambiado a Activo','success');
+        }
+        return redirect()->back();
+    }
+
      private function auditoria($accion)
     {
         $auditoria=Auditoria::create([
