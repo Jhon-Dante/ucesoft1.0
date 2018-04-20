@@ -65,6 +65,10 @@ class Periodos extends Model
 	{
 		return $this->hasMany('App\Horarios','id_periodo','id');
 	}
+	public function n_bloques()
+	{
+		return $this->hasMany('App\NBloques','id_periodo','id');
+	}
 
 	//Relación mucho a muchos
 	public function asignacion_pe()

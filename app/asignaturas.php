@@ -49,7 +49,10 @@ class Asignaturas extends Model
     {
         return $this->hasMany('App\Horarios','id_asignatura','id');
     }
-
+    public function n_bloques()
+    {
+        return $this->hasMany('App\NBloques','id_asignatura','id');
+    }
 
     //Relación uno a muchos
     public function asignacion_pe()

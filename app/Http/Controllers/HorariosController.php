@@ -20,6 +20,7 @@ use Session;
 use App\Representantes;
 use App\DatosBasicos;
 use App\Inscripcion;
+use App\NBloques;
 
 class HorariosController extends Controller
 {
@@ -263,9 +264,10 @@ class HorariosController extends Controller
        // dd($bloquesx);
 
         $horas=8;
-         $aulas=Aula::where('status',1)->get();
+        $aulas=Aula::where('status',1)->get();
+        $nbloques=NBloques::where('id_periodo',$id_periodo)->get();
         
-        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
+        return View('admin.horarios.show', compact('asignaturas','secciones','nbloques','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
     }
     /**
      * Store a newly created resource in storage.

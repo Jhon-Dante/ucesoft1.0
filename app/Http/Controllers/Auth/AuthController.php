@@ -75,10 +75,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $status=User::where('email',$request->email)->first();
-        if ($status->status != 1) {
-            flash('NO TIENE ACCESO A LA APLICACIÓN! COMUNIQUESE CON EL ADMINISTRADOR PARA RESOLVER EL PROBLEMA','danger');
-            return redirect()->back();
-        }else{
+        if ($status->status == 1) {
             if(Auth::check())
             {
                 Session::flash('message-error'
@@ -123,6 +120,9 @@ class AuthController extends Controller
             else{
                 return Redirect()->back()->with('message-error-session', 'Datos Incorrectos');
             }
+        }else{
+            flash('NO TIENE ACCESO A LA APLICACIÓN! COMUNIQUESE CON EL ADMINISTRADOR PARA RESOLVER EL PROBLEMA','danger');
+            return redirect()->back();
         }
     }
     /*

@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Periodos;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\PeriodoRequest;
+use App\NBloques:
+use App\asignaturas;
 
 class PeriodosController extends Controller
 {
@@ -53,6 +55,10 @@ class PeriodosController extends Controller
         } else {
 
             $periodo=Periodos::create(['periodo' => $request->periodo,'status' => 'Inactivo']);
+            $asignaturas=Asignaturas::all();
+            for ($i=0; $i < count($asignaturas); $i++) { 
+                $nbloque=NBloques::create(['']);
+            }
             flash('Periodo registrado con éxito, para validaciones generales dicho periodo será registrado como INACTIVO','success');
             $num=0;
             $periodos=Periodos::all();

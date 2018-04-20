@@ -102,7 +102,16 @@
                         @endforeach
                       </select>
                     </td>
-                    <td><input type="submit" class="btn btn-primary" name="agregar" value="Agregar"></td>
+                    <td>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="submit" class="btn btn-primary" name="agregar" value="Agregar">
+                        </div>
+                        <div class="col-md-6">
+                          <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal2"  name="bloques" value="Bloques"><i class="fa fa-pencil"></i>  Bloques</a>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 </table>
               {!! Form::close() !!} 
@@ -192,10 +201,63 @@
         </div>
     </div>
 </div><!-- /.content-wrapper -->
+
+
+<div id="myModal2"  class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Especificar número de bloques de asignaturas</h4>
+                </div>
+                <div class="modal-body">
+            
+                    {!! Form::open(['route' => ['admin.bloques.store'], 'method' => 'POST']) !!}
+            @include('admin.horarios.bloques.partials.create-fields')
+                        <input type="hidden" name="desde" value="1">
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+
+                </div>
+            </div>
+        </div>
+</div>
 @endsection
 <script type="text/javascript">
   function destruir(id_horario, id_seccion) {
     $('#id_horario').val(id_horario);
     $('#id_seccion').val(id_seccion);
   }
+
+  // $(document).ready ( function () {
+  //   $("#pendiente").change( function () {
+  //     if($(this).is(":checked")) 
+  //     {
+  //         $("#id_asignatura").removeAttr('disabled');
+  //     } else {
+  //         $("#id_asignatura").prop('disabled', true);
+  //     }
+  //   });
+  // });
 </script>
+@section('scripts')
+<script type="text/javascript">
+  $(document).ready ( function () {
+    $("#edita").change( function () {
+      if($(this).is(":checked")) 
+      {
+          $("#nb").removeAttr('disabled');
+      } else {
+          $("#nb").prop('disabled', true);
+      }
+    });
+  });
+</script>
+@endsection

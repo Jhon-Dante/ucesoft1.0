@@ -12,6 +12,9 @@ use App\Http\Requests\AsignaturasRequest;
 use Validator;    
 use App\Auditoria;
 use App\Boletin;
+use App\Periodos;
+use App\NBloques;
+
 class AsignaturasController extends Controller
 {
 
@@ -58,6 +61,16 @@ class AsignaturasController extends Controller
                 'id_curso' => $request->id_curso,
                 'color' => $request->color
                 ]);
+
+            //registrando en bloques
+            $periodos=Periodos::all();
+            for ($i=0; $i < count($periodos) ; $i++) {
+                $nbloques=NBloques::create([
+                    'n_bloques' => 4,
+                    'id_asignatura' => $asignatura->id,
+                    'id_periodo' => $i
+                ]);
+            }
             //registrando en auditoria
             $accion = 'Registro de la Asignatura '.$request->asignatura.' en el curso '.$request->curso.'';
 

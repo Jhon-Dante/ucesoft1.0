@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\asignaturas;
+use App\Periodos;
 
 class AsignaturasTableSeeder extends Seeder
 {
@@ -13,7 +15,6 @@ class AsignaturasTableSeeder extends Seeder
     {
     	//---- ASIGNATURAS DE 1 GRADO----
         DB::table('asignaturas')->insert([
-
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-1G',
             'id_curso' => '2',
@@ -1009,5 +1010,19 @@ class AsignaturasTableSeeder extends Seeder
             'color' => '#B9264F',
             'status' => 1
         ]);
+
+        $asignaturas=Asignaturas::all();
+        $periodos=periodos::all();
+
+        for ($i=1; $i < count($asignaturas); $i++) {
+            for ($j=1; $j < count($periodos); $j++) { 
+                DB::table('n_bloques')->insert([
+
+                'n_bloques' => 4,
+                'id_asignatura' => $i,
+                'id_periodo' => $j
+                ]);
+            }
+        }
     }
 }
