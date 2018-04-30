@@ -15,6 +15,11 @@ use App\Boletin;
 use App\Periodos;
 use App\NBloques;
 
+if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+    // Ignores notices and reports all other kinds... and warnings
+    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+    // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
+}
 class AsignaturasController extends Controller
 {
 
@@ -61,13 +66,14 @@ class AsignaturasController extends Controller
                 'id_curso' => $request->id_curso,
                 'color' => $request->color
                 ]);
+            $asignaturas=Asignaturas::where('asignatura',$request->asignatura)->where('id_curso',$request->id_curso)->first();
 
             //registrando en bloques
             $periodos=Periodos::all();
             for ($i=0; $i < count($periodos) ; $i++) {
                 $nbloques=NBloques::create([
                     'n_bloques' => 4,
-                    'id_asignatura' => $asignatura->id,
+                    'id_asignatura' => $asignaturas->id,
                     'id_periodo' => $i
                 ]);
             }

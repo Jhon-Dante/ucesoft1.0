@@ -72,6 +72,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         //------------
         Route::resource('/cargos','CargosController');
         Route::resource('/personal','PersonalController');
+
+        Route::get('/horarios/{id}/buscar',[
+            'uses' => 'HorariosController@buscarbloques',
+            'as' => 'admin.horarios.buscar'
+        ]);
+
         Route::get('/personales/{id}/buscar',[
             'uses' => 'PersonalAsignaturaController@buscarpersonal',
             'as' => 'admin.personales.buscar'

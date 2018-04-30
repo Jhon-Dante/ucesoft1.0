@@ -41,8 +41,14 @@
                     <input type="hidden" name="id_seccion" value="{{$secciones->id}}">
                     <input type="hidden" name="id_periodo" value="{{$periodos->id}}">
                     </td>
-                    <td><strong>Nro. </strong>
-                    {!! Form::select('bloque',['1' => '1','2' =>'2','3' => '3','4' => '4'],null,['class' => 'form-control']) !!}</td>
+                    <td><strong>Asignatura: </strong>
+                  <select name="id_asignatura" class="form-control" id="id_asignatura">
+                    @foreach($asignaturas as $asig)
+                       @if ($asig->id_curso==$secciones->id_curso)
+                          <option value="{{$asig->id}}">{{$asig->asignatura}}</option>
+                      @endif
+                    @endforeach
+                    </select></td>
                     <td><strong>Bloque: </strong>
                     <?php 
                     switch($secciones->curso->id){
@@ -86,14 +92,8 @@
                     }
                       ?>
                     </td>
-                    <td><strong>Asignatura: </strong>
-                  <select name="id_asignatura" class="form-control" >
-                    @foreach($asignaturas as $asig)
-                       @if ($asig->id_curso==$secciones->id_curso)
-                          <option value="{{$asig->id}}">{{$asig->asignatura}}</option>
-                      @endif
-                    @endforeach
-                    </select>
+                    <td><strong>Nro. Bloques: </strong>
+                      {!! Form::select('n_bloques',null,['class' => 'form-control','required' => 'required', 'title' => 'Seleccione la Sección','id' => 'n_bloques', 'required' => 'required']) !!}
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
@@ -104,11 +104,11 @@
                     </td>
                     <td>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                           <input type="submit" class="btn btn-primary" name="agregar" value="Agregar">
                         </div>
-                        <div class="col-md-6">
-                          <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal2"  name="bloques" value="Bloques"><i class="fa fa-pencil"></i>  Bloques</a>
+                        <div class="col-md-5">
+                          <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal2"  name="bloques" value="Bloques"><i class="fa fa-pencil"></i>Bloques</a>
                         </div>
                       </div>
                     </td>
@@ -247,7 +247,6 @@
   //   });
   // });
 </script>
-@section('scripts')
 <script type="text/javascript">
   $(document).ready ( function () {
     $("#edita").change( function () {
@@ -259,5 +258,79 @@
       }
     });
   });
+
+$("#id_asignatura").on("change", function (event) {
+    var id = event.target.value;
+
+    $.get("/admin/horarios/"+id+"/buscar",function (data) {
+       
+      
+       $("#n_bloques").empty();
+       $("#n_bloques").append('<option value="" selected disabled> Seleccione el número de bloques</option>');
+        
+        if(data.length > 0){
+
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#n_bloques").removeAttr('disabled');
+                $("#n_bloques").append('<option value="'+ data[i].n_bloques + '">' + data[i].n_bloques +'</option>');
+                
+            }
+        }else{
+            
+            $("#n_bloques").attr('disabled', false);
+
+        }
+    });
+});
+
+    // $("#id_curso").on("change", function (event) {
+    //     var id = event.target.value;
+
+    //     $.get("/admin/cursos/"+id+"/buscar",function (data) {
+           
+          
+    //        $("#id_seccion").empty();
+    //        $("#id_seccion").append('<option value="" selected disabled> Seleccione la Sección</option>');
+            
+    //         if(data.length > 0){
+
+    //             for (var i = 0; i < data.length ; i++) 
+    //             {  
+    //                 $("#id_seccion").removeAttr('disabled');
+    //                 $("#id_seccion").append('<option value="'+ data[i].id + '">' + data[i].seccion +'</option>');
+                    
+    //             }
+                
+    //         }else{
+                
+    //             $("#id_seccion").attr('disabled', false);
+
+    //         }
+    //     });
+
+    //     $.get("/admin/asignaturas/"+id+"/buscar",function (data) {
+           
+          
+    //        $("#id_asignatura").empty();
+          
+            
+    //         if(data.length > 0){
+
+    //             for (var i = 0; i < data.length ; i++) 
+    //             {  
+    //                 $("#id_asignatura").removeAttr('disabled');
+    //                 $("#id_asignatura").append('<option value="'+ data[i].id + '">' + data[i].asignatura +'</option>');
+                    
+    //             }
+                
+    //         }else{
+                
+    //             $("#id_asignatura").attr('disabled', false);
+
+    //         }
+    //     });
+    // });
 </script>
+@section('scripts')
 @endsection

@@ -1,19 +1,11 @@
-<div class="row">
-	<div class="col-md-6">
-		<strong>Cambiar valores de número de bloques?</strong>
-	</div>
-	<div class="col-md-6">
-		<input type="checkbox" name="edita" id="edita" value="Si">
-	</div>
-</div>
 <hr>
 @foreach($asignaturas as $asigna)
 	@if ($asigna->id_curso==$secciones->id_curso)
 		<div class="row">
-			<div class="col-md-6">{{$asigna->asignatura}}</div>
+			<div class="col-md-6">{{$asigna->asignatura}}<input type="hidden" name="id_asignatura[]" value="{{$asigna->id}}"></div>
 			@foreach($nbloques as $nb)
 				@if($nb->id_asignatura == $asigna->id)
-					<div class="col-md-6">{!! Form::text('nb',$nb->n_bloques,['id' => 'nb','class' => 'form-control','disabled' => 'disabled'])!!}
+					<div class="col-md-6">{!! Form::number('nb[]',$nb->n_bloques,['id' => 'nb','class' => 'form-control', 'min' => '1','maxLength' => '1'])!!}
 					</div>
 				@endif
 			@endforeach

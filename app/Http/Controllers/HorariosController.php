@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -22,6 +23,11 @@ use App\DatosBasicos;
 use App\Inscripcion;
 use App\NBloques;
 
+if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+    // Ignores notices and reports all other kinds... and warnings
+    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+    // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
+}
 class HorariosController extends Controller
 {
     /**
@@ -79,7 +85,7 @@ class HorariosController extends Controller
     {
 
         
-       
+        
         $secciones=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);
         $dias=Dias::all();
@@ -277,6 +283,7 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         //buscando curso
         $curso=Seccion::find($request->id_seccion);
         $bloCompa=Bloques::where('id',$request->id_bloque)->get();
@@ -742,6 +749,10 @@ class HorariosController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function buscarbloques($id)
+    {
+        return $nbloques=NBloques::where('id_asignatura',$id)->get();
     }
 
     /**
