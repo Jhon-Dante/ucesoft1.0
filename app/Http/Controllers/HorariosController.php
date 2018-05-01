@@ -83,9 +83,6 @@ class HorariosController extends Controller
 
     public function crear($id_seccion,$id_periodo)
     {
-
-        
-        
         $secciones=Seccion::find($id_seccion);
         $periodos=Periodos::find($id_periodo);
         $dias=Dias::all();
