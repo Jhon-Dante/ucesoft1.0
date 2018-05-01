@@ -38,9 +38,9 @@ class MensualidadesController extends Controller
             //dd($id_mes);
             //----
             $inicio = substr(Session::get('periodoNombre'),0, 4);
-            //dd($inicio); 
+        //dd($inicio); 
             $fin = substr(Session::get('periodoNombre'), 7);
-            //dd($fin); 
+        //dd($fin); 
             //---
             $id_periodo=Session::get('periodo');
             $periodo=Periodos::where('id',$id_periodo)->first();
@@ -124,7 +124,7 @@ class MensualidadesController extends Controller
         }
 
 
-            // dd(count($mensualidades2));
+            //dd(count($mensualidades2));
             $num=0;
             return View('admin.mensualidades.index',compact('num','mensualidades','mensualidades2','meses','estudiantes','id_periodo','id_mes','inicio','fin','anio_actual','monto','inscripcion','datosBasicos'));
     }

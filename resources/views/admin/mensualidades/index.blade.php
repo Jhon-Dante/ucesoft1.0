@@ -93,12 +93,12 @@
                       <th>Nro</th>
                       <th>Estudiante</th>
                       @foreach($meses as $mes)
-                        @if($mes->id>=9 and $mes->id<=12)
+                        @if($mes->id>=9 && $mes->id<=12)
                           <th>{{str_limit($mes->mes,3)}}</th>
                         @endif
                       @endforeach
                       @foreach($meses as $mes)
-                        @if($mes->id>=1 and $mes->id<=8)
+                        @if($mes->id>=1 && $mes->id<=8)
                           <th>{{str_limit($mes->mes,3)}}</th>
                         @endif
                       @endforeach
@@ -114,7 +114,7 @@
                         <td>{{$key->datosbasicos->nombres}}</td>
 
                         @foreach($mensualidades as $key2)
-                          @if($key2->id_inscripcion==$key->id and $key->id_periodo==$id_periodo)
+                          @if($key2->id_inscripcion==$key->id && $key->id_periodo==$id_periodo)
                             @if($key2->estado=="Cancelado")
                               <td align="center">
                                 
@@ -124,23 +124,26 @@
 
                             @else
                             <td align="center">
-                              @if($id_mes>=1 and $id_mes<9 and $key2->pagos->id_mes>=1 and $key2->pagos->id_mes<9 and $fin==$anio_actual  and $key2->pagos->id_mes<=$id_mes)
+                            
+                            @if($anio_actual==$inicio)
 
-                                <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
-
-                              @elseif($id_mes>8 and $id_mes<13 and $key2->pagos->id_mes>8 and $key2->pagos->id_mes<13 and $inicio==$anio_actual and $key2->pagos->id_mes<=$id_mes)
-
-                            <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
-                                   
-
-                              @else
-
-                                <!-- <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px"> --> 
-                                
-                                <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
-
-                              @endif
-                            <!-- evaluando los meses del año anterior -->
+                                  @if($key2->pagos->id_mes>=9 && $key2->pagos->id_mes<=$id_mes)
+                                    <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
+                                  @elseif($key2->pagos->id_mes>$id_mes && $key2->pagos->id_mes<=12)
+                                    <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px">
+                                    @elseif($key2->pagos->id_mes>=1 && $key2->pagos->id_mes<=8)
+                                    <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px">
+                                  @endif
+                            @elseif($anio_actual==$fin)
+                                  @if($key2->pagos->id_mes>=9 && $key2->pagos->id_mes<=12 && $key2->pagos->id_mes>$id_mes)
+                                      <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
+                                  @elseif($key2->pagos->id_mes>=1 && $key2->pagos->id_mes<=$id_mes )
+                                      <a href="#" id="pagar" data-toggle="modal" onclick="pagar('{{$key2->id}}','{{$key->datosbasicos->nombres}}','{{$key->periodo->periodo}}','{{$key2->pagos->meses->mes}}','{{$key2->pagos->id_mes}}')" data-target="#myModal2"><img src="../img/iconos/mal.png" style="border-radius: 50px; width: 30px; height: 30px"></a>
+                                      @elseif($key2->pagos->id_mes>$id_mes && $key2->pagos->id_mes<9)
+                                            <img title="No se pueder realizar el pago de este mes por que aún no se consume" src="../img/iconos/advertencia.png" style="border-radius: 50px; width: 30px; height: 30px">
+                                    
+                                  @endif
+                            @endif
                             </td>
                             @endif
                           @endif
@@ -269,12 +272,12 @@
                       <th>Nro</th>
                       <th>Estudiante</th>
                       @foreach($meses as $mes)
-                        @if($mes->id>=9 and $mes->id<=12)
+                        @if($mes->id>=9 && $mes->id<=12)
                           <th>{{str_limit($mes->mes,3)}}</th>
                         @endif
                       @endforeach
                       @foreach($meses as $mes)
-                        @if($mes->id>=1 and $mes->id<=8)
+                        @if($mes->id>=1 && $mes->id<=8)
                           <th>{{str_limit($mes->mes,3)}}</th>
                         @endif
                       @endforeach
@@ -290,10 +293,10 @@
                           <tr>
 
                             <td>{{ $num=$num+1 }}</td>
-                            <td>{{$key->datosbasicos->nombres}}</td>
+                            <td></td>
 
                             @foreach($mensualidades as $key2)
-                              @if($key2->id_inscripcion==$key->id and $key->id_periodo==$id_periodo )
+                              @if($key2->id_inscripcion==$key->id && $key->id_periodo==$id_periodo )
                                 @if($key2->estado=="Cancelado")
                                   <td align="center">  
                                   <img title="Mes Cancelado" src="../img/iconos/bien.png" style="border-radius: 50px; width: 30px; height: 30px">
