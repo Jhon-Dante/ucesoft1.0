@@ -93,7 +93,7 @@
                       ?>
                     </td>
                     <td><strong>Nro. Bloques: </strong>
-                      {!! Form::select('n_bloques',null,['class' => 'form-control','required' => 'required', 'title' => 'Seleccione la Sección','id' => 'n_bloques', 'required' => 'required']) !!}
+                      {!! Form::select('bloque',['1' => '1', '2' => '2', '3' => '3', '4' => '4'],['class' => 'form-control','required' => 'required', 'title' => 'Seleccione la Sección','id' => 'n_bloques', 'required' => 'required']) !!}
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
