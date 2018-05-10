@@ -83,15 +83,15 @@
 
 									@if(count($q)>0 && count($w)>0 && count($e)>0)
 										@if($i<13)	
-											<td>{{$q[$i]->id_asignatura}}-{{$w[$i]->id_asignatura}}-{{$e[$i]->id_asignatura}}-{{$asig->id}}</td>
+											<td align="center">{{round(($q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion)/3)}}</td>
 													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
 
 
 															
-																<?php $resul=$q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion/3;
+																<?php $resul=round(($q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion)/3);
 																?>
 															
-															<td align="center">{{round($resul)}}</td>
+															
 															<td align="center">
 																@if(round($resul)==1)UNO
 																@elseif(round($resul)==2)DOS
@@ -160,7 +160,9 @@
 
 									@if(count($e)>0)
 										@if($i<13)	
-											<td>{{$q[$i]->id_asignatura}}-{{$w[$i]->id_asignatura}}-{{$e[$i]->id_asignatura}}-{{$asig->id}}</td>
+											<td>
+
+											{{($q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion)/3}}</td>
 													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
 
 
