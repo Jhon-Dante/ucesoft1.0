@@ -32,53 +32,90 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             @if(Auth::user()->tipo_user == 'Administrador(a)')
-                <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir / Inscribir</a></li>
+                @if(Auth::user()->pre_re == 'Si')
+                    <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir / Inscribir</a></li>
+                @endif
 
-                
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
-                        <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a></li>
-                        <li><a href=" {{ url('admin/constancia')          }} ">Constancia de estudios</a></li>
-                        <li><a href=" {{ url('admin/constanciaC')         }} ">Certificado de calificaciones</a></li>
-                        <li><a href=" {{ url('admin/tituloB')             }} ">Generar Título de Bachiller</a></li>
-                    </ul>
-                </li>
+                @if(Auth::user()->list_estu == 'Si')
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->list_estu == 'Si')
+                                <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
+                            @endif
 
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Representantes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href=" {{ url('admin/representantes')        }} ">Lista          </a></li>
-                        <li><a href=" {{ url('admin/mensualidades')         }} ">Mensualidades  </a></li>
+                            @if(Auth::user()->pre_re == 'Si')
+                                <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a></li>
+                            @endif
+
+                            @if(Auth::user()->const_estu == 'Si')
+                                <li><a href=" {{ url('admin/constancia')          }} ">
+                                Constancia de estudios</a></li>
+                            @endif
+
+                            @if(Auth::user()->cer_estu == 'Si')
+                                <li><a href=" {{ url('admin/constanciaC')         }} ">Certificado de calificaciones</a></li>
+                            @endif
+
+                            @if(Auth::user()->titulob_estu == 'Si')
+                                <li><a href=" {{ url('admin/tituloB')             }} ">Generar Título de Bachiller</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @if(Auth::user()->list_repre == 'Si')
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>Representantes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->pre_re == 'Si')
+                                <li><a href=" {{ url('admin/representantes')        }} ">Lista          </a></li>
+                            @endif
+
+                            @if(Auth::user()->pag_mensu == 'Si')
+                                <li><a href=" {{ url('admin/mensualidades')         }} ">Mensualidades  </a></li>
+                            @endif
+                            
+                        </ul>
+                    </li>
+                @endif
+
+                @if(Auth::user()->pag_mensu == 'Si')
+                    <li class="treeview">
+
+
+                        <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->pag_mensu == 'Si')
+                                <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
+                            @endif
+
+                            @if(Auth::user()->edit_montos == 'Si')
+                                <li><a href="{{ url('admin/pagos_monto/create') }}">Crear montos</a></li>
+                            @endif
+
+                            @if(Auth::user()->edit_montos_m == 'Si')
+                                <li><a href="{{ url('admin/pagos_monto') }}">Montos Matrícula</a></li>
+                            @endif
+                            
+                        </ul>
                         
-                    </ul>
-                </li>
+                    </li>
+                @endif
 
-                 <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
-                        <li><a href="{{ url('admin/pagos_monto/create') }}">Crear montos</a></li>
-                        <li><a href="{{ url('admin/pagos_monto') }}">Montos Matrícula</a></li>
-                        
-                    </ul>
-                    
-                </li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                    
-                        <!-- <li><a href="{{ url('admin/notas2') }}">Notas</a></li> -->
-                        <li><a href="{{ url('admin/calificacionesadmin/1') }}">Educación Preescolar</a></li>
-                        <li><a href="{{ url('admin/calificacionesadmin/2') }}">Educación Básica</a></li>
-                        <li><a href="{{ url('admin/calificacionesadmin/3') }}">Educación Media General</a></li>
-                        <!-- <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li> -->flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
-                        
-                    </ul>
-                    
-                </li>
-
+                @if(Auth::user()->tipo_user == 'Administrador(a)')
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <!-- <li><a href="{{ url('admin/notas2') }}">Notas</a></li> -->
+                            <li><a href="{{ url('admin/calificacionesadmin/1') }}">Educación Preescolar</a></li>
+                            <li><a href="{{ url('admin/calificacionesadmin/2') }}">Educación Básica</a></li>
+                            <li><a href="{{ url('admin/calificacionesadmin/3') }}">Educación Media General</a></li>
+                            <!-- <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li> -->
+                            <!-- flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success'); -->
+                        </ul>
+                    </li>
+                @endif
                 <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
                             
                

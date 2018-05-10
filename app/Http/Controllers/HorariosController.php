@@ -280,7 +280,7 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+         // dd($request->all());
         //buscando curso
         $curso=Seccion::find($request->id_seccion);
         $bloCompa=Bloques::where('id',$request->id_bloque)->get();

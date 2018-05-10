@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('tipo_user',['Administrador(a)','Secretario(a)','Docente Media General','Docente Básica','Docente Preescolar','Representante']);
             $table->string('foto');
             //---------------------------------- Estudiante
-            $table->enum('pre/re',['Si','No']);
+            $table->enum('pre_re',['Si','No']);
             $table->enum('list_estu',['Si','No']);
             $table->enum('edit_estu',['Si','No']);
             $table->enum('eli_estu',['Si','No']);

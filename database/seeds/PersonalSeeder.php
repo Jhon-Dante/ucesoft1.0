@@ -37,7 +37,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Secretario(a)',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -134,7 +134,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Administrador(a)',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -230,7 +230,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -326,7 +326,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Basica',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -422,7 +422,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Preescolar',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -518,7 +518,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -615,7 +615,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -713,7 +713,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Basica',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -810,7 +810,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Media General',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -907,7 +907,7 @@ class PersonalSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Docente Preescolar',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',

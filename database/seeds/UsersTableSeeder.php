@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Administrador(a)',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
@@ -106,7 +106,7 @@ class UsersTableSeeder extends Seeder
             'respuesta' => 'scooby',
             'tipo_user' => 'Administrador(a)',
             //---------------------------------- Estudiante
-            'pre/re' => 'Si',
+            'pre_re' => 'Si',
             'list_estu' => 'Si',
             'edit_estu' => 'Si',
             'eli_estu' => 'Si',
