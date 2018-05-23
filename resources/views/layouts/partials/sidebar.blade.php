@@ -31,7 +31,6 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            @if(Auth::user()->tipo_user == 'Administrador(a)')
                 @if(Auth::user()->pre_re == 'Si')
                     <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir / Inscribir</a></li>
                 @endif
@@ -108,91 +107,109 @@
                         <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <!-- <li><a href="{{ url('admin/notas2') }}">Notas</a></li> -->
-                            <li><a href="{{ url('admin/calificacionesadmin/1') }}">Educación Preescolar</a></li>
-                            <li><a href="{{ url('admin/calificacionesadmin/2') }}">Educación Básica</a></li>
-                            <li><a href="{{ url('admin/calificacionesadmin/3') }}">Educación Media General</a></li>
-                            <!-- <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li> -->
-                            <!-- flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success'); -->
+                            @if(Auth::user()->edit_cali_pre == 'Si')
+                                <li><a href="{{ url('admin/calificacionesadmin/1') }}">Educación Preescolar</a></li>
+                            @endif
+
+                            @if(Auth::user()->edit_cali_basic == 'Si')
+                                <li><a href="{{ url('admin/calificacionesadmin/2') }}">Educación Básica</a></li>
+                            @endif
+
+                            @if(Auth::user()->edit_cali_media == 'Si')
+                                <li><a href="{{ url('admin/calificacionesadmin/3') }}">Educación Media General</a></li>
+                            @endif
+
+                            @if(Auth::user()->edit_notas_final == 'Si')
+                                <li><a href="{{ url('admin/notas_finales') }}">Notas finales</a></li>
+                            @endif
+                                <!-- <li><a href="{{ url('admin/personal_asignatura/buscar_rectificar') }}">Rectificación de Calificación</a></li> -->
+                                <!-- flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success'); -->
                         </ul>
                     </li>
                 @endif
-                <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
-                            
+
+                @if(Auth::user()->gen_horario == 'Si')
+                    <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
+                @endif
                
                
+                @if(Auth::user()->list_perso == 'Si')
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i><span>Personal</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
 
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i><span>Personal</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href=" {{ url('admin/personal')            }} ">Listado de Personal</a></li>
-                        <li><a href=" {{ url('admin/personal_asignatura/create') }} ">Asignar Carga Académica</a></li>
-                        <!-- <li><a href=" {{ url('admin/personalasignatura/docente_preescolar') }}">Carga Académica de Preescolar</a></li> -->
-                        <li><a href=" {{ url('admin/personalasignatura/listado')       }}">Carga Académica de Básica</a></li>
-                        <li><a href=" {{ url('admin/personal_asignatura')       }}">Carga Académica de Media G.</a></li>
-                        <li><a href=" {{ url('admin/guias') }}">Asignar Docente Guía</a></li>
+                            @if(Auth::user()->list_perso == 'Si')
+                                <li><a href=" {{ url('admin/personal')            }} ">Listado de Personal</a></li>
+                            @endif
 
-                        <li><a href=" {{ url('admin/personal_asignatura/guias') }}">Listar Guías</a></li>
+                            @if(Auth::user()->edit_cali_pre == 'Si')
+                                <li><a href=" {{ url('admin/personal_asignatura/create') }} ">Asignar Carga Académica</a></li>
+                            @endif
+                                <!-- <li><a href=" {{ url('admin/personalasignatura/docente_preescolar') }}">Carga Académica de Preescolar</a></li> -->
+                            @if(Auth::user()->edit_cali_pre == 'Si')
+                                <li><a href=" {{ url('admin/personalasignatura/listado')       }}">Carga Académica de Básica</a></li>
+                                <li><a href=" {{ url('admin/personal_asignatura')       }}">Carga Académica de Media G.</a></li>
+                            @endif
 
-                    </ul>
-                </li>
+                            @if(Auth::user()->asig_guia == 'Si')
+                                <li><a href=" {{ url('admin/guias') }}">Asignar Docente Guía</a></li>
+                            @endif
 
-                
-                
+                            @if(Auth::user()->list_guia == 'Si')
+                                <li><a href=" {{ url('admin/personal_asignatura/guias') }}">Listar Guías</a></li>
+                            @endif
+
+                        </ul>
+                    </li>
+                @endif
+
+
                 </li>
                 <li class="treeview">
                     <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <!-- <li><a href=" {{ url('admin/cursos')        }} ">Cursos         </a></li> -->
-                        <li><a href=" {{ url('admin/usuarios')      }} ">Usuarios       </a></li>
-                        <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
-                        <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      </a></li>
-                        <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
-                        <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
-                        <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
-                        <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
-                        <li><a href=" {{ url('admin/respaldos')      }} ">Respaldar BD   </a></li>
-                        <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
+                        @if(Auth::user()->list_user == 'Si')
+                            <li><a href=" {{ url('admin/usuarios')      }} ">Usuarios       </a></li>
+                        @endif
+
+                        @if(Auth::user()->list_asig == 'Si')
+                            <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
+                        @endif
+
+                        @if(Auth::user()->list_auditoria == 'Si')
+                            <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      </a></li>
+                        @endif
+
+                        @if(Auth::user()->list_aula == 'Si')
+                            <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
+                        @endif
+
+                        @if(Auth::user()->list_cargo == 'Si')
+                            <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
+                        @endif
+
+                        <!-- @if(Auth::user()->edit_cali_pre == 'Si')
+                            <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
+                        @endif -->
+
+                        @if(Auth::user()->list_periodo == 'Si')
+                            <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
+                        @endif
+
+                        @if(Auth::user()->res_BD == 'Si')
+                            <li><a href=" {{ url('admin/respaldos')      }} ">Respaldar BD   </a></li>
+                        @endif
+
+                        @if(Auth::user()->list_seccion == 'Si')
+                            <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
+                        @endif
 
                         
                         
                     </ul>
                 </li>
-        @elseif(Auth::user()->tipo_user == 'Secretario(a)')
-            <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir / Inscribir</a></li>
-
-                
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href=" {{ url('admin/DatosBasicos')        }} ">Lista</a></li>
-                        <li><a href=" {{ url('admin/DatosBasicos/create') }} ">Inscribir</a></li>
-                        <li><a href=" {{ url('admin/constancia')          }} ">Constancia de estudios</a></li>
-                        <li><a href=" {{ url('admin/constanciaC')         }} ">Certificado de calificaciones</a></li>
-                        <li><a href=" {{ url('admin/tituloB')             }} ">Generar Título de Bachiller</a></li>
-                    </ul>
-                </li>
-
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Representantes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href=" {{ url('admin/representantes')        }} ">Lista          </a></li>
-                        <li><a href=" {{ url('admin/mensualidades')         }} ">Mensualidades  </a></li>
-                        
-                    </ul>
-                </li>
-
-                 <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Mensualidades</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ url('admin/mensualidades') }}">Pagar</a></li>
-                        <li><a href="{{ url('admin/pagos_monto/create') }}">Crear montos</a></li>
-                        <li><a href="{{ url('admin/pagos_monto') }}">Montos Matrícula</a></li>
-                        
-                    </ul>
-                    
-                </li>
-
-        @elseif(Auth::user()->tipo_user == 'Docente Preescolar')
+        @if(Auth::user()->tipo_user == 'Docente Preescolar')
         <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -260,16 +277,14 @@
 
             <li class="treeview">
                 <a href="{{ url('admin/mensualidades') }}"><i class="fa fa-link"></i> <span>Mensualidades</span></a>
-                
-                
             </li>
 
             <li class="treeview">
                 <a href="{{ url('admin/notas')}}"><i class="fa fa-link"></i> <span>Calificaciones</span></a>
-                
-                
             </li>
-            <li class="treeview"><a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a> </li>
+            <li class="treeview">
+                <a href=" {{ url('admin/horarios')        }} "><i class="fa fa-link"></i><span>Horarios</span></a>
+            </li>
 
         @endif
         

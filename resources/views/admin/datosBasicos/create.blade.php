@@ -79,8 +79,9 @@
 		    	
 				<div class="col-xs-12">
 						<div class="form-group">
-							{!! Form::label('periodos','Seleccion periodo para la Preinscripción') !!}
-							{!! Form::select('id_periodo',$periodos,null,['class' => 'form-control select2', 'title' => 'Seleccione el Periodo al cual desea realizar la Preinscripción']) !!}								
+							{!! Form::label('periodos','Periodo donde se realizará la inscripción: ') !!}
+							<strong>{!! $periodo->periodo !!}</strong> Status:<strong>({!! $periodo->status !!})</strong>
+							{!! Form::hidden('id_periodo',$periodo->id) !!}								
 						</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">Seleccione al representante  <br> Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.</div>

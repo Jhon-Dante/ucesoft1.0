@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RecaudosTableSeeder::class);
         $this->call(AulasTableSeeder::class);
         $this->call(CargaAcademicaTableSeeder::class);
-        // $this->call(BoletinSeeder::class);
+        $this->call(BoletinFSeeder::class);
+
     }
 }

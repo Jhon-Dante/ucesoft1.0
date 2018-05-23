@@ -58,8 +58,6 @@
 	<tr> 
 		<?php $n=0; ?>
 		<table align="left" class="normal" cellpadding="3">
-			@foreach($cursos as $curso)
-				@if($curso->id == 8)
 					<tr>
 						<td>Año o Grado: <strong>Primero</strong></td>
 						<td colspan="2"><strong>CALIFICACIONES</strong></td>
@@ -77,66 +75,49 @@
 						<td><strong>Nro.</strong></td>
 					</tr>
 						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == $curso->id)
+							@if($asig->id_curso == 8)
 								<tr>
 									<td>{{$asig->asignatura}}</td>
-
-									@if(count($q)>0 && count($w)>0 && count($e)>0)
-										@if($i<13)	
-											<td align="center">{{round(($q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion)/3)}}</td>
-													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
-
-
-															
-																<?php $resul=round(($q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion)/3);
-																?>
-															
-															
-															<td align="center">
-																@if(round($resul)==1)UNO
-																@elseif(round($resul)==2)DOS
-																@elseif(round($resul)==3)TRES
-																@elseif(round($resul)==4)CUATRO
-																@elseif(round($resul)==5)CINCO
-																@elseif(round($resul)==6)SEIS
-																@elseif(round($resul)==7)SIETE
-																@elseif(round($resul)==8)OCHO
-																@elseif(round($resul)==9)NUEVE
-																@elseif(round($resul)==10)DIEZ
-																@elseif(round($resul)==11)ONCE
-																@elseif(round($resul)==12)DOCE
-																@elseif(round($resul)==13)TRECE
-																@elseif(round($resul)==14)CATORCE
-																@elseif(round($resul)==15)QUINCE
-																@elseif(round($resul)==16)DIECISÉIS
-																@elseif(round($resul)==17)DIECISIETE
-																@elseif(round($resul)==18)DIECIOCHO
-																@elseif(round($resul)==19)DIECINUEVE
-																@else VEINTE
-																@endif
-																
-
-															</td>
-															<td align="center">F</td>
-															<td align="center">Julio</td>
-															<td align="center">2018</td>	
-															<td align="center">1</td>
+							
+										@foreach($boletinFinal as $b)
+											@if($b->id_asignatura == $asig->id)
+												<td>{{$b->promedio}}</td>
+												<td align="center">
+													@if($b->promedio==1)UNO
+													@elseif($b->promedio==2)DOS
+													@elseif($b->promedio==3)TRES
+													@elseif($b->promedio==4)CUATRO
+													@elseif($b->promedio==5)CINCO
+													@elseif($b->promedio==6)SEIS
+													@elseif($b->promedio==7)SIETE
+													@elseif($b->promedio==8)OCHO
+													@elseif($b->promedio==9)NUEVE
+													@elseif($b->promedio==10)DIEZ
+													@elseif($b->promedio==11)ONCE
+													@elseif($b->promedio==12)DOCE
+													@elseif($b->promedio==13)TRECE
+													@elseif($b->promedio==14)CATORCE
+													@elseif($b->promedio==15)QUINCE
+													@elseif($b->promedio==16)DIECISÉIS
+													@elseif($b->promedio==17)DIECISIETE
+													@elseif($b->promedio==18)DIECIOCHO
+													@elseif($b->promedio==19)DIECINUEVE
+													@else VEINTE
 													@endif
-										@endif
-									@else
-										@for($o=0;$o<=5;$o++)
-											<td>***</td>
-										@endfor
-									@endif
+												</td>
+												<td align="center">F</td>
+												<td align="center">Julio</td>
+												<td align="center">2018</td>	
+												<td align="center">1</td>
+											@else
+												<td>***</td>
+											@endif
+										@endforeach
+									
 								</tr>
-							<?php $i++; ?>
 							@endif
 						@endforeach
 					<?php $n++; ?>
-				@endif
-			@endforeach
-			@foreach($cursos as $curso)
-				@if($curso->id == 9)
 					<tr>
 						<td>Año o Grado: <strong>Segundo</strong></td>
 						<td colspan="2"><strong>CALIFICACIONES</strong></td>
@@ -154,297 +135,56 @@
 						<td><strong>Nro.</strong></td>
 					</tr>
 						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == $curso->id)
+							@if($asig->id_curso == 9)
 								<tr>
 									<td>{{$asig->asignatura}}</td>
-
-									@if(count($e)>0)
-										@if($i<13)	
-											<td>
-
-											{{($q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion)/3}}</td>
-													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
-
-
-															
-																<?php $resul=$q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion/3;
-																?>
-															
-															<td align="center">{{round($resul)}}</td>
-															<td align="center">
-																@if(round($resul)==1)UNO
-																@elseif(round($resul)==2)DOS
-																@elseif(round($resul)==3)TRES
-																@elseif(round($resul)==4)CUATRO
-																@elseif(round($resul)==5)CINCO
-																@elseif(round($resul)==6)SEIS
-																@elseif(round($resul)==7)SIETE
-																@elseif(round($resul)==8)OCHO
-																@elseif(round($resul)==9)NUEVE
-																@elseif(round($resul)==10)DIEZ
-																@elseif(round($resul)==11)ONCE
-																@elseif(round($resul)==12)DOCE
-																@elseif(round($resul)==13)TRECE
-																@elseif(round($resul)==14)CATORCE
-																@elseif(round($resul)==15)QUINCE
-																@elseif(round($resul)==16)DIECISÉIS
-																@elseif(round($resul)==17)DIECISIETE
-																@elseif(round($resul)==18)DIECIOCHO
-																@elseif(round($resul)==19)DIECINUEVE
-																@else VEINTE
-																@endif
-																
-
-															</td>
-															<td align="center">F</td>
-															<td align="center">Julio</td>
-															<td align="center">2018</td>	
-															<td align="center">1</td>
+									@if($boletinFinal->id_asignatura)
+										@foreach($boletinFinal as $b)
+											@if($b->id_asignatura == $asig->id)
+												<td>{{$b->promedio}}</td>
+												<td align="center">
+													@if($b->promedio==1)UNO
+													@elseif($b->promedio==2)DOS
+													@elseif($b->promedio==3)TRES
+													@elseif($b->promedio==4)CUATRO
+													@elseif($b->promedio==5)CINCO
+													@elseif($b->promedio==6)SEIS
+													@elseif($b->promedio==7)SIETE
+													@elseif($b->promedio==8)OCHO
+													@elseif($b->promedio==9)NUEVE
+													@elseif($b->promedio==10)DIEZ
+													@elseif($b->promedio==11)ONCE
+													@elseif($b->promedio==12)DOCE
+													@elseif($b->promedio==13)TRECE
+													@elseif($b->promedio==14)CATORCE
+													@elseif($b->promedio==15)QUINCE
+													@elseif($b->promedio==16)DIECISÉIS
+													@elseif($b->promedio==17)DIECISIETE
+													@elseif($b->promedio==18)DIECIOCHO
+													@elseif($b->promedio==19)DIECINUEVE
+													@else VEINTE
 													@endif
-										@endif
+												</td>
+												<td align="center">F</td>
+												<td align="center">Julio</td>
+												<td align="center">2018</td>	
+												<td align="center">1</td>
+											@else
+												<td>***</td>
+											@endif
+										@endforeach
+									
 									@else
-										@for($o=0;$o<=5;$o++)
 											<td>***</td>
-										@endfor
+											<td>***</td>
+											<td>***</td>
+											<td>***</td>
+											<td>***</td>
+											<td>***</td>
 									@endif
 								</tr>
-							<?php $i++; ?>
 							@endif
 						@endforeach
-					<?php $n++; ?>
-				@endif
-			@endforeach
-			@foreach($cursos as $curso)
-				@if($curso->id == 10)
-					<tr>
-						<td>Año o Grado: <strong>Tercero</strong></td>
-						<td colspan="2"><strong>CALIFICACIONES</strong></td>
-						<td></td>
-						<td colspan="2"><strong>FECHA</strong></td>
-						<td><strong>PLANTEL</strong></td>
-					</tr>
-					<tr>
-						<td><strong>Asignaturas</strong></td>
-						<td><strong>En Nro.</strong></td>
-						<td><strong>En Letras</strong></td>
-						<td><strong>T-E</strong></td>
-						<td><strong>Mes</strong></td>
-						<td><strong>Año</strong></td>
-						<td><strong>Nro.</strong></td>
-					</tr>
-						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == $curso->id)
-								<tr>
-									<td>{{$asig->asignatura}}</td>
-
-									@if(count($q)>0 && count($w)>0 && count($e)>0)
-										@if($i<13)	
-											<td>{{$q[$i]->id_asignatura}}-{{$w[$i]->id_asignatura}}-{{$e[$i]->id_asignatura}}-{{$asig->id}}</td>
-													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
-
-
-															
-																<?php $resul=$q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion/3;
-																?>
-															
-															<td align="center">{{round($resul)}}</td>
-															<td align="center">
-																@if(round($resul)==1)UNO
-																@elseif(round($resul)==2)DOS
-																@elseif(round($resul)==3)TRES
-																@elseif(round($resul)==4)CUATRO
-																@elseif(round($resul)==5)CINCO
-																@elseif(round($resul)==6)SEIS
-																@elseif(round($resul)==7)SIETE
-																@elseif(round($resul)==8)OCHO
-																@elseif(round($resul)==9)NUEVE
-																@elseif(round($resul)==10)DIEZ
-																@elseif(round($resul)==11)ONCE
-																@elseif(round($resul)==12)DOCE
-																@elseif(round($resul)==13)TRECE
-																@elseif(round($resul)==14)CATORCE
-																@elseif(round($resul)==15)QUINCE
-																@elseif(round($resul)==16)DIECISÉIS
-																@elseif(round($resul)==17)DIECISIETE
-																@elseif(round($resul)==18)DIECIOCHO
-																@elseif(round($resul)==19)DIECINUEVE
-																@else VEINTE
-																@endif
-																
-
-															</td>
-															<td align="center">F</td>
-															<td align="center">Julio</td>
-															<td align="center">2018</td>	
-															<td align="center">1</td>
-													@endif
-										@endif
-									@else
-										@for($o=0;$o<=5;$o++)
-											<td>***</td>
-										@endfor
-									@endif
-								</tr>
-							<?php $i++; ?>
-							@endif
-						@endforeach
-					<?php $n++; ?>
-				@endif
-			@endforeach
-			@foreach($cursos as $curso)
-				@if($curso->id == 11)
-					<tr>
-						<td>Año o Grado: <strong>Cuarto</strong></td>
-						<td colspan="2"><strong>CALIFICACIONES</strong></td>
-						<td></td>
-						<td colspan="2"><strong>FECHA</strong></td>
-						<td><strong>PLANTEL</strong></td>
-					</tr>
-					<tr>
-						<td><strong>Asignaturas</strong></td>
-						<td><strong>En Nro.</strong></td>
-						<td><strong>En Letras</strong></td>
-						<td><strong>T-E</strong></td>
-						<td><strong>Mes</strong></td>
-						<td><strong>Año</strong></td>
-						<td><strong>Nro.</strong></td>
-					</tr>
-						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == $curso->id)
-								<tr>
-									<td>{{$asig->asignatura}}</td>
-
-									@if(count($q)>0 && count($w)>0 && count($e)>0)
-										@if($i<13)	
-											<td>{{$q[$i]->id_asignatura}}-{{$w[$i]->id_asignatura}}-{{$e[$i]->id_asignatura}}-{{$asig->id}}</td>
-													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
-
-
-															
-																<?php $resul=$q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion/3;
-																?>
-															
-															<td align="center">{{round($resul)}}</td>
-															<td align="center">
-																@if(round($resul)==1)UNO
-																@elseif(round($resul)==2)DOS
-																@elseif(round($resul)==3)TRES
-																@elseif(round($resul)==4)CUATRO
-																@elseif(round($resul)==5)CINCO
-																@elseif(round($resul)==6)SEIS
-																@elseif(round($resul)==7)SIETE
-																@elseif(round($resul)==8)OCHO
-																@elseif(round($resul)==9)NUEVE
-																@elseif(round($resul)==10)DIEZ
-																@elseif(round($resul)==11)ONCE
-																@elseif(round($resul)==12)DOCE
-																@elseif(round($resul)==13)TRECE
-																@elseif(round($resul)==14)CATORCE
-																@elseif(round($resul)==15)QUINCE
-																@elseif(round($resul)==16)DIECISÉIS
-																@elseif(round($resul)==17)DIECISIETE
-																@elseif(round($resul)==18)DIECIOCHO
-																@elseif(round($resul)==19)DIECINUEVE
-																@else VEINTE
-																@endif
-																
-
-															</td>
-															<td align="center">F</td>
-															<td align="center">Julio</td>
-															<td align="center">2018</td>	
-															<td align="center">1</td>
-													@endif
-										@endif
-									@else
-										@for($o=0;$o<=5;$o++)
-											<td>***</td>
-										@endfor
-									@endif
-								</tr>
-							<?php $i++; ?>
-							@endif
-						@endforeach
-					<?php $n++; ?>
-				@endif
-			@endforeach
-			@foreach($cursos as $curso)
-				@if($curso->id == 12)
-					<tr>
-						<td>Año o Grado: <strong>Quinto</strong></td>
-						<td colspan="2"><strong>CALIFICACIONES</strong></td>
-						<td></td>
-						<td colspan="2"><strong>FECHA</strong></td>
-						<td><strong>PLANTEL</strong></td>
-					</tr>
-					<tr>
-						<td><strong>Asignaturas</strong></td>
-						<td><strong>En Nro.</strong></td>
-						<td><strong>En Letras</strong></td>
-						<td><strong>T-E</strong></td>
-						<td><strong>Mes</strong></td>
-						<td><strong>Año</strong></td>
-						<td><strong>Nro.</strong></td>
-					</tr>
-						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == $curso->id)
-								<tr>
-									<td>{{$asig->asignatura}}</td>
-
-									@if(count($q)>0 && count($w)>0 && count($e)>0)
-										@if($i<13)	
-											<td>{{$q[$i]->id_asignatura}}-{{$w[$i]->id_asignatura}}-{{$e[$i]->id_asignatura}}-{{$asig->id}}</td>
-													@if($q[$i]->id_asignatura == $asig->id && $w[$i]->id_asignatura == $asig->id && $e[$i]->id_asignatura == $asig->id)
-
-
-															
-																<?php $resul=$q[$i]->calificacion+$w[$i]->calificacion+$e[$i]->calificacion/3;
-																?>
-															
-															<td align="center">{{round($resul)}}</td>
-															<td align="center">
-																@if(round($resul)==1)UNO
-																@elseif(round($resul)==2)DOS
-																@elseif(round($resul)==3)TRES
-																@elseif(round($resul)==4)CUATRO
-																@elseif(round($resul)==5)CINCO
-																@elseif(round($resul)==6)SEIS
-																@elseif(round($resul)==7)SIETE
-																@elseif(round($resul)==8)OCHO
-																@elseif(round($resul)==9)NUEVE
-																@elseif(round($resul)==10)DIEZ
-																@elseif(round($resul)==11)ONCE
-																@elseif(round($resul)==12)DOCE
-																@elseif(round($resul)==13)TRECE
-																@elseif(round($resul)==14)CATORCE
-																@elseif(round($resul)==15)QUINCE
-																@elseif(round($resul)==16)DIECISÉIS
-																@elseif(round($resul)==17)DIECISIETE
-																@elseif(round($resul)==18)DIECIOCHO
-																@elseif(round($resul)==19)DIECINUEVE
-																@else VEINTE
-																@endif
-																
-
-															</td>
-															<td align="center">F</td>
-															<td align="center">Julio</td>
-															<td align="center">2018</td>	
-															<td align="center">1</td>
-													@endif
-										@endif
-									@else
-										@for($o=0;$o<=5;$o++)
-											<td>***</td>
-										@endfor
-									@endif
-								</tr>
-							<?php $i++; ?>
-							@endif
-						@endforeach
-					<?php $n++; ?>
-				@endif
-			@endforeach
 		</table>
 		<table align="right" width="136" height="40">
 			<tr>

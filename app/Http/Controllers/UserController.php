@@ -96,6 +96,25 @@ class UserController extends Controller
     {
         //
     }
+
+    public function editarPermisos(request $request)
+    {
+        if(Auth::user()->tipo_user == 'Administrador(a)' || $request->contraseña == null){
+            $clave=$request->password;
+            $validator=Auth::user()->password;
+            if (password_verify($clave, $validator)) {
+                $usuarios=User::all();
+
+                return View('admin.usuarios.edit_per', compact('usuarios'));
+            }else{
+                flash('¡CONTRASEÑA INCORRECTA!','warning');
+                return redirect()->back();
+            }
+        }else{
+            flash('NO ESTÁ AUTORIZADO PARA ACCEDER A ESTA FUNCIONALIDAD!','warning');
+            return redirect()->back();
+        }
+    }
     public function actualizar(Request $request)
     {
         // dd($request->user);

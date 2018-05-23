@@ -28,6 +28,7 @@ use App\Boletin;
 use App\Pagos;
 use Session;
 use App\Auditoria;
+use App\BoletinFinal;
 
 
 if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
@@ -69,6 +70,7 @@ class DatosBasicosController extends Controller
         $datosBasicos=DatosBasicos::all();
         $id_estudiante=0;
         $periodos=Periodos::lists('periodo','id');
+        $periodo=Periodos::find(session::get('periodo'));
         $parentescos=Parentesco::where('parentesco','Padre')->where('parentesco','Madre')->get()->lists('parentesco','id');
         $parentesco=Parentesco::lists('parentesco','id');//para formulario de representante
         $asignaturas=Asignaturas::all();
@@ -76,7 +78,7 @@ class DatosBasicosController extends Controller
         $cursos=Cursos::all();
         $asignaturas2=Asignaturas::lists('asignatura','id');
                 
-        return View('admin.datosBasicos.create', compact('representantes','parentescos','padres','opcion','datosBasicos','id_estudiante','parentesco','asignaturas','estados','periodos','cursos','asignaturas'));
+        return View('admin.datosBasicos.create', compact('representantes','periodo','parentescos','padres','opcion','datosBasicos','id_estudiante','parentesco','asignaturas','estados','periodos','cursos','asignaturas'));
     }
 
     public function buscarcurso($id)
@@ -796,14 +798,17 @@ class DatosBasicosController extends Controller
     {
         $estudiante=Inscripcion::find($request->id_estudiante);
         $periodo=Periodos::where('status','Activo')->first();
-        $boletin=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->get();
+        // $boletin=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->get();
         $inscripcion=Inscripcion::find($request->id_estudiante);
         $cursos=Cursos::where('id','>',7)->get();
-        $año=date('Y');
-        $periodo=Periodos::where('status','Activo')->first();
-        $edu=0;
-        $notas=Boletin::where('id_datosBasicos', $inscripcion->id)->where('id_periodo',$periodo->id)->get();
-        $mensualidades=Mensualidades::where('id_datosBasicos',$inscripcion->id_datosBasicos)->where('id_periodo',$periodo->id)->where('estado','Cancelado');
+        $boletinFinal=BoletinFinal::where('id_datosBasicos',$inscripcion->id_datosBasicos)->get();
+        
+        // dd($request->id_estudiante,count($boletinFinal));
+        // $año=date('Y');
+        // $periodo=Periodos::where('status','Activo')->first();
+        // $edu=0;
+        // $notas=Boletin::where('id_datosBasicos', $inscripcion->id)->where('id_periodo',$periodo->id)->get();
+        // $mensualidades=Mensualidades::where('id_datosBasicos',$inscripcion->id_datosBasicos)->where('id_periodo',$periodo->id)->where('estado','Cancelado');
         $asignaturas=Asignaturas::where('id_curso','>', 5)->get();
 
         $es=DatosBasicos::find($inscripcion->id_datosBasicos);
@@ -816,13 +821,13 @@ class DatosBasicosController extends Controller
         }else{
             $edu="Media";
         }
-        $q=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',1)->orderBy('id_asignatura')->get();
-        //$q=[];
-        $w=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',2)->orderBy('id_asignatura')->get();
-        $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->orderBy('id_asignatura')->get();
-        // dd(count($q),count($w),count($e));
+        // $q=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',1)->orderBy('id_asignatura')->get();
+        // //$q=[];
+        // $w=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',2)->orderBy('id_asignatura')->get();
+        // $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->orderBy('id_asignatura')->get();
+        // // dd(count($q),count($w),count($e));
         $i=0;
-        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletin' => $boletin, 'i' => $i, 'edu' => $edu, 'asignaturas' => $asignaturas,'q' => $q, 'w' => $w, 'e' => $e, 'mensualidades' => $mensualidades])->setPaper('legal');
+        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletinFinal' => $boletinFinal, 'i' => $i, 'edu' => $edu, 'asignaturas' => $asignaturas, 'mensualidades' => $mensualidades])->setPaper('legal');
 
                     return $dompdf->stream();
     }

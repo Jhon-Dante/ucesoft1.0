@@ -41,6 +41,8 @@ class CreateUsersTable extends Migration
             $table->enum('edit_cali_pre',['Si','No']);
             $table->enum('edit_cali_basic',['Si','No']);
             $table->enum('edit_cali_media',['Si','No']);
+            $table->enum('edit_notas_final',['Si','No']);
+
             //---------------------------------- Horarios
             $table->enum('gen_horario',['Si','No']);
             //---------------------------------- personal

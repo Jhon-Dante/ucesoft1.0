@@ -44,16 +44,21 @@ use Carbon\Carbon;
               @include('flash::message')
           </div>
           <div class="panel-body">
-            <div class="box-body">
+            <div class="box-body" style="overflow: scroll;">
             <table id="example1" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th>Nro</th>
                 <th>Usuario</th>
-                <th>Email</th>
                 <th>Tipo de usuario</th>
-                <th>Foto</th>
-                <th>Status</th>
+                <th>Pre/registrar estudiante</th>
+                <th>Ver listado de estudiantes</th>
+                <th>Editar datos de estudiantes</th>
+                <th>Eliminar estudiantes</th>
+                <th>Generar constancia de estudios</th>
+                <th>Generar cestificado de calificaciones</th>
+                <th>Generar Título de Bachillere</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -62,28 +67,11 @@ use Carbon\Carbon;
                 <tr>
                     <td>{{$num=$num+1}}</td>
                     <td>{{$usuario->name}}</td>
-                    <td>{{$usuario->email}}</td>
                     <td>{{$usuario->tipo_user}}</td>
-                    <td>
-                        <div align="center"> <img alt="User Pic" 
-                        @if($usuario->foto==null)
-                            src="{{asset('/img/escudo.png')}}" class="img-circle img-responsive">
-                        @else
-                            src="{{asset(Auth::user()->photo_route)}}" class="img-circle img-responsive">
-                        @endif
-                        </div>
-                    </td>
-                    <td align="center">
-                    @if($usuario->status == 1)
-                        <a href="{{ route('admin.usuario.status', [$usuario->id]) }}"><img src="../img/iconos/bien.png" style="border-radius: 50px;" width="60px" height="60px">
-                        <!-- <a href="#">{{ Form::checkbox('status',1,true)}}</a> -->
-                        </a>
-                    @else
-                        <a href="{{ route('admin.usuario.status', [$usuario->id]) }}"><img src="../img/iconos/mal.png" style="border-radius: 50px;" width="60px" height="60px">
-                        </a>
-                        <!-- <a href="#">{{ Form::checkbox('status',1,false)}}</a> -->
-                    @endif
-                  </td>
+                    <td>{{$usuario->pre_re}}</td>
+                    <td>{{$usuario->list_estu}}</td>
+                    <td>{{$usuario->edit_estu}}</td>
+                    <td>{{$usuario->eli_estu}}</td>
                 </tr>
             @endforeach
               </tbody>

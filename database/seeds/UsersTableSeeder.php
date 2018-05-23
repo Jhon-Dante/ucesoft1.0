@@ -38,6 +38,7 @@ class UsersTableSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -125,6 +126,7 @@ class UsersTableSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal

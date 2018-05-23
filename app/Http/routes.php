@@ -91,6 +91,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'UserController@editarStatus',
             'as' => 'admin.usuario.status'
         ]);
+        Route::post('/usuario/editar_per',[
+            'uses' => 'UserController@editarPermisos',
+            'as' => 'admin.usuario.editar_per'
+        ]);
         Route::get('/asignatura/{id}/status',[
             'uses' => 'AsignaturasController@editarStatus',
             'as' => 'admin.asignatura.status'
@@ -389,6 +393,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'uses' => 'PersonalController@buscartipodocente',
             'as' => 'admin.personal.buscartipodocente'
          ]);
+
+         Route::resource('/notas_finales','NotasFinalesController');
 
 
          

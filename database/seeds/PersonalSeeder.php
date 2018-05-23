@@ -56,6 +56,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -153,6 +154,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -249,6 +251,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -345,6 +348,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -441,6 +445,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -537,6 +542,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -634,6 +640,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -732,6 +739,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -829,6 +837,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
@@ -926,6 +935,7 @@ class PersonalSeeder extends Seeder
             'edit_cali_pre' => 'Si',
             'edit_cali_basic' => 'Si',
             'edit_cali_media' => 'Si',
+            'edit_notas_final' => 'Si',
             //---------------------------------- Horarios
             'gen_horario' => 'Si',
             //---------------------------------- personal
