@@ -17,6 +17,7 @@ class CreateTableAsignaturas extends Migration
             $table->string('asignatura');
             $table->string('codigo');
             $table->integer('id_curso')->unsigned();
+            $table->integer('n_bloques');
             $table->string('color');
             $table->string('status');
             

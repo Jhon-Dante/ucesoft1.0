@@ -18,6 +18,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#FF4848',
             'status' => 1
         ]);
@@ -26,6 +27,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#FF9797',
             'status' => 1
         ]);
@@ -34,6 +36,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Sociales',
             'codigo' => 'CSCSOC-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#FF62B0',
             'status' => 1
         ]);
@@ -42,6 +45,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#E469FE',
             'status' => 1
         ]);
@@ -50,6 +54,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#9669FE',
             'status' => 1
         ]);
@@ -58,6 +63,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Estética',
             'codigo' => 'EST-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#FFBBFF',
             'status' => 1
         ]);
@@ -66,6 +72,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Vial',
             'codigo' => 'EDUCVIAL-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#9A03FE',
             'status' => 1
         ]);
@@ -74,6 +81,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Naturales y Tecnologías',
             'codigo' => 'CSCNATEC-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#B5FFFC',
             'status' => 1
         ]);
@@ -82,6 +90,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Formación Permanente',
             'codigo' => 'FORMP-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#23819C',
             'status' => 1
         ]);
@@ -90,6 +99,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación y Valores',
             'codigo' => 'EDUCVAL-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#5757FF',
             'status' => 1
         ]);
@@ -98,6 +108,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lectura y Ortgrafía',
             'codigo' => 'LECTORG-1G',
             'id_curso' => '2',
+            'n_bloques' => '4',
             'color' => '#01F33E',
             'status' => 1
         ]);
@@ -107,6 +118,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#FF4848',
             'status' => 1
         ]);
@@ -115,6 +127,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#FF9797',
             'status' => 1
         ]);
@@ -123,6 +136,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Sociales',
             'codigo' => 'CSCSOC-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#FF62B0',
             'status' => 1
         ]);
@@ -131,6 +145,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#E469FE',
             'status' => 1
         ]);
@@ -139,6 +154,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#9669FE',
             'status' => 1
         ]);
@@ -147,6 +163,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Estética',
             'codigo' => 'EST-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#FFBBFF',
             'status' => 1
         ]);
@@ -155,6 +172,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Vial',
             'codigo' => 'EDUCVIAL-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#9A03FE',
             'status' => 1
         ]);
@@ -163,6 +181,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Naturales y Tecnologías',
             'codigo' => 'CSCNATEC-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#B5FFFC',
             'status' => 1
         ]);
@@ -171,6 +190,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Formación Permanente',
             'codigo' => 'FORMP-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#23819C',
             'status' => 1
         ]);
@@ -179,6 +199,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación y Valores',
             'codigo' => 'EDUCVAL-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#5757FF',
             'status' => 1
         ]);
@@ -187,6 +208,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lectura y Ortgrafía',
             'codigo' => 'LECTORG-2G',
             'id_curso' => '3',
+            'n_bloques' => '4',
             'color' => '#01F33E',
             'status' => 1
         ]);
@@ -197,6 +219,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#FF4848',
             'status' => 1
         ]);
@@ -205,6 +228,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#FF9797',
             'status' => 1
         ]);
@@ -213,6 +237,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Sociales',
             'codigo' => 'CSCSOC-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#FF62B0',
             'status' => 1
         ]);
@@ -221,6 +246,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#E469FE',
             'status' => 1
         ]);
@@ -229,6 +255,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#9669FE',
             'status' => 1
         ]);
@@ -237,6 +264,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Estética',
             'codigo' => 'EST-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#FFBBFF',
             'status' => 1
         ]);
@@ -245,6 +273,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Vial',
             'codigo' => 'EDUCVIAL-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#9A03FE',
             'status' => 1
         ]);
@@ -253,6 +282,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Naturales y Tecnologías',
             'codigo' => 'CSCNATEC-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#B5FFFC',
             'status' => 1
         ]);
@@ -261,6 +291,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Formación Permanente',
             'codigo' => 'FORMP-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#23819C',
             'status' => 1
         ]);
@@ -269,6 +300,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación y Valores',
             'codigo' => 'EDUCVAL-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#5757FF',
             'status' => 1
         ]);
@@ -277,6 +309,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lectura y Ortgrafía',
             'codigo' => 'LECTORG-3G',
             'id_curso' => '4',
+            'n_bloques' => '4',
             'color' => '#01F33E',
             'status' => 1
         ]);
@@ -287,6 +320,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#FF4848',
             'status' => 1
         ]);
@@ -295,6 +329,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#FF9797',
             'status' => 1
         ]);
@@ -303,6 +338,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Sociales',
             'codigo' => 'CSCSOC-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#FF62B0',
             'status' => 1
         ]);
@@ -311,6 +347,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#E469FE',
             'status' => 1
         ]);
@@ -319,6 +356,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#9669FE',
             'status' => 1
         ]);
@@ -327,6 +365,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Estética',
             'codigo' => 'EST-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#FFBBFF',
             'status' => 1
         ]);
@@ -335,6 +374,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Vial',
             'codigo' => 'EDUCVIAL-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#9A03FE',
             'status' => 1
         ]);
@@ -343,6 +383,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Naturales y Tecnologías',
             'codigo' => 'CSCNATEC-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#B5FFFC',
             'status' => 1
         ]);
@@ -351,6 +392,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Formación Permanente',
             'codigo' => 'FORMP-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#23819C',
             'status' => 1
         ]);
@@ -359,6 +401,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación y Valores',
             'codigo' => 'EDUCVAL-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#5757FF',
             'status' => 1
         ]);
@@ -367,6 +410,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lectura y Ortgrafía',
             'codigo' => 'LECTORG-4G',
             'id_curso' => '5',
+            'n_bloques' => '4',
             'color' => '#01F33E',
             'status' => 1
         ]);
@@ -376,6 +420,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#FF4848',
             'status' => 1
         ]);
@@ -384,6 +429,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#FF9797',
             'status' => 1
         ]);
@@ -392,6 +438,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Sociales',
             'codigo' => 'CSCSOC-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#FF62B0',
             'status' => 1
         ]);
@@ -400,6 +447,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#E469FE',
             'status' => 1
         ]);
@@ -408,6 +456,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#9669FE',
             'status' => 1
         ]);
@@ -416,6 +465,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Estética',
             'codigo' => 'EST-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#FFBBFF',
             'status' => 1
         ]);
@@ -424,6 +474,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Vial',
             'codigo' => 'EDUCVIAL-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#9A03FE',
             'status' => 1
         ]);
@@ -432,6 +483,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Naturales y Tecnologías',
             'codigo' => 'CSCNATEC-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#B5FFFC',
             'status' => 1
         ]);
@@ -440,6 +492,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Formación Permanente',
             'codigo' => 'FORMP-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#23819C',
             'status' => 1
         ]);
@@ -448,6 +501,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación y Valores',
             'codigo' => 'EDUCVAL-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#5757FF',
             'status' => 1
         ]);
@@ -456,6 +510,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lectura y Ortgrafía',
             'codigo' => 'LECTORG-5G',
             'id_curso' => '6',
+            'n_bloques' => '4',
             'color' => '#01F33E',
             'status' => 1
         ]);
@@ -465,6 +520,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lengua',
             'codigo' => 'LENG-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#FF4848',
             'status' => 1
         ]);
@@ -473,6 +529,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#FF9797',
             'status' => 1
         ]);
@@ -481,6 +538,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Sociales',
             'codigo' => 'CSCSOC-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#FF62B0',
             'status' => 1
         ]);
@@ -489,6 +547,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#E469FE',
             'status' => 1
         ]);
@@ -497,6 +556,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#9669FE',
             'status' => 1
         ]);
@@ -505,6 +565,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Estética',
             'codigo' => 'EST-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#FFBBFF',
             'status' => 1
         ]);
@@ -513,6 +574,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Vial',
             'codigo' => 'EDUCVIAL-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#9A03FE',
             'status' => 1
         ]);
@@ -521,6 +583,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Ciencias Naturales y Tecnologías',
             'codigo' => 'CSCNATEC-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#B5FFFC',
             'status' => 1
         ]);
@@ -529,6 +592,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Formación Permanente',
             'codigo' => 'FORMP-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#23819C',
             'status' => 1
         ]);
@@ -537,6 +601,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación y Valores',
             'codigo' => 'EDUCVAL-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#5757FF',
             'status' => 1
         ]);
@@ -545,6 +610,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Lectura y Ortgrafía',
             'codigo' => 'LECTORG-6G',
             'id_curso' => '7',
+            'n_bloques' => '4',
             'color' => '#01F33E',
             'status' => 1
         ]);
@@ -555,6 +621,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Castellano',
             'codigo' => 'CAST-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#1FCB4A',
             'status' => 1
         ]);
@@ -563,6 +630,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -571,6 +639,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -579,6 +648,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -587,6 +657,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Geografía',
             'codigo' => 'GEO-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#DFA800',
             'status' => 1
         ]);
@@ -595,6 +666,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -603,6 +675,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Artística',
             'codigo' => 'ART-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#FF800D',
             'status' => 1
         ]);
@@ -611,6 +684,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Familiar',
             'codigo' => 'EDUCFAM-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#FFBD82',
             'status' => 1
         ]);
@@ -619,6 +693,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para el Trabajo',
             'codigo' => 'EDUCTRAB-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#D1D17A',
             'status' => 1
         ]);
@@ -627,6 +702,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Arte y Patrimonio',
             'codigo' => 'ARTPAT-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#C27E3A',
             'status' => 1
         ]);
@@ -635,6 +711,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -643,6 +720,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Memoria, Ciudadanía y Territorio',
             'codigo' => 'MCT-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#FF5353',
             'status' => 1
         ]);
@@ -651,6 +729,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-1A',
             'id_curso' => '8',
+            'n_bloques' => '4',
             'color' => '#B9264F',
             'status' => 1
         ]);
@@ -660,6 +739,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Castellano',
             'codigo' => 'CAST-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#1FCB4A',
             'status' => 1
         ]);
@@ -668,6 +748,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -676,6 +757,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -684,6 +766,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -692,6 +775,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para la Salud',
             'codigo' => 'EDUCS-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#990099',
             'status' => 1
         ]);
@@ -700,6 +784,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -708,6 +793,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia Universal',
             'codigo' => 'HUNIV-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#74138C',
             'status' => 1
         ]);
@@ -716,6 +802,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Artística',
             'codigo' => 'ART-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#FF800D',
             'status' => 1
         ]);
@@ -724,6 +811,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para el Trabajo',
             'codigo' => 'EDUCTRAB-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#D1D17A',
             'status' => 1
         ]);
@@ -732,6 +820,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Arte y Patrimonio',
             'codigo' => 'ARTPAT-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#C27E3A',
             'status' => 1
         ]);
@@ -740,6 +829,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -748,6 +838,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-2A',
             'id_curso' => '9',
+            'n_bloques' => '4',
             'color' => '#B9264F',
             'status' => 1
         ]);
@@ -757,6 +848,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Castellano',
             'codigo' => 'CAST-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#1FCB4A',
             'status' => 1
         ]);
@@ -765,6 +857,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -773,6 +866,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -781,6 +875,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -789,6 +884,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Física',
             'codigo' => 'FIS-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#1F88A7',
             'status' => 1
         ]);
@@ -797,6 +893,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Química',
             'codigo' => 'QUIM-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#74BAAC',
             'status' => 1
         ]);
@@ -805,6 +902,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -813,6 +911,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Geografía',
             'codigo' => 'GEO-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#DFA800',
             'status' => 1
         ]);
@@ -821,6 +920,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para el Trabajo',
             'codigo' => 'EDUCTRAB-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#D1D17A',
             'status' => 1
         ]);
@@ -829,6 +929,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -837,6 +938,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-3A',
             'id_curso' => '10',
+            'n_bloques' => '4',
             'color' => '#B9264F',
             'status' => 1
         ]);
@@ -846,6 +948,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Castellano',
             'codigo' => 'CAST-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#1FCB4A',
             'status' => 1
         ]);
@@ -854,6 +957,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -862,6 +966,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -870,6 +975,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -878,6 +984,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Física',
             'codigo' => 'FIS-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#1F88A7',
             'status' => 1
         ]);
@@ -886,6 +993,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Química',
             'codigo' => 'QUIM-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#74BAAC',
             'status' => 1
         ]);
@@ -894,6 +1002,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -902,6 +1011,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Filosofía',
             'codigo' => 'FIL-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#BBBBFF',
             'status' => 1
         ]);
@@ -910,6 +1020,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Instrucción Premilitar',
             'codigo' => 'IPM-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#36F200',
             'status' => 1
         ]);
@@ -918,6 +1029,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -926,6 +1038,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-4A',
             'id_curso' => '11',
+            'n_bloques' => '4',
             'color' => '#B9264F',
             'status' => 1
         ]);
@@ -935,6 +1048,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Castellano',
             'codigo' => 'CAST-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#1FCB4A',
             'status' => 1
         ]);
@@ -943,6 +1057,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -951,6 +1066,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -959,6 +1075,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -967,6 +1084,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Física',
             'codigo' => 'FIS-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#1F88A7',
             'status' => 1
         ]);
@@ -975,6 +1093,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Química',
             'codigo' => 'QUIM-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#74BAAC',
             'status' => 1
         ]);
@@ -983,6 +1102,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Geografía',
             'codigo' => 'GEO-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#DFA800',
             'status' => 1
         ]);
@@ -991,6 +1111,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Instrucción Premilitar',
             'codigo' => 'IPM-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#36F200',
             'status' => 1
         ]);
@@ -999,6 +1120,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -1007,22 +1129,12 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-5A',
             'id_curso' => '12',
+            'n_bloques' => '4',
             'color' => '#B9264F',
             'status' => 1
         ]);
 
         $asignaturas=Asignaturas::all();
         $periodos=periodos::all();
-
-        for ($i=1; $i < count($asignaturas); $i++) {
-            for ($j=1; $j < count($periodos); $j++) { 
-                DB::table('n_bloques')->insert([
-
-                'n_bloques' => 4,
-                'id_asignatura' => $i,
-                'id_periodo' => $j
-                ]);
-            }
-        }
     }
 }

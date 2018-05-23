@@ -83,6 +83,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.personales.buscar'
             ]);
 
+        Route::get('/asignaturas/{id}/buscar',[
+            'uses' => 'AsignaturasController@buscarasignatura',
+            'as' => 'admin.asignaturas.buscar'
+            ]);
+
         Route::get('/personal/{id}/status',[
             'uses' => 'PersonalController@editarStatus',
             'as' => 'admin.personal.status'
