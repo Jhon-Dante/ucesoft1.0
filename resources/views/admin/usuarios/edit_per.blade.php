@@ -32,11 +32,11 @@ use Carbon\Carbon;
 
               
 
-              <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
+              <!-- <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
                 <a href="#" data-toggle="modal" data-target="#myModal3" class="btn btn-warning btn-flat" style="padding: 4px 10px; border-radius: 30px;">
                 <i class="fa fa-pencil"></i> Editar permisos de usuarios   
                 </a>
-              </div>
+              </div> -->
 
           </div>
 
@@ -55,9 +55,9 @@ use Carbon\Carbon;
                 <th>Ver listado de estudiantes</th>
                 <th>Editar datos de estudiantes</th>
                 <th>Eliminar estudiantes</th>
-                <th>Generar constancia de estudios</th>
+                <!-- <th>Generar constancia de estudios</th>
                 <th>Generar cestificado de calificaciones</th>
-                <th>Generar Título de Bachillere</th>
+                <th>Generar Título de Bachillere</th> -->
                 
               </tr>
             </thead>

@@ -92,7 +92,6 @@
 				</div>
 		</div>
 	</section>
-
 	<section class="content spark-screen">
 		<div class="row">
 			<div class="col-xs-12">

@@ -78,7 +78,7 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        //dd($request->all());
+        dd($request->all());
     }
 
     public function crear($id_seccion,$id_periodo)
@@ -264,7 +264,6 @@ class HorariosController extends Controller
                 //dd("Hasta aqui");
                 break;
         }
-       // dd($bloquesx);
 
         $horas=8;
         $aulas=Aula::where('status',1)->get();
