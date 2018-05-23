@@ -79,6 +79,13 @@ class PagosController extends Controller
     public function store(Request $request)
     {
         $id_periodo=Session::get('periodo');
+        $pago=Pagos::find($id_periodo);
+        if (count($pago)>0) {
+            flash('LO SENTIMOS, YA EXISTEN MONTOS REGISTRADO PARA EL PERIODO ESCOLAR ACTUAL','warning');
+            return redirect()->back();    
+        } else {
+            
+        
         for ($i=1; $i <=12 ; $i++) { 
             
         $pagos=Pagos::create(['id_mes' => $i,
@@ -86,9 +93,10 @@ class PagosController extends Controller
                         'id_periodo' => $id_periodo]);
 
         }
-        flash('MONTOS MODIFICADOS CON ÉXITO');
+        flash('MONTOS CREADOS CON ÉXITO','success');
         return redirect()->back();
-
+        
+        }
 
     }
 

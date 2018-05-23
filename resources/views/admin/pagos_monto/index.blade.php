@@ -5,7 +5,7 @@
 @endsection
 @section('content-wrapper')
 <div class="content-wrapper">
-
+<!-- verificar las condiciones para mostrar modificacion de montos en los meses anteriores -->
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
@@ -30,7 +30,7 @@
 
 					<div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
 						<a href="{{ url('admin/pagos_monto/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-							<i class="fa fa-pencil"></i> Registrar monto de pago  
+							<i class="fa fa-pencil"></i> Registrar monto de pago  {{$inicio}}-{{$anio_actual}}-{{$mes_actual}}
 						</a>
 					</div>
 
@@ -94,45 +94,45 @@
 									@endif
 									</td>
 									<td>
-									@if($inicio==$anio_actual and $mes_actual>1)
+									@if(($inicio==$anio_actual and $mes_actual>=10) || ($inicio==$anio_actual and $mes_actual>10))
 									<a href="#"><button onclick="cambiar({{$enero->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$enero->monto}}</button></a>
 									@else
 										{{$enero->monto}}
 									@endif
 									</td>
-									<td>@if($inicio==$anio_actual and $mes_actual>2)
+									<td>@if(($fin==$anio_actual and $mes_actual>=10) || ($inicio==$anio_actual and $mes_actual<2))
 									<a href="#"><button onclick="cambiar({{$febrero->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$febrero->monto}}</button></a>
 									@else
 										{{$febrero->monto}}
 									@endif</td>
-									<td>@if($inicio==$anio_actual and $mes_actual>3)
+									<td>@if($fin==$anio_actual and $mes_actual<3)
 									<a href="#"><button onclick="cambiar({{$marzo->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$marzo->monto}}</button></a>
 									@else
 										{{$marzo->monto}}
 									@endif</td>
-									<td>@if($inicio==$anio_actual and $mes_actual>4)
+									<td>@if($fin==$anio_actual and $mes_actual<4)
 									<a href="#"><button onclick="cambiar({{$abril->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$abril->monto}}</button></a>
 									@else
 										{{$abril->monto}}
 									@endif</td>
-									<td>@if($inicio==$anio_actual and $mes_actual>5)
+									<td>@if($fin==$anio_actual and $mes_actual<5)
 									<a href="#"><button onclick="cambiar({{$mayo->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$mayo->monto}}</button></a>
 									@else
 										{{$mayo->monto}}
 									@endif</td>
-									<td>@if($inicio==$anio_actual and $mes_actual>6)
+									<td>@if($fin==$anio_actual and $mes_actual<6)
 									<a href="#"><button onclick="cambiar({{$junio->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$junio->monto}}</button></a>
 									@else
 										{{$junio->monto}}
 									@endif</td>
-									<td>@if($inicio==$anio_actual and $mes_actual>7)
+									<td>@if($fin==$anio_actual and $mes_actual<7)
 									<a href="#"><button onclick="cambiar({{$julio->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$julio->monto}}</button></a>
 									@else
 										{{$julio->monto}}
 									@endif</td>
 									<td>
 
-									@if($inicio==$anio_actual and $mes_actual>8)
+									@if($fin==$anio_actual and $mes_actual<8)
 									<a href="#"><button onclick="cambiar({{$agosto->id}},'Enero')"  class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede cambiar el monto de este Mes" >{{$agosto->monto}}</button></a>
 									@else
 										{{$agosto->monto}}

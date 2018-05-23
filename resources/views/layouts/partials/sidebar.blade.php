@@ -93,7 +93,7 @@
                                 <li><a href="{{ url('admin/pagos_monto/create') }}">Crear montos</a></li>
                             @endif
 
-                            @if(Auth::user()->edit_montos_m == 'Si')
+                            @if(Auth::user()->edit_monto_m == 'Si')
                                 <li><a href="{{ url('admin/pagos_monto') }}">Montos Matrícula</a></li>
                             @endif
                             
