@@ -104,8 +104,8 @@ class UserController extends Controller
             $validator=Auth::user()->password;
             if (password_verify($clave, $validator)) {
                 $usuarios=User::all();
-
-                return View('admin.usuarios.edit_per', compact('usuarios'));
+                $num=0;
+                return View('admin.usuarios.edit_per', compact('usuarios','num'));
             }else{
                 flash('¡CONTRASEÑA INCORRECTA!','warning');
                 return redirect()->back();

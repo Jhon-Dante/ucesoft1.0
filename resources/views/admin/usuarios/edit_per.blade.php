@@ -55,9 +55,51 @@ use Carbon\Carbon;
                 <th>Ver listado de estudiantes</th>
                 <th>Editar datos de estudiantes</th>
                 <th>Eliminar estudiantes</th>
-                <!-- <th>Generar constancia de estudios</th>
+                <th>Generar constancia de estudios</th>
                 <th>Generar cestificado de calificaciones</th>
-                <th>Generar Título de Bachillere</th> -->
+                <th>Generar Título de Bachillere</th>
+                <th>Listar Representantes</th>
+                <th>Registrar representante</th>
+                <th>Editar representante</th>
+                <th>Pagar mensualidades</th>
+                <th>editar montos</th>
+                <th>Editar montos de matrícula</th>
+                <th>Editar momentos de preescolar</th>
+                <th>Editar calificaciones de básica</th>
+                <th>Editar calificaciones de Media General</th>
+                <th>Editar Notas finales</th>
+                <th>Generar horarios</th>
+                <th>Listar Personal</th>
+                <th>Registrar personal</th>
+                <th>Editar datos de personal</th>
+                <th>Asignar carga cadémica</th>
+                <th>Asignar profesores guías</th>
+                <th>Listar profesores Guías</th>
+                <th>Listar usuarios</th>
+                <th>Editar datos de usuarios</th>
+                <th>Listar asignaturas</th>
+                <th>Registrar asignaturas</th>
+                <th>Editar asignaturas</th>
+                <th>Eliminar asignaturas</th>
+                <th>Listar auditoría</th>
+                <th>Listar aulas</th>
+                <th>Registrar aulas</th>
+                <th>Editar aulas</th>
+                <th>Eliminar aulas</th>
+                <th>Listar cargos</th>
+                <th>Registrar cargos</th>
+                <th>Editar cargos</th>
+                <th>Eliminar Cargos</th>
+                <th>Listar Periodos</th>
+                <th>Crear Periodos</th>
+                <th>Editar periodos</th>
+                <th>Eliminar Periodos</th>
+                <th>Activar-desactivar periodos</th>
+                <th>Restaurar BD</th>
+                <th>Listar secciones</th>
+                <th>Registrar usuarios</th>
+                <th>Editar secciones</th>
+                <th>Eliminar Secciones</th>
                 
               </tr>
             </thead>
@@ -65,6 +107,9 @@ use Carbon\Carbon;
 
             @foreach($usuarios as $usuario)
                 <tr>
+                    
+                    
+                    
                     <td>{{$num=$num+1}}</td>
                     <td>{{$usuario->name}}</td>
                     <td>{{$usuario->tipo_user}}</td>
@@ -72,6 +117,72 @@ use Carbon\Carbon;
                     <td>{{$usuario->list_estu}}</td>
                     <td>{{$usuario->edit_estu}}</td>
                     <td>{{$usuario->eli_estu}}</td>
+                    <td>{{$usuario->const_estu}}</td>
+                    <td>{{$usuario->cer_estu}}</td>
+                    <td>{{$usuario->titulob_estu}}</td>
+                    <td>{{$usuario->list_repre}}</td>
+                    <td>{{$usuario->create_repre}}</td>
+                    <td>{{$usuario->edit_repre}}</td>
+                    <td>{{$usuario->pag_mensu}}</td>
+                    <td>{{$usuario->edit_montos}}</td>
+                    <td>{{$usuario->edit_monto_m}}</td>
+                    <td>{{$usuario->edit_cali_pre}}</td>
+                    <td>{{$usuario->edit_cali_basic}}</td>
+                    <td>{{$usuario->edit_cali_media}}</td>
+                    <td>{{$usuario->edit_notas_final}}</td>
+                    <td>{{$usuario->gen_horario}}</td>
+                    <td>{{$usuario->list_perso}}</td>
+                    <td>{{$usuario->create_perso}}</td>
+                    <td>{{$usuario->edit_perso}}</td>
+                    <td>{{$usuario->asig_car_aca}}</td>
+                    <td>{{$usuario->asig_guia}}</td>
+                    <td>{{$usuario->list_guia}}</td>
+                    <td>{{$usuario->list_user}}</td>
+                    <td>{{$usuario->list_edit}}</td>
+                    <td>{{$usuario->list_asig}}</td>
+                    <td>{{$usuario->create_asig}}</td>
+                    <td>{{$usuario->edit_asig}}</td>
+                    <td>{{$usuario->elim_asig}}</td>
+                    <td>{{$usuario->list_auditoria}}</td>
+                    <td>{{$usuario->list_aula}}</td>
+                    <td>{{$usuario->create_aula}}</td>
+                    <td>{{$usuario->edit_aula}}</td>
+                    <td>{{$usuario->elim_aula}}</td>
+                    <td>{{$usuario->list_cargo}}</td>
+                    <td>{{$usuario->create_cargo}}</td>
+                    <td>{{$usuario->edit_cargo}}</td>
+                    <td>{{$usuario->elim_cargo}}</td>
+                    <td>{{$usuario->list_periodo}}</td>
+                    <td>{{$usuario->create_periodo}}</td>
+                    <td>{{$usuario->edit_periodo}}</td>
+                    <td>{{$usuario->elim_periodo}}</td>
+                    <td>{{$usuario->act/desac_periodo}}</td>
+                    <td>{{$usuario->res_BD}}</td>
+                    <td>{{$usuario->list_seccion}}</td>
+                    <td>{{$usuario->create_seccion}}</td>
+                    <td>{{$usuario->edit_seccion}}</td>
+                    <td>{{$usuario->elim_seccion}}</td>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+
+
                 </tr>
             @endforeach
               </tbody>

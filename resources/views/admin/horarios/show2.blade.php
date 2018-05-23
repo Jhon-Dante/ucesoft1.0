@@ -1,5 +1,3 @@
-
-
 @section('htmlheader_title')
   Horarios
 @endsection
