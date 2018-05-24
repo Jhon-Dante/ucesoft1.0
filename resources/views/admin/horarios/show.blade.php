@@ -91,7 +91,7 @@
                     </td>
                     <td><strong>Nro. Bloques: </strong>
                       <div class="form-group">
-                        {!! Form::select('n_bloques',['1'=>'1','2'=>'2','3'=>'3','4'=>'4'],['placeholder' => 'Seleccione el número de bloques'],['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'n_bloques']) !!}
+                        {!! Form::select('n_bloques',['placeholder' => 'Seleccione la asignatura'],null,['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'n_bloques','disabled' => 'disabled']) !!}
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
@@ -141,7 +141,7 @@
                       @else
                         <td align="center" style="border-radius: 8px; background-color: {{$colores[$i][$j]}}">
                         <strong>
-                      @if($bloquesx[$i][$j]!="LIBRE")
+                      @if($bloquesx[$i][$j]!="LIBRE" && $bloquesx[$i][$j]!="RECESO")
                         <div style="width: 100%; height: 5px; padding-left: 0px; padding-top: 0px;">{{$bloquesx[$i][$j]}}-A:{{$aula[$i][$j]}}</div>
                         <div style="padding-right: 0px; padding-left: 150px; padding-top: 0px;">
                         <a href="#"><button style="width: 5em important!;height: 5em important!; border-radius: 6px; size: 5px;" data-toggle="modal" data-target="#myModal" onclick="destruir('{{$id_horarios[$i][$j]}}','{{$secciones->id}}')" class="close" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></div>
@@ -217,9 +217,9 @@
         $("#n_bloques").empty();
         $("#n_bloques").append('<option value="" selected disabled> Seleccione el número de bloques</option>');
         $("#n_bloques").append('<option value="1">1</option>');
-        $("#n_bloques").append('<option value="2">2</option>');
-        $("#n_bloques").append('<option value="3">3</option>');
-        $("#n_bloques").append('<option value="4">4</option>');
+        // $("#n_bloques").append('<option value="2">2</option>');
+        // $("#n_bloques").append('<option value="3">3</option>');
+        // $("#n_bloques").append('<option value="4">4</option>');
 
         if(data.length > 0){
 
@@ -227,7 +227,16 @@
             {
 
                 $("#n_bloques").removeAttr('disabled');
-                $("#n_bloques").append('<option value="'+ data[i].id + '">' + data[i].id +'</option>');
+                $("#n_bloques").append('<option value="'+ data.n_bloques + '">' + data.n_bloques +'</option>');
+                if (data.n_bloques == 1) {
+
+                // }elseif (data.n_bloques == 2) {
+
+                // }elseif (data.n_bloques == 3){
+
+                // }else{
+
+                // }
             }
             
         }else{

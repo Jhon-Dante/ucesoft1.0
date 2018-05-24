@@ -104,11 +104,20 @@ class HorariosController extends Controller
                         $k++;
                     }
                     for ($i=0; $i < 7; $i++) { 
-                        for ($j=1; $j < 6; $j++) { 
+                        for ($j=1; $j < 6; $j++) {
+                            if (($i==1 && $j==1) || ($i==1 && $j==2) || ($i==1 && $j==3) || ($i==1 && $j==4) || ($i==1 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
+                            
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                                
+                            }
                         }
                                 
                     }
@@ -165,10 +174,17 @@ class HorariosController extends Controller
                     }
                     for ($i=0; $i < 7; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
+                            if (($i==2 && $j==1) || ($i==2 && $j==2) || ($i==2 && $j==3) || ($i==2 && $j==4) || ($i==2 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
@@ -221,10 +237,17 @@ class HorariosController extends Controller
                     }
                     for ($i=0; $i < 9; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
+                            if (($i==4 && $j==1) || ($i==4 && $j==2) || ($i==4 && $j==3) || ($i==4 && $j==4) || ($i==4 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
@@ -298,9 +321,10 @@ class HorariosController extends Controller
             return redirect()->route('admin.crearhorario',['id_seccion' => $request->id_seccion,'id_periodo' => $request->id_periodo])->withInput();
         } else {
 
+            //dd($curso->id);
+            if ($curso->id_curso<=4) {
 
-            if ($curso->id<=4) {
-                for ($i=0; $i < $request->bloque ; $i++) { 
+                for ($i=0; $i < $request->n_bloques ; $i++) { 
                      $crear=Horarios2::create([
                         'id_bloque' => $request->id_bloque+$i,
                         'id_aula' => $request->id_aula,
@@ -310,7 +334,7 @@ class HorariosController extends Controller
                     ]);
                 }
             }else{
-                for ($i=0; $i < $request->bloque ; $i++) { 
+                for ($i=0; $i < $request->n_bloques ; $i++) { 
                      $crear=Horarios::create([
                         'id_bloque' => $request->id_bloque+$i,
                         'id_aula' => $request->id_aula,
@@ -350,11 +374,18 @@ class HorariosController extends Controller
                     $k++;
                 }
                 for ($i=0; $i < 7; $i++) { 
-                    for ($j=1; $j < 6; $j++) { 
+                    for ($j=1; $j < 6; $j++) {
+                    if (($i==1 && $j==1) || ($i==1 && $j==2) || ($i==1 && $j==3) || ($i==1 && $j==4) || ($i==1 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else { 
                          $bloquesx[$i][$j]="LIBRE";
                          $colores[$i][$j]="#FFFFFF";
                          $aula[$i][$j]="";
                          $id_horarios[$i][$j]="";
+                     }
                     }
                             
                 }
@@ -417,10 +448,17 @@ class HorariosController extends Controller
                     }
                     for ($i=0; $i < 7; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
+                            if (($i==2 && $j==1) || ($i==2 && $j==2) || ($i==2 && $j==3) || ($i==2 && $j==4) || ($i==2 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
@@ -472,10 +510,17 @@ class HorariosController extends Controller
                     }
                     for ($i=0; $i < 9; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
+                            if (($i==4 && $j==1) || ($i==4 && $j==2) || ($i==4 && $j==3) || ($i==4 && $j==4) || ($i==4 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
@@ -544,11 +589,18 @@ class HorariosController extends Controller
                         $k++;
                     }
                     for ($i=0; $i < 7; $i++) { 
-                        for ($j=1; $j < 6; $j++) { 
+                        for ($j=1; $j < 6; $j++) {
+                        if (($i==1 && $j==1) || ($i==1 && $j==2) || ($i==1 && $j==3) || ($i==1 && $j==4) || ($i==1 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else { 
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
@@ -605,10 +657,17 @@ class HorariosController extends Controller
                     }
                     for ($i=0; $i < 7; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
+                            if (($i==2 && $j==1) || ($i==2 && $j==2) || ($i==2 && $j==3) || ($i==2 && $j==4) || ($i==2 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
@@ -661,10 +720,17 @@ class HorariosController extends Controller
                     }
                     for ($i=0; $i < 9; $i++) { 
                         for ($j=1; $j < 6; $j++) { 
+                            if (($i==4 && $j==1) || ($i==4 && $j==2) || ($i==4 && $j==3) || ($i==4 && $j==4) || ($i==4 && $j==5)) {
+                                 $bloquesx[$i][$j]="RECESO";
+                                 $colores[$i][$j]="#E0E0E0";
+                                 $aula[$i][$j]="";
+                                 $id_horarios[$i][$j]="";
+                            } else {
                              $bloquesx[$i][$j]="LIBRE";
                              $colores[$i][$j]="#FFFFFF";
                              $aula[$i][$j]="";
                              $id_horarios[$i][$j]="";
+                         }
                         }
                                 
                     }
