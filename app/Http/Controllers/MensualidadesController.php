@@ -181,7 +181,7 @@ class MensualidadesController extends Controller
         // ---enviando correo
 
 
-
+        //dd(config('app.mail_host'));
 
         $destinatario='imagine.breacker@gmail.com';
         // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
@@ -190,9 +190,13 @@ class MensualidadesController extends Controller
         $contenido="PAGO DE MENSUALIDAD";
         $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
-            $r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
+            /*$r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
                 $message->from('colegiourdanetacampoelias@gmail.com');
                 $message->to($destinatario)->subject($asunto);
+            });*/
+            Mail::send('admin.mensualidades.respuesta_correo',$request->all(), function ($msj){
+                $msj->subject('Contacto');
+                $msj->to('jcesarchg9@gmail.com');
             });
 
         if ($r) {
