@@ -90,7 +90,8 @@
                       ?>
                     </td>
                     <td><strong>Nro. Bloques: </strong>
-                      {!! Form::select('bloque',['1' => '1', '2' => '2', '3' => '3', '4' => '4'],['class' => 'form-control','required' => 'required', 'title' => 'Seleccione la Sección','id' => 'n_bloques', 'required' => 'required']) !!}
+                      <div class="form-group">
+                        {!! Form::select('n_bloques',['1'=>'1','2'=>'2','3'=>'3','4'=>'4'],['placeholder' => 'Seleccione el número de bloques'],['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'n_bloques']) !!}
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
@@ -197,41 +198,41 @@
 </div><!-- /.content-wrapper -->
 @endsection
 
->
+@section('scripts')
 
 <script type="text/javascript">
   function destruir(id_horario, id_seccion) {
     $('#id_horario').val(id_horario);
     $('#id_seccion').val(id_seccion);
   }
+</script>
+
+
+<script type="text/javascript">
   $("#id_asignatura").on("change", function (event) {
     var id = event.target.value;
 
-    $.get("/admin/asignaturas/"+id+"/buscar",function (data) {
+    $.get("/admin/horarios/"+id+"/buscar",function (data) {
        
-      
-       $("#id_curso").empty();
-       $("#id_curso").append('<option value="" selected disabled> Seleccione el Curso</option>');
-        var contar=0;
+        $("#n_bloques").empty();
+        $("#n_bloques").append('<option value="" selected disabled> Seleccione el número de bloques</option>');
+        $("#n_bloques").append('<option value="1">1</option>');
+        $("#n_bloques").append('<option value="2">2</option>');
+        $("#n_bloques").append('<option value="3">3</option>');
+        $("#n_bloques").append('<option value="4">4</option>');
+
         if(data.length > 0){
 
-            for (var i = 0; i < data.length ; i++) 
-            {  
+            for (var i = 0; i < data.length ; i++)
+            {
+
                 $("#n_bloques").removeAttr('disabled');
-                $("#n_bloques").append('<option value="'+ data[i].id + '">' + data[i].curso +'</option>');
-                if(data[i].id==8){
-                  contar++;
-                }
+                $("#n_bloques").append('<option value="'+ data[i].id + '">' + data[i].id +'</option>');
             }
             
-            if (contar>0) { 
-              $("#asignaturas").show(); 
-            }else{
-              $("#asignaturas").hide();
-            }
         }else{
-            
-            $("#id_curso").attr('disabled', false);
+            // alert('Sin resultados');
+            $("#n_bloques").attr('disabled', false);
 
         }
     });
@@ -270,5 +271,5 @@
 // });
 </script>
 
-@section('scripts')
+
 @endsection

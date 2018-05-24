@@ -83,9 +83,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             'as' => 'admin.personales.buscar'
             ]);
 
-        Route::get('/asignaturas/{id}/buscar',[
-            'uses' => 'AsignaturasController@buscarasignatura',
-            'as' => 'admin.asignaturas.buscar'
+        Route::get('/horarios/{id}/buscar',[
+            'uses' => 'HorariosController@buscarasignatura',
+            'as' => 'admin.horarios.buscar'
             ]);
 
         Route::get('/personal/{id}/status',[

@@ -203,11 +203,6 @@ class AsignaturasController extends Controller
         return redirect()->back();
     }
 
-    public function buscarasignatura($id)
-    {
-        return $nbloques=Asignaturas::find($id);   
-    }
-
     private function auditoria($accion)
     {
         $auditoria=Auditoria::create([
