@@ -302,6 +302,9 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+         
+        
          // dd($request->all());
         //buscando curso
         $curso=Seccion::find($request->id_seccion);
@@ -312,7 +315,6 @@ class HorariosController extends Controller
         //dd($request->id_bloque);
         $horarios2=Horarios::where('id_bloque',$request->id_bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
         $hora=Horarios2::where('id_bloque',$request->id_bloque)->where('id_seccion',$request->id_seccion)->where('id_periodo',$request->id_periodo)->get();
-        
 
 
         if (count($horarios2)>0 || count($hora)>0) {
@@ -324,16 +326,48 @@ class HorariosController extends Controller
             //dd($curso->id);
             if ($curso->id_curso<=4) {
 
-                for ($i=0; $i < $request->n_bloques ; $i++) { 
-                     $crear=Horarios2::create([
-                        'id_bloque' => $request->id_bloque+$i,
-                        'id_aula' => $request->id_aula,
-                        'id_asignatura' => $request->id_asignatura,
-                        'id_seccion' => $request->id_seccion,
-                        'id_periodo' => $request->id_periodo
-                    ]);
+                if (($request->id_bloque == 1   && $request->n_bloques >=2) || 
+                    ($request->id_bloque == 8   && $request->n_bloques >=2) || 
+                    ($request->id_bloque == 15  && $request->n_bloques >=2) || 
+                    ($request->id_bloque == 22  && $request->n_bloques >=2) || 
+                    ($request->id_bloque == 29  && $request->n_bloques >=2)) {
+                    
+                    flash('EL NÚMERO DE BLOQUES NO PUEDE OCUPAR TAMBIÉN LA HORA DE RECREO! ESTE BLOQUE NO PUEDE SER MAYOR A 1','danger')->important();
+
+                    return redirect()->back();
+                }else{
+                    
+                    for ($i=0; $i < $request->n_bloques ; $i++) { 
+                        $crear=Horarios2::create([
+                            'id_bloque' => $request->id_bloque+$i,
+                            'id_aula' => $request->id_aula,
+                            'id_asignatura' => $request->id_asignatura,
+                            'id_seccion' => $request->id_seccion,
+                            'id_periodo' => $request->id_periodo
+                        ]);
+                    }
                 }
-            }else{
+
+                
+            }elseif ($curso->id_curso >=5 && $curso->id_curso <= 7){
+
+                if (((
+                    ($request->id_bloque == 1  || 
+                    $request->id_bloque == 17  || 
+                    $request->id_bloque == 33 || 
+                    $request->id_bloque == 49 || 
+                    $request->id_bloque == 65) && $request->n_bloques >=3) 
+                    || 
+                    ($request->id_bloque == 2  || 
+                    $request->id_bloque == 18  || 
+                    $request->id_bloque == 34 || 
+                    $request->id_bloque == 50 || 
+                    $request->id_bloque == 66) && $request->n_bloques >=2)) {
+                    
+                    flash('EL NÚMERO DE BLOQUES NO PUEDE OCUPAR TAMBIÉN LA HORA DE RECREO!','danger')->important();
+
+                    return redirect()->back();
+                }else{
                 for ($i=0; $i < $request->n_bloques ; $i++) { 
                      $crear=Horarios::create([
                         'id_bloque' => $request->id_bloque+$i,
@@ -342,11 +376,49 @@ class HorariosController extends Controller
                         'id_seccion' => $request->id_seccion,
                         'id_periodo' => $request->id_periodo
                     ]);
+                    }
                 }
-            }
+            }else{
+                if (
+                        (((
+                            ($request->id_bloque == 9  || 
+                            $request->id_bloque == 25  || 
+                            $request->id_bloque == 41 || 
+                            $request->id_bloque == 57 || 
+                            $request->id_bloque == 73) && $request->n_bloques >=4)
+                            || 
+                            ($request->id_bloque == 10  || 
+                            $request->id_bloque == 26  || 
+                            $request->id_bloque == 42 || 
+                            $request->id_bloque == 58 || 
+                            $request->id_bloque == 74) && $request->n_bloques >=3)
+                            || 
+                            ($request->id_bloque == 11  || 
+                            $request->id_bloque == 27  || 
+                            $request->id_bloque == 43 || 
+                            $request->id_bloque == 59 || 
+                            $request->id_bloque == 75) && $request->n_bloques >=2)
+                    ) 
+                {
+                    
+                    flash('EL NÚMERO DE BLOQUES NO PUEDE OCUPAR TAMBIÉN LA HORA DE RECREO!','danger')->important();
+
+                    return redirect()->back();
+                }else{
+                for ($i=0; $i < $request->n_bloques ; $i++) { 
+                     $crear=Horarios::create([
+                        'id_bloque' => $request->id_bloque+$i,
+                        'id_aula' => $request->id_aula,
+                        'id_asignatura' => $request->id_asignatura,
+                        'id_seccion' => $request->id_seccion,
+                        'id_periodo' => $request->id_periodo
+                    ]);
+                } //Cierra for
+            }//Cierra else
+            
 
 
-       
+       }
         $secciones=Seccion::where('id',$request->id_seccion)->get()->first();
         $periodos=Periodos::where('id',$request->id_periodo)->get()->first();
         $bloques=Bloques::lists('bloque','id');

@@ -9,12 +9,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Estudiantes')
-        <small>Registro</small>
+        @yield('contentheader_title', 'Horarios')
+        <small>Crear</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Estudiantes </a></li>
-        <li class="active">Registro</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Horarios </a></li>
+        <li class="active">Crear</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -104,6 +104,7 @@
                     <td><strong>Nro. Bloques: </strong>
                       <div class="form-group">
                         {!! Form::select('n_bloques',['1' => '1','2' => '2', '3' => '3', '4' => '4'],['placeholder' => 'Seleccione el múmero de bloques'],['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'n_bloques']) !!}
+                      </div>
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
