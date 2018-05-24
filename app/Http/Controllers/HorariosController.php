@@ -556,6 +556,19 @@ class HorariosController extends Controller
                 break;
         }
          $aulas=Aula::where('status',1)->get();
+            $recreo=Horarios::where('id_bloque',3)->where('id_bloque',12)->where('id_bloque',19)->where('id_bloque',28)->where('id_bloque',35)->where('id_bloque',44)->where('id_bloque',51)->where('id_bloque',60)->where('id_bloque',67)->where('id_bloque',76)->get();
+            // dd(count($recreo));
+            if (count($recreo)>0) {
+                // dd($recreo[1]);
+                for ($i=0; $i < count($recreo); $i++) {
+                    
+                    $r=Horarios::find($recreo[$i]->id)->first();
+                    $r->delete();
+                }
+                
+                flash('NO SE PUEDE CARGAR ASIGNATURAS EN UN BLOQUE DE RECESO!','warning');
+
+            }
         // return View('admin.horarios.show', compact('asignaturas','bloques','secciones','periodos','aulas','horas','bloques2','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
          return redirect()->back();
 

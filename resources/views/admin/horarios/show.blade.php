@@ -53,9 +53,16 @@
                       case ($secciones->curso->id <= 4):
                         ?>
                           <select name="id_bloque" class="form-control"><?php
-                          foreach($bloques3 as $b){ ?>
+                          foreach($bloques3 as $b){ 
+
+                            if ($b->id != 2 && $b->id != 9 && $b->id != 16 && $b->id != 23 && $b->id != 30) {
+                              
+                                                        ?>
                               <option value="<?php echo $b->id; ?>"><?php echo $b->bloque." - ".$b->dia->dia; ?></option>
-                      <?php } ?> 
+                      <?php } 
+                      }
+
+                      ?> 
                           </select>
                       <?php
                       break;
@@ -65,10 +72,12 @@
                           <select name="id_bloque" class="form-control"><?php
                           foreach($bloques3 as $b){ 
                               if(($b->id >=1 && $b->id <=7) || ($b->id >=17 && $b->id <=23) || ($b->id >=33 && $b->id <=39) || ($b->id >=49 && $b->id <=55) || ($b->id >=65 && $b->id <=71)){
+
+                                if ($b->id != 3 && $b->id != 19 && $b->id != 35 && $b->id != 51 && $b->id != 67) {
                             ?>
                               <option value="<?php echo $b->id; ?>"><?php echo $b->bloque." - ".$b->dia->dia; ?></option>
                       <?php }//fin del if
-                           }//fin del for ?> 
+                           }}//fin del for ?> 
                           </select>
                       <?php
                       break;
@@ -78,9 +87,12 @@
                           <select name="id_bloque" class="form-control"><?php
                           foreach($bloques3 as $b){ 
                               if(($b->id >=8 && $b->id <=16) || ($b->id >=24 && $b->id <=32) || ($b->id >=40 && $b->id <=48) || ($b->id >=56 && $b->id <=64) || ($b->id >=72 && $b->id <=80)){
+
+                                if ($b->id != 12 && $b->id != 28 && $b->id != 44 && $b->id != 60 && $b->id != 76) {
+
                             ?>
                               <option value="<?php echo $b->id; ?>"><?php echo $b->bloque." - ".$b->dia->dia; ?></option>
-                      <?php }//fin del if
+                      <?php } }//fin del if
                            }//fin del for ?> 
                           </select>
                       <?php
@@ -91,7 +103,7 @@
                     </td>
                     <td><strong>Nro. Bloques: </strong>
                       <div class="form-group">
-                        {!! Form::select('n_bloques',['placeholder' => 'Seleccione la asignatura'],null,['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'n_bloques','disabled' => 'disabled']) !!}
+                        {!! Form::select('n_bloques',['1' => '1','2' => '2', '3' => '3', '4' => '4'],['placeholder' => 'Seleccione el múmero de bloques'],['class' => 'form-control','required' => 'required', 'title' => 'Seleccione el Curso','id' => 'n_bloques']) !!}
                     </td>
                     <td><strong>Aula: </strong>
                       <select name="id_aula" class="form-control">
