@@ -13,6 +13,7 @@ use App\Momentos;
 use App\Calificaciones;
 use App\Periodos;
 use App\Boletin;
+use App\BoletinFinal;
 use App\Asignaturas;
 use App\Seccion;
 use App\Personal;
@@ -242,6 +243,15 @@ class BoletinController extends Controller
                         'id_datosBasicos' => $request->id_datosBasicos[$i],                            
                         'id_periodo' => $periodo->id
                     ]);
+                    
+                    $fecha=date('d-m-Y');
+                    $crear_prom=BoletinFinal::create([
+                      'id_asignatura' => $request->id_asignatura[$j],
+                      'promedio' => $request->calificacion[$j],
+                      'informe' => 'Calificacion de 1er Lapso cargada',
+                      'fecha' => $fecha,
+                      'id_datosBasicos' => $request->id_datosBasicos[$i],
+                      'id_periodo' => $periodo->id]);
                 }
             }
             flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
@@ -256,6 +266,13 @@ class BoletinController extends Controller
                     for ($j=$k; $j < count($request->id_asignatura) ; $j++)
                     {
                         //dd(count($request->id_asignatura));
+                      //buscando la calificacion del 1er lapso
+                      $buscar=Boletin::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+                      //-----------------------------------------
+                      //enviando a calcular promedio
+                      $prom=$this->calcular_promedio2do($buscar->calificacion,$request->calificacion[$j]);
+                     
+                      //-----------------------------------------
                         $crear=Boletin::create([
                             'id_asignatura' => $request->id_asignatura[$j],
                             'lapso' => 2,
@@ -264,6 +281,15 @@ class BoletinController extends Controller
                             'id_datosBasicos' => $request->id_datosBasicos[$i],                            
                             'id_periodo' => $periodo->id
                         ]);
+                        $fecha=date('d-m-Y');
+                      //buscando calificacion en boletin final
+                        $buscar_final=BoletinFinal::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+
+                        //actualizando promedio final
+                        $buscar_final->fecha=$fecha;
+                        $buscar_final->promedio=$prom;
+                        $buscar_final->informe="Calificación 2do lapso cargada";
+                        $buscar_final->save();
                     }
 
                 }
@@ -279,6 +305,14 @@ class BoletinController extends Controller
 
                     for ($j=$k; $j < $tot ; $j++)
                     {
+                      //buscando la calificacion del 1er lapso
+                      $buscar=Boletin::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->first();
+                      //-----------------------------------------
+                      //buscando la calificacion del 2do lapso
+                      $buscar2=Boletin::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+                      //-----------------------------------------
+                      //calculando promedio
+                      $prom=$this->calcular_promedio3ro($buscar->calificacion,$buscar2->calificacion,$request->calificacion[$j]);
 
                         $crear=Boletin::create([
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
@@ -289,6 +323,14 @@ class BoletinController extends Controller
                             'inasistencias' => $request->inasistencia[$j],
                             'calificacion' => $request->calificacion[$j] 
                         ]);
+                      $fecha=date('d-m-Y');
+                      //buscando calificacion en boletin final
+                        $buscar_final=BoletinFinal::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+                        //actualizando promedio final
+                        $buscar_final->fecha=$fecha;
+                        $buscar_final->promedio=$prom;
+                        $buscar_final->informe="Calificación cargada completa";
+                        $buscar_final->save();
                     }
                
             }
@@ -719,4 +761,136 @@ class BoletinController extends Controller
                     'accion' => $accion
                 ]);
     }
+    private function calcular_promedio2do($primera,$segunda){
+       // cambiando a numeral la primera nota
+       switch ($primera) {
+         case 'A':
+           $nota1=5;
+           break;
+          case 'B':
+            $nota1=4;
+            break;
+          case 'C':
+            $nota1=3;
+            break;
+          case 'D':
+            $nota1=2;
+            break;
+          case 'E':
+            $nota1=1;
+            break;
+       }
+       //cambiando a numeral la segunda nota
+       switch ($segunda) {
+         case 'A':
+           $nota2=5;
+           break;
+          case 'B':
+            $nota2=4;
+            break;
+          case 'C':
+            $nota2=3;
+            break;
+          case 'D':
+            $nota2=2;
+            break;
+          case 'E':
+            $nota2=1;
+            break;
+       }
+       //sumando
+       $suma=$nota1+$nota2;
+       switch ($suma) {
+        case ($suma==10 || $suma==9):
+           return 'A';
+           break;
+        case ($suma==8 || $suma==7):
+           return 'B';
+           break;
+        case ($suma==6 || $suma==5):
+           return 'C';
+           break;
+        case ($suma==4 || $suma==3):
+           return 'D';
+           break;
+        case ($suma==2 || $suma==1):
+           return 'E';
+           break;
+       }
+    }
+  private function calcular_promedio3ro($primera,$segunda,$tercera){
+    // cambiando a numeral la primera nota
+       switch ($primera) {
+         case 'A':
+           $nota1=5;
+           break;
+          case 'B':
+            $nota1=4;
+            break;
+          case 'C':
+            $nota1=3;
+            break;
+          case 'D':
+            $nota1=2;
+            break;
+          case 'E':
+            $nota1=1;
+            break;
+       }
+       //cambiando a numeral la segunda nota
+       switch ($segunda) {
+         case 'A':
+           $nota2=5;
+           break;
+          case 'B':
+            $nota2=4;
+            break;
+          case 'C':
+            $nota2=3;
+            break;
+          case 'D':
+            $nota2=2;
+            break;
+          case 'E':
+            $nota2=1;
+            break;
+       }
+       //cambiando a numeral la tercera nota
+       switch ($tercera) {
+         case 'A':
+           $nota3=5;
+           break;
+          case 'B':
+            $nota3=4;
+            break;
+          case 'C':
+            $nota3=3;
+            break;
+          case 'D':
+            $nota3=2;
+            break;
+          case 'E':
+            $nota3=1;
+            break;
+       }
+       //sumando
+       $suma=$nota1+$nota2+$nota3;
+       switch ($suma) {
+        case ($suma>=13 && $suma<=15):
+           return 'A';
+           break;
+        case ($suma>=10 && $suma<=12):
+           return 'B';
+           break;
+        case ($suma>=7 && $suma<=9):
+           return 'C';
+           break;
+        case ($suma>=4 || $suma<=6):
+           return 'D';
+           break;
+        case ($suma>=1 || $suma<=3):
+           return 'E';
+           break;
+       }
+  }
 }

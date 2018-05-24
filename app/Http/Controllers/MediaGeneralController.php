@@ -13,6 +13,7 @@ use App\Momentos;
 use App\Calificaciones;
 use App\Periodos;
 use App\Boletin;
+use App\BoletinFinal;
 use App\asignaturas;
 use App\Seccion;
 use App\Personal;
@@ -237,6 +238,16 @@ class MediaGeneralController extends Controller
                         'id_datosBasicos' => $request->id_datosBasicos[$i],                            
                         'id_periodo' => $periodo->id
                     ]);
+                    $prom=round($request->calificacion[$j]/3);
+                    $fecha=date('d-m-Y');
+                    $crear_prom=BoletinFinal::create([
+                      'id_asignatura' => $request->id_asignatura[$j],
+                      'promedio' => $prom,
+                      'informe' => 'Calificacion de 1 er Lapso cargada',
+                      'fecha' => $fecha,
+                      'id_datosBasicos' => $request->id_datosBasicos[$i],
+                      'id_periodo' => $periodo->id]);
+
                 }
             }
             flash('REGISTRO DE LAS CALIFICACIONES DEL LAPSO REALIZADO CON ÉXITO!','success');
@@ -251,6 +262,13 @@ class MediaGeneralController extends Controller
                     for ($j=$k; $j < $cant ; $j++)
                     {
                         //dd(count($request->id_asignatura));
+                      //buscando la calificacion del 1er lapso
+                      $buscar=Boletin::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+                      //-----------------------------------------
+                      // calculando promedio para el segundo lapso
+                      $prom=round(($buscar->calificacion+$request->calificacion[$j])/3);
+                      //-----------------------------------------
+                      //registrando calificacion de segundo lapso
                         $crear=Boletin::create([
                             'id_asignatura' => $request->id_asignatura[$j],
                             'lapso' => 2,
@@ -259,6 +277,16 @@ class MediaGeneralController extends Controller
                             'id_datosBasicos' => $request->id_datosBasicos[$i],                            
                             'id_periodo' => $periodo->id
                         ]);
+                      //-------------------------------------------
+                      //actualizando promedio en boletin final
+                        $fecha=date('d-m-Y');
+                        $buscar_final=BoletinFinal::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+                        $buscar_final->promedio=$prom;
+                        $buscar_final->informe="Calificacion de 2do Lapso cargada";
+                        $buscar_final->save();
+
+
+
                     }
 
                 }
@@ -274,7 +302,18 @@ class MediaGeneralController extends Controller
 
                     for ($j=$k; $j < $cant ; $j++)
                     {
+                      //buscando la calificacion del 1er y 2do lapso 
+                      $buscar=Boletin::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get();
+                      //-----------------------------------------
+                      //sumando calificaciones de 1 er y 2 do lapso
+                      $suma=0;
+                      foreach ($buscar as $key) {
+                        $suma+=$key->calificacion;
+                      }
 
+                      // calculando promedio para el segundo lapso
+                      $prom=round(($suma+$request->calificacion[$j])/3);
+                      //-----------------------------------------
                         $crear=Boletin::create([
                             'id_datosBasicos' => $request->id_datosBasicos[$i],
                             'lapso' => 3,
@@ -283,6 +322,13 @@ class MediaGeneralController extends Controller
                             'inasistencias' => $request->inasistencia[$j],
                             'calificacion' => $request->calificacion[$j] 
                         ]);
+                      //-------------------------------------------
+                      //actualizando promedio en boletin final
+                        $fecha=date('d-m-Y');
+                        $buscar_final=BoletinFinal::where('id_asignatura',$request->id_asignatura[$j])->where('id_datosBasicos',$request->id_datosBasicos[$i])->where('id_periodo',$periodo->id)->get()->last();
+                        $buscar_final->promedio=$prom;
+                        $buscar_final->informe="Carga Completa";
+                        $buscar_final->save();
                     }
                
             }
