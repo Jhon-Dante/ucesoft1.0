@@ -87,7 +87,7 @@
 
                       <a href="{{ route('admin.DatosBasicos.edit', [$preinscri->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="#"><button onclick="eliminar({{$preinscri->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="#"><button onclick="eliminar({{$preinscri->datosbasicos-->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                   </div>
                       
                   </td>
@@ -168,7 +168,7 @@
 
                       <a href="{{ route('admin.DatosBasicos.edit', [$p->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="#"><button onclick="eliminar({{$p->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
+                      <a href="#"><button onclick="eliminar({{$p->datosbasicos->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a><br><br>
                   </div>
                       
                   </td>

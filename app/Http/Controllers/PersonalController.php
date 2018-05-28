@@ -61,13 +61,14 @@ class PersonalController extends Controller
 
         //$personal2=Personal::find($request->)
         $usuario=User::all();
+        $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
 
 
-
+        // dd($cargo->cargo, 'Secretario(a)');
         $cuantos=count($buscar);
 
         if (count($buscar2)>0) {
-            flash('LA CONTRASEÑA YA SE ENCUENTRA REGISTRADA EN EL SISTEMA, INTRODUZCA OTRA CONTRASEÑA!','danger');
+            flash('ESTE CORREO YA SE ENCUENTRA ERGISTRADO EN EL SISTEMA!, INTRODUZCA OTRO CORREO!','danger');
             $num=0;
             return redirect()->back()->withInput();
         }
@@ -96,20 +97,111 @@ class PersonalController extends Controller
                     'id_cargo'         =>$request->id_cargo
                     ]);
 
-                    $cargo=Cargos::where('id',$request->id_cargo)->get()->first();
+                    
                     $usuario=User::where('name',$request->nombres)->get()->first();
+                    $name=$request->nombres;
+                    $contraseña=rand(100000000,1000000000);
 
-                     $contraseña=rand(100000000,1000000000);
-
+                    
+                // ]);
                     if(count($usuario) == 0){
-                        $crear=\DB::table('users')->insert(array(
+                    // dd('asdfadsf');
+                        $repre=\DB::table('users')->insert([
+
+                            // 'name' => $name,
+                            // 'email' => $request->email,
+                            // 'password' => bcrypt($contraseña),
+                            // 'tipo_user' => $cargo->cargo,
+                            // 'status' => 1
+                        // $crear=\DB::table('users')->insert([
                             'name'          => $request->nombres,
-                            'email'         => 'javierguevarawork96@gmail.com',
+                            'email'         => $request->correo,
                             'password'      => bcrypt($contraseña),
-                            'tipo_user'     => $cargo->cargo
-                        ));
+                            'tipo_user'     => $cargo->cargo,
+                            //---------------------------------- Estudiante
+                            'pre_re' => 'Si',
+                            'list_estu' => 'Si',
+                            'edit_estu' => 'Si',
+                            'eli_estu' => 'Si',
+                            'const_estu' => 'Si',
+                            'cer_estu' => 'Si',
+                            'titulob_estu' => 'Si',
+                            //---------------------------------- Representante
+                            'list_repre' => 'Si',
+                            'create_repre' => 'Si',
+                            'edit_repre' => 'Si',
+                            //---------------------------------- mensualidades
+                            'pag_mensu' => 'Si',
+                            'edit_montos' => 'Si',
+                            'edit_monto_m' => 'Si',
+                            //---------------------------------- calificaciones
+                            'edit_cali_pre' => 'Si',
+                            'edit_cali_basic' => 'Si',
+                            'edit_cali_media' => 'Si',
+                            'edit_notas_final' => 'Si',
+                            //---------------------------------- Horarios
+                            'gen_horario' => 'Si',
+                            //---------------------------------- personal
+                            'list_perso' => 'Si',
+                            'create_perso' => 'Si',
+                            'edit_perso' => 'Si',
+                            'act/desac_perso' => 'Si',
+                            'asig_car_aca' => 'Si',
+                            'asig_guia' => 'Si',
+                            'list_guia' => 'Si',
+                            //---------------------------------- config
+
+                                //------------------------------------- usuarios
+                                'list_user' => 'Si',
+                                'list_edit' => 'Si',
+                                //------------------------------------- asignaturas
+                                'list_asig' => 'Si',
+                                'create_asig' => 'Si',
+                                'edit_asig' => 'Si',
+                                'elim_asig' => 'Si',
+                                //------------------------------------- auditoria
+                                'list_auditoria' => 'Si',
+                                //------------------------------------- aulas
+                                'list_aula' => 'Si',
+                                'create_aula' => 'Si',
+                                'edit_aula' => 'Si',
+                                'elim_aula' => 'Si',
+                                //------------------------------------- cargos
+                                'list_cargo' => 'Si',
+                                'create_cargo' => 'Si',
+                                'edit_cargo' => 'Si',
+                                'elim_cargo' => 'Si',
+                                //------------------------------------- periodos
+                                'list_periodo' => 'Si',
+                                'create_periodo' => 'Si',
+                                'edit_periodo' => 'Si',
+                                'elim_periodo' => 'Si',
+                                'act/desac_periodo' => 'Si',
+                                //------------------------------------- respaldar BD
+                                'res_BD' => 'Si',
+                                //------------------------------------- Secciones
+                                'list_seccion' => 'Si',
+                                'create_seccion' => 'Si',
+                                'edit_seccion' => 'Si',
+                                'elim_seccion' => 'Si',
+                                //-------------------------------------
+
+
+                            'status' => 1
+                                        ]);
                     }
 
+                    $name=$request->nombres;
+                    $destinatario=$request->correo;
+                    $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+
+
+
+                    $r=Mail::send('admin.personal.personal_correo', ['name' => $name,'contraseña' => $contraseña,'destinatario' => $destinatario,'contenido' => $contenido], function ($m) use ($asunto,$destinatario,$persona,$contenido,$data,$monto) {
+                        $m->from('colegiourdanetacampoelias@gmail.com', 'Ucesoft1.0');
+
+                        $m->to($destinatario, $persona)->subject('Registro del personal');
+                    });
 
                     //$destinatario='javierguevarawork96@gmail.com';
                     //dd($destinatario);
@@ -117,7 +209,7 @@ class PersonalController extends Controller
                     // $destinatario=$request->correo;
 
                     // $asunto="Confirmación de personal en el sistema";
-                    // $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+                    // 
                     // $data=array("contenido"=> $contenido,"personal" => $request->nombres);
 
                     // $r=Mail::send('admin.personal.personal_correo', $data, function ($message) use ($asunto,$destinatario){
@@ -125,14 +217,14 @@ class PersonalController extends Controller
                     
                     //     $message->to($destinatario)->subject($asunto);
                     // });
-                    // if ($r) {
-                    //    flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
-                    // } else {
-                    //    flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
-                    // }
-                    // // flash('PERSONAL REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!','warning',10);
+                    if ($r) {
+                       flash('PERSONAL REGISTRADO CON ÉXITO!! Y CORREO DE CONFIRMACIÓN DE CONTRASEÑA ENVIADO!','success');
+                    } else {
+                       flash('NO SE PUDO REALIZAR EL REGISTRO DEL PERSONAL !','error');
+                    }
+                    flash('PERSONAL REGISTRADO CON ÉXITO!!','success',10);
                     // // echo "Contraseña: ".$contraseña;
-                    flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!, CONTRASEÑA: '.$contraseña.'','warning',10)->important();
+                    // flash('REPRESENTANTE REGISTRADO CON ÉXITO!! PERO NO SE PUEDE ESTABLECER CONEXIÓN CON EL HOST host smtp.gmail.com [php_network_getaddresses!, CONTRASEÑA: '.$contraseña.'','warning',10)->important();
             
 
             $num=0;

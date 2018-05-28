@@ -94,7 +94,7 @@ use Carbon\Carbon;
                 <th>Crear Periodos</th>
                 <th>Editar periodos</th>
                 <th>Eliminar Periodos</th>
-                <th>Activar-desactivar periodos</th>
+                <!-- <th>Activar-desactivar periodos</th> -->
                 <th>Restaurar BD</th>
                 <th>Listar secciones</th>
                 <th>Registrar usuarios</th>
@@ -113,55 +113,56 @@ use Carbon\Carbon;
                     <td>{{$num=$num+1}}</td>
                     <td>{{$usuario->name}}</td>
                     <td>{{$usuario->tipo_user}}</td>
-                    <td>{{$usuario->pre_re}}</td>
-                    <td>{{$usuario->list_estu}}</td>
-                    <td>{{$usuario->edit_estu}}</td>
-                    <td>{{$usuario->eli_estu}}</td>
-                    <td>{{$usuario->const_estu}}</td>
-                    <td>{{$usuario->cer_estu}}</td>
-                    <td>{{$usuario->titulob_estu}}</td>
-                    <td>{{$usuario->list_repre}}</td>
-                    <td>{{$usuario->create_repre}}</td>
-                    <td>{{$usuario->edit_repre}}</td>
-                    <td>{{$usuario->pag_mensu}}</td>
-                    <td>{{$usuario->edit_montos}}</td>
-                    <td>{{$usuario->edit_monto_m}}</td>
-                    <td>{{$usuario->edit_cali_pre}}</td>
-                    <td>{{$usuario->edit_cali_basic}}</td>
-                    <td>{{$usuario->edit_cali_media}}</td>
-                    <td>{{$usuario->edit_notas_final}}</td>
-                    <td>{{$usuario->gen_horario}}</td>
-                    <td>{{$usuario->list_perso}}</td>
-                    <td>{{$usuario->create_perso}}</td>
-                    <td>{{$usuario->edit_perso}}</td>
-                    <td>{{$usuario->asig_car_aca}}</td>
-                    <td>{{$usuario->asig_guia}}</td>
-                    <td>{{$usuario->list_guia}}</td>
-                    <td>{{$usuario->list_user}}</td>
-                    <td>{{$usuario->list_edit}}</td>
-                    <td>{{$usuario->list_asig}}</td>
-                    <td>{{$usuario->create_asig}}</td>
-                    <td>{{$usuario->edit_asig}}</td>
-                    <td>{{$usuario->elim_asig}}</td>
-                    <td>{{$usuario->list_auditoria}}</td>
-                    <td>{{$usuario->list_aula}}</td>
-                    <td>{{$usuario->create_aula}}</td>
-                    <td>{{$usuario->edit_aula}}</td>
-                    <td>{{$usuario->elim_aula}}</td>
-                    <td>{{$usuario->list_cargo}}</td>
-                    <td>{{$usuario->create_cargo}}</td>
-                    <td>{{$usuario->edit_cargo}}</td>
-                    <td>{{$usuario->elim_cargo}}</td>
-                    <td>{{$usuario->list_periodo}}</td>
-                    <td>{{$usuario->create_periodo}}</td>
-                    <td>{{$usuario->edit_periodo}}</td>
-                    <td>{{$usuario->elim_periodo}}</td>
-                    <td>{{$usuario->act/desac_periodo}}</td>
-                    <td>{{$usuario->res_BD}}</td>
-                    <td>{{$usuario->list_seccion}}</td>
-                    <td>{{$usuario->create_seccion}}</td>
-                    <td>{{$usuario->edit_seccion}}</td>
-                    <td>{{$usuario->elim_seccion}}</td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, pre_re]) }}">{{$usuario->pre_re}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_estu]) }}">{{$usuario->list_estu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_estu]) }}">{{$usuario->edit_estu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, eli_estu]) }}">{{$usuario->eli_estu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, const_estu]) }}">{{$usuario->const_estu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, cer_estu]) }}">{{$usuario->cer_estu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, titulob_estu]) }}">{{$usuario->titulob_estu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_repre]) }}">{{$usuario->list_repre}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_repre]) }}">{{$usuario->create_repre}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_repre]) }}">{{$usuario->edit_repre}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, pag_mensu]) }}">{{$usuario->pag_mensu}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_montos]) }}">{{$usuario->edit_montos}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_monto_m]) }}">{{$usuario->edit_monto_m}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_cali_pre]) }}">{{$usuario->edit_cali_pre}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_cali_basic]) }}">{{$usuario->edit_cali_basic}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_cali_media]) }}">{{$usuario->edit_cali_media}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_notas_final]) }}">{{$usuario->edit_notas_final}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, gen_horario]) }}">{{$usuario->gen_horario}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_perso]) }}">{{$usuario->list_perso}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_perso]) }}">{{$usuario->create_perso}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_perso]) }}">{{$usuario->edit_perso}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, asig_car_aca]) }}">{{$usuario->asig_car_aca}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, asig_guia]) }}">{{$usuario->asig_guia}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_guia]) }}">{{$usuario->list_guia}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_user]) }}">{{$usuario->list_user}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_edit]) }}">{{$usuario->list_edit}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_asig]) }}">{{$usuario->list_asig}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_asig]) }}">{{$usuario->create_asig}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_asig]) }}">{{$usuario->edit_asig}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, elim_asig]) }}">{{$usuario->elim_asig}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_auditoria]) }}">{{$usuario->list_auditoria}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_aula]) }}">{{$usuario->list_aula}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_aula]) }}">{{$usuario->create_aula}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_aula]) }}">{{$usuario->edit_aula}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, elim_aula]) }}">{{$usuario->elim_aula}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_cargo]) }}">{{$usuario->list_cargo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_cargo]) }}">{{$usuario->create_cargo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_cargo]) }}">{{$usuario->edit_cargo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, elim_cargo]) }}">{{$usuario->elim_cargo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_periodo]) }}">{{$usuario->list_periodo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_periodo]) }}">{{$usuario->create_periodo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_periodo]) }}">{{$usuario->edit_periodo}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, elim_periodo]) }}">{{$usuario->elim_periodo}}</a></td>
+                    <!-- <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, act/desac_periodo]) }}">{{$usuario->act/desac_periodo}}</a></td> -->
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, res_BD]) }}">{{$usuario->res_BD}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, list_seccion]) }}">{{$usuario->list_seccion}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, create_seccion]) }}">{{$usuario->create_seccion}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, edit_seccion]) }}">{{$usuario->edit_seccion}}</a></td>
+                    <td><a href="{{ route('admin.usuarios.editP', [$usuario->id, elim_seccion]) }}">{{$usuario->elim_seccion}}</a></td>
+                    
                     
                     
                     

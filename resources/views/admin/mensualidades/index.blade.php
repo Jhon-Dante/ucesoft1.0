@@ -189,6 +189,7 @@
                     <p>¿Cancelar mes del estudiante?</p>
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="id_mes" id="id_mes">
+                    <input type="hidden" name="monto" id="monto">
                     
                 </div>
                 <div class="modal-footer">
@@ -344,6 +345,7 @@
     $('#periodo').text(periodo);
     $('#mes').text(mes+": "+monto+" Bs.");
     $('#id_mes').val(id_mes);
+    $('#monto').val(monto);
   }
 
   function editar(id,nombre,periodo,mes,id_mes,forma_pago,monto2) {

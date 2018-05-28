@@ -950,10 +950,11 @@ class DatosBasicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-            // dd($id);
-            $estudiante=DatosBasicos::find($id);
+            // dd($request->datoBasico);
+            $estudiante=DatosBasicos::find($request->datoBasico);
+            // dd($estudiante);
             $estudiante->delete();
             flash('REGISTRO DEL ESTUDIANTE ELIMINADO CON ÉXITO!','success');
             return redirect()->route('admin.DatosBasicos.index');

@@ -14,607 +14,108 @@ class AsignaturasTableSeeder extends Seeder
     public function run()
     {
     	//---- ASIGNATURAS DE 1 GRADO----
-        DB::table('asignaturas')->insert([
-            'asignatura' => 'Lengua',
-            'codigo' => 'LENG-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#FF4848',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Matemática',
-            'codigo' => 'MAT-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#FF9797',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Sociales',
-            'codigo' => 'CSCSOC-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#FF62B0',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Física',
-            'codigo' => 'EDUFIS-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#E469FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Inglés',
-            'codigo' => 'ING-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#9669FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Estética',
-            'codigo' => 'EST-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#FFBBFF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Vial',
-            'codigo' => 'EDUCVIAL-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#9A03FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Naturales y Tecnologías',
-            'codigo' => 'CSCNATEC-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#B5FFFC',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Formación Permanente',
-            'codigo' => 'FORMP-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#23819C',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación y Valores',
-            'codigo' => 'EDUCVAL-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#5757FF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lectura y Ortgrafía',
-            'codigo' => 'LECTORG-1G',
-            'id_curso' => '2',
-            'n_bloques' => '4',
-            'color' => '#01F33E',
-            'status' => 1
-        ]);
-        //---- ASIGNATURAS DE 2DO GRADO -------
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lengua',
-            'codigo' => 'LENG-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#FF4848',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Matemática',
-            'codigo' => 'MAT-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#FF9797',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Sociales',
-            'codigo' => 'CSCSOC-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#FF62B0',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Física',
-            'codigo' => 'EDUFIS-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#E469FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Inglés',
-            'codigo' => 'ING-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#9669FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Estética',
-            'codigo' => 'EST-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#FFBBFF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Vial',
-            'codigo' => 'EDUCVIAL-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#9A03FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Naturales y Tecnologías',
-            'codigo' => 'CSCNATEC-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#B5FFFC',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Formación Permanente',
-            'codigo' => 'FORMP-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#23819C',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación y Valores',
-            'codigo' => 'EDUCVAL-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#5757FF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lectura y Ortgrafía',
-            'codigo' => 'LECTORG-2G',
-            'id_curso' => '3',
-            'n_bloques' => '4',
-            'color' => '#01F33E',
-            'status' => 1
-        ]);
-
-        //------ ASIGNATURAS DE 3 ER GRADO --------
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lengua',
-            'codigo' => 'LENG-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#FF4848',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Matemática',
-            'codigo' => 'MAT-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#FF9797',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Sociales',
-            'codigo' => 'CSCSOC-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#FF62B0',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Física',
-            'codigo' => 'EDUFIS-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#E469FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Inglés',
-            'codigo' => 'ING-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#9669FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Estética',
-            'codigo' => 'EST-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#FFBBFF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Vial',
-            'codigo' => 'EDUCVIAL-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#9A03FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Naturales y Tecnologías',
-            'codigo' => 'CSCNATEC-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#B5FFFC',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Formación Permanente',
-            'codigo' => 'FORMP-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#23819C',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación y Valores',
-            'codigo' => 'EDUCVAL-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#5757FF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lectura y Ortgrafía',
-            'codigo' => 'LECTORG-3G',
-            'id_curso' => '4',
-            'n_bloques' => '4',
-            'color' => '#01F33E',
-            'status' => 1
-        ]);
-
-        //----- ASIGNATURAS DEL 4TO GRADO----------
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lengua',
-            'codigo' => 'LENG-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#FF4848',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Matemática',
-            'codigo' => 'MAT-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#FF9797',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Sociales',
-            'codigo' => 'CSCSOC-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#FF62B0',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Física',
-            'codigo' => 'EDUFIS-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#E469FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Inglés',
-            'codigo' => 'ING-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#9669FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Estética',
-            'codigo' => 'EST-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#FFBBFF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Vial',
-            'codigo' => 'EDUCVIAL-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#9A03FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Naturales y Tecnologías',
-            'codigo' => 'CSCNATEC-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#B5FFFC',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Formación Permanente',
-            'codigo' => 'FORMP-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#23819C',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación y Valores',
-            'codigo' => 'EDUCVAL-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#5757FF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lectura y Ortgrafía',
-            'codigo' => 'LECTORG-4G',
-            'id_curso' => '5',
-            'n_bloques' => '4',
-            'color' => '#01F33E',
-            'status' => 1
-        ]);
-        //--------- ASIGNATURAS DEL 5TO GRADO -----------
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lengua',
-            'codigo' => 'LENG-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#FF4848',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Matemática',
-            'codigo' => 'MAT-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#FF9797',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Sociales',
-            'codigo' => 'CSCSOC-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#FF62B0',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Física',
-            'codigo' => 'EDUFIS-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#E469FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Inglés',
-            'codigo' => 'ING-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#9669FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Estética',
-            'codigo' => 'EST-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#FFBBFF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Vial',
-            'codigo' => 'EDUCVIAL-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#9A03FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Naturales y Tecnologías',
-            'codigo' => 'CSCNATEC-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#B5FFFC',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Formación Permanente',
-            'codigo' => 'FORMP-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#23819C',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación y Valores',
-            'codigo' => 'EDUCVAL-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#5757FF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lectura y Ortgrafía',
-            'codigo' => 'LECTORG-5G',
-            'id_curso' => '6',
-            'n_bloques' => '4',
-            'color' => '#01F33E',
-            'status' => 1
-        ]);
-        //------ ASIGNATURAS DEL 6TO GRADO -------
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lengua',
-            'codigo' => 'LENG-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#FF4848',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Matemática',
-            'codigo' => 'MAT-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#FF9797',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Sociales',
-            'codigo' => 'CSCSOC-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#FF62B0',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Física',
-            'codigo' => 'EDUFIS-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#E469FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Inglés',
-            'codigo' => 'ING-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#9669FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Estética',
-            'codigo' => 'EST-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#FFBBFF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación Vial',
-            'codigo' => 'EDUCVIAL-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#9A03FE',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Ciencias Naturales y Tecnologías',
-            'codigo' => 'CSCNATEC-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#B5FFFC',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Formación Permanente',
-            'codigo' => 'FORMP-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#23819C',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Educación y Valores',
-            'codigo' => 'EDUCVAL-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#5757FF',
-            'status' => 1
-        ]);
-        DB::table('asignaturas')->insert([
-
-            'asignatura' => 'Lectura y Ortgrafía',
-            'codigo' => 'LECTORG-6G',
-            'id_curso' => '7',
-            'n_bloques' => '4',
-            'color' => '#01F33E',
-            'status' => 1
-        ]);
-
+        for ($i=2; $i <= 7 ; $i++) {
+
+            DB::table('asignaturas')->insert([
+                'asignatura' => 'Lengua',
+                'codigo' => 'LENG-1G',
+                'id_curso' => $i,
+                'n_bloques' => '6',
+                'color' => '#FF4848',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Matemática',
+                'codigo' => 'MAT-1G',
+                'id_curso' => $i,
+                'n_bloques' => '6',
+                'color' => '#FF9797',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Ciencias Sociales',
+                'codigo' => 'CSCSOC-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#FF62B0',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Educación Física',
+                'codigo' => 'EDUFIS-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#E469FE',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Inglés',
+                'codigo' => 'ING-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#9669FE',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Estética',
+                'codigo' => 'EST-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#FFBBFF',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Educación Vial',
+                'codigo' => 'EDUCVIAL-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#9A03FE',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Ciencias Naturales y Tecnologías',
+                'codigo' => 'CSCNATEC-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#B5FFFC',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Formación Permanente',
+                'codigo' => 'FORMP-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#23819C',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Educación y Valores',
+                'codigo' => 'EDUCVAL-1G',
+                'id_curso' => $i,
+                'n_bloques' => '2',
+                'color' => '#5757FF',
+                'status' => 1
+            ]);
+            DB::table('asignaturas')->insert([
+
+                'asignatura' => 'Lectura y Ortgrafía',
+                'codigo' => 'LECTORG-1G',
+                'id_curso' => $i,
+                'n_bloques' => '3',
+                'color' => '#01F33E',
+                'status' => 1
+            ]);
+        }
+        
         //------ ASIGNATURAS DE 1ER AÑO----------
         DB::table('asignaturas')->insert([
 
@@ -648,7 +149,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -657,7 +158,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Geografía',
             'codigo' => 'GEO-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#DFA800',
             'status' => 1
         ]);
@@ -666,7 +167,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -675,7 +176,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Artística',
             'codigo' => 'ART-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#FF800D',
             'status' => 1
         ]);
@@ -684,7 +185,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Familiar',
             'codigo' => 'EDUCFAM-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#FFBD82',
             'status' => 1
         ]);
@@ -693,7 +194,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para el Trabajo',
             'codigo' => 'EDUCTRAB-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '12',
             'color' => '#D1D17A',
             'status' => 1
         ]);
@@ -702,7 +203,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Arte y Patrimonio',
             'codigo' => 'ARTPAT-1A',
             'id_curso' => '8',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#C27E3A',
             'status' => 1
         ]);
@@ -757,7 +258,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -766,7 +267,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -775,7 +276,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para la Salud',
             'codigo' => 'EDUCS-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#990099',
             'status' => 1
         ]);
@@ -784,7 +285,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -802,7 +303,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Artística',
             'codigo' => 'ART-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#FF800D',
             'status' => 1
         ]);
@@ -811,7 +312,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para el Trabajo',
             'codigo' => 'EDUCTRAB-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '16',
             'color' => '#D1D17A',
             'status' => 1
         ]);
@@ -820,7 +321,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Arte y Patrimonio',
             'codigo' => 'ARTPAT-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#C27E3A',
             'status' => 1
         ]);
@@ -838,7 +339,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-2A',
             'id_curso' => '9',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#B9264F',
             'status' => 1
         ]);
@@ -857,7 +358,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '5',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -866,7 +367,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -875,7 +376,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -884,7 +385,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Física',
             'codigo' => 'FIS-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#1F88A7',
             'status' => 1
         ]);
@@ -893,7 +394,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Química',
             'codigo' => 'QUIM-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#74BAAC',
             'status' => 1
         ]);
@@ -902,7 +403,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Historia de Venezuela',
             'codigo' => 'HVZLA-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#FFB428',
             'status' => 1
         ]);
@@ -911,7 +412,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Geografía',
             'codigo' => 'GEO-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#DFA800',
             'status' => 1
         ]);
@@ -920,7 +421,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación para el Trabajo',
             'codigo' => 'EDUCTRAB-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '16',
             'color' => '#D1D17A',
             'status' => 1
         ]);
@@ -938,7 +439,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-3A',
             'id_curso' => '10',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#B9264F',
             'status' => 1
         ]);
@@ -966,7 +467,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -975,7 +476,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -984,7 +485,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Física',
             'codigo' => 'FIS-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#1F88A7',
             'status' => 1
         ]);
@@ -993,7 +494,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Química',
             'codigo' => 'QUIM-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#74BAAC',
             'status' => 1
         ]);
@@ -1011,7 +512,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Filosofía',
             'codigo' => 'FIL-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#BBBBFF',
             'status' => 1
         ]);
@@ -1020,7 +521,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Instrucción Premilitar',
             'codigo' => 'IPM-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#36F200',
             'status' => 1
         ]);
@@ -1029,7 +530,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-4A',
             'id_curso' => '11',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -1048,7 +549,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Castellano',
             'codigo' => 'CAST-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#1FCB4A',
             'status' => 1
         ]);
@@ -1057,7 +558,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Matemática',
             'codigo' => 'MAT-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '5',
             'color' => '#89FC63',
             'status' => 1
         ]);
@@ -1066,7 +567,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Inglés',
             'codigo' => 'ING-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#DFE32D',
             'status' => 1
         ]);
@@ -1075,7 +576,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Biología',
             'codigo' => 'BIO-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#E0E04E',
             'status' => 1
         ]);
@@ -1084,7 +585,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Física',
             'codigo' => 'FIS-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#1F88A7',
             'status' => 1
         ]);
@@ -1093,7 +594,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Química',
             'codigo' => 'QUIM-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#74BAAC',
             'status' => 1
         ]);
@@ -1102,7 +603,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Geografía',
             'codigo' => 'GEO-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '6',
             'color' => '#DFA800',
             'status' => 1
         ]);
@@ -1111,7 +612,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Instrucción Premilitar',
             'codigo' => 'IPM-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#36F200',
             'status' => 1
         ]);
@@ -1120,7 +621,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Educación Física',
             'codigo' => 'EDUFIS-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '2',
             'color' => '#25A0C5',
             'status' => 1
         ]);
@@ -1129,7 +630,7 @@ class AsignaturasTableSeeder extends Seeder
             'asignatura' => 'Grupo Estable',
             'codigo' => 'GRUPEST-5A',
             'id_curso' => '12',
-            'n_bloques' => '4',
+            'n_bloques' => '3',
             'color' => '#B9264F',
             'status' => 1
         ]);

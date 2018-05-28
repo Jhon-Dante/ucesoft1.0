@@ -58,7 +58,7 @@ class RepresentantesController extends Controller
     public function store(RepresentantesRequest $request)
     {
 
-        //dd($request->all());
+        // dd($request->all());
         $buscar=Representantes::where('cedula',$request->cedula)->get();
 
         $cuantos=count($buscar);
@@ -108,9 +108,89 @@ class RepresentantesController extends Controller
                     'name' => $name,
                     'email' => $request->email,
                     'password' => bcrypt($contraseña),
-                    'tipo_user' => 'Representante'
+                    'tipo_user' => 'Representante',
+                    //---------------------------------- Estudiante
+                            'pre_re' => 'No',
+                            'list_estu' => 'No',
+                            'edit_estu' => 'No',
+                            'eli_estu' => 'No',
+                            'const_estu' => 'No',
+                            'cer_estu' => 'No',
+                            'titulob_estu' => 'No',
+                            //---------------------------------- Representante
+                            'list_repre' => 'No',
+                            'create_repre' => 'No',
+                            'edit_repre' => 'No',
+                            //---------------------------------- mensualidades
+                            'pag_mensu' => 'No',
+                            'edit_montos' => 'No',
+                            'edit_monto_m' => 'No',
+                            //---------------------------------- calificaciones
+                            'edit_cali_pre' => 'No',
+                            'edit_cali_basic' => 'No',
+                            'edit_cali_media' => 'No',
+                            'edit_notas_final' => 'No',
+                            //---------------------------------- Horarios
+                            'gen_horario' => 'No',
+                            //---------------------------------- personal
+                            'list_perso' => 'No',
+                            'create_perso' => 'No',
+                            'edit_perso' => 'No',
+                            'act/desac_perso' => 'No',
+                            'asig_car_aca' => 'No',
+                            'asig_guia' => 'No',
+                            'list_guia' => 'No',
+                            //---------------------------------- config
+
+                                //------------------------------------- usuarios
+                                'list_user' => 'No',
+                                'list_edit' => 'No',
+                                //------------------------------------- asignaturas
+                                'list_asig' => 'No',
+                                'create_asig' => 'No',
+                                'edit_asig' => 'No',
+                                'elim_asig' => 'No',
+                                //------------------------------------- auditoria
+                                'list_auditoria' => 'No',
+                                //------------------------------------- aulas
+                                'list_aula' => 'No',
+                                'create_aula' => 'No',
+                                'edit_aula' => 'No',
+                                'elim_aula' => 'No',
+                                //------------------------------------- cargos
+                                'list_cargo' => 'No',
+                                'create_cargo' => 'No',
+                                'edit_cargo' => 'No',
+                                'elim_cargo' => 'No',
+                                //------------------------------------- periodos
+                                'list_periodo' => 'No',
+                                'create_periodo' => 'No',
+                                'edit_periodo' => 'No',
+                                'elim_periodo' => 'No',
+                                'act/desac_periodo' => 'No',
+                                //------------------------------------- respaldar BD
+                                'res_BD' => 'No',
+                                //------------------------------------- Secciones
+                                'list_seccion' => 'No',
+                                'create_seccion' => 'No',
+                                'edit_seccion' => 'No',
+                                'elim_seccion' => 'No',
+                                //-------------------------------------
+                    'status' => 1
                 ]);
 
+
+                 // $name=$request->nombres;
+                    $destinatario=$request->email;
+                    $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;
+
+
+
+                    $r=Mail::send('admin.personal.personal_correo', ['name' => $name,'contraseña' => $contraseña,'destinatario' => $destinatario,'contenido' => $contenido], function ($m) use ($asunto,$destinatario,$persona,$contenido,$data,$monto) {
+                        $m->from('colegiourdanetacampoelias@gmail.com', 'Ucesoft1.0');
+
+                        $m->to($destinatario, $persona)->subject('Registro del representante');
+                    });
                 // $destinatario=$request->email;
                 // $asunto="Confirmación de representante en el sistema";
                 // $contenido="La clave para ingresar al sistema administrativo del colegio urdaneta y campo elías es:".$contraseña;

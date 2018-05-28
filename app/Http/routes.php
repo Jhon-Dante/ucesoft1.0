@@ -401,7 +401,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
          Route::resource('/notas_finales','NotasFinalesController');
 
+         Route::get('/usuario/{id}/{edit_p}/editP',[
+            'uses' => 'UserController@editP',
+            'as' => 'admin.usuarios.editP'
+        ]);
 
+          // Route::get('/personal_asignatura/{id}/editar_guia',[
+          //   'uses' => 'PersonalAsignaturaController@editar_guia',
+          //   'as' => 'admin.personal_asignatura.editar_guia'
+          //   ]);
          
 });
         

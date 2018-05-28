@@ -63,48 +63,9 @@
         
             <section class="col-lg-7 connectedSortable">
               <!-- Custom tabs (Charts with tabs)-->
-              <div class="nav-tabs-custom">
-                <!-- Tabs within a box -->
-                <ul class="nav nav-tabs pull-right">
-
-                  <li><a href="#sales-chart" data-toggle="tab">Estudiantes</a></li>
-                  <li class="pull-left header"><i class="fa fa-inbox"></i> Estudiantes</li>
-                </ul>
-                <div class="tab-content no-padding">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                    <div class="box">
-                
-                <!-- /.box-header -->
-                
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <div class="box-body">
-                  <table class="table table-bordered table-striped">
-                    <tbody><tr>
-                      <th style="width: 10px">#</th>
-                      <th>Nombres</th>
-                      <th>Apellidos</th>
-                      <th>Cédula</th>
-                      <th style="width: 40px"></th>
-                    </tr>
-                    
-                    @foreach($datosBasicos as $p)
-                      <tr>
-                        <td>{{$num=$num+1}}.-</td>
-                        <td>{{$p->nombres}}</td>
-                        <td>{{$p->apellidos}}</td>
-                        <td>{{$p->nacionalidad}} - {{$p->cedula}}</td>
-
-                      </tr>
-                    @endforeach
-                    
-                  </tbody></table>
-                </div>
-                  </div>
-                </div>
-              </div>
+             
               <!-- /.nav-tabs-custom -->
-
+            </section>
           
 
           

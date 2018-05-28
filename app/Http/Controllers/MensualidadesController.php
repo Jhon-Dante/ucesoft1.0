@@ -183,28 +183,37 @@ class MensualidadesController extends Controller
 
         //dd(config('app.mail_host'));
 
-        $destinatario='imagine.breacker@gmail.com';
-        // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        // $destinatario='jcesarchg9@gmail.com';
+        $persona=''.$buscar_mens->inscripcion->datosbasicos->nombres.','.$buscar_mens->inscripcion->datosbasicos->apellidos.'';  
+        // dd($persona);
+        $mes=$buscar_mens->pagos->meses->mes;
+        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        $monto=$request->monto;
         //dd($destinatario);
         $asunto="Confirmación de pago de mensualidad";
-        $contenido="PAGO DE MENSUALIDAD";
+        // $contenido="PAGO DE MENSUALIDAD";
         $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
             /*$r=Mail::send('admin.mensualidades.respuesta_correo', $data, function ($message) use ($asunto,$destinatario){
                 $message->from('colegiourdanetacampoelias@gmail.com');
                 $message->to($destinatario)->subject($asunto);
             });*/
-            Mail::send('admin.mensualidades.respuesta_correo',$request->all(), function ($msj){
-                $msj->subject('Contacto');
-                $msj->to('jcesarchg9@gmail.com');
-            });
+            // Mail::send('admin.mensualidades.respuesta_correo',$request->all(), function ($msj){
+            //     $msj->subject('Contacto');
+            //     $msj->to('imagine.breacker@gmail.com');
+            // });
+            $r=Mail::send('admin.mensualidades.respuesta_correo', ['data' => $data,'mes' => $mes,'monto' => $monto,'persona' => $persona], function ($m) use ($asunto,$destinatario,$persona,$contenido,$data,$monto) {
+                $m->from('colegiourdanetacampoelias@gmail.com', 'Ucesoft1.0');
+
+                $m->to($destinatario, $persona)->subject('Pago de mensualidad');
+        });
 
         if ($r) {
            flash('MENSUALIDAD CANCELADA CON ÉXITO! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');
         } else {
            flash('NO SE PUDO REALIZAR LA CANCELACIÓN DE LA MENSUALIDAD !','error');
         }
-        flash('MENSUALIDAD CANCELADA CON ÉXITO! PERO NO SE HA PODIDO ENVIAR LA FACTURA AL CORREO DEBIDO A UN ERROR: [host smtp.gmail.com [php_network_getaddresses: getaddrinfo failed: Host desconocido]');
+        // flash('MENSUALIDAD CANCELADA CON ÉXITO! PERO NO SE HA PODIDO ENVIAR LA FACTURA AL CORREO DEBIDO A UN ERROR: [host smtp.gmail.com [php_network_getaddresses: getaddrinfo failed: Host desconocido]');
         
         flash('MENSUALIDAD CANCELADA CON ÉXITO!','success');
         return redirect()->route('admin.mensualidades.index');
@@ -278,7 +287,10 @@ class MensualidadesController extends Controller
         //buscando el ultimo monto registrado para ese mes
         $pagos=$buscar_mens->pagos->meses->mes;
         $mes=$pagos;
-
+        $persona=''.$buscar_mens->inscripcion->datosbasicos->nombres.','.$buscar_mens->inscripcion->datosbasicos->apellidos.'';  
+        // dd($persona);
+        $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
+        $monto=$request->monto;
 
         $mensualidad=Mensualidades::find($request->id_mensualidad2);
 
@@ -288,17 +300,17 @@ class MensualidadesController extends Controller
 
         $mensualidad->save();
 
-        $destinatario='imagine.breacker@gmail.com';
+        // $destinatario='imagine.breacker@gmail.com';
         // $destinatario=$buscar_mens->inscripcion->datosbasicos->representantes->email;
         //dd($destinatario);
         $asunto="Confirmación de estado de mensualidad";
-        $contenido="PAGO DE MENSUALIDAD COLOCADA COMO SIN PAGAR!";
+        $contenido="Cambio en el pago de mensualidad!";
         $data=array("contenido"=> $contenido,"estudiante" => $estudiante,"cedula" => $cedula,"mes" => $mes);
 
-        $r=Mail::send('admin.mensualidades.sinpagar_correo', $data, function ($message) use ($asunto,$destinatario){
-        $message->from('colegiourdanetacampoelias@gmail.com');
-        
-            $message->to($destinatario)->subject($asunto);
+        $r=Mail::send('admin.mensualidades.sinpagar_correo', ['data' => $data,'mes' => $mes,'monto' => $monto,'persona' => $persona], function ($m) use ($asunto,$destinatario,$persona,$contenido,$data,$monto) {
+                $m->from('colegiourdanetacampoelias@gmail.com', 'Ucesoft1.0');
+
+                $m->to($destinatario, $persona)->subject('cambio del estado en la mensualidad');
         });
         if ($r) {
            flash('MENSUALIDAD COLOCADA COMO SIN PAGAR CON ÉXITO!! Y CORREO DE CONFIRMACIÓN ENVIADO!','success');

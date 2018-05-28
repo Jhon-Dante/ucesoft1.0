@@ -165,50 +165,52 @@
 
 
                 </li>
-                <li class="treeview">
-                    <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <!-- <li><a href=" {{ url('admin/cursos')        }} ">Cursos         </a></li> -->
-                        @if(Auth::user()->list_user == 'Si')
-                            <li><a href=" {{ url('admin/usuarios')      }} ">Usuarios       </a></li>
-                        @endif
+                @if(Auth::user()->list_auditoria == 'Si' || Auth::user()->list_user == 'Si' || Auth::user()->list_asig == 'Si')
+                    <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <!-- <li><a href=" {{ url('admin/cursos')        }} ">Cursos         </a></li> -->
+                            @if(Auth::user()->list_user == 'Si')
+                                <li><a href=" {{ url('admin/usuarios')      }} ">Usuarios       </a></li>
+                            @endif
 
-                        @if(Auth::user()->list_asig == 'Si')
-                            <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
-                        @endif
+                            @if(Auth::user()->list_asig == 'Si')
+                                <li><a href=" {{ url('admin/asignaturas')   }} ">Asignaturas    </a></li>
+                            @endif
 
-                        @if(Auth::user()->list_auditoria == 'Si')
-                            <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      </a></li>
-                        @endif
+                            @if(Auth::user()->list_auditoria == 'Si')
+                                <li><a href=" {{ url('admin/auditoria')     }} ">Auditoría      </a></li>
+                            @endif
 
-                        @if(Auth::user()->list_aula == 'Si')
-                            <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
-                        @endif
+                            @if(Auth::user()->list_aula == 'Si')
+                                <li><a href=" {{ url('admin/aulas')         }} ">Aulas          </a></li>
+                            @endif
 
-                        @if(Auth::user()->list_cargo == 'Si')
-                            <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
-                        @endif
+                            @if(Auth::user()->list_cargo == 'Si')
+                                <li><a href=" {{ url('admin/cargos')        }} ">Cargos         </a></li>
+                            @endif
 
-                        <!-- @if(Auth::user()->edit_cali_pre == 'Si')
-                            <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
-                        @endif -->
+                            <!-- @if(Auth::user()->edit_cali_pre == 'Si')
+                                <li><a href=" {{ url('admin/remediales')    }} ">Pendientes y remediales</a></li>
+                            @endif -->
 
-                        @if(Auth::user()->list_periodo == 'Si')
-                            <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
-                        @endif
+                            @if(Auth::user()->list_periodo == 'Si')
+                                <li><a href=" {{ url('admin/periodos')      }} ">Periodos       </a></li>
+                            @endif
 
-                        @if(Auth::user()->res_BD == 'Si')
-                            <li><a href=" {{ url('admin/respaldos')      }} ">Respaldar BD   </a></li>
-                        @endif
+                            @if(Auth::user()->res_BD == 'Si')
+                                <li><a href=" {{ url('admin/respaldos')      }} ">Respaldar BD   </a></li>
+                            @endif
 
-                        @if(Auth::user()->list_seccion == 'Si')
-                            <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
-                        @endif
+                            @if(Auth::user()->list_seccion == 'Si')
+                                <li><a href=" {{ url('admin/secciones')     }} ">Secciones      </a></li>
+                            @endif
 
-                        
-                        
-                    </ul>
-                </li>
+                            
+                            
+                        </ul>
+                    </li>
+                @endif
         @if(Auth::user()->tipo_user == 'Docente Preescolar')
         <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
