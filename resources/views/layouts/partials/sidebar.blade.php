@@ -31,11 +31,12 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
+            @if(Auth::user()->tipo_user != 'Representante')
                 @if(Auth::user()->pre_re == 'Si')
                     <li><a href=" {{ url('admin/DatosBasicos/create') }} "><i class="fa fa-link"></i>Prenscribir / Inscribir</a></li>
                 @endif
 
-                @if(Auth::user()->list_estu == 'Si')
+                @if(Auth::user()->list_estu == 'Si' || Auth::user()->pre_re == 'Si')
                     <li class="treeview">
                         <a href="#"><i class="fa fa-link"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
@@ -211,6 +212,7 @@
                         </ul>
                     </li>
                 @endif
+            @endif
         @if(Auth::user()->tipo_user == 'Docente Preescolar')
         <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Calificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>

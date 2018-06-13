@@ -46,6 +46,7 @@
                 <th>Nro</th>
                 <th>asignatura</th>
                 <th>Curso</th>
+                <th>Nro. Bloques</th>
                 <th>Color</th>
                 <th>Status</th>
                 <th>Opciones</th>
@@ -59,6 +60,7 @@
               <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->asignatura}}</a></td>
 
               <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}"> {{$asignatura->cursos->curso}}</a></td>
+              <td><a href="{{ route('admin.asignaturas.edit', [$asignatura->id]) }}">{{$asignatura->n_bloques}}</a></td>
               <td style="background-color: {{$asignatura->color}}" ></td>
               <td align="center">
               @if($asignatura->status == 1)

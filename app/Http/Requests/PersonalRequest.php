@@ -24,17 +24,17 @@ class PersonalRequest extends Request
     public function rules()
     {
         return [
-            'nombres' => 'required',
-            'apellidos' => 'required',
+            'nombres' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'apellidos' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
             'cedula' => 'required|numeric',
-            'fecha_nacimiento' => 'required',
+            'fecha_nacimiento' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
             'edo_civil' => 'required',
-            'direccion' => 'required',
-            'genero' => 'required',
+            'direccion' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'genero' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
             'telf_hab' => 'required|numeric',
             'celular' => 'required|numeric',
-            'correo' => 'required',
-            'id_cargo' => 'required'
+            'correo' => 'required|email',
+            'id_cargo' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
         ];
     }
     public function messages()

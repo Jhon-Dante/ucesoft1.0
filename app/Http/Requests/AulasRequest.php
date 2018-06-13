@@ -24,7 +24,7 @@ class AulasRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required'
+            'nombre' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
         ];
     }
 }

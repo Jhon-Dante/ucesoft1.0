@@ -827,7 +827,36 @@ class DatosBasicosController extends Controller
         // $e=Boletin::where('id_datosBasicos',$estudiante->id_datosBasicos)->where('id_periodo',$periodo->id)->where('lapso',3)->orderBy('id_asignatura')->get();
         // // dd(count($q),count($w),count($e));
         $i=0;
-        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletinFinal' => $boletinFinal, 'i' => $i, 'edu' => $edu, 'asignaturas' => $asignaturas, 'mensualidades' => $mensualidades])->setPaper('legal');
+        //Verificar si hay notas registradas con los periodos mayores a 8
+
+        if($boletinFinal[0]->asignatura->id_curso == 8){
+            $c1=1;
+        }else{
+            $c1=0;
+        }
+        if($boletinFinal[0]->asignatura->id_curso == 9){
+            $c2=1;
+        }else{
+            $c2=0;
+        }
+        if($boletinFinal[0]->asignatura->id_curso == 10){
+            $c3=1;
+        }else{
+            $c3=0;
+        }
+        if($boletinFinal[0]->asignatura->id_curso == 11){
+            $c4=1;
+        }else{
+            $c4=0;
+        }
+        if($boletinFinal[0]->asignatura->id_curso == 12){
+            $c5=1;
+        }else{
+            $c5=0;
+        }
+
+        // dd($c1,$c2,$c3,$c4,$c5);
+        $dompdf = \PDF::loadView('admin.pdfs.constancia.constanciaC', ['c1'=> $c1,'c2'=> $c2,'c3'=> $c3,'c4'=> $c4,'c5'=> $c5,'inscripcion' => $inscripcion, 'periodo' => $periodo, 'año' => $año, 'cursos' => $cursos,'notas' => $notas, 'boletinFinal' => $boletinFinal, 'i' => $i, 'edu' => $edu, 'asignaturas' => $asignaturas, 'mensualidades' => $mensualidades])->setPaper('legal');
 
                     return $dompdf->stream();
     }

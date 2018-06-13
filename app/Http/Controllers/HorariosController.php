@@ -62,7 +62,7 @@ class HorariosController extends Controller
             $num=0;
             $secciones=Seccion::where('id_curso','!=','1')->get();
             $periodos=Periodos::where('status','Activo')->get()->first();
-             $id_periodo=Session::get('periodo');
+            $id_periodo=Session::get('periodo');
             $horarios=Horarios::where('id_periodo',$id_periodo)->get();
             $horarios2=Horarios2::where('id_periodo',$id_periodo)->get();
            
@@ -290,9 +290,15 @@ class HorariosController extends Controller
 
         $horas=8;
         $aulas=Aula::where('status',1)->get();
+        $cuantosb=0;
+        if ($secciones->id<=4) {
+            $cuantosb=Horarios2::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        }else{
+            $cuantosb=Horarios::where('id_seccion',$id_seccion)->where('id_periodo',$id_periodo)->get();
+        }
         // $nbloques=NBloques::where('id_periodo',$id_periodo)->get();
         
-        return View('admin.horarios.show', compact('asignaturas','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
+        return View('admin.horarios.show', compact('asignaturas','cuantosb','secciones','periodos','aulas','horas','dias','horarios','bloques3','bloquesx','colores','aula','id_horarios'));
     }
     /**
      * Store a newly created resource in storage.

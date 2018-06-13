@@ -24,8 +24,8 @@ class SeccionesRequest extends Request
     public function rules()
     {
         return [
-            'seccion' => 'required',
-            'id_curso' => 'required'
+            'seccion' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'id_curso' => 'required|numeric'
         ];
     }
      public function messages()

@@ -64,19 +64,11 @@ class AsignaturasController extends Controller
             $asignatura=Asignaturas::create([
                 'asignatura' => $request->asignatura,
                 'id_curso' => $request->id_curso,
-                'color' => $request->color
+                'color' => $request->color,
+                'n_bloques' => $request->n_bloques
                 ]);
             $asignaturas=Asignaturas::where('asignatura',$request->asignatura)->where('id_curso',$request->id_curso)->first();
-
-            //registrando en bloques
-            $periodos=Periodos::all();
-            for ($i=0; $i < count($periodos) ; $i++) {
-                $nbloques=NBloques::create([
-                    'n_bloques' => 4,
-                    'id_asignatura' => $asignaturas->id,
-                    'id_periodo' => $i
-                ]);
-            }
+          
             //registrando en auditoria
             $accion = 'Registro de la Asignatura '.$request->asignatura.' en el curso '.$request->curso.'';
 
@@ -136,7 +128,8 @@ class AsignaturasController extends Controller
             
             $asignaturas->asignatura=$request->asignatura;
             $asignaturas->id_curso=$request->id_curso;
-            $asignaturas->color=$request->color; 
+            $asignaturas->color=$request->color;
+            $asignaturas->n_bloques=$request->n_bloques;
             $asignaturas->update();
 
             //registrando en auditoria

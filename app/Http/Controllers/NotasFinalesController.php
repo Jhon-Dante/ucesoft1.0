@@ -45,9 +45,11 @@ class NotasFinalesController extends Controller
      */
     public function index()
     {
+        $num=0;
         $periodo=Session::get('periodo');
-        $BoletinFinal=BoletinFinal::where('id_periodo',$periodo)->orderBy('id_datosBasicos')->get();
-        dd($BoletinFinal);
+        $inscripcion=Inscripcion::where('id_periodo',$periodo)->get();
+        $BoletinFinal=BoletinFinal::where('id_periodo',$periodo)->groupBy('id_datosBasicos')->get();
+        return view('admin.calificaciones.notas_finales.index', compact('num','BoletinFinal','inscripcion'));
     }
 
     /**

@@ -24,7 +24,7 @@ class CursosRequest extends Request
     public function rules()
     {
         return [
-            'curso' => 'required'
+            'curso' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
         ];
     }
 }

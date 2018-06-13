@@ -24,7 +24,7 @@ class CargosRequest extends Request
     public function rules()
     {
         return [
-            'cargo' => 'required'
+            'cargo' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
         ];
     }
     

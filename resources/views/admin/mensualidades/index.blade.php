@@ -299,7 +299,7 @@
                           <tr>
 
                             <td>{{ $num=$num+1 }}</td>
-                            <td></td>
+                            <td>{{$key->datosBasicos->nombres}}</td>
 
                             @foreach($mensualidades as $key2)
                               @if($key2->id_inscripcion==$key->id && $key->id_periodo==$id_periodo )

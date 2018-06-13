@@ -24,9 +24,10 @@ class AsignaturasRequest extends Request
     public function rules()
     {
         return [
-            'asignatura' => 'required',
-            'id_curso' => 'required',
-            'color' => 'required'
+            'asignatura' => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'id_curso' => 'required|numeric',
+            'color' => 'required',
+            'n_bloques' => 'required|numeric'
         ];
     }
     

@@ -65,7 +65,7 @@ use Carbon\Carbon;
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$num=$num+1}}                                </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nombres}}                   </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->apellidos}}                 </a></td>
-                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacionalidad}}-{{$perso->cedula}}  </a></td>
+                <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->nacionalidad}} {{$perso->cedula}}  </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->cargo->cargo}}              </a></td>
                 <td><a href="{{ route('admin.personal.edit', [$perso->id]) }}"> {{$perso->codigo_cel}} - {{$perso->celular}}</a>
                 </td>

@@ -24,10 +24,10 @@ class HorarioRequest extends Request
     public function rules()
     {
         return [
-            'id_curso'      => 'required',
-            'id_seccion'    => 'required',
-            'id_asignatura' => 'required',
-            'id_aula'       => 'required'
+            'id_curso'      => 'required|numeric',
+            'id_seccion'    => 'required|numeric',
+            'id_asignatura' => 'required|numeric',
+            'id_aula'       => 'required|numeric'
         ];
     }
 

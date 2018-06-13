@@ -1,15 +1,17 @@
 <?php set_time_limit(1000);?>
 	<style type="text/css">
 		html {
-		margin: 20;
+		margin: 14;
 		}
 		body {
 		font-family: "Times New Roman", serif;
+		font-size: 11px;
 		}
 		.normal{
 
   			border-size: 1px solid #000;
   			border-collapse: collapse;
+  			
 		}
 		.normal th, .normal td {
   		border: 1px solid #000;
@@ -46,295 +48,510 @@
 	<table width="100%">
 		<tr>
 			<td>
-				<strong>V. PENSUM DE ESTUDIOS</strong>
-			</td>
-			<td align="right">
-				<strong>IV. Director(a) del Plantel</strong>
+				<strong><I></I>IV. PLANTELES DONDE CURSÓ ESTUDIOS</strong>
 			</td>
 		</tr>
 	</table>
-	<table>
 
-	<tr> 
-		<?php $n=0; ?>
-		<table align="left" class="normal" cellpadding="3">
+
+
+
+
+
+	<table width="100px">
+		<tr>
+			<td>
+				<table align="left" class="normal" cellpadding="6">
 					<tr>
-						<td>Año o Grado: <strong>Primero</strong></td>
-						<td colspan="2"><strong>CALIFICACIONES</strong></td>
-						<td></td>
-						<td colspan="2"><strong>FECHA</strong></td>
-						<td><strong>PLANTEL</strong></td>
+						<td>Nro.</td>
+						<td>Nombre del plantel</td>
+						<td>Localidad</td>
+						<td>E.F.</td>
 					</tr>
+				</table>
+				<table align="right" class="normal" cellpadding="6">
 					<tr>
-						<td><strong>Asignaturas</strong></td>
-						<td><strong>En Nro.</strong></td>
-						<td><strong>En Letras</strong></td>
-						<td><strong>T-E</strong></td>
-						<td><strong>Mes</strong></td>
-						<td><strong>Año</strong></td>
-						<td><strong>Nro.</strong></td>
+						<td>Nro.</td>
+						<td>Nombre del plantel</td>
+						<td>Localidad</td>
+						<td>E.F.</td>
 					</tr>
-						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == 8)
+				</table>
+			</td>
+		</tr>
+				<table width="100%">
+					<tr>
+						<td>
+							<strong>V. PENSUM DE ESTUDIOS</strong>
+						</td>
+					</tr>
+				</table>
+		<tr>
+			
+				<table>
+
+					<tr> 
+					<?php $n=0; ?>
+					<table align="left" class="normal" cellpadding="3">
+						@foreach($cursos as $c)
+							@if($c->id==8)
 								<tr>
-									<td>{{$asig->asignatura}}</td>
+									<td colspan="7" align="center"><strong>PRIMER AÑO</strong></td>
+								</tr>
+								<tr>
+									<td rowspan="2"><strong>ÁREAS DE FORMACIÓN</strong></td>
+									<td colspan="2"><strong>CALIFICACIONES</strong></td>
+									<td rowspan="2"><strong>T-E</strong></td>
+									<td colspan="2"><strong>FECHA</strong></td>
+									<td><strong>PLANTEL</strong></td>
+								</tr>
+								<tr>
+									<td><strong>En Nro.</strong></td>
+									<td><strong>En Letras</strong></td>
+									
+									<td><strong>Mes</strong></td>
+									<td><strong>Año</strong></td>
+									<td><strong>Nro.</strong></td>
+								</tr>
+									
+										@if($c1>0)
+											@foreach($boletinFinal as $bf)
+												@if($bf->asignatura->cursos->id == $c->id)
+														<tr>
+															<td>{{$bf->asignatura->asignatura}}</td>
+											
+																		<td>{{$bf->promedio}}</td>
+																		<td align="center">
+																			@if($bf->promedio==1)UNO
+																			@elseif($bf->promedio==2)DOS
+																			@elseif($bf->promedio==3)TRES
+																			@elseif($bf->promedio==4)CUATRO
+																			@elseif($bf->promedio==5)CINCO
+																			@elseif($bf->promedio==6)SEIS
+																			@elseif($bf->promedio==7)SIETE
+																			@elseif($bf->promedio==8)OCHO
+																			@elseif($bf->promedio==9)NUEVE
+																			@elseif($bf->promedio==10)DIEZ
+																			@elseif($bf->promedio==11)ONCE
+																			@elseif($bf->promedio==12)DOCE
+																			@elseif($bf->promedio==13)TRECE
+																			@elseif($bf->promedio==14)CATORCE
+																			@elseif($bf->promedio==15)QUINCE
+																			@elseif($bf->promedio==16)DIECISÉIS
+																			@elseif($bf->promedio==17)DIECISIETE
+																			@elseif($bf->promedio==18)DIECIOCHO
+																			@elseif($bf->promedio==19)DIECINUEVE
+																			@else VEINTE
+																			@endif
+																		</td>
+																		<td align="center">F</td>
+																		<td align="center">Julio</td>
+																		<td align="center">2018</td>	
+																		<td align="center">1</td>
+																	
+																
+															
+														</tr>
+												@endif
+											@endforeach
+										@else
+												@foreach($asignaturas as $asigna)
+													@if($asigna->id_curso == $c->id)
+														<tr>
+															<td>{{$asigna->asignatura}}</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+														</tr>
+													@endif
+												@endforeach
+										@endif
+							@elseif($c->id==10)
+								<tr>
+									<td colspan="7" align="center"><strong>TERCER AÑO</strong></td>
+								</tr>
+								<tr>
+									<td rowspan="2"><strong>ÁREAS DE FORMACIÓN</strong></td>
+									<td colspan="2"><strong>CALIFICACIONES</strong></td>
+									<td rowspan="2"><strong>T-E</strong></td>
+									<td colspan="2"><strong>FECHA</strong></td>
+									<td><strong>PLANTEL</strong></td>
+								</tr>
+								<tr>
+									<td><strong>En Nro.</strong></td>
+									<td><strong>En Letras</strong></td>
+									
+									<td><strong>Mes</strong></td>
+									<td><strong>Año</strong></td>
+									<td><strong>Nro.</strong></td>
+								</tr>
+									
+										@if($c3>0)
+											@foreach($boletinFinal as $bf)
+												@if($bf->asignatura->cursos->id == $c->id)
+														<tr>
+															<td>{{$bf->asignatura->asignatura}}</td>
+											
+																		<td>{{$bf->promedio}}</td>
+																		<td align="center">
+																			@if($bf->promedio==1)UNO
+																			@elseif($bf->promedio==2)DOS
+																			@elseif($bf->promedio==3)TRES
+																			@elseif($bf->promedio==4)CUATRO
+																			@elseif($bf->promedio==5)CINCO
+																			@elseif($bf->promedio==6)SEIS
+																			@elseif($bf->promedio==7)SIETE
+																			@elseif($bf->promedio==8)OCHO
+																			@elseif($bf->promedio==9)NUEVE
+																			@elseif($bf->promedio==10)DIEZ
+																			@elseif($bf->promedio==11)ONCE
+																			@elseif($bf->promedio==12)DOCE
+																			@elseif($bf->promedio==13)TRECE
+																			@elseif($bf->promedio==14)CATORCE
+																			@elseif($bf->promedio==15)QUINCE
+																			@elseif($bf->promedio==16)DIECISÉIS
+																			@elseif($bf->promedio==17)DIECISIETE
+																			@elseif($bf->promedio==18)DIECIOCHO
+																			@elseif($bf->promedio==19)DIECINUEVE
+																			@else VEINTE
+																			@endif
+																		</td>
+																		<td align="center">F</td>
+																		<td align="center">Julio</td>
+																		<td align="center">2018</td>	
+																		<td align="center">1</td>
+																	
+																
+															
+														</tr>
+												@endif
+											@endforeach
+										@else
+												@foreach($asignaturas as $asigna)
+													@if($asigna->id_curso == $c->id)
+														<tr>
+															<td>{{$asigna->asignatura}}</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+														</tr>
+													@endif
+												@endforeach
+										@endif
+							@elseif($c->id==12)
+								<tr>
+									<td colspan="7" align="center"><strong>QUINTO AÑO</strong></td>
+								</tr>
+								<tr>
+									<td rowspan="2"><strong>ÁREAS DE FORMACIÓN</strong></td>
+									<td colspan="2"><strong>CALIFICACIONES</strong></td>
+									<td rowspan="2"><strong>T-E</strong></td>
+									<td colspan="2"><strong>FECHA</strong></td>
+									<td><strong>PLANTEL</strong></td>
+								</tr>
+								<tr>
+									<td><strong>En Nro.</strong></td>
+									<td><strong>En Letras</strong></td>
+									
+									<td><strong>Mes</strong></td>
+									<td><strong>Año</strong></td>
+									<td><strong>Nro.</strong></td>
+								</tr>
+									
+										@if($c5>0)
+											@foreach($boletinFinal as $bf)
+												@if($bf->asignatura->cursos->id == $c->id)
+														<tr>
+															<td>{{$bf->asignatura->asignatura}}</td>
+											
+																		<td>{{$bf->promedio}}</td>
+																		<td align="center">
+																			@if($bf->promedio==1)UNO
+																			@elseif($bf->promedio==2)DOS
+																			@elseif($bf->promedio==3)TRES
+																			@elseif($bf->promedio==4)CUATRO
+																			@elseif($bf->promedio==5)CINCO
+																			@elseif($bf->promedio==6)SEIS
+																			@elseif($bf->promedio==7)SIETE
+																			@elseif($bf->promedio==8)OCHO
+																			@elseif($bf->promedio==9)NUEVE
+																			@elseif($bf->promedio==10)DIEZ
+																			@elseif($bf->promedio==11)ONCE
+																			@elseif($bf->promedio==12)DOCE
+																			@elseif($bf->promedio==13)TRECE
+																			@elseif($bf->promedio==14)CATORCE
+																			@elseif($bf->promedio==15)QUINCE
+																			@elseif($bf->promedio==16)DIECISÉIS
+																			@elseif($bf->promedio==17)DIECISIETE
+																			@elseif($bf->promedio==18)DIECIOCHO
+																			@elseif($bf->promedio==19)DIECINUEVE
+																			@else VEINTE
+																			@endif
+																		</td>
+																		<td align="center">F</td>
+																		<td align="center">Julio</td>
+																		<td align="center">2018</td>	
+																		<td align="center">1</td>
+																	
+																
+															
+														</tr>
+												@endif
+											@endforeach
+										@else
+												@foreach($asignaturas as $asigna)
+													@if($asigna->id_curso == $c->id)
+														<tr>
+															<td>{{$asigna->asignatura}}</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+														</tr>
+													@endif
+												@endforeach
+										@endif
 							
-										@foreach($boletinFinal as $b)
-											@if($b->id_asignatura == $asig->id)
-												<td>{{$b->promedio}}</td>
-												<td align="center">
-													@if($b->promedio==1)UNO
-													@elseif($b->promedio==2)DOS
-													@elseif($b->promedio==3)TRES
-													@elseif($b->promedio==4)CUATRO
-													@elseif($b->promedio==5)CINCO
-													@elseif($b->promedio==6)SEIS
-													@elseif($b->promedio==7)SIETE
-													@elseif($b->promedio==8)OCHO
-													@elseif($b->promedio==9)NUEVE
-													@elseif($b->promedio==10)DIEZ
-													@elseif($b->promedio==11)ONCE
-													@elseif($b->promedio==12)DOCE
-													@elseif($b->promedio==13)TRECE
-													@elseif($b->promedio==14)CATORCE
-													@elseif($b->promedio==15)QUINCE
-													@elseif($b->promedio==16)DIECISÉIS
-													@elseif($b->promedio==17)DIECISIETE
-													@elseif($b->promedio==18)DIECIOCHO
-													@elseif($b->promedio==19)DIECINUEVE
-													@else VEINTE
-													@endif
-												</td>
-												<td align="center">F</td>
-												<td align="center">Julio</td>
-												<td align="center">2018</td>	
-												<td align="center">1</td>
-											@else
-												<td>***</td>
-											@endif
-										@endforeach
-									
-								</tr>
 							@endif
+
 						@endforeach
-					<?php $n++; ?>
-					<tr>
-						<td>Año o Grado: <strong>Segundo</strong></td>
-						<td colspan="2"><strong>CALIFICACIONES</strong></td>
-						<td></td>
-						<td colspan="2"><strong>FECHA</strong></td>
-						<td><strong>PLANTEL</strong></td>
+					</table>
+					<!-- <table align="right" width="136" height="40">
+						<tr>
+							<td align="left"><strong>Apellidos y Nombres</strong></td>
+						</tr>
+						<tr>
+							<td align="center">Longoria Blanco Juan</td>
+						</tr>
+						<tr>
+							<td align="left"><strong>Número de C.I.</strong></td>
+						</tr>
+						<tr>
+							<td align="center">V.-4.367.685</td>
+						</tr>
+						<tr>
+							<td align="left"><strong><br><br>Firma.</strong></td>
+						</tr>
+						<tr>
+							<td align="center"><strong><br><br><br>Sello del Plantel</strong></td>
+						</tr>
+						<tr>
+							<td align="center"><br><br><br><br><br>Para efectos de su validez a nivel nacional</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<strong>VII. DIRECTOR(A) DE LA ZONA EDUCATIVA</strong>
+							</td>
+						</tr>
+						<tr>
+							<td align="left"><strong>Apellidos y Nombres:</strong></td>
+						</tr>
+						<tr>
+							<td align="center">Longoria Blanco Juan Enrique</td>
+						</tr>
+						<tr>
+							<td align="left"><strong>Número de Cédula:</strong></td>
+						</tr>
+						<tr>
+							<td align="center">V.- 8367685</td>
+						</tr>
+						<tr>
+							<td align="center"><br><br><br><br><strong>Sello de la Zona Educativa</strong></td>
+						</tr>
+						<tr>
+							<td align="justify"><br><br><br><br>Para efectos de su valideza nivel Nacional e internacional y cuando  se trate de estudios libres equivalentes sin escolaridad.</td>
+						</tr>
+						<tr>
+							<td align="justify">TIMBRE FISCAL: Este documento no tiene validez si no se coloca en la parte posterior timbres fiscales por Bs. 30% de la Unidad Tributaria</td>
+						</tr>
+					</table> -->
+					
+
+					
 					</tr>
-					<tr>
-						<td><strong>Asignaturas</strong></td>
-						<td><strong>En Nro.</strong></td>
-						<td><strong>En Letras</strong></td>
-						<td><strong>T-E</strong></td>
-						<td><strong>Mes</strong></td>
-						<td><strong>Año</strong></td>
-						<td><strong>Nro.</strong></td>
-					</tr>
-						@foreach($asignaturas as $asig)
-							@if($asig->id_curso == 9)
+				</table>
+				<table align="right" class="normal" cellpadding="3"> 
+						@foreach($cursos as $c)
+							@if($c->id==9)
 								<tr>
-									<td>{{$asig->asignatura}}</td>
-									@if($boletinFinal->id_asignatura)
-										@foreach($boletinFinal as $b)
-											@if($b->id_asignatura == $asig->id)
-												<td>{{$b->promedio}}</td>
-												<td align="center">
-													@if($b->promedio==1)UNO
-													@elseif($b->promedio==2)DOS
-													@elseif($b->promedio==3)TRES
-													@elseif($b->promedio==4)CUATRO
-													@elseif($b->promedio==5)CINCO
-													@elseif($b->promedio==6)SEIS
-													@elseif($b->promedio==7)SIETE
-													@elseif($b->promedio==8)OCHO
-													@elseif($b->promedio==9)NUEVE
-													@elseif($b->promedio==10)DIEZ
-													@elseif($b->promedio==11)ONCE
-													@elseif($b->promedio==12)DOCE
-													@elseif($b->promedio==13)TRECE
-													@elseif($b->promedio==14)CATORCE
-													@elseif($b->promedio==15)QUINCE
-													@elseif($b->promedio==16)DIECISÉIS
-													@elseif($b->promedio==17)DIECISIETE
-													@elseif($b->promedio==18)DIECIOCHO
-													@elseif($b->promedio==19)DIECINUEVE
-													@else VEINTE
-													@endif
-												</td>
-												<td align="center">F</td>
-												<td align="center">Julio</td>
-												<td align="center">2018</td>	
-												<td align="center">1</td>
-											@else
-												<td>***</td>
-											@endif
-										@endforeach
-									
-									@else
-											<td>***</td>
-											<td>***</td>
-											<td>***</td>
-											<td>***</td>
-											<td>***</td>
-											<td>***</td>
-									@endif
+									<td colspan="7" align="center"><strong>SEGUNDO AÑO</strong></td>
 								</tr>
+								<tr>
+									<td rowspan="2"><strong>ÁREAS DE FORMACIÓN</strong></td>
+									<td colspan="2"><strong>CALIFICACIONES</strong></td>
+									<td rowspan="2"><strong>T-E</strong></td>
+									<td colspan="2"><strong>FECHA</strong></td>
+									<td><strong>PLANTEL</strong></td>
+								</tr>
+								<tr>
+									<td><strong>En Nro.</strong></td>
+									<td><strong>En Letras</strong></td>
+									
+									<td><strong>Mes</strong></td>
+									<td><strong>Año</strong></td>
+									<td><strong>Nro.</strong></td>
+								</tr>
+									
+										@if($c2>0)
+											@foreach($boletinFinal as $bf)
+												@if($bf->asignatura->cursos->id == $c->id)
+														<tr>
+															<td>{{$bf->asignatura->asignatura}}</td>
+											
+																		<td>{{$bf->promedio}}</td>
+																		<td align="center">
+																			@if($b->promedio==1)UNO
+																			@elseif($b->promedio==2)DOS
+																			@elseif($b->promedio==3)TRES
+																			@elseif($b->promedio==4)CUATRO
+																			@elseif($b->promedio==5)CINCO
+																			@elseif($b->promedio==6)SEIS
+																			@elseif($b->promedio==7)SIETE
+																			@elseif($b->promedio==8)OCHO
+																			@elseif($b->promedio==9)NUEVE
+																			@elseif($b->promedio==10)DIEZ
+																			@elseif($b->promedio==11)ONCE
+																			@elseif($b->promedio==12)DOCE
+																			@elseif($b->promedio==13)TRECE
+																			@elseif($b->promedio==14)CATORCE
+																			@elseif($b->promedio==15)QUINCE
+																			@elseif($b->promedio==16)DIECISÉIS
+																			@elseif($b->promedio==17)DIECISIETE
+																			@elseif($b->promedio==18)DIECIOCHO
+																			@elseif($b->promedio==19)DIECINUEVE
+																			@else VEINTE
+																			@endif
+																		</td>
+																		<td align="center">F</td>
+																		<td align="center">Julio</td>
+																		<td align="center">2018</td>	
+																		<td align="center">1</td>
+																	
+																
+															
+														</tr>
+												@endif
+											@endforeach
+										@else
+												@foreach($asignaturas as $asigna)
+													@if($asigna->id_curso == $c->id)
+														<tr>
+															<td>{{$asigna->asignatura}}</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+														</tr>
+													@endif
+												@endforeach
+										@endif
+							@elseif($c->id==11)
+								<tr>
+									<td colspan="7" align="center"><strong>CUARTO AÑO</strong></td>
+								</tr>
+								<tr>
+									<td rowspan="2"><strong>ÁREAS DE FORMACIÓN</strong></td>
+									<td colspan="2"><strong>CALIFICACIONES</strong></td>
+									<td rowspan="2"><strong>T-E</strong></td>
+									<td colspan="2"><strong>FECHA</strong></td>
+									<td><strong>PLANTEL</strong></td>
+								</tr>
+								<tr>
+									<td><strong>En Nro.</strong></td>
+									<td><strong>En Letras</strong></td>
+									
+									<td><strong>Mes</strong></td>
+									<td><strong>Año</strong></td>
+									<td><strong>Nro.</strong></td>
+								</tr>
+									
+										@if($c4>0)
+											@foreach($boletinFinal as $bf)
+												@if($bf->asignatura->cursos->id == $c->id)
+														<tr>
+															<td>{{$bf->asignatura->asignatura}}</td>
+											
+																		<td>{{$bf->promedio}}</td>
+																		<td align="center">
+																			@if($bf->promedio==1)UNO
+																			@elseif($bf->promedio==2)DOS
+																			@elseif($bf->promedio==3)TRES
+																			@elseif($bf->promedio==4)CUATRO
+																			@elseif($bf->promedio==5)CINCO
+																			@elseif($bf->promedio==6)SEIS
+																			@elseif($bf->promedio==7)SIETE
+																			@elseif($bf->promedio==8)OCHO
+																			@elseif($bf->promedio==9)NUEVE
+																			@elseif($bf->promedio==10)DIEZ
+																			@elseif($bf->promedio==11)ONCE
+																			@elseif($bf->promedio==12)DOCE
+																			@elseif($bf->promedio==13)TRECE
+																			@elseif($bf->promedio==14)CATORCE
+																			@elseif($bf->promedio==15)QUINCE
+																			@elseif($bf->promedio==16)DIECISÉIS
+																			@elseif($bf->promedio==17)DIECISIETE
+																			@elseif($bf->promedio==18)DIECIOCHO
+																			@elseif($bf->promedio==19)DIECINUEVE
+																			@else VEINTE
+																			@endif
+																		</td>
+																		<td align="center">F</td>
+																		<td align="center">Julio</td>
+																		<td align="center">2018</td>	
+																		<td align="center">1</td>
+																	
+																
+															
+														</tr>
+												@endif
+											@endforeach
+										@else
+												@foreach($asignaturas as $asigna)
+													@if($asigna->id_curso == $c->id)
+														<tr>
+															<td>{{$asigna->asignatura}}</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+															<td>***</td>
+														</tr>
+													@endif
+												@endforeach
+										@endif
+							
 							@endif
+
 						@endforeach
-		</table>
-		<table align="right" width="136" height="40">
-			<tr>
-				<td align="left"><strong>Apellidos y Nombres</strong></td>
-			</tr>
-			<tr>
-				<td align="center">Longoria Blanco Juan</td>
-			</tr>
-			<tr>
-				<td align="left"><strong>Número de C.I.</strong></td>
-			</tr>
-			<tr>
-				<td align="center">V.-4.367.685</td>
-			</tr>
-			<tr>
-				<td align="left"><strong><br><br>Firma.</strong></td>
-			</tr>
-			<tr>
-				<td align="center"><strong><br><br><br>Sello del Plantel</strong></td>
-			</tr>
-			<tr>
-				<td align="center"><br><br><br><br><br>Para efectos de su validez a nivel nacional</td>
-			</tr>
-			<tr>
-				<td align="center">
-					<strong>VII. DIRECTOR(A) DE LA ZONA EDUCATIVA</strong>
-				</td>
-			</tr>
-			<tr>
-				<td align="left"><strong>Apellidos y Nombres:</strong></td>
-			</tr>
-			<tr>
-				<td align="center">Longoria Blanco Juan Enrique</td>
-			</tr>
-			<tr>
-				<td align="left"><strong>Número de Cédula:</strong></td>
-			</tr>
-			<tr>
-				<td align="center">V.- 8367685</td>
-			</tr>
-			<tr>
-				<td align="center"><br><br><br><br><strong>Sello de la Zona Educativa</strong></td>
-			</tr>
-			<tr>
-				<td align="justify"><br><br><br><br>Para efectos de su valideza nivel Nacional e internacional y cuando  se trate de estudios libres equivalentes sin escolaridad.</td>
-			</tr>
-			<tr>
-				<td align="justify">TIMBRE FISCAL: Este documento no tiene validez si no se coloca en la parte posterior timbres fiscales por Bs. 30% de la Unidad Tributaria</td>
-			</tr>
-		</table>
+						<tr>
+							<td colspan="7" align="center"><strong>ÁREAS DE FORMACIÓN</strong></td>
+						</tr>
+						<tr>
+							<td>ÁREAS DE FORMACIÓN</td>
+							<td>AÑO</td>
+							<td colspan="5">LITERAL</td>
+						</tr>
+					</table>
+		</tr></tr>
 		
-
-		
-	</tr>
-</table>
-
- 	
- <p>
-
-<div style="page-break-after:always;">
-			<table align="right" width="136">
-			<tr>
-				<td align="left"><strong>Apellidos y Nombres</strong></td>
-			</tr>
-			<tr>
-				<td align="center">Longoria Blanco Juan</td>
-			</tr>
-			<tr>
-				<td align="left"><strong>Número de C.I.</strong></td>
-			</tr>
-			<tr>
-				<td align="center">V.-4.367.685</td>
-			</tr>
-			<tr>
-				<td align="left"><strong><br><br>Firma.</strong></td>
-			</tr>
-			<tr>
-				<td align="center"><strong><br><br><br>Sello del Plantel</strong></td>
-			</tr>
-			<tr>
-				<td align="center"><br><br><br><br><br>Para efectos de su validez a nivel nacional</td>
-			</tr>
-			<tr>
-				<td align="center">
-					<strong>VII. DIRECTOR(A) DE LA ZONA EDUCATIVA</strong>
-				</td>
-			</tr>
-			<tr>
-				<td align="left"><strong>Apellidos y Nombres:</strong></td>
-			</tr>
-			<tr>
-				<td align="center">Longoria Blanco Juan Enrique</td>
-			</tr>
-			<tr>
-				<td align="left"><strong>Número de Cédula:</strong></td>
-			</tr>
-			<tr>
-				<td align="center">V.- 8367685</td>
-			</tr>
-			<tr>
-				<td align="center"><br><br><br><br><strong>Sello de la Zona Educativa</strong></td>
-			</tr>
-			<tr>
-				<td align="justify"><br><br><br><br>Para efectos de su valideza nivel Nacional e internacional y cuando  se trate de estudios libres equivalentes sin escolaridad.</td>
-			</tr>
-			<tr>
-				<td align="justify">TIMBRE FISCAL: Este documento no tiene validez si no se coloca en la parte posterior timbres fiscales por Bs. 30% de la Unidad Tributaria</td>
-			</tr>
-		</table>
-		</div>
-
-		<div style="page-break-after:always;">
-			<table class="IV" height="100%" cellpadding="10">
- 		<tr>
- 			<td align="center">REVISADO POR COORDINADOR</td>
- 		</tr>
- 		<tr>
- 		   	<td align="center">DEL</td>
- 		<tr>
-			<td align="center">DEL DEPARTAMENTO  DE  CONTROL</td>
+					<table width="100px" class="normal">
+						<tr>
+							<td><STRONG>VI. OBSERVACIONES: PROMEDIO: </STRONG></td>
+							<td></td>
+							<td><strong>VII. PLANTEL</strong></td>
+							<td><strong>VII. ZONA EDUCATIVA</strong></td>
+						</tr>
+					</table>
 		</tr>
-		<tr>
-			<td align="center">DE ESTUDIOS</td>
-		</tr>
-		<tr>
-			<td align="center">NOMBRES Y APELLIDOS</td>
-		</tr>
-		<tr>
-			<td align="center">MARÍA  SOJO  M</td>
-		</tr>
-		<tr>
-			<td align="center">C.I:V- 3.934.133</td>
-		</tr>
-		<tr>
-			<td align="center">FIRMA_______________</td>
-		</tr>
-		<tr>
-			<td align="center">VERIFICADO  POR</td>
-		</tr>
-		<tr>
-			<td align="center">NOMBRES Y APELLIDOS</td>
-		</tr>
-		<tr>
-			<td align="center">IRIS  CASENAVE  SOSA</td>
-		</tr>
-		<tr>
-			<td align="center">C.I: V- 4.368.337</td>
-		</tr>
-		<tr>
-			<td align="center">FIRMA_______________</td>
- 		</tr>
- 	</table>
-		</div>
+	</table>

@@ -29,8 +29,8 @@ class Validaciones extends Request
     public function rules()
     {
          return [
-            'nombre' => 'required|min:3|max:12|regex:/^[a-z]+$/i',
-            'email' => 'required|email',
+            'nombre' => 'required|min:3|max:12|regex:/^[a-z]+$/i|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'email' => 'required|email|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
         ];
     }
 

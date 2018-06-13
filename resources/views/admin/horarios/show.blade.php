@@ -125,7 +125,54 @@
               {!! Form::close() !!} 
               </div>
               
+<section class="content spark-screen ">
+<div class="box box-warning direct-chat direct-chat-warning">
+    <div class="box-header with-border">
+        <h3 class="box-title">Número de bloques asignados</h3>
 
+        <div class="box-tools pull-right">
+                    
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    
+        </div>
+    </div>
+                <!-- /.box-header -->
+    <div class="box-body">
+      <!-- Conversations are loaded here -->
+      
+        <div class="col-xs-8">
+          <div class="form-group">
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Asignatura</th>
+                  <th>Bloques permitidos</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($asignaturas as $asigna_b)
+                  @if ($asigna_b->id_curso==$secciones->id_curso)
+                    <tr>
+                      
+                        <td>{{$asigna_b->asignatura}}</td>
+                        <td>{{$asigna_b->n_bloques}}</td>
+                       
+                    </tr>
+                  @endif
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        <div class="form-group">
+            
+            
+        </div>
+      </div>
+    
+    </div>
+    <!-- /.box-body -->
+    </div>
 
 
 <section class="content spark-screen ">
@@ -157,7 +204,7 @@
                       @if($bloquesx[$i][$j]!="LIBRE" && $bloquesx[$i][$j]!="RECESO")
                         <div style="width: 100%; height: 5px; padding-left: 0px; padding-top: 0px;">{{$bloquesx[$i][$j]}}-A:{{$aula[$i][$j]}}</div>
                         <div style="padding-right: 0px; padding-left: 150px; padding-top: 0px;">
-                        <a href="#"><button style="width: 5em important!;height: 5em important!; border-radius: 6px; size: 5px;" data-toggle="modal" data-target="#myModal" onclick="destruir('{{$id_horarios[$i][$j]}}','{{$secciones->id}}')" class="close" title="Presionando este botón puede editar el registro"><i class="fa fa-times"></i></button></a></div>
+                        <a href="#"><button style="width: 5em important!;height: 5em important!; border-radius: 6px; size: 5px;" data-toggle="modal" data-target="#myModal" onclick="destruir('{{$id_horarios[$i][$j]}}','{{$secciones->id}}')" class="close"><i class="fa fa-times"></i></button></a></div>
                       @else
                         {{$bloquesx[$i][$j]}}
                       @endif</strong></td>
@@ -180,6 +227,7 @@
       
     </section>
   </section>
+</section>
 
 
 
